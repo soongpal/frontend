@@ -1,0 +1,12 @@
+# Windows system files
+Thumbs.db
+
+# Editor/IDE folders
+.vscode/
+.idea/
+
+# Log files
+*.log
+
+# Environment variable files
+.env
