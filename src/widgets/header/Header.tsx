@@ -29,8 +29,14 @@ const Header : React.FC = () =>{
                     <FormControl
                         placeholder="상품명 입력"
                         aria-label="Search"
+                        className="border-0 shadow-none"
+                        style={{ backgroundColor: 'white' }}
                     />
-                    <Button variant="outline-secondary">
+                    <Button 
+                    variant="outline-secondary"
+                    className="border-0"
+                    style={{ backgroundColor: 'white' }}
+                    >
                         <Search />
                     </Button>
                 </InputGroup>
