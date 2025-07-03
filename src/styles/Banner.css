@@ -1,0 +1,12 @@
+.banner-item img{
+    height: 200px;
+    width: 100%; 
+    object-fit: cover;
+}
+
+.banner-item{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+    height: 200px;
+}
