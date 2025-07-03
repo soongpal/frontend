@@ -8,7 +8,7 @@ const Header : React.FC = () =>{
         <div>
             <Navbar sticky="top" bg="light" data-bs-theme="light">
             <Container justify-content-between>
-                <Navbar.Brand href="/"><h1>숭팔이</h1></Navbar.Brand>
+                <Navbar.Brand href="/"><h1>숭팔이로고</h1></Navbar.Brand>
                 <Nav>
                     <Nav.Link href="/signup">회원가입</Nav.Link>
                     <Nav.Link href="/login">로그인</Nav.Link>
