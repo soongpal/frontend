@@ -1,4 +1,4 @@
-import Banner from "../component/Banner";
+import Banner from "../component/banner/Banner";
 
 const Home: React.FC = () =>{
     return(
