@@ -1,6 +1,6 @@
 import type React from "react";
 import { Carousel, Container } from "react-bootstrap";
-import '../styles/Banner.css';
+import '../app/styles/Banner.css';
 
 const Banner : React.FC = () =>{
     return(
@@ -8,17 +8,17 @@ const Banner : React.FC = () =>{
             <Carousel>
                 <Carousel.Item>
                     <div className="banner-item">
-                        <img src="/banners/banner1.png" alt="banner1" />
+                        <img src="/images/banners/banner1.png" alt="banner1" />
                     </div>
                 </Carousel.Item>
                 <Carousel.Item>
                     <div className="banner-item">
-                        <img src="/banners/banner1.png" alt="banner2" />
+                        <img src="/images/banners/banner1.png" alt="banner2" />
                     </div>
                 </Carousel.Item>
                 <Carousel.Item>
                     <div className="banner-item">
-                        <img src="/banners/banner1.png" alt="banner3" />
+                        <img src="/images/banners/banner1.png" alt="banner3" />
                     </div>
                 </Carousel.Item>
             </Carousel>
