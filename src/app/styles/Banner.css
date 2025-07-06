@@ -1,5 +1,5 @@
 .banner-item img{
-    height: 200px;
+    height: 100%x;
     width: 100%; 
     object-fit: cover;
 }
@@ -8,5 +8,5 @@
    display: flex;
    justify-content: center;
    align-items: center;
-    height: 200px;
+    height: 500px;
 }
