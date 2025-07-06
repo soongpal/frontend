@@ -1,12 +1,12 @@
 .banner-item img{
     height: 100%x;
     width: 100%; 
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .banner-item{
    display: flex;
    justify-content: center;
    align-items: center;
-    height: 500px;
+   height: 450px
 }
