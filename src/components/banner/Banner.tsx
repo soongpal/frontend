@@ -1,6 +1,6 @@
 import type React from "react";
 import { Carousel, Container } from "react-bootstrap";
-import '../../app/styles/Banner.css';
+import '../../styles/Banner.css';
 
 const Banner : React.FC = () =>{
     return(
