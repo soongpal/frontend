@@ -1,15 +1,11 @@
 import './styles/App.css'
-import Footer from '../components/layout/footer/Footer'
-import Header from '../components/layout/header/Header'
-import Home from '../pages/HomePage'
+import Layout from '../components/layout/Layout'
 
 const App : React.FC = () =>{
 
   return(
     <div className='App'>
-      <Header></Header>
-      <Home></Home>
-      <Footer></Footer>
+      <Layout></Layout>
     </div>
   );
 }
