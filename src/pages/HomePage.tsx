@@ -1,5 +1,6 @@
-import Banner from "../component/banner/Banner";
-import HomeProducGrid from "../component/product/HomeProductGrid";
+//맨처음 페이지임, 최신상품을 보여줄것
+import Banner from "../components/banner/Banner";
+import HomeProducGrid from "../components/product/HomeProductGrid";
 
 const Home: React.FC = () =>{
     return(
