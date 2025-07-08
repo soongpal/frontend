@@ -1,12 +1,10 @@
 import './styles/App.css'
-import Layout from '../components/layout/Layout'
+import AppRouter from '../routes/AppRouter';
 
 const App : React.FC = () =>{
 
   return(
-    <div className='App'>
-      <Layout></Layout>
-    </div>
+    <AppRouter></AppRouter>
   );
 }
 
