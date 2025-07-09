@@ -1,10 +1,14 @@
 //중고거래 페이지
 
 import type React from "react";
+import HomeProducGrid from "../../../components/product/HomeProductGrid";
 
 const UsedTradePage: React.FC = () =>{
     return(
-        <div>중고거래 페이지</div>
+        <div>
+            <h3 className="text-center mb-5"><b>중고거래</b></h3>
+            <HomeProducGrid></HomeProducGrid>
+        </div>
     )
 }
 

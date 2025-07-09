@@ -5,7 +5,7 @@ import { Search, List } from 'react-bootstrap-icons';
 const Header : React.FC = () =>{
 
     return(
-        <div>
+        <div className="mb-5">
             <Navbar fixed="top" bg="light" data-bs-theme="light" className="flex-column">
                 <Container>
                     <Row className="w-100 align-items-center">
@@ -52,6 +52,9 @@ const Header : React.FC = () =>{
                     </Row>
                 </Container>
             </Navbar>
+            
+            <div style={{ height: '122px' }}></div>
+
         </div>
     );
 }

@@ -9,7 +9,7 @@ const ProductCard: React.FC = () =>{
     <div className="h-100">
       <Card border="0" className="p-2">
         <div className="position-relative">
-          <Card.Img variant="top" src= {product2} alt="상품명" className="border-0"/>
+          <Card.Img variant="top" src= {product2} alt="상품명" className="rounded-1"/>
           <SoldoutTag></SoldoutTag>
         </div>
         <Card.Body className="d-flex flex-column justify-content-between text-start">
