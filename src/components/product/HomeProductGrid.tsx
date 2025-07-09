@@ -5,7 +5,7 @@ import { Col, Container, Row } from "react-bootstrap";
 const HomeProducGrid : React.FC = () =>{
     return(
         <Container>
-            <Row xs={1} md={2} lg={3} className = "g-5">
+            <Row xs={2} md={3} lg={4} className = "g-1">
                 <Col><ProductCard></ProductCard></Col>
                 <Col><ProductCard></ProductCard></Col>
                 <Col><ProductCard></ProductCard></Col>
