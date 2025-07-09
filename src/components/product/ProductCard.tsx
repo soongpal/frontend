@@ -6,7 +6,7 @@ import "../../styles/ProductCard.css";
 
 const ProductCard: React.FC = () => {
   return (
-    <div className="product-card">
+    <div>
       <Card className="product-card">
         <div className="product-card-img-wrapper">
           <Card.Img
