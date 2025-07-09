@@ -1,6 +1,6 @@
 .product-card {
   padding: 0.5rem; /* p-2 */
-  border: none; /* border="0" */
+  border: none !important; /* border="0" */
   height: 100%; /* h-100 */
 }
 
