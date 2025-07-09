@@ -2,17 +2,14 @@
 
 import type React from "react";
 import Header from "./header/Header";
-import { Outlet } from "react-bootstrap-icons";
+import { Outlet } from "react-router-dom";
 import Footer from "./footer/Footer";
 
 const Layout: React.FC = () =>{
     return(
-        <div className="App">
+        <div>
             <Header></Header>
             <Outlet></Outlet>
-            <div><h1>안녕하세요</h1>
-            <h2>이거 왜 출력이 안되노 ㅋㅋ</h2>
-            <h1>썅 이거 왜 겹친거임!!!</h1></div>
             <Footer></Footer>
         </div>
     );

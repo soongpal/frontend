@@ -15,6 +15,7 @@ import Layout from "../components/layout/Layout";
 
 
 const AppRouter: React.FC = ()=>{
+    
     return(
         <Router>
             <Routes>
@@ -29,7 +30,7 @@ const AppRouter: React.FC = ()=>{
                 </Route>
             </Routes>
         </Router>
-    )
+    );
 }
 
 export default AppRouter;
