@@ -15,9 +15,9 @@ const Header : React.FC = () =>{
                         
                         <Col className="d-flex justify-content-end">
                             <Nav>
-                                <Nav.Link href="/signup">회원가입</Nav.Link>
-                                <Nav.Link href="/login">로그인</Nav.Link>
-                                <Nav.Link href="/mypage">마이페이지</Nav.Link>
+                                <Nav.Link href="/auth/signup">회원가입</Nav.Link>
+                                <Nav.Link href="/auth/login">로그인</Nav.Link>
+                                <Nav.Link href="/user/mypage">마이페이지</Nav.Link>
                             </Nav>
                         </Col>
                     </Row>
@@ -27,8 +27,8 @@ const Header : React.FC = () =>{
                         <Col className="d-flex justify-content-start">
                             <Nav className="d-flex align-items-center">
                                 <List size={24} />
-                                <Nav.Link href="/grouppurchase">공동구매</Nav.Link>
-                                <Nav.Link href="/usedtrade">중고거래</Nav.Link>
+                                <Nav.Link href="/product/grouppurchase">공동구매</Nav.Link>
+                                <Nav.Link href="/product/usedtrade">중고거래</Nav.Link>
                             </Nav>
                         </Col>
 
