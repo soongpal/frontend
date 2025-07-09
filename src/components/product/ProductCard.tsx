@@ -1,28 +1,35 @@
 import { Card } from "react-bootstrap";
 import { HeartFill } from 'react-bootstrap-icons';
-
 import product2 from '../../assets/images/products/product2.jpg';
 import SoldoutTag from "../common/SoldoutTag";
+import "../../styles/ProductCard.css";
 
-const ProductCard: React.FC = () =>{
-    return(
-    <div className="h-100">
-      <Card border="0" className="p-2">
-        <div className="position-relative">
-          <Card.Img variant="top" src= {product2} alt="상품명" className="rounded-1"/>
-          <SoldoutTag></SoldoutTag>
+const ProductCard: React.FC = () => {
+  return (
+    <div className="product-card">
+      <Card className="product-card">
+        <div className="product-card-img-wrapper">
+          <Card.Img
+            variant="top"
+            src={product2}
+            alt="상품명"
+            className="product-card-img"
+          />
+          <SoldoutTag />
         </div>
-        <Card.Body className="d-flex flex-column justify-content-between text-start">
-          <div className="d-flex justify-content-between">
+
+        <Card.Body className="product-card-body">
+          <div className="product-card-header">
             <Card.Title>제목</Card.Title>
-            <HeartFill color="red" ></HeartFill>
+            <HeartFill color="red" />
           </div>
-          <Card.Text className="fw-bold">개당 20원</Card.Text>
-          <Card.Text className="text-muted mt-auto">30분전</Card.Text>
+
+          <Card.Text className="product-card-price">개당 20원</Card.Text>
+          <Card.Text className="product-card-time">30분전</Card.Text>
         </Card.Body>
       </Card>
     </div>
-    )
-}
+  );
+};
 
 export default ProductCard;
