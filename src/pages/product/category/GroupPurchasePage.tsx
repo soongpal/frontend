@@ -6,7 +6,7 @@ import HomeProducGrid from "../../../components/product/HomeProductGrid";
 const GroupPurchasePage: React.FC = () =>{
     return(
         <div>
-            <h3 className="text-center mb-5"><b>공동구매</b></h3>
+            <h3 className="text-center mt-4 mb-5"><b>공동구매</b></h3>
             <HomeProducGrid></HomeProducGrid>
         </div>
     )
