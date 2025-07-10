@@ -15,8 +15,8 @@ const Header : React.FC = () =>{
                         
                         <Col className="d-flex justify-content-end">
                             <Nav>
-                                <Nav.Link href="/auth/signup">회원가입</Nav.Link>
                                 <Nav.Link href="/auth/login">로그인</Nav.Link>
+                                <Nav.Link href="/auth/signup">회원가입</Nav.Link>
                                 <Nav.Link href="/user/mypage">마이페이지</Nav.Link>
                             </Nav>
                         </Col>
