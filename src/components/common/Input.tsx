@@ -6,17 +6,17 @@ const inputStyle: React.CSSProperties = {
 };
 
 interface InputFieldProps {
-  label: string;
-  name: string;
-  type?: string;
-//   value: string;
-//   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
-  error?: string;
-
+    label: string;
+    name: string;
+    type?: string;
+    //   value: string;
+    //   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    placeholder?: string;
+    error?: string;
+    help?: string;
 }
 
-const Input: React.FC<InputFieldProps> = ({ label, type, name, error, placeholder }) => {
+const Input: React.FC<InputFieldProps> = ({ label, type, name, error, placeholder, help }) => {
 
     return(
         <Form.Group className="mb-5">
@@ -34,6 +34,11 @@ const Input: React.FC<InputFieldProps> = ({ label, type, name, error, placeholde
                 />
                 <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
             </FloatingLabel>
+
+            <Form.Text muted>
+               {help}
+            </Form.Text>
+            
         </Form.Group>
     );
 }

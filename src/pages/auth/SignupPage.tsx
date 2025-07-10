@@ -14,18 +14,22 @@ const SignupPage: React.FC = () =>{
                     // onChange={handleChange}
                     error="아이디 입력 오류"
                     >
+                    
                 </Input>
 
                 <Input 
                     label="비밀번호"
                     name="password"
+                    type="password"
                     // value={form.password}
                     // onChange={handleChange}
                     error="비밀번호 입력 오류"
+                    help="*영어 알파벳과 숫자의 최소 8자리 조합"
                     >
                 </Input>
+
                 <div className="d-flex justify-content-end">
-                    <Button type="submit"  variant="dark" className="mb-5">로그인</Button>
+                    <Button type="submit"  variant="dark" className="mb-5">회원가입</Button>
                 </div>
             </Form>
         </Container>

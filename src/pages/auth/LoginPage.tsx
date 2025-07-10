@@ -19,6 +19,7 @@ const LoginPage: React.FC = () =>{
                 <Input 
                     label="비밀번호"
                     name="password"
+                    type="password"
                     // value={form.password}
                     // onChange={handleChange}
                     error="비밀번호 입력 오류"
