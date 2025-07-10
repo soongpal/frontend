@@ -13,8 +13,8 @@ const SignupPage: React.FC = () =>{
                     // value={form.username}
                     // onChange={handleChange}
                     error="아이디 입력 오류"
+                    buttonText = "중복 확인"
                     >
-                    
                 </Input>
 
                 <Input 
