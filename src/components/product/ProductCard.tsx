@@ -12,7 +12,6 @@ const ProductCard: React.FC = () => {
           <Card.Img
             variant="top"
             src={product2}
-            alt="상품명"
             className="product-card-img"
           />
           <SoldoutTag />
