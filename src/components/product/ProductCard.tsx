@@ -23,7 +23,7 @@ const ProductCard: React.FC = () => {
             <HeartFill color="red" />
           </div>
 
-          <Card.Text className="product-card-price">개당 20원</Card.Text>
+          <Card.Text className="product-card-price">20원</Card.Text>
           <Card.Text className="product-card-time">30분전</Card.Text>
         </Card.Body>
       </Card>
