@@ -16,6 +16,9 @@
 
 .product-card-img {
     border-radius: 0.25rem; /* rounded-1 */
+    aspect-ratio: 1 / 1; /* 가로:세로 = 1:1 */
+    object-fit: cover;
+    width: 100%; /* 부모에 꽉 차게 */
 }
 
 .product-card-body {
