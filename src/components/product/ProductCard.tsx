@@ -1,17 +1,22 @@
-import { Card } from "react-bootstrap";
-import product2 from '../../assets/images/products/product2.jpg';
-import SoldoutTag from "../common/SoldoutTag";
 import "../../styles/ProductCard.css";
+import { Card } from "react-bootstrap";
+import SoldoutTag from "../common/SoldoutTag";
 import HeartButton from "../common/HeartButton";
+import { type Product } from "../../types/product";
 
-const ProductCard: React.FC = () => {
+
+interface ProductCardProps{
+  product: Product;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({product}) => {
   return (
     <div>
       <Card className="product-card">
         <div className="product-card-img-wrapper">
           <Card.Img
             variant="top"
-            src={product2}
+            src={product.images}
             className="product-card-img"
           />
           <SoldoutTag />
@@ -19,12 +24,12 @@ const ProductCard: React.FC = () => {
 
         <Card.Body className="product-card-body">
           <div className="product-card-header">
-            <Card.Title>제목</Card.Title>
+            <Card.Title>{product.title}</Card.Title>
             <HeartButton></HeartButton>
           </div>
 
-          <Card.Text className="product-card-price">20원</Card.Text>
-          <Card.Text className="product-card-time">30분전</Card.Text>
+          <Card.Text className="product-card-price">{product.price}원</Card.Text>
+          <Card.Text className="product-card-time">{product.createdAt}</Card.Text>
         </Card.Body>
       </Card>
     </div>
