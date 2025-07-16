@@ -10,7 +10,7 @@
     "status": "ON_SALE",
     "likeCount": 3,
     "chatCount": 1,
-    "images": "src/assets/images/products/product1.jpg",
+    "images": "/products/product1.jpg",
     "category": "GROUP_PURCHASE"
   },
   {
@@ -24,7 +24,7 @@
     "status": "ON_SALE",
     "likeCount": 5,
     "chatCount": 2,
-    "images": "src/assets/images/products/product2.jpg",
+    "images": "/products/product2.jpg",
     "category": "USED_TRADE"
   },
   {
@@ -38,7 +38,7 @@
     "status": "ON_SALE",
     "likeCount": 4,
     "chatCount": 0,
-    "images": "src/assets/images/products/product3.jpg",
+    "images": "/products/product3.jpg",
     "category": "USED_TRADE"
   },
   {
@@ -52,7 +52,7 @@
     "status": "ON_SALE",
     "likeCount": 7,
     "chatCount": 1,
-    "images": "src/assets/images/products/product4.jpg",
+    "images": "/products/product4.jpg",
     "category": "GROUP_PURCHASE"
   },
   {
@@ -66,7 +66,7 @@
     "status": "ON_SALE",
     "likeCount": 6,
     "chatCount": 3,
-    "images": "src/assets/images/products/product5.jpg",
+    "images": "/products/product5.jpg",
     "category": "USED_TRADE"
   },
   {
@@ -80,7 +80,7 @@
     "status": "SOLD_OUT",
     "likeCount": 9,
     "chatCount": 2,
-    "images": "src/assets/images/products/product6.jpg",
+    "images": "/products/product6.jpg",
     "category": "GROUP_PURCHASE"
   },
   {
@@ -94,7 +94,7 @@
     "status": "ON_SALE",
     "likeCount": 4,
     "chatCount": 1,
-    "images": "src/assets/images/products/product7.jpg",
+    "images": "/products/product7.jpg",
     "category": "GROUP_PURCHASE"
   },
   {
@@ -108,7 +108,7 @@
     "status": "ON_SALE",
     "likeCount": 2,
     "chatCount": 0,
-    "images": "src/assets/images/products/product8.jpg",
+    "images": "/products/product8.jpg",
     "category": "USED_TRADE"
   },
   {
@@ -122,7 +122,7 @@
     "status": "ON_SALE",
     "likeCount": 8,
     "chatCount": 3,
-    "images": "src/assets/images/products/product9.jpg",
+    "images": "/products/product9.jpg",
     "category": "USED_TRADE"
   }
 ]
