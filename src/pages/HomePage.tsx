@@ -2,6 +2,8 @@
 import Banner from "../components/banner/Banner";
 import HomeProducGrid from "../components/product/HomeProductGrid";
 
+
+
 const Home: React.FC = () =>{
     return(
         <div>
