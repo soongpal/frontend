@@ -1,8 +1,8 @@
 import { Card } from "react-bootstrap";
-import { HeartFill } from 'react-bootstrap-icons';
 import product2 from '../../assets/images/products/product2.jpg';
 import SoldoutTag from "../common/SoldoutTag";
 import "../../styles/ProductCard.css";
+import HeartButton from "../common/HeartButton";
 
 const ProductCard: React.FC = () => {
   return (
@@ -20,7 +20,7 @@ const ProductCard: React.FC = () => {
         <Card.Body className="product-card-body">
           <div className="product-card-header">
             <Card.Title>제목</Card.Title>
-            <HeartFill color="red" />
+            <HeartButton></HeartButton>
           </div>
 
           <Card.Text className="product-card-price">20원</Card.Text>
