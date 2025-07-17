@@ -1,5 +1,5 @@
 //맨처음 페이지임, 최신상품을 보여줄것
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Banner from "../components/banner/Banner";
 import ProductGrid from "../components/product/ProductGrid";
 import dummy from "../data/dummy.json"
