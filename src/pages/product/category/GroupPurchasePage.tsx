@@ -8,9 +8,13 @@ import type { Product } from "../../../types/product";
 
 const GroupPurchasePage: React.FC = () =>{
 
- const [products, setProducts] = useState<Product[]>([]);
+    const [products, setProducts] = useState<Product[]>([]);
+    
     useEffect(() => {
-        setProducts(dummy as Product[]);
+        const allProducts: Product[] = dummy as Product[];
+        const groupPurchaseProducts = allProducts.filter(
+            (product) => product.category === 'GROUP_PURCHASE');
+        setProducts(groupPurchaseProducts);
     }, []);
 
 

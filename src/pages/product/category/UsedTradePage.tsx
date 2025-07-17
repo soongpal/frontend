@@ -9,8 +9,12 @@ import { useEffect, useState } from "react";
 const UsedTradePage: React.FC = () =>{
 
     const [products, setProducts] = useState<Product[]>([]);
+    
     useEffect(() => {
-        setProducts(dummy as Product[]);
+        const allProducts: Product[] = dummy as Product[];
+        const groupPurchaseProducts = allProducts.filter(
+            (product) => product.category === 'USED_TRADE');
+        setProducts(groupPurchaseProducts);
     }, []);
 
 
