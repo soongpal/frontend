@@ -9,7 +9,7 @@ const SignupPage: React.FC = () =>{
             <Form>
                 <Input 
                     label="아이디"
-                    name="username"
+                    name="userid"
                     // value={form.username}
                     // onChange={handleChange}
                     error="아이디 입력 오류"
@@ -25,6 +25,16 @@ const SignupPage: React.FC = () =>{
                     // onChange={handleChange}
                     error="비밀번호 입력 오류"
                     help="*영어 알파벳과 숫자의 최소 8자리 조합"
+                    >
+                </Input>
+
+                <Input 
+                    label="닉네임"
+                    name="username"
+                    // value={form.username}
+                    // onChange={handleChange}
+                    error="닉네임 입력 오류"
+                    buttonText = "중복 확인"
                     >
                 </Input>
 
