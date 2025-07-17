@@ -34,8 +34,14 @@
     justify-content: space-between;
 }
 
+.product-card-title{
+    font-size: 18px;
+    font-weight: 400;
+}
+
 .product-card-price {
     font-weight: 700; /* fw-bold */
+    font-size: 18px;
 }
 
 .product-card-time {

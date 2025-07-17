@@ -24,7 +24,7 @@ const ProductCard: React.FC<ProductCardProps> = ({product}) => {
 
         <Card.Body className="product-card-body">
           <div className="product-card-header">
-            <Card.Title>{product.title}</Card.Title>
+            <div className="product-card-title">{product.title}</div>
             <HeartButton></HeartButton>
           </div>
 
