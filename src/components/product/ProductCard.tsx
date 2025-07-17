@@ -10,6 +10,7 @@ interface ProductCardProps{
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({product}) => {
+
   return (
     <div>
       <Card className="product-card">
@@ -19,7 +20,7 @@ const ProductCard: React.FC<ProductCardProps> = ({product}) => {
             src={product.images}
             className="product-card-img"
           />
-          <SoldoutTag />
+          {product.status==='SOLD_OUT'&&<SoldoutTag />}
         </div>
 
         <Card.Body className="product-card-body">
