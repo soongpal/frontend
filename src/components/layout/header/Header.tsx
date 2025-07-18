@@ -6,7 +6,7 @@ const Header : React.FC = () =>{
 
     return(
         <div className="mb-5">
-            <Navbar fixed="top" bg="light" data-bs-theme="light" className="flex-column">
+            <Navbar fixed="top" bg="white" data-bs-theme="light" className="flex-column">
                 <Container>
                     <Row className="w-100 align-items-center">
                         <Col className="d-flex justify-content-start">
