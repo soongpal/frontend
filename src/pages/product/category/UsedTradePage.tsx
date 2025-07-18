@@ -5,6 +5,9 @@ import ProductGrid from "../../../components/product/ProductGrid";
 import dummy from "../../../data/dummy.json"
 import type { Product } from "../../../types/product";
 import { useEffect, useState } from "react";
+import Filter from "../../../components/common/Filter";
+import { Container } from "react-bootstrap";
+
 
 const UsedTradePage: React.FC = () =>{
 
@@ -19,10 +22,11 @@ const UsedTradePage: React.FC = () =>{
 
 
     return(
-        <div>
-            <h3 className="text-center mt-4 mb-5"><b>중고거래</b></h3>
-             <ProductGrid products={products}></ProductGrid>
-        </div>
+        <Container>
+            <h3 className="text-start mt-4 mb-5"><b>중고거래</b></h3>
+            <Filter></Filter>
+            <ProductGrid products={products}></ProductGrid>
+        </Container>
     )
 }
 

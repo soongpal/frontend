@@ -14,7 +14,7 @@ const HeartButton: React.FC = () =>{
     return(
         <div>
             <Button onClick={handleClick} variant="link" >
-                {isClicked ? <HeartFill color="red"></HeartFill> : <Heart color="red"></Heart>}
+                {isClicked ? <HeartFill color="red"></HeartFill> : <Heart color="grey"></Heart>}
             </Button>
         </div>
     )

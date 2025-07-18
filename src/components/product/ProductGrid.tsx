@@ -9,7 +9,7 @@ interface ProductGridProps{
 
 const ProductGrid : React.FC<ProductGridProps> = ({products}) =>{
     return(
-        <Container>
+        <div>
             <Row xs={2} md={3} lg={4} className = "g-1">
                  {products.map((product) => (
                     <Col key={product.id}>
@@ -17,7 +17,7 @@ const ProductGrid : React.FC<ProductGridProps> = ({products}) =>{
                     </Col>
                     ))}
             </Row>
-        </Container>
+        </div>
     )
 }
 
