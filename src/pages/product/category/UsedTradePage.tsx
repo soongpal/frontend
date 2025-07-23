@@ -7,6 +7,7 @@ import type { Product } from "../../../types/product";
 import { useEffect, useState } from "react";
 import Filter from "../../../components/common/Filter";
 import { Container } from "react-bootstrap";
+import FloatingButton from "../../../components/common/FloatingButton";
 
 
 const UsedTradePage: React.FC = () =>{
@@ -26,6 +27,7 @@ const UsedTradePage: React.FC = () =>{
             <h3 className="text-start mt-4 mb-5"><b>중고거래</b></h3>
             <Filter></Filter>
             <ProductGrid products={products}></ProductGrid>
+            <FloatingButton></FloatingButton>
         </Container>
     )
 }

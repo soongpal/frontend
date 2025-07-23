@@ -7,13 +7,13 @@ const HeartButton: React.FC = () =>{
 
     const [isClicked, setIsClicked] = useState(false);
 
-    const handleClick = () =>{
+    const heartClick = () =>{
         setIsClicked(!isClicked);
     };
 
     return(
         <div>
-            <Button onClick={handleClick} variant="link" >
+            <Button onClick={heartClick} variant="link" >
                 {isClicked ? <HeartFill color="red"></HeartFill> : <Heart color="grey"></Heart>}
             </Button>
         </div>

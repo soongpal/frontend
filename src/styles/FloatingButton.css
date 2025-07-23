@@ -1,0 +1,18 @@
+.floating-button-container {
+  position: fixed; /* 화면에 고정 */
+  bottom: 20px;    /* 하단에서 20px 위로 */
+  right: 20px;     /* 우측에서 20px 왼쪽으로 */
+  z-index: 1000;   /* 다른 요소들 위에 오도록 z-index 설정 */
+}
+
+/* 원형 버튼 스타일 (이전에 설명드린 내용 재활용) */
+.floating-button-container .btn.rounded-circle {
+  width: 80px;   
+  height: 80px;  /* 너비와 동일하게 설정하여 원형 유지 */
+  font-size: 3rem; /* 아이콘 크기 조절 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과로 입체감 부여 */
+}
