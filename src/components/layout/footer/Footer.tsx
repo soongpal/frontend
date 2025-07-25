@@ -1,12 +1,11 @@
 import type React from "react";
-import { Container } from "react-bootstrap";
 import { Instagram } from 'react-bootstrap-icons';
 
 const Footer: React.FC = () =>{
 
     return(
       <footer>
-        <Container className="align-items-center ">
+        <div>
             <img src="/logo/Soongpal.svg" alt="logo" width={100} />
             <p className=" text-muted">
                 EMAIL: soongpal@gmail.com<br />
@@ -14,9 +13,9 @@ const Footer: React.FC = () =>{
                 © 2025 Team Soongpal. All rights reserved.
             </p>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" >
-                <Instagram size={20} color="black"/>
+                <Instagram size={20} color="grey"/>
             </a>
-        </Container>
+        </div>
       </footer>
     );
 }

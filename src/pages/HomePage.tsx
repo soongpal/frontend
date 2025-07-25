@@ -4,7 +4,6 @@ import Banner from "../components/banner/Banner";
 import ProductGrid from "../components/product/ProductGrid";
 import dummy from "../data/dummy.json"
 import { type Product } from "../types/product";
-import { Container } from "react-bootstrap";
 import FloatingButton from "../components/common/FloatingButton";
 
 
@@ -16,13 +15,13 @@ const Home: React.FC = () =>{
     }, []);
 
     return(
-        <Container >
+        <div className="container">
             <Banner></Banner>
-            <h3 className="text-center mt-4 mb-4"><b>최신 상품</b></h3>
+            <h3 className="text-center mt-3 mb-5"><b>최신 상품</b></h3>
             <ProductGrid products={products}></ProductGrid>
             <FloatingButton></FloatingButton>
             <Banner></Banner>
-        </Container>
+        </div>
     );
 }
 

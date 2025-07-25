@@ -2,13 +2,13 @@
 //제목, 글 내용, 가격, 거래 장소, 카테고리, url
 
 import type React from "react";
-import { Button, Container,Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import Input from "../../components/common/Input";
 import MultiImageUploader from "../../components/post/MultiImageUploader";
 
 const NewPostPage: React.FC = () =>{
     return(
-        <Container>
+        <div className="container">
             <Form>
                 <div className="mb-2">사진</div>
                 <MultiImageUploader></MultiImageUploader>
@@ -73,7 +73,7 @@ const NewPostPage: React.FC = () =>{
                     <Button type="submit"  variant="dark" className="mb-5">업로드</Button>
                 </div>
             </Form>
-        </Container>
+        </div>
     )
 }
 

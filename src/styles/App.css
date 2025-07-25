@@ -28,7 +28,7 @@
 .read-the-docs {
   color: #888;
 }
-
+/* 폰트 */
 @font-face {
     font-family: 'LeeSeoyun';
     src: url('/fonts/LeeSeoyun.ttf') format('truetype');
@@ -36,15 +36,58 @@
     font-style: normal;
 }
 
-html, body, body * {
+html, body, body * { 
   font-family: 'LeeSeoyun' !important;
 }
 
 footer {
   height: 250px;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   text-align: left;   
   display: flex;     
   align-items: center;
+  border-top: 1px solid #dcdcdc;
 }
+/* 콘텐츠 전체 크기 조정 */
+.main-container{
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  width: 100%;
+  padding-right: 12px;
+  padding-left: 12px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+
 

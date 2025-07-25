@@ -1,11 +1,11 @@
 import type React from "react";
 import Input from "../../components/common/Input";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 //로그인 페이지
 const LoginPage: React.FC = () =>{
     return(
-        <Container>
+        <div className="container">
             <Form>
                 <Input 
                     label="아이디"
@@ -29,7 +29,7 @@ const LoginPage: React.FC = () =>{
                     <Button type="submit"  variant="dark" className="mb-5">로그인</Button>
                 </div>
             </Form>
-        </Container>
+        </div>
     )
 }
 

@@ -7,7 +7,7 @@ import Footer from "./footer/Footer";
 
 const Layout: React.FC = () =>{
     return(
-        <div className="continer-md">
+        <div className="main-container">
             <Header></Header>
             <Outlet></Outlet>
             <Footer></Footer>

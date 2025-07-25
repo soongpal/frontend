@@ -1,32 +1,35 @@
 import type React from "react";
-import { Container, Nav, Navbar, InputGroup, FormControl, Button, Row, Col } from "react-bootstrap";
+import { InputGroup, FormControl, Button, Row, Col } from "react-bootstrap";
 import { PersonFill, Search } from 'react-bootstrap-icons';
 
 const Header : React.FC = () =>{
 
     return(
-        <div className="mb-5">
-            <Navbar fixed="top" bg="white" data-bs-theme="light" className="flex-column">
-                <Container>
+        <div>
+            <div className="navbar">
+                <div className="container">
                     <Row className="w-100 align-items-center">
                         <Col className="d-flex justify-content-start">
-                            <Navbar.Brand href="/"><img src="/logo/Soongpal.svg" alt="logo" width={100} /></Navbar.Brand>
+                            <a href="/">
+                                <img src="/logo/Soongpal.svg" alt="logo" width={100} />
+                            </a>
                         </Col>
                         
                         <Col className="d-flex justify-content-end align-items-center">
-                            <Nav>
-                                <Nav.Link href="/auth/login"><PersonFill className="me-2"></PersonFill>로그인/회원가입</Nav.Link>
-                            </Nav>
+                            <a href="/auth/login" className="d-flex align-items-center text-decoration-none text-dark">
+                                <PersonFill className="me-2" />
+                                로그인/회원가입
+                            </a>
                         </Col>
                     </Row>
-                </Container>
-                <Container>
+                </div>
+                <div className="container">
                     <Row className="w-100 align-items-center">
                         <Col className="d-flex justify-content-start">
-                            <Nav className="d-flex align-items-center">
-                                <Nav.Link href="/product/grouppurchase">공동구매</Nav.Link>
-                                <Nav.Link href="/product/usedtrade">중고거래</Nav.Link>
-                            </Nav>
+                            <div className="d-flex align-items-center">
+                                <a href="/product/grouppurchase" className="me-3 text-decoration-none text-dark">공동구매</a>
+                                <a href="/product/usedtrade" className="text-decoration-none text-dark">중고거래</a>
+                            </div>
                         </Col>
 
                         <Col className="d-flex justify-content-end">
@@ -47,10 +50,8 @@ const Header : React.FC = () =>{
                             </InputGroup>
                         </Col>
                     </Row>
-                </Container>
-            </Navbar>
-            
-            <div style={{ height: '122px' }}></div>
+                </div>
+            </div>
 
         </div>
     );

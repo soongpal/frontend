@@ -1,11 +1,11 @@
 import type React from "react";
-import { Carousel, Container } from "react-bootstrap";
+import { Carousel } from "react-bootstrap";
 import '../../styles/Banner.css';
 import banner1 from "../../assets/images/banners/banner1.png";
 
 const Banner : React.FC = () =>{
     return(
-        <Container>
+        <div className="container mt-3">
             <Carousel>
                 <Carousel.Item>
                     <div className="banner-item">
@@ -23,7 +23,7 @@ const Banner : React.FC = () =>{
                     </div>
                 </Carousel.Item>
             </Carousel>
-        </Container>
+        </div>
 
     )
 }
