@@ -1,0 +1,27 @@
+.input{
+    display: none;
+}
+
+.image-upload-area{
+    display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 100px;
+          height: 100px;
+          background-color: #e0e0e0;
+          border-radius: 12px ;
+          cursor: pointer;
+}
+
+.img-delete-button{
+    position: absolute;
+    background-color: transparent;
+    justify-content: end;
+}
+
+.preview-img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+
+}

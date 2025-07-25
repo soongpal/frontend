@@ -12,6 +12,7 @@ interface InputFieldProps {
     help?: string;
     buttonText?: string;
     // onButtonClick: () => void;
+    as?:React.ElementType
 }
 
 const Input: React.FC<InputFieldProps> = ({ 
@@ -25,9 +26,11 @@ const Input: React.FC<InputFieldProps> = ({
     help,
     buttonText,
     // onButtonClick
+    as,
+    
 }) => {
 
-     const hasButton = buttonText;
+    const hasButton = buttonText;
 
     return(
         <Form.Group className="mb-5">
@@ -40,9 +43,10 @@ const Input: React.FC<InputFieldProps> = ({
                     // onChange={onChange}
                     placeholder={placeholder}
                     isInvalid={false} //{!!error}
+                    as={as}
                 />
 
-               {hasButton && (
+               {hasButton && ( //input옆에 붙은 버튼(ex 중복확인)
                 <Button variant="outline-secondary">
                     {buttonText}
                 </Button>
@@ -51,7 +55,7 @@ const Input: React.FC<InputFieldProps> = ({
                 <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
             </InputGroup>
             
-            <Form.Text muted>
+            <Form.Text muted> {/*아래쪽에 있는 조건 문구 */}
                {help}
             </Form.Text>
         </Form.Group>
