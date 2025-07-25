@@ -1,6 +1,6 @@
 import type React from "react";
 import { Container, Nav, Navbar, InputGroup, FormControl, Button, Row, Col } from "react-bootstrap";
-import { Search } from 'react-bootstrap-icons';
+import { PersonFill, Search } from 'react-bootstrap-icons';
 
 const Header : React.FC = () =>{
 
@@ -10,13 +10,12 @@ const Header : React.FC = () =>{
                 <Container>
                     <Row className="w-100 align-items-center">
                         <Col className="d-flex justify-content-start">
-                            <Navbar.Brand href="/"><h1>숭팔이로고</h1></Navbar.Brand>
+                            <Navbar.Brand href="/"><img src="/logo/Soongpal.svg" alt="logo" width={100} /></Navbar.Brand>
                         </Col>
                         
-                        <Col className="d-flex justify-content-end">
+                        <Col className="d-flex justify-content-end align-items-center">
                             <Nav>
-                                <Nav.Link href="/auth/login">로그인/회원가입</Nav.Link>
-                                <Nav.Link href="/user/mypage">마이페이지</Nav.Link>
+                                <Nav.Link href="/auth/login"><PersonFill className="me-2"></PersonFill>로그인/회원가입</Nav.Link>
                             </Nav>
                         </Col>
                     </Row>

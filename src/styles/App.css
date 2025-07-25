@@ -40,3 +40,11 @@ html, body, body * {
   font-family: 'LeeSeoyun' !important;
 }
 
+footer {
+  height: 250px;
+  background-color: #f8f9fa;
+  text-align: left;   
+  display: flex;     
+  align-items: center;
+}
+

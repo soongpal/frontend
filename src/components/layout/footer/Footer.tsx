@@ -5,11 +5,11 @@ import { Instagram } from 'react-bootstrap-icons';
 const Footer: React.FC = () =>{
 
     return(
-      <footer className="bg-light text-start mb-3">
+      <footer>
         <Container className="align-items-center ">
-            <h1>숭팔이로고</h1>
+            <img src="/logo/Soongpal.svg" alt="logo" width={100} />
             <p className=" text-muted">
-                EMAIL: backgaram123@gmail.com<br />
+                EMAIL: soongpal@gmail.com<br />
                 호스팅서비스 제공자: Netlify<br />
                 © 2025 Team Soongpal. All rights reserved.
             </p>
