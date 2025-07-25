@@ -1,6 +1,6 @@
 import type React from "react";
 import ProductCard from "./ProductCard";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { type Product } from "../../types/product";
 
 interface ProductGridProps{
