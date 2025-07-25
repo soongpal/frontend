@@ -3,7 +3,7 @@ import { Images, XCircleFill } from 'react-bootstrap-icons';
 import "../../styles/MultiImageUploader.css"
 
 const ImageUploader: React.FC = () => {
-    const [postImg, setPostImg] = useState<File[]>([]); //db업로드용
+    const [, setPostImg] = useState<File[]>([]); //db업로드용, postImg
     const [previewImg, setPreviewImg] = useState<string[]>([]); //미리보기용
      //이미지 업로드   
     function uploadFile(e: React.ChangeEvent<HTMLInputElement>) {
