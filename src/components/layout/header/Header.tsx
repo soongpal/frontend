@@ -1,6 +1,6 @@
 import type React from "react";
 import { Container, Nav, Navbar, InputGroup, FormControl, Button, Row, Col } from "react-bootstrap";
-import { Search, List } from 'react-bootstrap-icons';
+import { Search } from 'react-bootstrap-icons';
 
 const Header : React.FC = () =>{
 
@@ -15,8 +15,7 @@ const Header : React.FC = () =>{
                         
                         <Col className="d-flex justify-content-end">
                             <Nav>
-                                <Nav.Link href="/auth/login">로그인</Nav.Link>
-                                <Nav.Link href="/auth/signup">회원가입</Nav.Link>
+                                <Nav.Link href="/auth/login">로그인/회원가입</Nav.Link>
                                 <Nav.Link href="/user/mypage">마이페이지</Nav.Link>
                             </Nav>
                         </Col>
@@ -26,7 +25,6 @@ const Header : React.FC = () =>{
                     <Row className="w-100 align-items-center">
                         <Col className="d-flex justify-content-start">
                             <Nav className="d-flex align-items-center">
-                                <List size={24} />
                                 <Nav.Link href="/product/grouppurchase">공동구매</Nav.Link>
                                 <Nav.Link href="/product/usedtrade">중고거래</Nav.Link>
                             </Nav>

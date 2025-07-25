@@ -1,9 +1,3 @@
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-} */
 
 .logo {
   height: 6em;
@@ -35,4 +29,14 @@
   color: #888;
 }
 
+@font-face {
+    font-family: 'LeeSeoyun';
+    src: url('/fonts/LeeSeoyun.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body, body * {
+  font-family: 'LeeSeoyun' !important;
+}
 
