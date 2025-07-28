@@ -16,7 +16,6 @@ const Home: React.FC = () =>{
 
     return(
         <div className="container">
-            <Banner></Banner>
             <h3 className="text-center mt-3 mb-5"><b>최신 상품</b></h3>
             <ProductGrid products={products}></ProductGrid>
             <FloatingButton></FloatingButton>
