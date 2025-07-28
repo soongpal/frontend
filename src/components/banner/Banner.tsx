@@ -8,17 +8,17 @@ const Banner : React.FC = () =>{
             <Carousel>
                 <Carousel.Item>
                     <div className="banner-item">
-                        <img src= '/images/banner/banner1.png' alt="banner1" />
+                        <img src= '/images/banner1.png' alt="banner1" />
                     </div>
                 </Carousel.Item>
                 <Carousel.Item>
                     <div className="banner-item">
-                        <img src='/images/banner/banner1.png' alt="banner2" />
+                        <img src='/images/banner1.png' alt="banner2" />
                     </div>
                 </Carousel.Item>
                 <Carousel.Item>
                     <div className="banner-item">
-                        <img src='/images/banner/banner1.png'alt="banner3" />
+                        <img src='/images/banner1.png'alt="banner3" />
                     </div>
                 </Carousel.Item>
             </Carousel>
