@@ -5,7 +5,7 @@ const Footer: React.FC = () =>{
 
     return(
       <footer>
-        <div>
+        <div className="ms-3">
             <img src="/logo/Soongpal.svg" alt="logo" width={100} />
             <p className=" text-muted">
                 EMAIL: soongpal@gmail.com<br />

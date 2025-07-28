@@ -1,39 +1,38 @@
 import type React from "react";
 import { InputGroup, FormControl, Button, Row, Col } from "react-bootstrap";
 import { PersonFill, Search } from 'react-bootstrap-icons';
+import "../../../styles/Header.css"
 
 const Header : React.FC = () =>{
 
     return(
         <div>
             <div className="navbar">
-                <div className="container">
-                    <Row className="w-100 align-items-center">
-                        <Col className="d-flex justify-content-start">
+                    <Row className="d-flex justify-content-between align-items-center">
+                        <Col>
                             <a href="/">
                                 <img src="/logo/Soongpal.svg" alt="logo" width={100} />
                             </a>
                         </Col>
-                        
-                        <Col className="d-flex justify-content-end align-items-center">
-                            <a href="/auth/login" className="d-flex align-items-center text-decoration-none text-dark">
+                    
+                        <Col>
+                            <a href="/auth/login" className="d-flex  justify-content-end align-items-center text-decoration-none text-dark">
                                 <PersonFill className="me-2" />
                                 로그인/회원가입
                             </a>
                         </Col>
                     </Row>
-                </div>
-                <div className="container">
-                    <Row className="w-100 align-items-center">
-                        <Col className="d-flex justify-content-start">
+           
+                    <Row className="d-flex justify-content-between align-items-center">
+                        <Col>
                             <div className="d-flex align-items-center">
                                 <a href="/product/grouppurchase" className="me-3 text-decoration-none text-dark">공동구매</a>
                                 <a href="/product/usedtrade" className="text-decoration-none text-dark">중고거래</a>
                             </div>
                         </Col>
 
-                        <Col className="d-flex justify-content-end">
-                            <InputGroup className="w-50">
+                        <Col>
+                            <InputGroup>
                                 <FormControl
                                     placeholder="상품명 입력"
                                     aria-label="Search"
@@ -50,8 +49,9 @@ const Header : React.FC = () =>{
                             </InputGroup>
                         </Col>
                     </Row>
-                </div>
             </div>
+
+            <div style={{height:"152px"}}></div>
 
         </div>
     );
