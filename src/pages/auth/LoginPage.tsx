@@ -5,7 +5,7 @@ import { Button, Form } from "react-bootstrap";
 //로그인 페이지
 const LoginPage: React.FC = () =>{
     return(
-        <div className="container">
+        <div className="container mt-5">
             <Form>
                 <Input 
                     label="아이디"
