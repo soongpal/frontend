@@ -71,10 +71,10 @@ const ImageUploader: React.FC = () => {
         </label>
 
         {/* 이미지 프리뷰 영역 */}
-        <div className='d-flex gap-3'>
+        <div className='gap-3 d-flex'>
             {previewImg.map((url, idx) => (
-                <div key={idx}>
-                    <button onClick={()=>deleteImage(idx)} className='img-delete-button'><XCircleFill></XCircleFill></button>
+                <div key={url} className='preview-container'>
+                    <button onClick={()=>deleteImage(idx)} className='img-delete-button'><XCircleFill size={20}></XCircleFill></button>
                     <img src={url} alt={`preview-${idx}`} className='preview-img' />
                 </div>
             ))}

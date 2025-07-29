@@ -13,15 +13,25 @@
     cursor: pointer;
 }
 
+.preview-container{
+    position: relative;
+}
+
 .img-delete-button{
     position: absolute;
     background-color: transparent;
-    justify-content: end;
+
+    top: 0px;
+    right: 5px;
+
+    border: none;
+    cursor: pointer;
+    padding: 0;
 }
 
 .preview-img{
     width: 100px;
     height: 100px;
     object-fit: cover;
-
+    border-radius: 12px ;
 }
