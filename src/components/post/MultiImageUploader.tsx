@@ -47,14 +47,18 @@ const ImageUploader: React.FC = () => {
     }
 
     const deleteImage = (index: number)=>{
-        setPreviewImg(prev => prev.filter((_, i) => i !== index));
+        setPreviewImg(prev => {
+            const next = prev.filter((_, i) => i !== index);
+            return next;
+        });
+    
         setPostImg(prev => prev.filter((_, i) => i !== index));
     }
 
   return (
     <div className='mb-3 d-flex align-items-center'>
         {/* 업로드 영역 */}
-        <label className='image-upload-area'>
+        <label className='image-upload-area me-3'>
             <div></div>
             <Images color='grey' size={32}></Images>
             <input
@@ -71,7 +75,7 @@ const ImageUploader: React.FC = () => {
             {previewImg.map((url, idx) => (
                 <div key={idx}>
                     <button onClick={()=>deleteImage(idx)} className='img-delete-button'><XCircleFill></XCircleFill></button>
-                    <img key={idx} src={url} alt={`preview-${idx}`} className='preview-img' />
+                    <img src={url} alt={`preview-${idx}`} className='preview-img' />
                 </div>
             ))}
         </div>
