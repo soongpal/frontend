@@ -18,25 +18,25 @@ const MyPage: React.FC = () =>{
 
             <div onClick={() => navigate("/user/favorites")} className="container d-flex align-items-center border-bottom py-3" style={{ cursor: 'pointer' }}>
                 <Heart size={36} className="me-3"/>
-                <h3>관심 목록</h3>
+                <h4>관심 목록</h4>
                 <ArrowRight size={36} className="ms-auto"/>
             </div>
 
             <div onClick={() => navigate("/chat/chatlist")} className="container d-flex align-items-center border-bottom py-3" style={{ cursor: 'pointer' }}>
                 <ChatDots size={36} className="me-3"/>
-                <h3>채팅 목록</h3>
+                <h4>채팅 목록</h4>
                 <ArrowRight size={36} className="ms-auto"/>
             </div>
 
             <div onClick={() => navigate("/user/mypost")} className="container d-flex align-items-center border-bottom py-3" style={{ cursor: 'pointer' }}>
                 <PencilSquare size={36} className="me-3"/>
-                <h3>내가 쓴 글</h3>
+                <h4>내가 쓴 글</h4>
                 <ArrowRight size={36} className="ms-auto"/>
             </div>
         
             <div onClick={() => navigate("/user/setting")} className="container d-flex align-items-center py-3" style={{ cursor: 'pointer' }}>
                 <Gear size={36} className="me-3"/>
-                <h3>설정</h3>
+                <h4>설정</h4>
                 <ArrowRight size={36} className="ms-auto"/>
             </div>
 
