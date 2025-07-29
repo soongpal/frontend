@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import FavoritesPage from "../pages/user/FavoritesPage";
 import MyPage from "../pages/user/MyPage";
 import MyPostPage from "../pages/user/MyPostPage";
-import ProfilePage from "../pages/user/ProfilePage";
+import SettingPage from "../pages/user/SettingPage";
 
 const UserRouter : React.FC = () => {
     return(
@@ -12,7 +12,7 @@ const UserRouter : React.FC = () => {
             <Route path="favorites" element={<FavoritesPage />}/>
             <Route path="mypage" element={<MyPage />}/>
             <Route path="mypost" element={<MyPostPage />}/>
-            <Route path="profile" element={<ProfilePage />}/>
+            <Route path="setting" element={<SettingPage />}/>
         </Routes>
     )
 }

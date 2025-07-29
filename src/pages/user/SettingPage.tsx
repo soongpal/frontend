@@ -2,10 +2,10 @@
 
 import type React from "react";
 
-const ProfilePage: React.FC = () =>{
+const SetiingPage: React.FC = () =>{
     return(
-        <div>프로필 페이지</div>
+        <div>설정 페이지</div>
     )
 }
 
-export default ProfilePage;
+export default SetiingPage;
