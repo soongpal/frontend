@@ -23,7 +23,7 @@ const ImageUploader: React.FC = () => {
         }
 
         //db업로드용 배열
-        setPostImg(validFiles);
+        setPostImg(prev => [...prev, ...validFiles]);
 
         //파일 읽기 
         const fileUrlPromises = validFiles.map(file => {
@@ -39,7 +39,7 @@ const ImageUploader: React.FC = () => {
         //모든 파일 읽기 성공 후 미리보기 배열 설정
         Promise.all(fileUrlPromises)
         .then(results => {
-            setPreviewImg(results);
+            setPreviewImg(prev => [...prev, ...results]);
         })
         .catch(err => {
             console.error('이미지 읽기 실패:', err);
