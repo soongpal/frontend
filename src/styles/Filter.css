@@ -53,3 +53,27 @@
     border-color: #dbdbdb;
 }
 
+.filter-selected{
+    height: 36px;
+    width: auto;
+
+    background-color: #dbdbdb;
+
+    border-radius: 20rem;
+    border: 1px solid;
+    border-color: #dbdbdb;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    display: flex;
+    align-items: center;
+}
+
+.filter-selected:hover{
+    background-color: #a9a9a9;
+    border-color: #a9a9a9;
+}
+

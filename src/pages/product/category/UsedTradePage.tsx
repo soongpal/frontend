@@ -17,7 +17,7 @@ const UsedTradePage: React.FC = () =>{
     //필터 영역
     const [filter, setFilter] = useState<Status | null>(null);
 
-    const handleFilter = (filter:Status)=>{
+    const handleFilter = (filter:Status | null)=>{
         setFilter(filter);
     };
     
