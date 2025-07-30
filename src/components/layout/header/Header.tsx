@@ -6,7 +6,7 @@ import "../../../styles/Header.css"
 const Header : React.FC = () =>{
 
     return(
-        <div>
+        <div className="mb-5">
             <div className="navbar">
                     <Row className="d-flex justify-content-between align-items-center">
                         <Col>

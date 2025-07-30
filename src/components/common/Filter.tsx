@@ -1,22 +1,46 @@
 import type React from "react";
-import { Button } from "react-bootstrap";
+import { useState } from "react";
 
+import type { Status } from "../../types/product";
 
+import "../../styles/Filter.css"
+import { ChevronRight} from "react-bootstrap-icons";
 
 const Filter: React.FC = () =>{
-    return(
-        <div className="justify-content-start d-flex gap-2 mb-3">
-            <Button variant="outline-secondary " className="rounded-pill">
-                전체보기
-            </Button>
-            <Button variant="outline-secondary" className="rounded-pill">
-                거래가능
-            </Button>
-            <Button variant="outline-secondary" className="rounded-pill">
-                거래완료
-            </Button>
+    
+    const [filter, setfilter] = useState<Status | null>(null);
+
+    const clickSale = () => {
+        setfilter('ON_SALE');
+    };
+
+    const clickSoldout = () => {
+        setfilter('SOLD_OUT');
+    };
+
+
+    return (
+        <div className="filter-container">
+
+
+        {/* 거래중 버튼 */}
+        <div>
+            <button onClick={()=>{clickSale}} className="filter-button">
+                {filter ?? (<>거래중<ChevronRight size={13} className="ms-2"/></>)}
+            </button>
         </div>
-    )
-}
+
+        {/* 거래완료 버튼 */}
+        <div>
+            <button onClick={()=>{clickSoldout}} className="filter-button">
+                {filter??(<>거래완료<ChevronRight size={13} className="ms-2"/></>)}
+            </button>
+        </div>
+
+        </div>
+    );
+    }
+
+
 
 export default Filter;

@@ -23,7 +23,7 @@ const UsedTradePage: React.FC = () =>{
 
     return(
         <div className="container">
-            <h3 className="text-start mt-4 mb-5"><b>중고거래</b></h3>
+            <h3 className="text-start mt-4 mb-4"><b>중고거래</b></h3>
             <Filter></Filter>
             <ProductGrid products={products}></ProductGrid>
             <FloatingButton></FloatingButton>
