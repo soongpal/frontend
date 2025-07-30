@@ -8,9 +8,11 @@ export interface Product{
     sellerNickname: string;
     status: Status;
     likeCount: number;
+    liked: boolean;
     chatCount: number;
     images: string;
     category: Category;
+
 }
 
 export type Status = 'ON_SALE' | 'SOLD_OUT';

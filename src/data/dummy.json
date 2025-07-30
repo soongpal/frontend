@@ -9,9 +9,11 @@
     "sellerNickname": "간식수집가",
     "status": "SOLD_OUT",
     "likeCount": 3,
+    "liked": true,
     "chatCount": 1,
     "images": "/products/product1.jpg",
     "category": "GROUP_PURCHASE"
+ 
   },
   {
     "id": 2002,
@@ -23,6 +25,7 @@
     "sellerNickname": "생활용품할인",
     "status": "ON_SALE",
     "likeCount": 5,
+    "liked": false,
     "chatCount": 2,
     "images": "/products/product2.jpg",
     "category": "USED_TRADE"
@@ -37,9 +40,11 @@
     "sellerNickname": "음료왕",
     "status": "SOLD_OUT",
     "likeCount": 4,
+    "liked": true,
     "chatCount": 0,
     "images": "/products/product3.jpg",
     "category": "USED_TRADE"
+ 
   },
   {
     "id": 2004,
@@ -51,6 +56,7 @@
     "sellerNickname": "간식천국",
     "status": "ON_SALE",
     "likeCount": 7,
+    "liked": false,
     "chatCount": 1,
     "images": "/products/product4.jpg",
     "category": "GROUP_PURCHASE"
@@ -65,6 +71,7 @@
     "sellerNickname": "라면부자",
     "status": "ON_SALE",
     "likeCount": 6,
+    "liked": false,
     "chatCount": 3,
     "images": "/products/product5.jpg",
     "category": "USED_TRADE"
@@ -79,6 +86,7 @@
     "sellerNickname": "제철과일러버",
     "status": "SOLD_OUT",
     "likeCount": 9,
+    "liked": false,
     "chatCount": 2,
     "images": "/products/product6.jpg",
     "category": "GROUP_PURCHASE"
@@ -93,9 +101,11 @@
     "sellerNickname": "다이어터",
     "status": "ON_SALE",
     "likeCount": 4,
+    "liked": true,
     "chatCount": 1,
     "images": "/products/product7.jpg",
     "category": "GROUP_PURCHASE"
+
   },
   {
     "id": 2008,
@@ -107,9 +117,11 @@
     "sellerNickname": "냉동덕후",
     "status": "ON_SALE",
     "likeCount": 2,
+    "liked": false,
     "chatCount": 0,
     "images": "/products/product8.jpg",
     "category": "USED_TRADE"
+
   },
   {
     "id": 2009,
@@ -121,6 +133,7 @@
     "sellerNickname": "헬스사랑",
     "status": "ON_SALE",
     "likeCount": 8,
+    "liked": false,
     "chatCount": 3,
     "images": "/products/product9.jpg",
     "category": "USED_TRADE"
