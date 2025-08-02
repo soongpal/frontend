@@ -3,18 +3,22 @@
 import type React from "react";
 import { ArrowRight, ChatDots, Gear, Heart, PencilSquare, PersonCircle } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
+import { useUserStore } from "../../stores/UserStore";
 
 const MyPage: React.FC = () =>{
+    const navigate = useNavigate();
+    //유저 정보 불러오기
+    const { user } = useUserStore();
+
+    //로그아웃 함수
     const logout = () =>{
         alert("로그아웃되었습니다")
     }
 
-    const navigate = useNavigate();
-
     return(
         <div className="d-flex flex-column align-items-center gap-4 my-5">
             <PersonCircle size={100}/>
-            <h1>닉네임</h1>
+            <h1>{user.nickname}</h1>
 
             <div onClick={() => navigate("/user/favorites")} className="container d-flex align-items-center border-bottom py-3" style={{ cursor: 'pointer' }}>
                 <Heart size={36} className="me-3"/>

@@ -5,8 +5,8 @@ interface InputFieldProps {
     label: string;
     name: string;
     type?: string;
-    // value: string;
-    // onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    value?: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     placeholder?: string;
     error?: string;
     help?: string;
@@ -19,8 +19,8 @@ const Input: React.FC<InputFieldProps> = ({
     label,
     name,
     type = "text",
-    // value,
-    // onChange,
+    value,
+    onChange,
     placeholder,
     error,
     help,
@@ -39,8 +39,8 @@ const Input: React.FC<InputFieldProps> = ({
                 <Form.Control
                     type={type}
                     name={name}
-                    // value={value}
-                    // onChange={onChange}
+                    value={value}
+                    onChange={onChange}
                     placeholder={placeholder}
                     isInvalid={false} //{!!error}
                     as={as}
