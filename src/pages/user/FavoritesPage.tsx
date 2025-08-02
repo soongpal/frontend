@@ -4,7 +4,7 @@ import Filter from "../../components/common/Filter";
 import { useState } from "react";
 import type { Status } from "../../types/product";
 import ProductGrid from "../../components/product/ProductGrid";
-import { useProductStore } from "../../stores/productSotre";
+import { useProductStore } from "../../stores/productStore";
 
 const  FavoritesPage: React.FC = () =>{
    // 처음 불러오기

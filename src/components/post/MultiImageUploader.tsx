@@ -59,7 +59,6 @@ const ImageUploader: React.FC = () => {
     <div className='mb-3 d-flex align-items-center'>
         {/* 업로드 영역 */}
         <label className='image-upload-area me-3'>
-            <div></div>
             <Images color='grey' size={32}></Images>
             <input
                 type="file"

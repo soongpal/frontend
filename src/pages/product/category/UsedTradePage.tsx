@@ -6,7 +6,7 @@ import type { Status } from "../../../types/product";
 import { useState } from "react";
 import Filter from "../../../components/common/Filter";
 import FloatingButton from "../../../components/common/FloatingButton";
-import { useProductStore } from '../../../stores/productSotre';
+import { useProductStore } from '../../../stores/productStore';
 
 
 

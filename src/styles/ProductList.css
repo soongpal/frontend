@@ -1,0 +1,19 @@
+.product-img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 12px ;
+}
+
+table td, table th {
+    vertical-align: middle;
+    text-align: center;
+    }
+
+.table th {
+    font-size: 20px;
+    color: rgb(91, 91, 91);
+}
+
+
+

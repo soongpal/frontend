@@ -2,7 +2,7 @@ import "../../styles/ProductCard.css";
 import { Button, Card } from "react-bootstrap";
 import SoldoutTag from "../common/SoldoutTag";
 import { type Product } from "../../types/product";
-import { useProductStore } from '../../stores/productSotre';  
+import { useProductStore } from '../../stores/productStore';  
 import { Heart, HeartFill } from "react-bootstrap-icons";
 
 

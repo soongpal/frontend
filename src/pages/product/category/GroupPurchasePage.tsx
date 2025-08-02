@@ -6,7 +6,7 @@ import { useState } from "react";
 import type { Status } from "../../../types/product";
 import Filter from "../../../components/common/Filter";
 import FloatingButton from "../../../components/common/FloatingButton";
-import { useProductStore } from "../../../stores/productSotre";
+import { useProductStore } from "../../../stores/productStore";
 
 const GroupPurchasePage: React.FC = () =>{
    // 처음 불러오기

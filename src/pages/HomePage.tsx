@@ -3,7 +3,7 @@ import Banner from "../components/banner/Banner";
 import ProductGrid from "../components/product/ProductGrid";
 import FloatingButton from "../components/common/FloatingButton";
 import dummy from "../data/dummy.json"
-import { useProductStore } from '../stores/productSotre';
+import { useProductStore } from '../stores/productStore';
 import type { Product } from "../types/product";
 import { useEffect } from "react";
 
