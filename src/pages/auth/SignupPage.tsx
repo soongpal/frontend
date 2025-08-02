@@ -37,7 +37,7 @@ const SignupPage: React.FC = () =>{
                     buttonText = "중복 확인"
                     >
                 </Input>
-
+            
                 <div className="d-flex justify-content-end">
                     <Button type="submit"  variant="dark" className="mb-5">회원가입</Button>
                 </div>

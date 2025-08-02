@@ -25,7 +25,8 @@ const LoginPage: React.FC = () =>{
                     error="비밀번호 입력 오류"
                     >
                 </Input>
-                <div className="d-flex justify-content-end">
+                <div className="d-flex justify-content-between">
+                    <a href="/auth/signup" className="text-muted">회원 가입</a>
                     <Button type="submit"  variant="dark" className="mb-5">로그인</Button>
                 </div>
             </Form>
