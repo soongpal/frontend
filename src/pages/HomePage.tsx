@@ -1,15 +1,16 @@
 //맨처음 페이지임, 최신상품을 보여줄것
-import { useEffect, useState } from "react";
 import Banner from "../components/banner/Banner";
 import ProductGrid from "../components/product/ProductGrid";
-import dummy from "../data/dummy.json"
-import { type Product } from "../types/product";
 import FloatingButton from "../components/common/FloatingButton";
-
+import dummy from "../data/dummy.json"
+import { useProductStore } from '../stores/productSotre';
+import type { Product } from "../types/product";
+import { useEffect } from "react";
 
 const Home: React.FC = () =>{
 
-    const [products, setProducts] = useState<Product[]>([]);
+    const { products, setProducts } = useProductStore();
+    
     useEffect(() => {
         setProducts(dummy as Product[]);
     }, []);

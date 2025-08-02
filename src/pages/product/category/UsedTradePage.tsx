@@ -2,17 +2,18 @@
 
 import type React from "react";
 import ProductGrid from "../../../components/product/ProductGrid";
-import dummy from "../../../data/dummy.json"
-import type { Product, Status } from "../../../types/product";
-import { useEffect, useState } from "react";
+import type { Status } from "../../../types/product";
+import { useState } from "react";
 import Filter from "../../../components/common/Filter";
 import FloatingButton from "../../../components/common/FloatingButton";
+import { useProductStore } from '../../../stores/productSotre';
+
 
 
 const UsedTradePage: React.FC = () =>{
 
     // 처음 불러오기
-    const [products, setProducts] = useState<Product[]>([]);
+    const { products } = useProductStore();
 
     //필터 영역
     const [filter, setFilter] = useState<Status | null>(null);
@@ -20,29 +21,22 @@ const UsedTradePage: React.FC = () =>{
     const handleFilter = (filter:Status | null)=>{
         setFilter(filter);
     };
-    
 
-    useEffect(() => {
-        const allProducts: Product[] = dummy as Product[];
-
-        const groupPurchaseProducts = allProducts.filter((product) => {
+    const groupPurchaseProducts = products.filter((product) => {
         if (filter === null) {
             return product.category === 'USED_TRADE';
-        }
+            }
         return (
-            product.category === 'USED_TRADE' &&
-            product.status === filter
-        );
-        });
-
-        setProducts(groupPurchaseProducts);
-    }, [filter]);
+                product.category === 'USED_TRADE' &&
+                product.status === filter
+            );
+    });
 
     return(
          <div className="container">
             <h3 className="text-start mt-4 mb-4"><b>중고거래</b></h3>
             <Filter onFilterSelect = {handleFilter}></Filter>
-            <ProductGrid products={products}></ProductGrid>
+            <ProductGrid products={groupPurchaseProducts}></ProductGrid>
             <FloatingButton></FloatingButton>
         </div>
     )

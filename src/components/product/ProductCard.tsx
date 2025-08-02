@@ -1,15 +1,17 @@
 import "../../styles/ProductCard.css";
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import SoldoutTag from "../common/SoldoutTag";
-import HeartButton from "../common/HeartButton";
 import { type Product } from "../../types/product";
+import { useProductStore } from '../../stores/productSotre';  
+import { Heart, HeartFill } from "react-bootstrap-icons";
 
 
-interface ProductCardProps{
+type ProductCardProps = {
   product: Product;
-}
+};
 
-const ProductCard: React.FC<ProductCardProps> = ({product}) => {
+const ProductCard = ( { product }: ProductCardProps)=>{
+  //몇분전 표기 함수
   const now = new Date();
   const createdAt = new Date(product.createdAt);
 
@@ -26,7 +28,14 @@ const ProductCard: React.FC<ProductCardProps> = ({product}) => {
     timeAgo = `${hours}시간 전`;
   } else {
     timeAgo = createdAt.toLocaleDateString('ko-KR');
-  }
+  } 
+
+  //상품 업데이트 함수
+  const updateProduct = useProductStore((state) => state.updateProduct);
+
+  const handleHeartClick = () => {
+    updateProduct(product.id, { liked: !product.liked });
+  };
 
   return (
     <div>
@@ -43,7 +52,9 @@ const ProductCard: React.FC<ProductCardProps> = ({product}) => {
         <Card.Body className="product-card-body">
           <div className="product-card-header">
             <div className="product-card-title">{product.title}</div>
-            <HeartButton></HeartButton>
+              <Button onClick={handleHeartClick} variant="link" >
+                  {product.liked ? <HeartFill color="red"></HeartFill> : <Heart color="grey"></Heart>}
+              </Button>
           </div>
 
           <Card.Text className="product-card-price">{product.price}원</Card.Text>
