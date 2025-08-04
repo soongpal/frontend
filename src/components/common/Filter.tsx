@@ -16,7 +16,7 @@ function Filter({onFilterSelect}: FilterProps){
 
     return (
         <div className="filter-container">
-
+        {/* 선택 안했을떄     */}
         {!selected && (
         <>
             <div>
