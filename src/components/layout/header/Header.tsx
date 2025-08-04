@@ -2,9 +2,13 @@ import type React from "react";
 import { InputGroup, FormControl, Button, Row, Col } from "react-bootstrap";
 import { PersonCircle, PersonFill, Search } from 'react-bootstrap-icons';
 import "../../../styles/Header.css"
+import { useLocation } from 'react-router-dom';
 
 const Header : React.FC = () =>{
-
+    //조건부 렌더링(로그인, 회원가입 페이지에서 두번째 Row사라지게 하는 용도)
+    const location = useLocation();
+    const hideSecondRow = ["/auth/login", "/auth/signup"].includes(location.pathname);
+    
     return(
         <div className="mb-5">
             <div className="navbar">
@@ -25,7 +29,8 @@ const Header : React.FC = () =>{
                             </a>
                         </Col>
                     </Row>
-           
+
+                {!hideSecondRow && (
                     <Row className="d-flex justify-content-between align-items-center">
                         <Col>
                             <div className="d-flex align-items-center">
@@ -52,6 +57,7 @@ const Header : React.FC = () =>{
                             </InputGroup>
                         </Col>
                     </Row>
+                )}
             </div>
 
             <div style={{height:"152px"}}></div>
