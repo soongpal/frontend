@@ -6,7 +6,7 @@ const Footer: React.FC = () =>{
     return(
       <footer>
         <div className="ms-3">
-            <img src="/logo/Soongpal.svg" alt="logo" width={100} />
+            <img src="/logo/Soongpal.svg" alt="logo" width={50} className="mb-2"/>
             <p className=" text-muted">
                 EMAIL: soongpal@gmail.com<br />
                 호스팅서비스 제공자: Netlify<br />

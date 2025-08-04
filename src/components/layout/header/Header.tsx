@@ -11,7 +11,7 @@ const Header : React.FC = () =>{
                     <Row className="d-flex justify-content-between align-items-center">
                         <Col>
                             <a href="/">
-                                <img src="/logo/Soongpal.svg" alt="logo" width={100} />
+                                <img src="/logo/Soongpal.svg" alt="logo" width={50} />
                             </a>
                         </Col>
                     
