@@ -60,7 +60,7 @@ const Header : React.FC = () =>{
                 )}
             </div>
 
-            <div style={{height:"152px"}}></div>
+            <div style={{height:"102px"}}></div>
 
         </div>
     );
