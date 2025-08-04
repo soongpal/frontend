@@ -21,27 +21,27 @@ const MyPage: React.FC = () =>{
             <h3>{user.nickname}</h3>
 
             <div onClick={() => navigate("/user/favorites")} className="container d-flex align-items-center border-bottom py-3" style={{ cursor: 'pointer' }}>
-                <Heart size={36} className="me-3"/>
-                <h4>관심 목록</h4>
-                <ArrowRight size={36} className="ms-auto"/>
+                <Heart size={25} className="me-3"/>
+                <h5>관심 목록</h5>
+                <ArrowRight size={25} className="ms-auto"/>
             </div>
 
             <div onClick={() => navigate("/chat/chatlist")} className="container d-flex align-items-center border-bottom py-3" style={{ cursor: 'pointer' }}>
-                <ChatDots size={36} className="me-3"/>
-                <h4>채팅 목록</h4>
-                <ArrowRight size={36} className="ms-auto"/>
+                <ChatDots size={25} className="me-3"/>
+                <h5>채팅 목록</h5>
+                <ArrowRight size={25} className="ms-auto"/>
             </div>
 
             <div onClick={() => navigate("/user/mypost")} className="container d-flex align-items-center border-bottom py-3" style={{ cursor: 'pointer' }}>
-                <PencilSquare size={36} className="me-3"/>
-                <h4>내가 쓴 글</h4>
-                <ArrowRight size={36} className="ms-auto"/>
+                <PencilSquare size={25} className="me-3"/>
+                <h5>내가 쓴 글</h5>
+                <ArrowRight size={25} className="ms-auto"/>
             </div>
         
             <div onClick={() => navigate("/user/setting")} className="container d-flex align-items-center py-3" style={{ cursor: 'pointer' }}>
-                <Gear size={36} className="me-3"/>
-                <h4>설정</h4>
-                <ArrowRight size={36} className="ms-auto"/>
+                <Gear size={25} className="me-3"/>
+                <h5>설정</h5>
+                <ArrowRight size={25} className="ms-auto"/>
             </div>
 
             <a href="" onClick={logout} className="text-muted">로그아웃</a>
