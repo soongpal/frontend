@@ -50,6 +50,9 @@ button{
     background-color: white;
     padding-top: 0;
 }
+button:hover{
+    border-color: white;
+}
 /* 카드 가격 */
 .product-card-price {
     font-weight: 700; /* fw-bold */
