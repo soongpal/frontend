@@ -12,18 +12,38 @@
   }
 }
 
-.card {
-  padding: 2em;
-}
-
 .read-the-docs {
   color: #888;
 }
+
 /* 폰트 */
+/* 이서윤체 */
 @font-face {
     font-family: 'LeeSeoyun';
     src: url('/fonts/LeeSeoyun.ttf') format('truetype');
     font-weight: normal;
+    font-style: normal;
+}
+/* 어그로체 */
+@font-face {
+    font-family: 'SBAggro';
+    src: url('/fonts/SBAggroL.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SBAggro';
+    src: url('/fonts/SBAggroM.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'SBAggro';
+    src: url('/fonts/SBAggroB.ttf') format('truetype');
+    font-weight: 700;
     font-style: normal;
 }
 
