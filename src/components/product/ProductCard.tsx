@@ -1,5 +1,5 @@
 import "../../styles/ProductCard.css";
-import { Button, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import SoldoutTag from "../common/SoldoutTag";
 import { type Product } from "../../types/product";
 import { useProductStore } from '../../stores/productStore';  
@@ -52,9 +52,9 @@ const ProductCard = ( { product }: ProductCardProps)=>{
         <Card.Body className="product-card-body">
           <div className="product-card-header">
             <div className="product-card-title">{product.title}</div>
-              <Button onClick={handleHeartClick} variant="link" >
+              <button onClick={handleHeartClick}>
                   {product.liked ? <HeartFill color="red"></HeartFill> : <Heart color="grey"></Heart>}
-              </Button>
+              </button>
           </div>
 
           <Card.Text className="product-card-price">{product.price}원</Card.Text>

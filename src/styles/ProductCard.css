@@ -1,3 +1,4 @@
+/* 카드 전체 속성 */
 .product-card {
     padding: 0.5rem; /* p-2 */
     border: none !important; /* border="0" */
@@ -8,7 +9,7 @@
     transform: scale(1.05);
     transition: transform 0.3s ease;
 }
-
+/* 카드 이미지 */
 .product-card-img-wrapper {
     position: relative;
     overflow: hidden;
@@ -20,7 +21,7 @@
     object-fit: cover;
     width: 100%; /* 부모에 꽉 차게 */
 }
-
+/* 카드 바디 */
 .product-card-body {
     display: flex;
     flex-direction: column;
@@ -28,13 +29,13 @@
     text-align: start;
     height: 100%;
 }
-
+/* 카드 헤더 */
 .product-card-header {
     display: flex;
     justify-content: space-between;
     align-items: start;
 }
-
+/* 카드 제목 */
 .product-card-title{
     font-size: 18px;
     font-weight: 400;
@@ -44,11 +45,17 @@
 
 }
 
+/* 하트 버튼 */
+button{
+    background-color: white;
+    padding-top: 0;
+}
+/* 카드 가격 */
 .product-card-price {
     font-weight: 700; /* fw-bold */
     font-size: 18px;
 }
-
+/* 시간 */
 .product-card-time {
     color: #6c757d; /* text-muted */
     margin-top: auto;
