@@ -32,11 +32,16 @@
 .product-card-header {
     display: flex;
     justify-content: space-between;
+    align-items: start;
 }
 
 .product-card-title{
     font-size: 18px;
     font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
 }
 
 .product-card-price {
