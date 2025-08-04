@@ -7,6 +7,7 @@ import type { Status } from "../../types/product";
 import Filter from "../../components/common/Filter";
 import ProductList from "../../components/product/ProductList";
 import { useUserStore } from "../../stores/UserStore";
+import GoMypage from "../../components/common/GoMypage";
 
 const MyPostPage: React.FC = () =>{
     // 제품 불러오기
@@ -35,7 +36,10 @@ const MyPostPage: React.FC = () =>{
 
     return(
         <div className="container">
-            <h3 className="text-center mt-3 mb-3"><b>내가 쓴 글</b></h3>
+            <h3 className="text-start mt-3 mb-3 align-items-center d-flex">
+                <GoMypage/>
+                <b>내가 쓴 글</b>
+                </h3>
             <Filter onFilterSelect = {handleFilter}></Filter>
             <ProductList products={myProducts}></ProductList>
         </div>

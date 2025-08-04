@@ -4,6 +4,7 @@ import type React from "react";
 import { useUserStore } from "../../stores/UserStore";
 import Input from "../../components/common/Input";
 import { Button,Form } from "react-bootstrap";
+import GoMypage from "../../components/common/GoMypage";
 
 const SetiingPage: React.FC = () =>{
     //유저 정보 불러오기
@@ -15,7 +16,10 @@ const SetiingPage: React.FC = () =>{
 
     return(
         <div className="container mb-4">
-            <h3 className="text-center mt-3 mb-3"><b>설정</b></h3>
+            <h3 className="text-start mt-3 mb-3 align-items-center d-flex">
+                <GoMypage/>
+                <b>설정</b>
+                </h3>
              <Form>
                 <Input 
                     label="아이디"

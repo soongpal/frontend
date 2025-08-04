@@ -5,6 +5,7 @@ import { useState } from "react";
 import type { Status } from "../../types/product";
 import ProductGrid from "../../components/product/ProductGrid";
 import { useProductStore } from "../../stores/productStore";
+import GoMypage from "../../components/common/GoMypage";
 
 const  FavoritesPage: React.FC = () =>{
    // 처음 불러오기
@@ -30,7 +31,11 @@ const  FavoritesPage: React.FC = () =>{
 
     return(
         <div className="container">
-            <h3 className="text-center mt-3 mb-3"><b>관심 목록</b></h3>
+            <h3 className="text-start mt-3 mb-3 align-items-center d-flex">
+                <GoMypage/>
+                <b>관심 목록</b>
+            </h3>
+
             <Filter onFilterSelect = {handleFilter}></Filter>
             <ProductGrid products={likedProducts}></ProductGrid>
 
