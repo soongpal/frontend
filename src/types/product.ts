@@ -15,7 +15,7 @@ export interface Product{
 
     chatCount: number;
 
-    images: string;
+    images: string[];
 
     category: Category;
 

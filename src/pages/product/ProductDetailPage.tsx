@@ -28,7 +28,10 @@ const ProductDetailPage: React.FC= () =>{
 
     return(
         <div className="container d-flex flex-column justify-content-center">
-            <img src={product.images} alt={product.title} className="thumbnail-img"/>
+            {/* 이미지영역 */}
+            <div className="d-flex justify-content-center">
+                <img src={product.images[0]} alt={product.title} className="thumbnail-img"/>
+            </div>
 
             <div className="d-flex justify-content-between align-items-center my-3">
                 <p className="gray-row">{product.category==='GROUP_PURCHASE'?'공동구매':'중고거래'}<ChevronRight size={13} className="ms-2"/></p>
