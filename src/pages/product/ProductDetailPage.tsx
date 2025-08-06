@@ -4,7 +4,7 @@ import type React from "react";
 import { useParams } from "react-router-dom";
 import { useProductStore } from "../../stores/productStore";
 
-import { Chat, ChevronRight, Heart, HeartFill, Share, Link, Link45deg } from "react-bootstrap-icons";
+import { ChevronRight, Heart, HeartFill, Share, ChatDots } from "react-bootstrap-icons";
 import "../../styles/ProductDetailPage.css"
 
 import { timeAgo } from "../../utils/time";
@@ -60,9 +60,12 @@ const ProductDetailPage: React.FC= () =>{
             {/* 버튼들 */}
             <div className="d-flex justify-content-between my-3">
                 <h1>{product.price}</h1>
-                <div>
-                    <button><Heart/></button>
-                    <button><Chat className="me-2"/>대화하기</button>
+                <div className="d-flex">
+                    <button className="round-button" onClick={handleHeartClick}>
+                        {product.liked ? <HeartFill color="red"></HeartFill> : <Heart color="gray"></Heart>}
+                    </button>
+
+                    <button className="round-button"><ChatDots className="me-2"/>대화하기</button>
                 </div>
             </div>
 

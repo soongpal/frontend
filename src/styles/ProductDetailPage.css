@@ -18,10 +18,39 @@ p{
 
 }
 
+
+/* 회색 줄 */
 .gray-row{
     display: flex;
     align-items: center;
     color: gray;
+}
+
+/* 대화하기, 좋아요 공통 버튼 */
+.round-button{
+    height: 45px;
+    width: auto;
+
+    background-color: white;
+    color: black;
+
+    border-radius: 20rem;
+    border: 1px solid;
+    border-color: #dbdbdb;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    display: flex;
+    align-items: center;
+}
+
+
+.round-button:hover{
+    background-color: #dbdbdb;
+    border-color: #dbdbdb;
 }
 
 /* 표 속성 */
@@ -39,11 +68,11 @@ table th, td{
 
 table th{
     color: gray;
-    width: 30%;
+    width: 35%;
 }
 
 table td{
-    width: 75%;
+    width: 65%;
 }
 
 .product-link{
