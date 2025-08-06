@@ -12,8 +12,9 @@
     "liked": true,
     "chatCount": 1,
     "images": "/products/product1.jpg",
-    "category": "GROUP_PURCHASE"
- 
+    "category": "GROUP_PURCHASE",
+    "link": "https://www.coupang.com/vp/products/8309567688?itemId=23976644623&vendorItemId=92034793208&sourceType=srp_product_ads&clickEventId=dc4af2f0-7268-11f0-9dc6-83735d767be0&korePlacement=15&koreSubPlacement=1&clickEventId=dc4af2f0-7268-11f0-9dc6-83735d767be0&korePlacement=15&koreSubPlacement=1",
+    "location": "기숙사 앞"
   },
   {
     "id": 2002,
@@ -28,7 +29,9 @@
     "liked": false,
     "chatCount": 2,
     "images": "/products/product2.jpg",
-    "category": "USED_TRADE"
+    "category": "USED_TRADE",
+    "link": "https://www.coupang.com/vp/products/8309567688?itemId=23976644623&vendorItemId=92034793208&sourceType=srp_product_ads&clickEventId=dc4af2f0-7268-11f0-9dc6-83735d767be0&korePlacement=15&koreSubPlacement=1&clickEventId=dc4af2f0-7268-11f0-9dc6-83735d767be0&korePlacement=15&koreSubPlacement=1",
+    "location": "기숙사 앞"
   },
   {
     "id": 2003,
@@ -43,7 +46,9 @@
     "liked": true,
     "chatCount": 0,
     "images": "/products/product3.jpg",
-    "category": "USED_TRADE"
+    "category": "USED_TRADE",
+    "link": "https://www.coupang.com/vp/products/8309567688?itemId=23976644623&vendorItemId=92034793208&sourceType=srp_product_ads&clickEventId=dc4af2f0-7268-11f0-9dc6-83735d767be0&korePlacement=15&koreSubPlacement=1&clickEventId=dc4af2f0-7268-11f0-9dc6-83735d767be0&korePlacement=15&koreSubPlacement=1",
+    "location": "기숙사 앞"
  
   },
   {
@@ -59,7 +64,9 @@
     "liked": false,
     "chatCount": 1,
     "images": "/products/product4.jpg",
-    "category": "GROUP_PURCHASE"
+    "category": "GROUP_PURCHASE",
+    "link": "https://www.coupang.com/vp/products/8309567688?itemId=23976644623&vendorItemId=92034793208&sourceType=srp_product_ads&clickEventId=dc4af2f0-7268-11f0-9dc6-83735d767be0&korePlacement=15&koreSubPlacement=1&clickEventId=dc4af2f0-7268-11f0-9dc6-83735d767be0&korePlacement=15&koreSubPlacement=1",
+    "location": "기숙사 앞"
   },
   {
     "id": 2005,
@@ -74,7 +81,9 @@
     "liked": false,
     "chatCount": 3,
     "images": "/products/product5.jpg",
-    "category": "USED_TRADE"
+    "category": "USED_TRADE",
+    "link": "https://www.coupang.com/vp/products/8309567688?itemId=23976644623&vendorItemId=92034793208&sourceType=srp_product_ads&clickEventId=dc4af2f0-7268-11f0-9dc6-83735d767be0&korePlacement=15&koreSubPlacement=1&clickEventId=dc4af2f0-7268-11f0-9dc6-83735d767be0&korePlacement=15&koreSubPlacement=1",
+    "location": "기숙사 앞"
   },
   {
     "id": 2006,
@@ -89,7 +98,9 @@
     "liked": false,
     "chatCount": 2,
     "images": "/products/product6.jpg",
-    "category": "GROUP_PURCHASE"
+    "category": "GROUP_PURCHASE",
+    "link": "https://www.coupang.com/vp/products/8309567688?itemId=23976644623&vendorItemId=92034793208&sourceType=srp_product_ads&clickEventId=dc4af2f0-7268-11f0-9dc6-83735d767be0&korePlacement=15&koreSubPlacement=1&clickEventId=dc4af2f0-7268-11f0-9dc6-83735d767be0&korePlacement=15&koreSubPlacement=1",
+    "location": "기숙사 앞"
   },
   {
     "id": 2007,
@@ -104,7 +115,9 @@
     "liked": true,
     "chatCount": 1,
     "images": "/products/product7.jpg",
-    "category": "GROUP_PURCHASE"
+    "category": "GROUP_PURCHASE",
+    "link": "https://www.coupang.com/vp/products/8309567688?itemId=23976644623&vendorItemId=92034793208&sourceType=srp_product_ads&clickEventId=dc4af2f0-7268-11f0-9dc6-83735d767be0&korePlacement=15&koreSubPlacement=1&clickEventId=dc4af2f0-7268-11f0-9dc6-83735d767be0&korePlacement=15&koreSubPlacement=1",
+    "location": "기숙사 앞"
 
   },
   {
@@ -120,7 +133,9 @@
     "liked": false,
     "chatCount": 0,
     "images": "/products/product8.jpg",
-    "category": "USED_TRADE"
+    "category": "USED_TRADE",
+    "link": "https://www.coupang.com/vp/products/8309567688?itemId=23976644623&vendorItemId=92034793208&sourceType=srp_product_ads&clickEventId=dc4af2f0-7268-11f0-9dc6-83735d767be0&korePlacement=15&koreSubPlacement=1&clickEventId=dc4af2f0-7268-11f0-9dc6-83735d767be0&korePlacement=15&koreSubPlacement=1",
+    "location": "기숙사 앞"
 
   },
   {
@@ -136,6 +151,8 @@
     "liked": false,
     "chatCount": 3,
     "images": "/products/product9.jpg",
-    "category": "USED_TRADE"
+    "category": "USED_TRADE",
+    "link": "https://www.coupang.com/vp/products/8309567688?itemId=23976644623&vendorItemId=92034793208&sourceType=srp_product_ads&clickEventId=dc4af2f0-7268-11f0-9dc6-83735d767be0&korePlacement=15&koreSubPlacement=1&clickEventId=dc4af2f0-7268-11f0-9dc6-83735d767be0&korePlacement=15&koreSubPlacement=1",
+    "location": "기숙사 앞"
   }
 ]

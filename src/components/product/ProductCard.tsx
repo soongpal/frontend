@@ -4,31 +4,14 @@ import SoldoutTag from "../common/SoldoutTag";
 import { type Product } from "../../types/product";
 import { useProductStore } from '../../stores/productStore';  
 import { Heart, HeartFill } from "react-bootstrap-icons";
-
+import { useNavigate } from "react-router-dom";
+import { timeAgo } from "../../utils/time";
 
 type ProductCardProps = {
   product: Product;
 };
 
 const ProductCard = ( { product }: ProductCardProps)=>{
-  //몇분전 표기 함수
-  const now = new Date();
-  const createdAt = new Date(product.createdAt);
-
-  const diffMilliseconds = now.getTime() - createdAt.getTime();
-  const minutesPassed = Math.floor(diffMilliseconds / (1000 * 60));
-
-  let timeAgo: string;
-  if (minutesPassed < 1) {
-    timeAgo = '방금 전';
-  } else if (minutesPassed < 60) {
-    timeAgo = `${minutesPassed}분 전`;
-  } else if (minutesPassed < 60 * 24) { 
-    const hours = Math.floor(minutesPassed / 60);
-    timeAgo = `${hours}시간 전`;
-  } else {
-    timeAgo = createdAt.toLocaleDateString('ko-KR');
-  } 
 
   //상품 업데이트 함수
   const updateProduct = useProductStore((state) => state.updateProduct);
@@ -37,8 +20,15 @@ const ProductCard = ( { product }: ProductCardProps)=>{
     updateProduct(product.id, { liked: !product.liked });
   };
 
+  //상품 상세페이지 함수
+  const navigate = useNavigate();
+    
+  const gotoDetailpage = () => {
+    navigate(`/product/productdetail/${product.id}`);
+  };
+    
   return (
-    <div>
+    <div onClick={gotoDetailpage}>
       <Card className="product-card">
         <div className="product-card-img-wrapper">
           <Card.Img
@@ -58,7 +48,7 @@ const ProductCard = ( { product }: ProductCardProps)=>{
           </div>
 
           <Card.Text className="product-card-price">{product.price}원</Card.Text>
-          <Card.Text className="product-card-time">{timeAgo}</Card.Text>
+          <Card.Text className="product-card-time">{timeAgo(product)}</Card.Text>
         </Card.Body>
       </Card>
     </div>

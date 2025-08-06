@@ -8,8 +8,7 @@ const Footer: React.FC = () =>{
         <div className="ms-3">
             <img src="/logo/Soongpal.svg" alt="logo" width={50} className="mb-2"/>
             <p className=" text-muted">
-                EMAIL: soongpal@gmail.com<br />
-                호스팅서비스 제공자: Netlify<br />
+                EMAIL: soongpal2@gmail.com<br />
                 © 2025 Team Soongpal. All rights reserved.
             </p>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" >

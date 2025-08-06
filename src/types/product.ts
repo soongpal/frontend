@@ -4,14 +4,24 @@ export interface Product{
     description: string;
     price: number;
     createdAt: string;
+
     sellerId: number;
     sellerNickname: string;
+
     status: Status;
+
     likeCount: number;
     liked: boolean;
+
     chatCount: number;
+
     images: string;
+
     category: Category;
+
+    location: string;
+
+    link?: string;
 
 }
 

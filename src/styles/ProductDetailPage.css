@@ -1,0 +1,56 @@
+/* 대표 이미지 */
+.thumbnail-img{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px ;
+}
+
+button{
+    padding: 0;
+    margin-right: 4px !important;
+    margin-left: 4px !important;
+
+}
+
+p{
+    margin-bottom: 0 !important;
+
+}
+
+.gray-row{
+    display: flex;
+    align-items: center;
+    color: gray;
+}
+
+/* 표 속성 */
+
+.table-container{
+    border-top: 1px solid rgb(187, 187, 187);
+
+    padding: 1rem 0;
+}
+
+table th, td{
+    vertical-align: middle !important;
+    text-align: start !important;
+}
+
+table th{
+    color: gray;
+    width: 30%;
+}
+
+table td{
+    width: 75%;
+}
+
+.product-link{
+    display: inline-block;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: black;
+}
