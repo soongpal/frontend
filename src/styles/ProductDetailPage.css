@@ -32,6 +32,7 @@ p{
 .round-button{
     height: 45px;
     width: auto;
+    min-width: 45px;
 
     background-color: white;
     color: black;
@@ -54,6 +55,8 @@ p{
     background-color: #dbdbdb;
     border-color: #dbdbdb;
 }
+
+
 
 /* 표 속성 */
 
