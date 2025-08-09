@@ -25,7 +25,7 @@ const ProductList : React.FC<ProductGridProps> = ({products}) =>{
             {products.map((product) => (
             <tr key={product.id}>
                 <td>
-                <img src={product.images} alt={product.title} className="product-img" />
+                <img src={product.images[0]} alt={product.title} className="product-img" />
                 </td>
                 <td>{product.title}</td>
                 <td>{product.price}원</td>
