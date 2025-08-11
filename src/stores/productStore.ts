@@ -1,29 +1,55 @@
-import { create} from "zustand";
-import { persist } from 'zustand/middleware';
-import { type Product } from "../types/product";
+// stores/productStore.ts
+import { create } from "zustand";
+import { type Product, type Category, type Status } from "../types/product";
+import * as productApi from "../sevices/productService";
 
-type ProductStore = {
+interface Filter {
+  category?: Category;
+  status?: Status;
+  keyword?: string;
+}
+
+interface ProductState {
   products: Product[];
-  setProducts: (products: Product[]) => void;
-  updateProduct: (id: number, updated: Partial<Product>) => void;
-};
+  filter: Filter;
+  page: number;
+  totalPages: number;
 
-export const useProductStore = create<ProductStore>()(
-  persist(
-    (set) => ({
-      products: [],
-      setProducts: (products) => set({ products }),
-      updateProduct: (id, updated) =>
-        set((state) => ({
-          products: state.products.map((p) =>
-            p.id === id ? { ...p, ...updated } : p
-          ),
-        })),
-    }),
-    {
-      name: 'product-storage', // localStorage에 저장될 키 이름
-      partialize: (state) => ({ products: state.products }), // 저장할 항목만 지정 (선택)
-    }
-  )
-);
+  // actions
+  setFilter: (filter: Partial<Filter>) => void;
+  setPage: (page: number) => void;
+  fetchProducts: () => Promise<void>;
+}
+
+const useProductStore = create<ProductState>((set, get) => ({
+  products: [],
+  filter: {},
+  page: 1,
+  totalPages: 0,
+
+  setFilter: (newFilter) => {
+    set((state) => ({
+      filter: { ...state.filter, ...newFilter },
+      page: 1 // 필터 바뀌면 페이지 초기화
+    }));
+    get().fetchProducts();
+  },
+
+  setPage: (newPage) => {
+    set({ page: newPage });
+    get().fetchProducts();
+  },
+
+  fetchProducts: async () => {
+    const { filter, page } = get();
+    const res = await productApi.getProductList({ ...filter, page });
+    set({
+      products: res.products,
+      totalPages: res.totalPages
+    });
+  }
+}));
+
+export default useProductStore;
+
 

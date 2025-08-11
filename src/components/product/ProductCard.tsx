@@ -2,7 +2,7 @@ import "../../styles/ProductCard.css";
 import { Card } from "react-bootstrap";
 import SoldoutTag from "../common/SoldoutTag";
 import { type Product } from "../../types/product";
-import { useProductStore } from '../../stores/productStore';  
+import { useProductStore } from '../../stores/ProductStore';  
 import { Heart, HeartFill } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import { timeAgo } from "../../utils/time";

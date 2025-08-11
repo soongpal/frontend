@@ -1,7 +1,7 @@
 //쓴글 목록 페이지
 
 import type React from "react";
-import { useProductStore } from "../../stores/productStore";
+import { useProductStore } from "../../stores/ProductStore";
 import { useState } from "react";
 import type { Status } from "../../types/product";
 import Filter from "../../components/common/Filter";

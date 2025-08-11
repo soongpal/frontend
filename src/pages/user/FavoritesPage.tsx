@@ -4,7 +4,7 @@ import Filter from "../../components/common/Filter";
 import { useState } from "react";
 import type { Status } from "../../types/product";
 import ProductGrid from "../../components/product/ProductGrid";
-import { useProductStore } from "../../stores/productStore";
+import { useProductStore } from "../../stores/ProductStore";
 import GoMypage from "../../components/common/GoMypage";
 
 const  FavoritesPage: React.FC = () =>{

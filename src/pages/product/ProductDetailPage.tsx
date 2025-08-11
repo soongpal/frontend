@@ -2,7 +2,7 @@
 
 import type React from "react";
 import { useParams } from "react-router-dom";
-import { useProductStore } from "../../stores/productStore";
+import { useProductStore } from "../../stores/ProductStore";
 
 import { ChevronRight, Heart, HeartFill, Share, ChatDots } from "react-bootstrap-icons";
 import "../../styles/ProductDetailPage.css"
