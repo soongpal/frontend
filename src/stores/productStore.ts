@@ -24,7 +24,7 @@ interface ProductState {
 const useProductStore = create<ProductState>((set, get) => ({
   products: [],
   filter: {},
-  page: 1,
+  page: 0,
   totalPages: 0,
 
   setFilter: (newFilter) => {

@@ -11,17 +11,26 @@ export const getProductList = async (params: {
   keyword?: string;
   page: number;
 }) => {
-  const res = await axios.get(`${BASE_URL}/api/board`, { params });
-  return res.data as {
-    products: Product[];
-    totalPages: number;
-  };
+    try{
+        const res = await axios.get(`${BASE_URL}/api/board`, { params });
+        return res.data as {
+            products: Product[];
+            totalPages: number;
+        };
+    } catch(err){
+        console.error(err);
+    }
+ 
 };
 
 // 상세 조회
 export const getProductDetail = async (id: number) => {
-  const res = await axios.get(`${BASE_URL}/api/board/${id}`);
-  return res.data as Product;
+    try{
+        const res = await axios.get(`${BASE_URL}/api/board/${id}`);
+        return res.data as Product;
+    } catch(err){
+        console.error(err);
+    }
 };
 
 // 생성
