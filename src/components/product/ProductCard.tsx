@@ -36,7 +36,7 @@ const ProductCard = ( { product }: ProductCardProps)=>{
             src={product.images[0]}
             className="product-card-img"
           />
-          {product.status==='SOLD_OUT'&&<SoldoutTag />}
+          {product.status==='COMPLETED'&&<SoldoutTag />}
         </div>
 
         <Card.Body className="product-card-body">

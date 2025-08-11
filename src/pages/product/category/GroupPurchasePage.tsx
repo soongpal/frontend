@@ -21,10 +21,10 @@ const GroupPurchasePage: React.FC = () =>{
 
     const groupPurchaseProducts = products.filter((product) => {
         if (filter === null) {
-            return product.category === 'GROUP_PURCHASE';
+            return product.category === 'GROUP';
             }
         return (
-                product.category === 'GROUP_PURCHASE' &&
+                product.category === 'GROUP' &&
                 product.status === filter
             );
     });

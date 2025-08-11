@@ -25,12 +25,12 @@ const ProductList : React.FC<ProductGridProps> = ({products}) =>{
             {products.map((product) => (
             <tr key={product.id}>
                 <td>
-                <img src={product.images[0]} alt={product.title} className="product-img" />
+                    <img src={product.images[0]} alt={product.title} className="product-img" />
                 </td>
                 <td>{product.title}</td>
                 <td>{product.price}원</td>
                 <td>{product.likeCount}</td>
-                <td>{product.status === "ON_SALE" ? "거래중" : "거래완료"}</td>
+                <td>{product.status === "IN_PROGRESS" ? "거래중" : "거래완료"}</td>
                 <td>
                 <button className="btn me-2">
                     <PencilSquare />

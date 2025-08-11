@@ -1,30 +1,27 @@
 export interface Product{
     id: number;
-    title: string;
-    description: string;
-    price: number;
-    createdAt: string;
-
-    sellerId: number;
-    sellerNickname: string;
-
-    status: Status;
-
-    likeCount: number;
-    liked: boolean;
-
-    chatCount: number;
 
     images: string[];
+    
+    title: string;
+    content: string;
+    price: number;
 
-    category: Category;
-
+    url: string;
     location: string;
 
-    link?: string;
+    category: Category;
+    status: Status;
 
+    liked: boolean;
+    likeCount: number;
+
+    seller:{
+        sellerId: number;
+        sellerName: string;
+    }
 }
 
-export type Status = 'ON_SALE' | 'SOLD_OUT';
+export type Category = 'USED' | 'GROUP';
 
-export type Category = 'USED_TRADE' | 'GROUP_PURCHASE';
+export type Status = 'IN_PROGRESS' | 'COMPLETED';

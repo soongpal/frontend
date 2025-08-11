@@ -24,10 +24,10 @@ const UsedTradePage: React.FC = () =>{
 
     const groupPurchaseProducts = products.filter((product) => {
         if (filter === null) {
-            return product.category === 'USED_TRADE';
+            return product.category === 'USED';
             }
         return (
-                product.category === 'USED_TRADE' &&
+                product.category === 'USED' &&
                 product.status === filter
             );
     });

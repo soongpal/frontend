@@ -34,7 +34,7 @@ const ProductDetailPage: React.FC= () =>{
             </div>
 
             <div className="d-flex justify-content-between align-items-center my-3">
-                <p className="gray-row">{product.category==='GROUP_PURCHASE'?'공동구매':'중고거래'}<ChevronRight size={13} className="ms-2"/></p>
+                <p className="gray-row">{product.category==='GROUP'?'공동구매':'중고거래'}<ChevronRight size={13} className="ms-2"/></p>
                 <div className="d-flex align-items-center">
                     <button>
                         <Share color="gray" size={13}/>
@@ -58,7 +58,7 @@ const ProductDetailPage: React.FC= () =>{
             <p className="gray-row mb-3">{timeAgo(product)}</p>
 
             {/* 설명란 */}
-            <p className="my-3">{product.description}</p>
+            <p className="my-3">{product.content}</p>
 
             {/* 버튼들 */}
             <div className="d-flex justify-content-between my-3">
@@ -78,7 +78,7 @@ const ProductDetailPage: React.FC= () =>{
                     <tbody>
                         <tr>
                             <th>상품 링크</th>
-                            <td><a href={product.link} target="_blank" className="product-link">{product.link}</a></td>
+                            <td><a href={product.url} target="_blank" className="product-link">{product.url}</a></td>
                         </tr>
 
                         <tr>
@@ -88,7 +88,7 @@ const ProductDetailPage: React.FC= () =>{
 
                         <tr>
                             <th>판매자</th>
-                            <td>{product.sellerNickname}</td>
+                            <td>{product.seller.sellerName}</td>
                         </tr>
                     </tbody>
                 </table>
