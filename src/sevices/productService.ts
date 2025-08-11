@@ -17,7 +17,8 @@ export const getProductList = async (params: {
             products: Product[];
             totalPages: number;
         };
-    } catch(err){
+    } 
+    catch(err){
         console.error(err);
     }
  
@@ -28,40 +29,77 @@ export const getProductDetail = async (id: number) => {
     try{
         const res = await axios.get(`${BASE_URL}/api/board/${id}`);
         return res.data as Product;
-    } catch(err){
+    } 
+    catch(err){
         console.error(err);
     }
 };
 
 // 생성
 export const createProduct = async (data: Omit<Product, "id">) => {
-  const res = await axios.post(`${BASE_URL}/api/board`, data);
-  return res.data as Product;
+    try{
+        const res = await axios.post(`${BASE_URL}/api/board`, data);
+        return res.data as Product;
+    } 
+    catch(err){
+        console.error(err);
+    }
+  
 };
 
 // 수정
 export const updateProduct = async (id: number, data: Partial<Product>) => {
-  const res = await axios.put(`${BASE_URL}/api/board/${id}`, data);
-  return res.data as Product;
+    try{
+        const res = await axios.put(`${BASE_URL}/api/board/${id}`, data);
+        return res.data as Product;
+    }
+    catch(err){
+        console.error(err);
+    }
+  
 };
 
 // 삭제
 export const deleteProduct = async (id: number) => {
-  await axios.delete(`${BASE_URL}/api/board/${id}`);
+    try{
+        await axios.delete(`${BASE_URL}/api/board/${id}`);
+    }
+    catch(err){
+        console.error(err);
+    }
+
 };
 
 // 개별 좋아요 개수 조회
 export const getProductLikeCount = async (id: number) => {
-  const res = await axios.get(`${BASE_URL}/api/board/${id}/like`);
-  return res.data as { likeCount: number };
+    try{
+        const res = await axios.get(`${BASE_URL}/api/board/${id}/like`);
+        return res.data as { likeCount: number };
+    }
+    catch(err){
+        console.error(err);
+    }
+
 };
 
 // 좋아요 생성
 export const addProductLike = async (id: number) => {
-  await axios.post(`${BASE_URL}/api/board/${id}/like`);
+    try{
+        await axios.post(`${BASE_URL}/api/board/${id}/like`);
+    }
+    catch(err){
+        console.error(err);
+    }
+
 };
 
 // 좋아요 삭제
 export const removeProductLike = async (id: number) => {
-  await axios.delete(`${BASE_URL}/api/board/${id}/like`);
+    try{
+        await axios.delete(`${BASE_URL}/api/board/${id}/like`);
+    }
+    catch(err){
+        console.error(err);
+    }
+
 };

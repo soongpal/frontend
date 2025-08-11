@@ -43,6 +43,7 @@ const useProductStore = create<ProductState>((set, get) => ({
   fetchProducts: async () => {
     const { filter, page } = get();
     const res = await productApi.getProductList({ ...filter, page });
+    
     set({
       products: res.products,
       totalPages: res.totalPages
