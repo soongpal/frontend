@@ -20,6 +20,7 @@ export const getProductList = async (params: {
     } 
     catch(err){
         console.error(err);
+        throw err;
     }
  
 };
@@ -32,6 +33,7 @@ export const getProductDetail = async (id: number) => {
     } 
     catch(err){
         console.error(err);
+        throw err;
     }
 };
 
@@ -43,6 +45,7 @@ export const createProduct = async (data: Omit<Product, "id">) => {
     } 
     catch(err){
         console.error(err);
+        throw err;
     }
   
 };
@@ -55,6 +58,7 @@ export const updateProduct = async (id: number, data: Partial<Product>) => {
     }
     catch(err){
         console.error(err);
+        throw err;
     }
   
 };
@@ -66,6 +70,7 @@ export const deleteProduct = async (id: number) => {
     }
     catch(err){
         console.error(err);
+        throw err;
     }
 
 };
@@ -78,6 +83,7 @@ export const getProductLikeCount = async (id: number) => {
     }
     catch(err){
         console.error(err);
+        throw err;
     }
 
 };
@@ -89,6 +95,7 @@ export const addProductLike = async (id: number) => {
     }
     catch(err){
         console.error(err);
+        throw err;
     }
 
 };
@@ -100,6 +107,7 @@ export const removeProductLike = async (id: number) => {
     }
     catch(err){
         console.error(err);
+        throw err;
     }
 
 };

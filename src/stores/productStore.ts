@@ -15,6 +15,9 @@ interface ProductState {
   page: number;
   totalPages: number;
 
+  loading: boolean;
+  error: string | null;
+
   // actions
   setFilter: (filter: Partial<Filter>) => void;
   setPage: (page: number) => void;
@@ -27,6 +30,10 @@ const useProductStore = create<ProductState>((set, get) => ({
   page: 0,
   totalPages: 0,
 
+  loading: false, // 로딩 여부
+  error: null, // 에러 메시지 저장
+
+//필터 변경 함수
   setFilter: (newFilter) => {
     set((state) => ({
       filter: { ...state.filter, ...newFilter },
@@ -35,15 +42,21 @@ const useProductStore = create<ProductState>((set, get) => ({
     get().fetchProducts();
   },
 
+  //페이지 변경 함수
   setPage: (newPage) => {
     set({ page: newPage });
     get().fetchProducts();
   },
 
+  //상품 목록 패치 함수
   fetchProducts: async () => {
+    //로딩 시작, 에러메세지 초기화
+    set({ loading: true, error: null });
+    //필터, 페이지 정보 불러오기
     const { filter, page } = get();
+    //api호출
     const res = await productApi.getProductList({ ...filter, page });
-    
+
     set({
       products: res.products,
       totalPages: res.totalPages
