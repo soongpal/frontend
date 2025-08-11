@@ -2,38 +2,25 @@
 
 import type React from "react";
 import ProductGrid from "../../../components/product/ProductGrid";
-import { useState } from "react";
-import type { Status } from "../../../types/product";
+import { useEffect, useState } from "react";
 import Filter from "../../../components/common/Filter";
 import FloatingButton from "../../../components/common/FloatingButton";
 import { useProductStore } from "../../../stores/ProductStore";
 
 const GroupPurchasePage: React.FC = () =>{
    // 처음 불러오기
-    const { products } = useProductStore();
+    const { products, setFilter, fetchProducts } = useProductStore();
 
-    //필터 영역
-    const [filter, setFilter] = useState<Status | null>(null);
-
-    const handleFilter = (filter:Status | null)=>{
-        setFilter(filter);
-    };
-
-    const groupPurchaseProducts = products.filter((product) => {
-        if (filter === null) {
-            return product.category === 'GROUP';
-            }
-        return (
-                product.category === 'GROUP' &&
-                product.status === filter
-            );
-    });
+    useEffect(() => {
+        setFilter({category: 'GROUP'});
+        fetchProducts();
+    }, []);
 
     return(
          <div className="container">
             <h3 className="text-start mt-4 mb-4"><b>공동구매</b></h3>
-            <Filter onFilterSelect = {handleFilter}></Filter>
-            <ProductGrid products={groupPurchaseProducts}></ProductGrid>
+            <Filter></Filter>
+            <ProductGrid products={products}></ProductGrid>
             <FloatingButton></FloatingButton>
         </div>
     )

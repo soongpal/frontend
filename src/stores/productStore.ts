@@ -39,16 +39,18 @@ export const useProductStore = create<ProductState>((set, get) => ({
       filter: { ...state.filter, ...newFilter },
       page: 1 // 필터 바뀌면 페이지 초기화
     }));
-    get().fetchProducts();
+    
+    const { fetchProducts } = get();
+    fetchProducts();
   },
 
-  //페이지 변경 함수
+//페이지 변경 함수
   setPage: (newPage) => {
     set({ page: newPage });
     get().fetchProducts();
   },
 
-  //상품 목록 패치 함수
+//상품 목록 패치 함수
   fetchProducts: async () => {
 
     set({ loading: true, error: null });

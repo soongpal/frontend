@@ -1,17 +1,15 @@
 import "../../styles/Filter.css"
 import { ChevronRight, X} from "react-bootstrap-icons";
-import type { Status } from "../../types/product";
-import { useState } from "react";
+import { useState } from "react";import useProductStore from "../../stores/ProductStore";
+''
 
-type FilterProps = {
-  onFilterSelect: (filter: Status | null) => void;
-};
-
-function Filter({onFilterSelect}: FilterProps){
+function Filter(){
     //선택여부
     const [selected, setSelected] = useState<boolean>(false);
     //선택한 버튼
     const[option, setOption] = useState<string | null>();
+
+    const {setFilter} = useProductStore();
     
 
     return (
@@ -22,7 +20,7 @@ function Filter({onFilterSelect}: FilterProps){
             <div>
                 <button 
                     onClick={()=> {
-                        onFilterSelect('ON_SALE');
+                        setFilter({status: 'IN_PROGRESS'})
                         setSelected(true);
                         setOption('거래중');
                     }} 
@@ -35,7 +33,7 @@ function Filter({onFilterSelect}: FilterProps){
             <div>
                 <button 
                     onClick={()=>{
-                        onFilterSelect('SOLD_OUT');
+                        setFilter({status: 'COMPLETED'})
                         setSelected(true);
                         setOption('거래완료');
                     }} 
@@ -50,7 +48,7 @@ function Filter({onFilterSelect}: FilterProps){
             <div>
                 <button 
                     onClick={()=>{
-                        onFilterSelect(null);
+                        setFilter({status: undefined})
                         setSelected(false);
                     }} 
                     className="filter-selected">

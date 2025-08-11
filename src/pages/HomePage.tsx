@@ -3,15 +3,15 @@ import Banner from "../components/banner/Banner";
 import ProductGrid from "../components/product/ProductGrid";
 import FloatingButton from "../components/common/FloatingButton";
 import { useProductStore } from '../stores/ProductStore';
-import type { Product } from "../types/product";
 import { useEffect } from "react";
 
 const Home: React.FC = () =>{
 
-    const { products, setProducts } = useProductStore();
+    const { products, setFilter, fetchProducts } = useProductStore();
     
     useEffect(() => {
-        setProducts(dummy as Product[]);
+        setFilter({category: undefined})
+        fetchProducts();
     }, []);
 
     return(
