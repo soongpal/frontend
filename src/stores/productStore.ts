@@ -37,9 +37,9 @@ export const useProductStore = create<ProductState>((set, get) => ({
   setFilter: (newFilter) => {
     set((state) => ({
       filter: { ...state.filter, ...newFilter },
-      page: 1 // 필터 바뀌면 페이지 초기화
+      page: 0 // 필터 바뀌면 페이지 초기화
     }));
-    
+
     const { fetchProducts } = get();
     fetchProducts();
   },
@@ -62,7 +62,7 @@ export const useProductStore = create<ProductState>((set, get) => ({
 
       set({
         products: data.products,
-        totalPages: data.totalPages,
+        // totalPages: data.totalPages, 나중 페이지네이션 할때 적용할것
         loading: false
       });
     }

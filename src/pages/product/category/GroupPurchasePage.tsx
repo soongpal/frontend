@@ -2,17 +2,17 @@
 
 import type React from "react";
 import ProductGrid from "../../../components/product/ProductGrid";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Filter from "../../../components/common/Filter";
 import FloatingButton from "../../../components/common/FloatingButton";
 import { useProductStore } from "../../../stores/ProductStore";
 
 const GroupPurchasePage: React.FC = () =>{
    // 처음 불러오기
-    const { products, setFilter, fetchProducts } = useProductStore();
+    const { products, setFilter,fetchProducts } = useProductStore();
 
     useEffect(() => {
-        setFilter({category: 'GROUP'});
+        setFilter({category: 'GROUP', status: undefined});
         fetchProducts();
     }, []);
 

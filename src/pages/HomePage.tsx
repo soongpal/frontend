@@ -10,7 +10,7 @@ const Home: React.FC = () =>{
     const { products, setFilter, fetchProducts } = useProductStore();
     
     useEffect(() => {
-        setFilter({category: undefined})
+        setFilter({category: undefined, status: undefined, keyword: undefined});
         fetchProducts();
     }, []);
 

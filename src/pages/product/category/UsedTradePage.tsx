@@ -2,11 +2,10 @@
 
 import type React from "react";
 import ProductGrid from "../../../components/product/ProductGrid";
-import type { Status } from "../../../types/product";
-import { useState } from "react";
 import Filter from "../../../components/common/Filter";
 import FloatingButton from "../../../components/common/FloatingButton";
 import { useProductStore } from '../../../stores/ProductStore';
+import { useEffect } from "react";
 
 
 
@@ -15,10 +14,9 @@ const UsedTradePage: React.FC = () =>{
     const { products, setFilter, fetchProducts } = useProductStore();
 
     useEffect(() => {
-        setFilter({category: 'GROUP'});
+        setFilter({category: 'USED', status: undefined});
         fetchProducts();
     }, []);    
-
 
     return(
          <div className="container">
