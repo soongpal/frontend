@@ -50,11 +50,10 @@ const useProductStore = create<ProductState>((set, get) => ({
 
   //상품 목록 패치 함수
   fetchProducts: async () => {
-    //로딩 시작, 에러메세지 초기화
+
     set({ loading: true, error: null });
     
     try{
-      //필터, 페이지 정보 불러오기
       const { filter, page } = get();
       //api호출
       const data = await productApi.getProductList({ ...filter, page });
