@@ -52,15 +52,30 @@ const useProductStore = create<ProductState>((set, get) => ({
   fetchProducts: async () => {
     //로딩 시작, 에러메세지 초기화
     set({ loading: true, error: null });
-    //필터, 페이지 정보 불러오기
-    const { filter, page } = get();
-    //api호출
-    const res = await productApi.getProductList({ ...filter, page });
+    
+    try{
+      //필터, 페이지 정보 불러오기
+      const { filter, page } = get();
+      //api호출
+      const data = await productApi.getProductList({ ...filter, page });
 
-    set({
-      products: res.products,
-      totalPages: res.totalPages
-    });
+      set({
+        products: data.products,
+        totalPages: data.totalPages,
+        loading: false
+      });
+    }
+    catch(err: unknown){
+      const errorMessage = err instanceof Error? err.message: "상품을 불러오는 중 오류가 발생했습니다.";
+
+      set({
+        error: errorMessage,
+        loading: false
+      });
+
+      console.error("상품 목록 불러오기 에러:", err);
+    }
+
   }
 }));
 
