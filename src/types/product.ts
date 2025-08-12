@@ -22,6 +22,20 @@ export interface Product{
     }
 }
 
+export interface PostProduct{
+    images: string[];
+    
+    title: string;
+    content: string;
+    price: number;
+
+    url: string;
+    location: string;
+
+    category: Category;
+}
+
+
 export type Category = "USED" | "GROUP";
 
 export type Status = "IN_PROGRESS" | "COMPLETED";

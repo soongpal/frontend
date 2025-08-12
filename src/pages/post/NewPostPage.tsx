@@ -9,6 +9,8 @@ import { type Status } from "../../types/product";
 import type { BASE_URL } from "../../sevices/api";
 import { createProduct } from "../../sevices/productService"
 
+
+
 const NewPostPage: React.FC = () =>{
 
     const [title, setTitle] = useState<string>("");
@@ -42,7 +44,7 @@ const NewPostPage: React.FC = () =>{
       const newProduct = await createProduct(formData); 
       console.log('상품 등록 성공:', newProduct);
       alert('상품이 성공적으로 등록되었습니다.');
-      // 폼 초기화 또는 다른 동작 수행
+      //내가 쓴글 페이지 상세보기 화면으로 넘어갈것
     } catch (err) {
       console.error('상품 등록 실패:', err);
       alert('상품 등록에 실패했습니다.');
@@ -62,6 +64,7 @@ const NewPostPage: React.FC = () =>{
                     placeholder="글 제목을 입력해주세요"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
+                    required
                     error="제목 입력 오류"
                 >
                 </input>
@@ -71,6 +74,7 @@ const NewPostPage: React.FC = () =>{
                     placeholder="상태, 용량, 크기 등 자세히 적어주세요"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
+                    required
                     error="내용 입력 오류"
                     as="textarea"
                 >
@@ -81,6 +85,7 @@ const NewPostPage: React.FC = () =>{
                     placeholder="가격을 적어주세요"
                     value={ price }
                     onChange={(e) => setPrice(e.target.valueAsNumber)}
+                    required
                     error="내용 입력 오류"
                     as="textarea"
                 >
@@ -118,6 +123,7 @@ const NewPostPage: React.FC = () =>{
                     placeholder="희망 거래 장소를 입력해주세요"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
+                    required
                     error="제목 입력 오류"
                 >
                 </input>
@@ -128,6 +134,6 @@ const NewPostPage: React.FC = () =>{
             </form>
         </div>
     )
-}
 
+}
 export default NewPostPage;
