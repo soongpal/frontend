@@ -5,8 +5,30 @@ import type React from "react";
 import { Button, Form } from "react-bootstrap";
 import Input from "../../components/common/Input";
 import MultiImageUploader from "../../components/post/MultiImageUploader";
+import { useState } from "react";
 
 const NewPostPage: React.FC = () =>{
+
+    const [title, setTitle] = useState<string>("");
+    const [content, setContent] = useState<string>("");
+    const [price, setPrice] = useState<number>();
+    const [url, setUrl] = useState<string>("");
+    const [location, setLocation] = useState<string>("");
+    const [images, setImages] = useState<FileList | null>(null);
+//title
+// content
+// price
+// url
+// location
+// category
+
+
+
+
+
+
+
+
     return(
         <div className="container">
             <Form>

@@ -22,6 +22,6 @@ export interface Product{
     }
 }
 
-export type Category = 'USED' | 'GROUP';
+export type Category = "USED" | "GROUP";
 
-export type Status = 'IN_PROGRESS' | 'COMPLETED';
+export type Status = "IN_PROGRESS" | "COMPLETED";

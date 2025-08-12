@@ -28,7 +28,7 @@ export const getProductList = async (params: {
 export const getProductDetail = async (id: number) => {
     try{
         const res = await axios.get(`${BASE_URL}/api/board/${id}`);
-        return res.data as Product;
+        return res.data.result as Product;
     } 
     catch(err){
         console.error(err);
@@ -40,7 +40,7 @@ export const getProductDetail = async (id: number) => {
 export const createProduct = async (data: Omit<Product, "id">) => {
     try{
         const res = await axios.post(`${BASE_URL}/api/board`, data);
-        return res.data as Product;
+        return res.data.result as Product;
     } 
     catch(err){
         console.error(err);
@@ -53,7 +53,7 @@ export const createProduct = async (data: Omit<Product, "id">) => {
 export const updateProduct = async (id: number, data: Partial<Product>) => {
     try{
         const res = await axios.put(`${BASE_URL}/api/board/${id}`, data);
-        return res.data as Product;
+        return res.data.result as Product;
     }
     catch(err){
         console.error(err);
