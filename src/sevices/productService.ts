@@ -37,7 +37,7 @@ export const getProductDetail = async (id: number) => {
 };
 
 // 생성
-export const createProduct = async (data: Omit<Product, "id">) => {
+export const createProduct = async (data: FormData) => {
     try{
         const res = await axios.post(`${BASE_URL}/api/board`, data);
         return res.data.result as Product;

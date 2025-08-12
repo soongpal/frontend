@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import { Images, XCircleFill } from 'react-bootstrap-icons';
 import "../../styles/MultiImageUploader.css"
 
-const ImageUploader: React.FC = () => {
-    const [, setPostImg] = useState<File[]>([]); //db업로드용, postImg
+interface MultiImageUploaderProps {
+  onFilesChange: (files: FileList | null) => void;
+}
+
+const ImageUploader: React.FC<MultiImageUploaderProps> = ({ onFilesChange }) => {
+
     const [previewImg, setPreviewImg] = useState<string[]>([]); //미리보기용
      //이미지 업로드   
     function uploadFile(e: React.ChangeEvent<HTMLInputElement>) {
@@ -45,7 +49,7 @@ const ImageUploader: React.FC = () => {
             console.error('이미지 읽기 실패:', err);
         });
     }
-
+    //이미지 삭제
     const deleteImage = (index: number)=>{
         setPreviewImg(prev => {
             const next = prev.filter((_, i) => i !== index);
