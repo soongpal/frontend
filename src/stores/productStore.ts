@@ -22,16 +22,22 @@ interface ProductState {
   setFilter: (filter: Partial<Filter>) => void;
   setPage: (page: number) => void;
   fetchProducts: () => Promise<void>;
+  likeProduct:() => Promise<void>;
+  unlikeProduct: () => Promise<void>;
+  editProduct: () => Promise<void>;
+  deletePRoduct: ()=> Promise<void>;
+
 }
 
 export const useProductStore = create<ProductState>((set, get) => ({
+
+  //초기값
   products: [],
   filter: {},
   page: 0,
   totalPages: 0,
-
-  loading: false, // 로딩 여부
-  error: null, // 에러 메시지 저장
+  loading: false, 
+  error: null,
 
 //필터 변경 함수
   setFilter: (newFilter) => {
@@ -78,6 +84,27 @@ export const useProductStore = create<ProductState>((set, get) => ({
     }
 
   }
+//상품 좋아요 함수
+  likeProduct:async () => {
+
+  }
+
+//상품 좋아요 취소 함수
+  unlikeProduct: async () => {
+
+  }
+
+//게시 상품 수정 함수
+  editProduct: async () => {
+
+  }
+
+//상품 삭제 함수
+  deletePRoduct: async () => {
+    
+  }
+
+
 }));
 
 export default useProductStore;

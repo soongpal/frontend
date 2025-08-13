@@ -1,25 +1,26 @@
-import "../../styles/ProductCard.css";
-import { Card } from "react-bootstrap";
+//library
+import { useNavigate } from "react-router-dom";
+import { timeAgo } from "../../utils/time";
+//component
 import SoldoutTag from "../common/SoldoutTag";
 import { type Product } from "../../types/product";
 import { useProductStore } from '../../stores/ProductStore';  
+//css
 import { Heart, HeartFill } from "react-bootstrap-icons";
-import { useNavigate } from "react-router-dom";
-import { timeAgo } from "../../utils/time";
-
+import "../../styles/ProductCard.css";
+import { Card } from "react-bootstrap";
+//props정의: 상위에서 product받아서 출력
 type ProductCardProps = {
   product: Product;
 };
 
 const ProductCard = ( { product }: ProductCardProps)=>{
 
+
+  const { fetchProducts } = useProductStore();
+
   //상품 업데이트 함수
-  const updateProduct = useProductStore((state) => state.updateProduct);
-
-  const handleHeartClick = () => {
-    updateProduct(product.id, { liked: !product.liked });
-  };
-
+  
   //상품 상세페이지 함수
   const navigate = useNavigate();
     
