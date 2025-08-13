@@ -86,12 +86,30 @@ export const useProductStore = create<ProductState>((set, get) => ({
   },
 
 //상품 좋아요 함수
-  likeProduct:async (id: number) => {
-    await productApi.likeProduct(id);
-    set((state) => ({
-      products: state.products.map(p => p.id === id ? { ...p, liked: !p.liked } : p)
-    }));
+  likeProduct:async (id) => {
+     try {
+      set({ loading: true });
+      //api
+      await productApi.likeProduct(id);
+      //store내 product값 업데이트
+      set((state) => ({
+        products: state.products.map((p) =>
+          p.id === id
+            ? { ...p, liked: true, likeCount: p.likeCount + 1 }
+            : p
+        ),
+        loading: false,
+        error: null
+      }));
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : "상품 좋아요 중 오류가 발생했습니다.";
 
+      set({ error: errorMessage, loading: false });
+      console.error("상품 좋아요 에러:", err);
+    }
   },
 
 //상품 좋아요 취소 함수
