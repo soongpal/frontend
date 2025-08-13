@@ -23,7 +23,7 @@ interface ProductState {
   setPage: (page: number) => void;
   fetchProducts: () => Promise<void>;
   likeProduct:(id: number) => Promise<void>;
-  unlikeProduct: (id: number) => Promise<void>;
+  unLikeProduct: (id: number) => Promise<void>;
   editProduct: () => Promise<void>;
   deletePRoduct: ()=> Promise<void>;
 
@@ -87,7 +87,7 @@ export const useProductStore = create<ProductState>((set, get) => ({
 
 //상품 좋아요 함수
   likeProduct:async (id) => {
-     try {
+    try {
       set({ loading: true });
       //api
       await productApi.likeProduct(id);
@@ -113,7 +113,7 @@ export const useProductStore = create<ProductState>((set, get) => ({
   },
 
 //상품 좋아요 취소 함수
-  unlikeProduct: async (id) => {
+  unLikeProduct: async (id) => {
     try {
       set({ loading: true });
       //api

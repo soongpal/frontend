@@ -1,14 +1,17 @@
 //library
 import { useNavigate } from "react-router-dom";
 import { timeAgo } from "../../utils/time";
+
 //component
 import SoldoutTag from "../common/SoldoutTag";
 import { type Product } from "../../types/product";
 import { useProductStore } from '../../stores/ProductStore';  
+
 //css
 import { Heart, HeartFill } from "react-bootstrap-icons";
 import "../../styles/ProductCard.css";
 import { Card } from "react-bootstrap";
+
 //props정의: 상위에서 product받아서 출력
 type ProductCardProps = {
   product: Product;
@@ -16,10 +19,17 @@ type ProductCardProps = {
 
 const ProductCard = ( { product }: ProductCardProps)=>{
 
+  //좋아요 버튼 함수
+  const { likeProduct, unLikeProduct } = useProductStore();
+  const handleHeartClick = () =>{
+    if(product.liked===true){
+      unLikeProduct(product.id);
+    }
+    else{
+      likeProduct(product.id);
+    }
 
-  const { fetchProducts } = useProductStore();
-
-  //상품 업데이트 함수
+  }
   
   //상품 상세페이지 함수
   const navigate = useNavigate();
