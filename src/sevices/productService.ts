@@ -75,7 +75,7 @@ export const deleteProduct = async (id: number) => {
 };
 
 // 개별 좋아요 개수 조회
-export const getProductLikeCount = async (id: number) => {
+export const productLikeCount = async (id: number) => {
     try{
         const res = await axios.get(`${BASE_URL}/api/board/${id}/like`);
         return res.data as { likeCount: number };
@@ -88,7 +88,7 @@ export const getProductLikeCount = async (id: number) => {
 };
 
 // 좋아요 생성
-export const addProductLike = async (id: number) => {
+export const likeProduct = async (id: number) => {
     try{
         await axios.post(`${BASE_URL}/api/board/${id}/like`);
     }
@@ -100,7 +100,7 @@ export const addProductLike = async (id: number) => {
 };
 
 // 좋아요 삭제
-export const removeProductLike = async (id: number) => {
+export const unLikeProduct = async (id: number) => {
     try{
         await axios.delete(`${BASE_URL}/api/board/${id}/like`);
     }

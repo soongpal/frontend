@@ -22,7 +22,7 @@ interface ProductState {
   setFilter: (filter: Partial<Filter>) => void;
   setPage: (page: number) => void;
   fetchProducts: () => Promise<void>;
-  likeProduct:() => Promise<void>;
+  likeProduct:(id: number) => Promise<void>;
   unlikeProduct: () => Promise<void>;
   editProduct: () => Promise<void>;
   deletePRoduct: ()=> Promise<void>;
@@ -83,25 +83,30 @@ export const useProductStore = create<ProductState>((set, get) => ({
       console.error("상품 목록 불러오기 에러:", err);
     }
 
-  }
-//상품 좋아요 함수
-  likeProduct:async () => {
+  },
 
-  }
+//상품 좋아요 함수
+  likeProduct:async (id: number) => {
+    await productApi.likeProduct(id);
+    set((state) => ({
+      products: state.products.map(p => p.id === id ? { ...p, liked: !p.liked } : p)
+    }));
+
+  },
 
 //상품 좋아요 취소 함수
   unlikeProduct: async () => {
 
-  }
+  },
 
 //게시 상품 수정 함수
   editProduct: async () => {
 
-  }
+  },
 
 //상품 삭제 함수
   deletePRoduct: async () => {
-    
+
   }
 
 

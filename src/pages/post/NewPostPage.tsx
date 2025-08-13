@@ -28,12 +28,11 @@ const NewPostPage:React.FC = () =>{
     };
 
     const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      // enum 타입과 string을 일치시키기 위한 형변환
+      // enum 타입과 string 형변환
       setCategory(e.target.value as Category);
     }
 
     // createProduct에 데이터 전달
-// 폼 제출 로직을 handleSubmit 함수 내부에 정의
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // 페이지 새로고침 방지
 
@@ -47,24 +46,24 @@ const NewPostPage:React.FC = () =>{
             return;
         }
 
-        // 폼 제출 시점에 formData 객체를 생성
+        //formData 객체를 생성
         const formData = new FormData();
         formData.append('title', title);
         formData.append('content', content);
         formData.append('price', String(price)); // 숫자를 문자열로 변환
         formData.append('url', url);
         formData.append('location', location);
-        formData.append('category', category); // category는 string이므로 그대로 append
+        formData.append('category', category); 
         
         for (const image of Array.from(images)) {
             formData.append('images', image);
         }
 
+        //서버 전송
         try {
             const newProduct = await createProduct(formData); 
             console.log('상품 등록 성공:', newProduct);
             alert('상품이 성공적으로 등록되었습니다.');
-            // '내가 쓴 글 페이지'로 이동하는 로직
             navigate(`/postdetail/${newProduct.id}`); 
         } catch (err) {
             console.error('상품 등록 실패:', err);
