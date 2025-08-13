@@ -1,4 +1,5 @@
 //library
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { timeAgo } from "../../utils/time";
 
@@ -11,6 +12,7 @@ import { useProductStore } from '../../stores/ProductStore';
 import { Heart, HeartFill } from "react-bootstrap-icons";
 import "../../styles/ProductCard.css";
 import { Card } from "react-bootstrap";
+
 
 //props정의: 상위에서 product받아서 출력
 type ProductCardProps = {
@@ -69,4 +71,4 @@ const ProductCard = ( { product }: ProductCardProps)=>{
   );
 };
 
-export default ProductCard;
+export default React.memo(ProductCard);
