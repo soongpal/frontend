@@ -1,11 +1,13 @@
 //글쓰기 페이지
-//제목, 글 내용, 가격, 거래 장소, 카테고리, url
 
+//library
 import type React from "react";
 import { useNavigate } from "react-router-dom";
-import MultiImageUploader from "../../components/post/MultiImageUploader";
 import { useState } from "react";
+//component
+import MultiImageUploader from "../../components/post/MultiImageUploader";
 import { type Category } from "../../types/product";
+//api
 import { createProduct } from "../../sevices/productService"
 
 
