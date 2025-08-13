@@ -53,7 +53,10 @@ const ProductCard = ( { product }: ProductCardProps)=>{
         <Card.Body className="product-card-body">
           <div className="product-card-header">
             <div className="product-card-title">{product.title}</div>
-              <button onClick={handleHeartClick}>
+              <button onClick={(e) => {
+                      e.stopPropagation();
+                      handleHeartClick();
+                    }}>
                   {product.liked ? <HeartFill color="red"></HeartFill> : <Heart color="grey"></Heart>}
               </button>
           </div>
