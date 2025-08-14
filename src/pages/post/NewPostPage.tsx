@@ -14,7 +14,7 @@ import { createProduct } from "../../sevices/productService"
 
 const NewPostPage:React.FC = () =>{
 
-    const navigate = useNavigate(); // 페이지 이동을 위한 훅
+    const navigate = useNavigate(); // 페이지 이동
 
     const [title, setTitle] = useState<string>("");
     const [content, setContent] = useState<string>("");

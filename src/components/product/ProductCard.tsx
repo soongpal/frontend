@@ -6,12 +6,13 @@ import { timeAgo } from "../../utils/time";
 //component
 import SoldoutTag from "../common/SoldoutTag";
 import { type Product } from "../../types/product";
-import { useProductStore } from '../../stores/ProductStore';  
+import useProductStore from "../../stores/productStore";
 
 //css
 import { Heart, HeartFill } from "react-bootstrap-icons";
 import "../../styles/ProductCard.css";
 import { Card } from "react-bootstrap";
+
 
 
 //props정의: 상위에서 product받아서 출력
