@@ -1,38 +1,25 @@
 //쓴글 목록 페이지
 
+//library
 import type React from "react";
-import { useProductStore } from "../../stores/ProductStore";
-import { useState } from "react";
-import type { Status } from "../../types/product";
+import { useEffect, useState } from "react";
+//component
 import Filter from "../../components/common/Filter";
 import ProductList from "../../components/product/ProductList";
-import { useUserStore } from "../../stores/UserStore";
 import GoMypage from "../../components/common/GoMypage";
+//store
+import { useUserStore } from "../../stores/UserStore";
+
 
 const MyPostPage: React.FC = () =>{
-    // 제품 불러오기
-    const { products } = useProductStore();
+
     // 유저 정보 불러오기
     const { user } = useUserStore();
+    // 유저가 쓴 글 목록 api요청 로직 추가(백엔드( 추가한다햇음)
+    const [myProducts, setMyProducts] = useState();
+    useEffect(()=>{
 
-       
-    //필터 영역
-    const [filter, setFilter] = useState<Status | null>(null);
-       
-    const handleFilter = (filter:Status | null)=>{
-        setFilter(filter);
-    };
-    
-    //제품 목록 불러오기
-    const myProducts = products.filter((product) => {
-        if (filter === null) {
-            return product.sellerId === user.id;
-        }
-        return (
-            product.sellerId === user.id &&
-            product.status === filter
-        );
-    });
+    }, [])
 
     return(
         <div className="container">
@@ -40,7 +27,7 @@ const MyPostPage: React.FC = () =>{
                 <GoMypage/>
                 <b>내가 쓴 글</b>
                 </h3>
-            <Filter onFilterSelect = {handleFilter}></Filter>
+            <Filter></Filter>
             <ProductList products={myProducts}></ProductList>
         </div>
     )

@@ -1,8 +1,6 @@
 //좋아요 목록 페이지
 import type React from "react";
 import Filter from "../../components/common/Filter";
-import { useState } from "react";
-import type { Status } from "../../types/product";
 import ProductGrid from "../../components/product/ProductGrid";
 import { useProductStore } from "../../stores/ProductStore";
 import GoMypage from "../../components/common/GoMypage";
@@ -10,24 +8,10 @@ import GoMypage from "../../components/common/GoMypage";
 const  FavoritesPage: React.FC = () =>{
    // 처음 불러오기
     const { products } = useProductStore();
-   
-    //필터 영역
-    const [filter, setFilter] = useState<Status | null>(null);
-   
-    const handleFilter = (filter:Status | null)=>{
-        setFilter(filter);
-    };
 
-    //제품 목록 불러오기
-    const likedProducts = products.filter((product) => {
-        if (filter === null) {
-            return product.liked === true;
-        }
-        return (
-            product.liked === true &&
-            product.status === filter
-        );
-    });
+    //내가 좋아요한 상품 목록 불러오기 api추가할것
+    //1. liked ===true 인거 product store에서 자체 필터
+    // 2. 백엔드 로직 추가?
 
     return(
         <div className="container">
@@ -36,8 +20,8 @@ const  FavoritesPage: React.FC = () =>{
                 <b>관심 목록</b>
             </h3>
 
-            <Filter onFilterSelect = {handleFilter}></Filter>
-            <ProductGrid products={likedProducts}></ProductGrid>
+            <Filter></Filter>
+            <ProductGrid products={products}></ProductGrid>
 
         </div>
     )
