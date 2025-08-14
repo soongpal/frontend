@@ -2,7 +2,7 @@
 import type React from "react";
 import Filter from "../../components/common/Filter";
 import ProductGrid from "../../components/product/ProductGrid";
-import { useProductStore } from "../../stores/ProductStore";
+import { useProductStore } from "../../stores/productStore";
 import GoMypage from "../../components/common/GoMypage";
 
 const  FavoritesPage: React.FC = () =>{

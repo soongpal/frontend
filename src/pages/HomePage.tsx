@@ -2,7 +2,7 @@
 import Banner from "../components/banner/Banner";
 import ProductGrid from "../components/product/ProductGrid";
 import FloatingButton from "../components/common/FloatingButton";
-import { useProductStore } from '../stores/ProductStore';
+import { useProductStore } from '../stores/productStore';
 import { useEffect } from "react";
 
 const Home: React.FC = () =>{

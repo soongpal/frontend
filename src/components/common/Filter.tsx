@@ -1,7 +1,7 @@
 //거래 상태 필터
 import "../../styles/Filter.css"
 import { ChevronRight, X} from "react-bootstrap-icons";
-import { useState } from "react";import useProductStore from "../../stores/ProductStore";
+import { useState } from "react";import useProductStore from "../../stores/productStore";
 ''
 
 function Filter(){

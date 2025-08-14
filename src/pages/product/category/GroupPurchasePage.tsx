@@ -5,7 +5,7 @@ import ProductGrid from "../../../components/product/ProductGrid";
 import { useEffect } from "react";
 import Filter from "../../../components/common/Filter";
 import FloatingButton from "../../../components/common/FloatingButton";
-import { useProductStore } from "../../../stores/ProductStore";
+import { useProductStore } from "../../../stores/productStore";
 
 const GroupPurchasePage: React.FC = () =>{
    // 처음 불러오기
