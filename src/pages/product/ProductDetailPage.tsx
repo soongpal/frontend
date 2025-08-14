@@ -109,10 +109,6 @@ const ProductDetailPage: React.FC = () => {
                             <th>희망 거래 장소</th>
                             <td>{product.location}</td>
                         </tr>
-                        <tr>
-                            <th>판매자</th>
-                            <td>{product.seller.sellerName}</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>

@@ -15,11 +15,6 @@ export interface Product{
 
     liked: boolean;
     likeCount: number;
-
-    seller:{
-        sellerId: number;
-        sellerName: string;
-    }
 }
 
 export interface PostProduct{
