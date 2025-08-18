@@ -55,17 +55,43 @@ export const createProduct = async (data: FormData) => {
 };
 
 // 수정
-export const eidtProduct = async (id: number, data: FormData) => {
-    
-    try{
-        const res = await axios.put(`${BASE_URL}/api/board/${id}`, data);
-        return res.data.result as Product;
+export const eidtProduct = async (id: number, data: {
+  title: string;
+  content: string;
+  price: number;
+  url: string;
+  location: string;
+  category: string;
+  status: string;
+  newImages?: FileList | File[];
+  deleteImageIds?: number[];
+}) => {
+  const formData = new FormData();
+  formData.append("board", JSON.stringify({
+    title: data.title,
+    content: data.content,
+    price: data.price,
+    url: data.url,
+    location: data.location,
+    category: data.category,
+    status: data.status
+  }));
+
+  if (data.newImages) {
+    for (const file of Array.from(data.newImages)) {
+      formData.append("newImages", file);
     }
-    catch(err){
-        console.error(err);
-        throw err;
-    }
-  
+  }
+
+  if (data.deleteImageIds) {
+    data.deleteImageIds.forEach((id) => formData.append("deleteImageIds", String(id)));
+  }
+
+  const response = await axios.put(`${BASE_URL}/api/board/${id}`, formData, {
+    headers: { "Content-Type": "multipart/form-data" }
+  });
+
+  return response.data;
 };
 
 // 삭제
