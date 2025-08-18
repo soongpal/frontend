@@ -31,7 +31,7 @@ interface ProductState {
 
 export const useProductStore = create<ProductState>((set, get) => ({
 
-  //초기값
+//초기값
   products: [],
   filter: {},
   page: 0,
@@ -68,7 +68,7 @@ export const useProductStore = create<ProductState>((set, get) => ({
 
       set({
         products: data.products,
-        // totalPages: data.totalPages, 나중 페이지네이션 할때 적용할것
+        totalPages: data.totalPages,
         loading: false
       });
     }

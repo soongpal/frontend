@@ -13,9 +13,14 @@ export const getProductList = async (params: {
 }) => {
     try{
         const res = await axios.get(`${BASE_URL}/api/board`, { params });
-        return res.data.result as {
-            products: Product[];
+        const { boards, currentPage, totalPages } = res.data.result;
+  
+        return {
+            products: boards as Product[],
+            currentPage,
+            totalPages
         };
+
     } 
     catch(err){
         console.error(err);
