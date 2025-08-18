@@ -1,22 +1,25 @@
-//글쓰기 페이지
-
+//내가쓴글 수정 페이지
 //library
 import type React from "react";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+//type
+import type { Category, Product } from "../../types/product";
 //component
 import MultiImageUploader from "../../components/post/MultiImageUploader";
-import { type Category } from "../../types/product";
 //api
-import { createProduct } from "../../sevices/productService"
+import { eidtProduct, getProductDetail } from "../../sevices/productService";
 
+const EditPostPage: React.FC = async () =>{
 
+    //페이지 이동
+   const navigate = useNavigate();
 
-const NewPostPage:React.FC = () =>{
+    // 상품 id값 받아오기
+    const { PostId } = useParams<{ PostId: string }>();
+    const postId = Number(PostId);
 
-    const navigate = useNavigate(); // 페이지 이동
-
-
+    //업로드 양식
     const [title, setTitle] = useState<string>("");
     const [content, setContent] = useState<string>("");
     const [price, setPrice] = useState<number>(0);
@@ -24,6 +27,28 @@ const NewPostPage:React.FC = () =>{
     const [location, setLocation] = useState<string>("");
     const [category, setCategory] = useState<Category | null>(null);
     const [images, setImages] = useState<FileList | null>(null);
+
+    // product 불러오기
+    useEffect(() => {
+        const fetchProduct = async () => {
+        try {
+            const product: Product = await getProductDetail(postId);
+
+            // 기존 데이터로 state 초기화
+            setTitle(product.title);
+            setContent(product.content);
+            setPrice(product.price);
+            setUrl(product.url || "");
+            setLocation(product.location);
+            setCategory(product.category);
+            
+        } catch (err) {
+            console.error("상품 불러오기 실패:", err);
+        }
+        };
+
+    fetchProduct();
+  }, [postId]);
 
     //multy image uploader props전달용
     const handleImagesChange = (files: FileList | null) => {
@@ -35,7 +60,7 @@ const NewPostPage:React.FC = () =>{
       setCategory(e.target.value as Category);
     }
 
-    // createProduct에 데이터 전달
+    // eidtProduct 데이터 전달
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // 페이지 새로고침 방지
 
@@ -64,7 +89,7 @@ const NewPostPage:React.FC = () =>{
 
         //서버 전송
         try {
-            const newProduct = await createProduct(formData); 
+            const newProduct = await eidtProduct(postId, formData); 
             console.log('상품 등록 성공:', newProduct);
             alert('상품이 성공적으로 등록되었습니다.');
             navigate(`/productdetail/${newProduct.id}`); 
@@ -188,4 +213,4 @@ return(
     );
 };
 
-export default NewPostPage;
+export default EditPostPage;

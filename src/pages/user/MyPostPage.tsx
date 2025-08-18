@@ -17,8 +17,6 @@ const MyPostPage: React.FC = () =>{
     // const { user } = useUserStore();
     // 유저가 쓴 글 목록 api요청 로직 추가(백엔드( 추가한다햇음)
     const {products} = useProductStore(); //임시
-   
-    
 
     return(
         <div className="container">
