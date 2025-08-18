@@ -9,14 +9,16 @@ import ProductList from "../../components/product/ProductList";
 import GoMypage from "../../components/common/GoMypage";
 //store
 import { useUserStore } from "../../stores/UserStore";
+import useProductStore from "../../stores/productStore";
 
 
 const MyPostPage: React.FC = () =>{
 
     // 유저 정보 불러오기
-    const { user } = useUserStore();
+    // const { user } = useUserStore();
     // 유저가 쓴 글 목록 api요청 로직 추가(백엔드( 추가한다햇음)
-    const [myProducts, setMyProducts] = useState();
+    const {products} = useProductStore();
+    
     useEffect(()=>{
 
     }, [])
@@ -28,7 +30,7 @@ const MyPostPage: React.FC = () =>{
                 <b>내가 쓴 글</b>
                 </h3>
             <Filter></Filter>
-            <ProductList products={myProducts}></ProductList>
+            <ProductList products={products}></ProductList>
         </div>
     )
 }

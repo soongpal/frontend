@@ -17,8 +17,8 @@ const MyPage: React.FC = () =>{
 
     return(
         <div className="d-flex flex-column align-items-center gap-4 my-5">
-            <PersonCircle size={100}/>
-            <h3>{user.nickname}</h3>
+           
+            <h3 className="d-flex justify-content-start">{user.nickname}님 안녕하세요!</h3>
 
             <div onClick={() => navigate("/user/favorites")} className="container d-flex align-items-center border-bottom py-3" style={{ cursor: 'pointer' }}>
                 <Heart size={25} className="me-3"/>
