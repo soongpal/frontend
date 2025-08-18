@@ -2,7 +2,6 @@
 
 //library
 import type React from "react";
-import { useEffect, useState } from "react";
 //component
 import Filter from "../../components/common/Filter";
 import ProductList from "../../components/product/ProductList";
@@ -17,11 +16,9 @@ const MyPostPage: React.FC = () =>{
     // 유저 정보 불러오기
     // const { user } = useUserStore();
     // 유저가 쓴 글 목록 api요청 로직 추가(백엔드( 추가한다햇음)
-    const {products} = useProductStore();
+    const {products} = useProductStore(); //임시
+   
     
-    useEffect(()=>{
-
-    }, [])
 
     return(
         <div className="container">

@@ -24,8 +24,7 @@ interface ProductState {
   fetchProducts: () => Promise<void>;
   likeProduct:(id: number) => Promise<void>;
   unLikeProduct: (id: number) => Promise<void>;
-  editProduct: () => Promise<void>;
-  deletePRoduct: ()=> Promise<void>;
+  deletePRoduct: (id:number)=> Promise<void>;
 
 }
 
@@ -139,14 +138,24 @@ export const useProductStore = create<ProductState>((set, get) => ({
     }
   },
 
-//게시 상품 수정 함수
-  editProduct: async () => {
-
-  },
-
 //상품 삭제 함수
-  deletePRoduct: async () => {
+  deletePRoduct: async (id) => {
+    try{
+      set({ loading: true });
+      await productApi.deleteProduct(id);
+      //내가 쓴 상품 목록 fetch
 
+    }
+    catch(err: unknown){
+      const errorMessage = err instanceof Error? err.message: "상품을 삭제하는 중 오류가 발생했습니다.";
+
+      set({
+        error: errorMessage,
+        loading: false
+      });
+
+      console.error("상품 삭제 에러:", err);
+    }
   }
 
 

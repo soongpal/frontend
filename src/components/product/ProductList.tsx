@@ -8,6 +8,20 @@ interface ProductGridProps{
 };
 
 const ProductList : React.FC<ProductGridProps> = ({products}) =>{
+
+    const handleDelete= () => {
+        const result = confirm("정말 삭제하시겠습니까?");
+
+        if (result) {
+            
+            alert("삭제되었습니다.");
+        } 
+        else {
+            alert("취소되었습니다.");
+        }
+    }
+
+
     return(
     <table className="table align-items-center justify-content-center">
         <thead>
@@ -35,7 +49,7 @@ const ProductList : React.FC<ProductGridProps> = ({products}) =>{
                 <button className="btn me-2">
                     <PencilSquare />
                 </button>
-                <button className="btn">
+                <button className="btn" onClick={handleDelete}>
                     <Trash3 />
                 </button>
                 </td>

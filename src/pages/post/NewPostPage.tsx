@@ -9,12 +9,15 @@ import MultiImageUploader from "../../components/post/MultiImageUploader";
 import { type Category } from "../../types/product";
 //api
 import { createProduct } from "../../sevices/productService"
+import useProductStore from "../../stores/productStore";
 
 
 
 const NewPostPage:React.FC = () =>{
 
     const navigate = useNavigate(); // 페이지 이동
+    const {fetchProducts} = useProductStore(); //상품 목록 패치용
+
 
     const [title, setTitle] = useState<string>("");
     const [content, setContent] = useState<string>("");
@@ -70,6 +73,7 @@ const NewPostPage:React.FC = () =>{
         } catch (err) {
             console.error('상품 등록 실패:', err);
             alert('상품 등록에 실패했습니다.');
+            navigate(`/`);
         }
     };
 

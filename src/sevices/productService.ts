@@ -55,7 +55,7 @@ export const createProduct = async (data: FormData) => {
 };
 
 // 수정
-export const updateProduct = async (id: number, data: Partial<Product>) => {
+export const eidtProduct = async (id: number, data: Partial<Product>) => {
     try{
         const res = await axios.put(`${BASE_URL}/api/board/${id}`, data);
         return res.data.result as Product;
