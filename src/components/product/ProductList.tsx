@@ -38,7 +38,6 @@ const ProductList : React.FC<ProductGridProps> = ({products}) =>{
         }
     }
 
-
     return(
     <table className="table align-items-center justify-content-center">
         <thead>
@@ -56,7 +55,7 @@ const ProductList : React.FC<ProductGridProps> = ({products}) =>{
             {products.map((product) => (
             <tr key={product.id}>
                 <td>
-                    <img src={product.images[0]} alt={product.title} className="product-img" />
+                    <img key={product.images[0].id} src={product.images[0].url}  alt={product.title} className="product-img" />
                 </td>
                 <td>{product.title}</td>
                 <td>{product.price}원</td>
