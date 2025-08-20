@@ -1,47 +1,12 @@
 //회원가입 페이지
 import type React from "react";
-import { Button, Form } from "react-bootstrap";
-import Input from "../../components/common/Input";
 
 const SignupPage: React.FC = () =>{
     return(
         <div className="container">
-            <Form>
-                <Input 
-                    label="아이디"
-                    name="userid"
-                    // value={form.username}
-                    // onChange={handleChange}
-                    error="아이디 입력 오류"
-                    buttonText = "중복 확인"
-                    >
-                </Input>
-
-                <Input 
-                    label="비밀번호"
-                    name="password"
-                    type="password"
-                    // value={form.password}
-                    // onChange={handleChange}
-                    error="비밀번호 입력 오류"
-                    help="*영어 알파벳과 숫자의 최소 8자리 조합"
-                    >
-                </Input>
-
-                <Input 
-                    label="닉네임"
-                    name="username"
-                    // value={form.username}
-                    // onChange={handleChange}
-                    error="닉네임 입력 오류"
-                    buttonText = "중복 확인"
-                    >
-                </Input>
-            
-                <div className="d-flex justify-content-end">
-                    <Button type="submit"  variant="dark" className="mb-5">회원가입</Button>
-                </div>
-            </Form>
+            회원가입페이지-닉네임 입력할거임!!
+            중복방지(백엔드 연동 버튼)
+            숫자, 영어, 한글만 가능(특수버튼 제외 )로직 validation함수 추가
         </div>
     )
 }

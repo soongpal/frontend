@@ -1,35 +1,23 @@
 import type React from "react";
-import Input from "../../components/common/Input";
-import { Button, Form } from "react-bootstrap";
+
+import "../../styles/Login.css"
 
 //로그인 페이지
 const LoginPage: React.FC = () =>{
-    return(
-        <div className="container mt-5">
-            <Form>
-                <Input 
-                    label="아이디"
-                    name="username"
-                    // value={form.username}
-                    // onChange={handleChange}
-                    error="아이디 입력 오류"
-                    >
-                </Input>
 
-                <Input 
-                    label="비밀번호"
-                    name="password"
-                    type="password"
-                    // value={form.password}
-                    // onChange={handleChange}
-                    error="비밀번호 입력 오류"
-                    >
-                </Input>
-                <div className="d-flex justify-content-between">
-                    <a href="/auth/signup" className="text-muted">회원 가입</a>
-                    <Button type="submit"  variant="dark" className="mb-5">로그인</Button>
-                </div>
-            </Form>
+    const handleKakaoClick = () => {
+        //카카오 로그인 주소
+    }
+
+    return(
+        <div className="container my-5 d-flex align-items-center justify-content-center">
+            <div className="login-container">
+                <h3>로그인</h3>
+                <h6>숭팔이에서 중고거래와 공동구매를 즐겨보세요!</h6>
+                <button onClick={handleKakaoClick}>
+                    <img src="/images/kakao/smalllong.png" alt="login" />
+                </button>
+            </div>
         </div>
     )
 }
