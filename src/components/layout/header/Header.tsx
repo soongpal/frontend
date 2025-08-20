@@ -1,5 +1,5 @@
 import type React from "react";
-import { InputGroup, FormControl, Button, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { PersonCircle, PersonFill, Search } from 'react-bootstrap-icons';
 import "../../../styles/Header.css"
 import { useLocation } from 'react-router-dom';
@@ -12,7 +12,7 @@ const Header : React.FC = () =>{
     return(
         <div className="mb-5">
             <div className="navbar">
-                    <Row className="d-flex justify-content-between align-items-center">
+                    <Row className="d-flex justify-content-between align-items-center my-3">
                         <Col>
                             <a href="/">
                                 <img src="/logo/Soongpal.svg" alt="logo" width={50} />
@@ -31,7 +31,7 @@ const Header : React.FC = () =>{
                     </Row>
 
                 {!hideSecondRow && (
-                    <Row className="d-flex justify-content-between align-items-center">
+                    <Row className="d-flex justify-content-between align-items-center my-3">
                         <Col>
                             <div className="d-flex align-items-center">
                                 <a href="/product/grouppurchase" className="me-3 text-decoration-none text-dark">공동구매</a>
@@ -40,21 +40,17 @@ const Header : React.FC = () =>{
                         </Col>
 
                         <Col>
-                            <InputGroup>
-                                <FormControl
+                            <div className="search-container">
+                                <input
+                                    type="text"
                                     placeholder="상품명 입력"
                                     aria-label="Search"
-                                    className="border-0 shadow-none"
-                                    style={{ backgroundColor: 'white' }}
+                                    className="search-bar"
                                 />
-                                <Button 
-                                variant="outline-secondary"
-                                className="border-0"
-                                style={{ backgroundColor: 'white' }}
-                                >
-                                    <Search />
-                                </Button>
-                            </InputGroup>
+                                <button type="button" className="search-button">
+                                    <Search/>
+                                </button>
+                            </div>
                         </Col>
                     </Row>
                 )}
