@@ -2,7 +2,7 @@ import type React from "react";
 import { Button } from "react-bootstrap";
 import '../../styles/FloatingButton.css'
 import { useNavigate } from "react-router-dom";
-import { PlusLg } from "react-bootstrap-icons";
+import { PencilFill } from "react-bootstrap-icons";
 
 const FloatingButton: React.FC = ()=>{
     const navigate = useNavigate();
@@ -12,14 +12,13 @@ const FloatingButton: React.FC = ()=>{
     }
 
     return(
-       <div className="floating-button-container">
-      <Button
-        variant="dark"
-        className="rounded-circle"
-        onClick={floatingBtnClick}
-      >
-        <PlusLg ></PlusLg>
-      </Button>
+      <div className="floating-button-container">
+        <Button
+          className="rounded-circle"
+          onClick={floatingBtnClick}
+        >
+          <PencilFill size={35}></PencilFill>
+        </Button>
     </div>
     )
 }

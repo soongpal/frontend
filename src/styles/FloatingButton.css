@@ -5,14 +5,25 @@
   z-index: 1000;   /* 다른 요소들 위에 오도록 z-index 설정 */
 }
 
+@media (min-width: 1024px) {
+  .floating-button-container {
+    bottom: 20px;  /* 데스크탑에서 아래쪽 위치 변경 */
+    right: 400px;   /* 데스크탑에서 오른쪽 위치 변경 */
+  }
+}
+  
+
 /* 원형 버튼 스타일 (이전에 설명드린 내용 재활용) */
 .floating-button-container .btn.rounded-circle {
   width: 80px;   
   height: 80px;  /* 너비와 동일하게 설정하여 원형 유지 */
   font-size: 3rem; /* 아이콘 크기 조절 */
+
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과로 입체감 부여 */
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  
 }
