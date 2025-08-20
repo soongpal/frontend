@@ -10,7 +10,7 @@ const Header : React.FC = () =>{
     const hideSecondRow = ["/auth/login", "/auth/signup"].includes(location.pathname);
     
     return(
-        <div className="mb-5">
+        <div className="mb-3">
             <div className="navbar">
                     <Row className="d-flex justify-content-between align-items-center my-3">
                         <Col>
@@ -56,7 +56,7 @@ const Header : React.FC = () =>{
                 )}
             </div>
 
-            <div style={{height:"102px"}}></div>
+            <div style={{height:"154px"}}></div>
 
         </div>
     );
