@@ -1,7 +1,7 @@
 export interface Product{
     id: number;
 
-    images: string[];
+    images: { id: number; url: string }[];
     
     title: string;
     content: string;
@@ -17,18 +17,6 @@ export interface Product{
     likeCount: number;
 }
 
-export interface PostProduct{
-    images: string[];
-    
-    title: string;
-    content: string;
-    price: number;
-
-    url: string;
-    location: string;
-
-    category: Category;
-}
 
 
 export type Category = "USED" | "GROUP";
