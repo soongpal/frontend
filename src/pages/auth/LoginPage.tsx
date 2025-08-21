@@ -1,12 +1,11 @@
 import type React from "react";
-
 import "../../styles/Login.css"
 
 //로그인 페이지
 const LoginPage: React.FC = () =>{
 
     const handleKakaoClick = () => {
-        //카카오 로그인 주소
+      
     }
 
     return(

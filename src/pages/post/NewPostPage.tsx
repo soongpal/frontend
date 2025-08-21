@@ -9,6 +9,8 @@ import MultiImageUploader from "../../components/post/MultiImageUploader";
 import { type Category } from "../../types/product";
 //api
 import { createProduct } from "../../sevices/productService"
+//style
+import '../../styles/NewPost.css'
 
 
 
@@ -79,12 +81,12 @@ const NewPostPage:React.FC = () =>{
 return(
     <div className="container">
             <form onSubmit={handleSubmit}>
-                <div style={{ marginBottom: '1rem' }}>
+                <div>
                     <label htmlFor="image-uploader">사진</label>
                     <MultiImageUploader onFilesChange={handleImagesChange} />
                 </div>
                 
-                <div style={{ marginBottom: '1rem' }}>
+                <div>
                     <label htmlFor="title">제목</label>
                     <input
                         id="title"
@@ -98,7 +100,7 @@ return(
                     />
                 </div>
                 
-                <div style={{ marginBottom: '1rem' }}>
+                <div>
                     <label htmlFor="content">설명</label>
                     <textarea
                         id="content"
@@ -107,11 +109,11 @@ return(
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
                         required
-                        style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
+                    
                     />
                 </div>
                 
-                <div style={{ marginBottom: '1rem' }}>
+                <div>
                     <label htmlFor="price">가격</label>
                     <input
                         id="price"
@@ -121,13 +123,13 @@ return(
                         value={price}
                         onChange={(e) => setPrice(Number(e.target.value))}
                         required
-                        style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
+                     
                     />
                 </div>
 
-                <div style={{ marginBottom: '1rem' }}>
+                <div>
                     <label>카테고리</label>
-                    <div style={{ display: 'flex', gap: '1rem' }}>
+                    <div className="category-group">
                         <label>
                             <input
                                 type="radio"
@@ -151,7 +153,7 @@ return(
                     </div>
                 </div>
 
-                <div style={{ marginBottom: '1rem' }}>
+                <div>
                     <label htmlFor="url">URL</label>
                     <input
                         id="url"
@@ -160,11 +162,11 @@ return(
                         placeholder="관련 링크가 있다면 첨부해주세요"
                         value={url}
                         onChange={(e) => setUrl(e.target.value)}
-                        style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
+                       
                     />
                 </div>
                 
-                <div style={{ marginBottom: '1rem' }}>
+                <div>
                     <label htmlFor="location">거래 장소</label>
                     <input
                         id="location"
@@ -174,12 +176,12 @@ return(
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
                         required
-                        style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
+                   
                     />
                 </div>
 
-                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <button type="submit" style={{ padding: '10px 20px', backgroundColor: '#343a40', color: '#fff', border: 'none', cursor: 'pointer' }}>
+                <div className="button-container">
+                    <button type="submit">
                         업로드
                     </button>
                 </div>
