@@ -2,8 +2,6 @@
 
 import type React from "react";
 import { useUserStore } from "../../stores/UserStore";
-import Input from "../../components/common/Input";
-import { Button,Form } from "react-bootstrap";
 import GoMypage from "../../components/common/GoMypage";
 
 const SetiingPage: React.FC = () =>{
@@ -12,6 +10,7 @@ const SetiingPage: React.FC = () =>{
     //회원탈퇴 함수
     const withdraw = () =>{
             alert("회원탈퇴되었습니다")
+            //회원탈퇴로직 추가
         }
 
     return(
