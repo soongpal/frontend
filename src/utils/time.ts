@@ -1,5 +1,5 @@
 //몇분전 표기 함수
-import { type Product } from "../types/product";
+import {  } from "../types/product";
 
 export function timeAgo(product:Product): string{
 
