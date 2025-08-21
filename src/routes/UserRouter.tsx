@@ -5,6 +5,7 @@ import FavoritesPage from "../pages/user/FavoritesPage";
 import MyPage from "../pages/user/MyPage";
 import MyPostPage from "../pages/user/MyPostPage";
 import SettingPage from "../pages/user/SettingPage";
+import NoticePage from "../pages/user/Notice";
 
 const UserRouter : React.FC = () => {
     return(
@@ -12,6 +13,7 @@ const UserRouter : React.FC = () => {
             <Route path="favorites" element={<FavoritesPage />}/>
             <Route path="mypage" element={<MyPage />}/>
             <Route path="mypost" element={<MyPostPage />}/>
+            <Route path="notice" element={<NoticePage />}/>
             <Route path="setting" element={<SettingPage />}/>
         </Routes>
     )
