@@ -4,7 +4,7 @@ import type React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 //type
-import type { Category, Product, Status } from "../../types/product";
+import type { Category, Status } from "../../types/product";
 //component
 import MultiImageUploader from "../../components/post/MultiImageUploader";
 //api

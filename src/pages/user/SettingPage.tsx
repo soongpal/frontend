@@ -1,12 +1,12 @@
 //프로필 페이지: 닉네임, 이메일(?), 프사등 수정할 수 있는 페이지, 회원탈퇴도 여기서
 
 import type React from "react";
-import { useUserStore } from "../../stores/UserStore";
+
 import GoMypage from "../../components/common/GoMypage";
 
 const SetiingPage: React.FC = () =>{
     //유저 정보 불러오기
-    const { user } = useUserStore();
+
     //회원탈퇴 함수
     const withdraw = () =>{
             alert("회원탈퇴되었습니다")

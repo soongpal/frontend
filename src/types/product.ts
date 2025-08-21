@@ -15,6 +15,8 @@ export interface Product{
 
     liked: boolean;
     likeCount: number;
+
+    createdAt: string;
 }
 
 
