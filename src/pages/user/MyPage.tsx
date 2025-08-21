@@ -1,9 +1,12 @@
 //마이페이지(마이 페이지 메인임)
 
 import type React from "react";
-import { ArrowRight, ChatDots, Gear, Heart, PencilSquare, PersonCircle } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import { useUserStore } from "../../stores/UserStore";
+
+//style
+import { ArrowRight, ChatDots, Gear, Heart, Megaphone, PencilSquare } from "react-bootstrap-icons";
+import '../../styles/Mypage.css'
 
 const MyPage: React.FC = () =>{
     const navigate = useNavigate();
@@ -18,33 +21,39 @@ const MyPage: React.FC = () =>{
     return(
         <div className="d-flex flex-column align-items-center gap-4 my-5">
            
-            <h3 className="d-flex justify-content-start">{user.nickname}님 안녕하세요!</h3>
+            <h3 className="d-flex">{user.nickname}님 안녕하세요!</h3>
 
-            <div onClick={() => navigate("/user/favorites")} className="container d-flex align-items-center border-bottom py-3" style={{ cursor: 'pointer' }}>
+            <div onClick={() => navigate("/user/favorites")} className="flex-container">
                 <Heart size={25} className="me-3"/>
-                <h5>관심 목록</h5>
-                <ArrowRight size={25} className="ms-auto"/>
+                <h5 className="h5-style">관심 목록</h5>
+                <ArrowRight size={25} className="arrow-icon"/>
             </div>
 
-            <div onClick={() => navigate("/chat/chatlist")} className="container d-flex align-items-center border-bottom py-3" style={{ cursor: 'pointer' }}>
+            <div onClick={() => navigate("/chat/chatlist")} className="flex-container">
                 <ChatDots size={25} className="me-3"/>
-                <h5>채팅 목록</h5>
-                <ArrowRight size={25} className="ms-auto"/>
+                <h5 className="h5-style">채팅 목록</h5>
+                <ArrowRight size={25} className="arrow-icon"/>
             </div>
 
-            <div onClick={() => navigate("/user/mypost")} className="container d-flex align-items-center border-bottom py-3" style={{ cursor: 'pointer' }}>
+            <div onClick={() => navigate("/user/mypost")} className="flex-container">
                 <PencilSquare size={25} className="me-3"/>
-                <h5>내가 쓴 글</h5>
-                <ArrowRight size={25} className="ms-auto"/>
+                <h5 className="h5-style">내가 쓴 글</h5>
+                <ArrowRight size={25} className="arrow-icon"/>
+            </div>
+
+            <div onClick={() => navigate("/user/setting")} className="flex-container">
+                <Megaphone size={25} className="me-3 "/>
+                <h5 className="h5-style">공지사항</h5>
+                <ArrowRight size={25} className="arrow-icon"/>
             </div>
         
-            <div onClick={() => navigate("/user/setting")} className="container d-flex align-items-center py-3" style={{ cursor: 'pointer' }}>
+            <div onClick={() => navigate("/user/setting")} className="flex-container">
                 <Gear size={25} className="me-3"/>
-                <h5>설정</h5>
-                <ArrowRight size={25} className="ms-auto"/>
+                <h5 className="h5-style">설정</h5>
+                <ArrowRight size={25} className="arrow-icon"/>
             </div>
 
-            <a href="" onClick={logout} className="text-muted">로그아웃</a>
+            <a href="" onClick={logout} style={{color: 'var(--light-grey-hover-color)'}}>로그아웃</a>
         </div>
     )
 }

@@ -7,7 +7,6 @@ import Filter from "../../components/common/Filter";
 import ProductList from "../../components/product/ProductList";
 import GoMypage from "../../components/common/GoMypage";
 //store
-import { useUserStore } from "../../stores/UserStore";
 import useProductStore from "../../stores/productStore";
 
 

@@ -1,23 +1,24 @@
 .floating-button-container {
-  position: fixed; /* 화면에 고정 */
-  bottom: 20px;    /* 하단에서 20px 위로 */
-  right: 20px;     /* 우측에서 20px 왼쪽으로 */
-  z-index: 1000;   /* 다른 요소들 위에 오도록 z-index 설정 */
-}
+  position: fixed; 
+  bottom: 20px;   
+  right: 20px;     
+  z-index: 1000; 
 
+}
+/* 전체화면일때 조금 더 왼쪽으로 오도록.. */
 @media (min-width: 1024px) {
   .floating-button-container {
-    bottom: 20px;  /* 데스크탑에서 아래쪽 위치 변경 */
-    right: 400px;   /* 데스크탑에서 오른쪽 위치 변경 */
+    bottom: 20px; 
+    right: 400px; 
   }
 }
   
 
-/* 원형 버튼 스타일 (이전에 설명드린 내용 재활용) */
+/* 원형 버튼 스타일 */
 .floating-button-container .btn.rounded-circle {
   width: 80px;   
-  height: 80px;  /* 너비와 동일하게 설정하여 원형 유지 */
-  font-size: 3rem; /* 아이콘 크기 조절 */
+  height: 80px;  
+  font-size: 3rem; 
 
   display: flex;
   justify-content: center;
@@ -26,4 +27,13 @@
 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
   
+}
+
+.btn.rounded-circle {
+  background-color: var(--soong-color);
+  border: none;
+}
+
+.btn.rounded-circle:hover {
+  background-color: var(--soong-hover-color);
 }

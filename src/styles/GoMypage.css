@@ -1,4 +1,5 @@
 .goto-button{
     margin-right: 8px;
     cursor: pointer;
+    color: var(--light-grey-hover-color);
 }

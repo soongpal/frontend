@@ -82,12 +82,12 @@ return(
     <div className="container">
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="image-uploader">사진</label>
+                    <label htmlFor="image-uploader" className="post-label">사진</label>
                     <MultiImageUploader onFilesChange={handleImagesChange} />
                 </div>
                 
                 <div>
-                    <label htmlFor="title">제목</label>
+                    <label htmlFor="title" className="post-label">제목</label>
                     <input
                         id="title"
                         type="text"
@@ -97,11 +97,12 @@ return(
                         onChange={(e) => setTitle(e.target.value)}
                         required
                         style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
+                        className="input-continer"
                     />
                 </div>
                 
                 <div>
-                    <label htmlFor="content">설명</label>
+                    <label htmlFor="content" className="post-label">설명</label>
                     <textarea
                         id="content"
                         name="content"
@@ -109,12 +110,12 @@ return(
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
                         required
-                    
+                        className="input-content"
                     />
                 </div>
                 
                 <div>
-                    <label htmlFor="price">가격</label>
+                    <label htmlFor="price" className="post-label">가격</label>
                     <input
                         id="price"
                         type="number"
@@ -123,14 +124,14 @@ return(
                         value={price}
                         onChange={(e) => setPrice(Number(e.target.value))}
                         required
-                     
+                        className="input-continer"
                     />
                 </div>
 
                 <div>
-                    <label>카테고리</label>
+                    <label className="post-label">카테고리</label>
                     <div className="category-group">
-                        <label>
+                        <label className="post-label">
                             <input
                                 type="radio"
                                 name="category"
@@ -140,7 +141,7 @@ return(
                             />{' '}
                             공동구매
                         </label>
-                        <label>
+                        <label className="post-label">
                             <input
                                 type="radio"
                                 name="category"
@@ -154,7 +155,7 @@ return(
                 </div>
 
                 <div>
-                    <label htmlFor="url">URL</label>
+                    <label htmlFor="url" className="post-label">URL</label>
                     <input
                         id="url"
                         type="text"
@@ -162,12 +163,12 @@ return(
                         placeholder="관련 링크가 있다면 첨부해주세요"
                         value={url}
                         onChange={(e) => setUrl(e.target.value)}
-                       
+                       className="input-continer"
                     />
                 </div>
                 
                 <div>
-                    <label htmlFor="location">거래 장소</label>
+                    <label htmlFor="location" className="post-label">거래 장소</label>
                     <input
                         id="location"
                         type="text"
@@ -176,12 +177,12 @@ return(
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
                         required
-                   
+                        className="input-continer"
                     />
                 </div>
 
                 <div className="button-container">
-                    <button type="submit">
+                    <button type="submit" className="submit-button">
                         업로드
                     </button>
                 </div>

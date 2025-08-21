@@ -1,0 +1,21 @@
+.flex-container{
+    display: flex;
+    align-items: center;
+
+    border-bottom: 1px solid var(--light-grey-color);
+
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    cursor: pointer;
+
+    width: 100%;
+    max-width: 600px;
+}
+
+.arrow-icon{
+    margin-left: auto;
+}
+.h5-style {
+    margin-bottom: 0 !important;
+}
+    

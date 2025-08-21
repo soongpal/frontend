@@ -6,23 +6,21 @@ form {
   margin-bottom: 1rem;
 }
 
-label {
+.post-label {
   display: block;
   margin: 0.5rem 0;
   font-weight: bold;
 }
 
-input[type="text"],
-input[type="number"],
-textarea {
+.input-continer, .input-content {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
-  border: 1px solid #ccc;
+  border: 1px solid var(--light-grey-color);
   border-radius: 4px;
 }
 
-textarea {
+.input-content {
   resize: vertical;
   min-height: 100px;
 }
@@ -33,17 +31,20 @@ textarea {
   gap: 1rem;
 }
 
+.category-group :checked{
+  accent-color: var(--soong-color)
+}
 
+/* 제출버튼 */
 .button-container {
   display: flex;
   justify-content: flex-end;
   margin: 1rem 0;
 }
 
-/* 제출버튼 */
-button[type="submit"] {
+.submit-button {
   padding: 10px 20px;
-  background-color: #343a40;
+  background-color: var(--soong-color);
   color: #fff;
   border: none;
   border-radius: 50px;
@@ -51,6 +52,6 @@ button[type="submit"] {
   font-weight: bold;
 }
 
-button[type="submit"]:hover {
-  background-color: #495057;
+.submit-button:hover {
+  background-color: var(--soong-hover-color);
 }

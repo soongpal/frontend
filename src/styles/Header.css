@@ -19,17 +19,17 @@
 .search-container{
     display: flex;
     align-items: center;
-    background-color: #DCDCDC;
+    background-color: var(--light-grey-color);
     border-radius: 50px;
     overflow: hidden;
 }
 
 .search-bar{
     flex: 1;
-    border: none;
+    border: none !important;
     outline: none;
-    padding: 8px 12px;
-    background-color: #DCDCDC;
+    padding: 8px 15px !important;
+    background-color: var(--light-grey-color);
     font-size: 16px;
 }
 
@@ -39,7 +39,7 @@
     border: none;
     border-radius: 50%; /* 원형 */
     
-    background-color: #DCDCDC;
+    background-color :var(--light-grey-color);
 
     padding: 6px 9px;
 
@@ -53,9 +53,9 @@
 }
 
 .search-button:hover {
-  background-color: #c0c0c0;
+  background-color: var(--light-grey-hover-color)
 }
 
 .search-button:active {
-  background-color: #c0c0c0; 
+  background-color: var(--light-grey-hover-color)
 }
