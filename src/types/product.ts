@@ -1,7 +1,5 @@
 export interface Product{
     id: number;
-
-    images: { id: number; url: string }[];
     
     title: string;
     content: string;
@@ -13,10 +11,14 @@ export interface Product{
     category: Category;
     status: Status;
 
-    liked: boolean;
-    likeCount: number;
+    authorNickname: string;
 
     createdAt: string;
+
+    imageUrls: { id: number; url: string }[];
+
+    likeCount: number;
+    liked: boolean;
 }
 
 
