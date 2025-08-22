@@ -47,8 +47,8 @@ const ProductCard = ( { product }: ProductCardProps)=>{
         <div className="product-card-img-wrapper">
           <Card.Img
             variant="top"
-            key={product.images[0].id} 
-            src={product.images[0].url}
+            key={product.imageUrls[0].id} 
+            src={product.imageUrls[0].url}
             className="product-card-img"
           />
           {product.status==='COMPLETED'&&<SoldoutTag />}
