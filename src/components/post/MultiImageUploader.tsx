@@ -84,12 +84,12 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({ onFilesChange }
     
             {/* 이미지 프리뷰 영역 */}
             <div className='gap-3 d-flex'>
-                {previewFiles.map((url, idx) => (
+                {previewFiles.map((imageUrl, idx) => (
                     <div key={idx} className='preview-container'>
                         <button onClick={() => deleteImage(idx)} className='img-delete-button'>
                             <XCircleFill size={20}></XCircleFill>
                         </button>
-                        <img src={url} alt={`preview-${idx}`} className='preview-img' />
+                        <img src={imageUrl} alt={`preview-${idx}`} className='preview-img' />
                     </div>
                 ))}
             </div>

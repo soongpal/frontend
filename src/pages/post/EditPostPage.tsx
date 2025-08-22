@@ -28,7 +28,7 @@ const EditPostPage: React.FC = () => {
     const [status, setStatus] = useState<string>("IN_PROGRESS");
 
     //이미지 입력항목(기존 이미지, 삭제 이미지, 추가 이미지)
-    const [existingImages, setExistingImages] = useState<{id:number,url:string}[]>([]);
+    const [existingImages, setExistingImages] = useState<{id:number,imageUrl:string}[]>([]);
     const [deleteImages, serDeleteImages] = useState<number[]>([]);
     const [newImages, setNewImages] = useState<File[]>([]);
     
@@ -107,7 +107,7 @@ const EditPostPage: React.FC = () => {
                     <div>
                         {existingImages.map((img) => (
                         <div key={img.id}>
-                            <img src={img.url} alt="기존 이미지" width={100} />
+                            <img src={img.imageUrl} alt="기존 이미지" width={100} />
                             <button type="button" onClick={() => handleDeleteExistingImage(img.id)}>
                             X
                             </button>

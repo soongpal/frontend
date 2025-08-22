@@ -44,16 +44,17 @@ const ProductCard = ( { product }: ProductCardProps)=>{
   return (
     <div onClick={gotoDetailpage}>
       <Card className="product-card">
+        {/* 이미지영역 */}
         <div className="product-card-img-wrapper">
           <Card.Img
             variant="top"
-            key={product.imageUrls[0].id} 
-            src={product.imageUrls[0].url}
+            key={product.images[0].id} 
+            src={product.images[0].imageUrl}
             className="product-card-img"
           />
           {product.status==='COMPLETED'&&<SoldoutTag />}
         </div>
-
+        {/* 내용 영역 */}
         <Card.Body className="product-card-body">
           <div className="product-card-header">
             <div className="product-card-title">{product.title}</div>
