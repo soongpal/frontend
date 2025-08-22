@@ -1,8 +1,8 @@
 /* 카드 전체 속성 */
 .product-card {
-    padding: 0.5rem; /* p-2 */
-    border: none !important; /* border="0" */
-    height: 100%; /* h-100 */
+    padding: 0.5rem; 
+    border: none !important; 
+    height: 100%; 
 }
 
 .product-card:hover .product-card-img {
@@ -16,10 +16,11 @@
 }
 
 .product-card-img {
-    border-radius: 0.25rem; /* rounded-1 */
-    aspect-ratio: 1 / 1; /* 가로:세로 = 1:1 */
+    border-radius: 0.25rem; 
+    border: none;
+    aspect-ratio: 1 / 1; 
     object-fit: cover;
-    width: 100%; /* 부모에 꽉 차게 */
+    width: 100%; 
 }
 /* 카드 바디 */
 .product-card-body {
@@ -68,7 +69,7 @@ button:hover{
 }
 /* 시간 */
 .product-card-time {
-    color: #6c757d; /* text-muted */
+    color: var(--light-grey-hover-color);
     margin-top: auto;
     justify-content: flex-end;  /* 아래쪽 정렬 */
     align-items: flex-start; 
