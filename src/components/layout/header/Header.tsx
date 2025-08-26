@@ -24,8 +24,8 @@ const Header : React.FC = () =>{
                                 <PersonFill className="me-2" />
                                 로그인/회원가입
                             </a>
-                            <a href="/user/mypage" className="d-flex  justify-content-end align-items-center text-decoration-none text-dark">
-                                <PersonCircle className="me-2"/>마이페이지 확인용
+                            <a href="/auth/signup" className="d-flex  justify-content-end align-items-center text-decoration-none text-dark">
+                                <PersonCircle className="me-2"/>회원가입 확인용
                             </a>
                         </Col>
                     </Row>

@@ -1,11 +1,14 @@
 import type React from "react";
+
 import "../../styles/Login.css"
+
+import { BASE_URL } from "../../sevices/api";
 
 //로그인 페이지
 const LoginPage: React.FC = () =>{
 
     const handleKakaoClick = () => {
-      
+       window.location.href =`${BASE_URL}/oauth2/authorization/kakao`;
     }
 
     return(
