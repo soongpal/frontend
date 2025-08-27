@@ -7,12 +7,8 @@ export const BASE_URL = 'https://api.soongpal.shop';
 const api = axios.create({
   //base url
     baseURL: "https://api.soongpal.shop",
-    // HttpOnly 쿠키 전송
+    // HttpOnly 쿠키 전송(refresh-token)
     withCredentials: true,
-    // content type header에 같이 전송
-    headers: {
-      'Content-Type': 'application/json',
-    },
 });
 
 // 요청 인터셉터(모든 api요청에 Authorization추가)

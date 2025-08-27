@@ -44,7 +44,11 @@ export const getProductDetail = async (id: number) => {
 // 생성
 export const createProduct = async (data: FormData) => {
     try{
-        const res = await axios.post(`${BASE_URL}/api/board`, data);
+        const res = await axios.post(`${BASE_URL}/api/board`, data,  
+            {
+            headers: {"Content-Type": "multipart/form-data",},
+            }
+        );
         return res.data.result as Product;
     } 
     catch(err){
@@ -87,9 +91,11 @@ export const eidtProduct = async (id: number, data: {
     data.deleteImageIds.forEach((id) => formData.append("deleteImageIds", String(id)));
   }
 
-  const response = await axios.put(`${BASE_URL}/api/board/${id}`, formData, {
-    headers: { "Content-Type": "multipart/form-data" }
-  });
+    const response = await axios.put(`${BASE_URL}/api/board/${id}`, formData, 
+        {
+        headers: { "Content-Type": "multipart/form-data" }
+        }
+    );
 
   return response.data;
 };
