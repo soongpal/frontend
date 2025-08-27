@@ -1,38 +1,39 @@
-import { create} from "zustand";
-import { persist } from 'zustand/middleware';
-import { type User } from "../types/user"
+import { create } from "zustand";
+import { persist, type PersistStorage } from "zustand/middleware";
 
-type ProductStore = {
-  user: User;
-  setUser: (user: User) => void;
-  updateUser: (updated: Partial<User>) => void;
+interface AuthState {
+  accessToken: string | null;
+  setAccessToken: (token: string | null) => void;
+  clear: () => void;
+}
+
+//session저장소에 저장(창 닫기 전까지 로그인 유지용)
+const sessionStorageStorage: PersistStorage<AuthState> = {
+  getItem: (name) => {
+    const item = sessionStorage.getItem(name);
+    return item ? JSON.parse(item) : null;
+  },
+  setItem: (name, value) => {
+    sessionStorage.setItem(name, JSON.stringify(value));
+  },
+  removeItem: (name) => {
+    sessionStorage.removeItem(name);
+  },
 };
 
-const defaultUser: User = {//마스터 아이디
-  id: 0,
-  nickname: "garam",
-  password: "0000",
-  isLogin: true,
-};
 
-export const useUserStore = create<ProductStore>()(
+//login store
+export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
-        user: defaultUser,//마이페이지 확인용
+      accessToken: null,
+      setAccessToken: (token) => set({ accessToken: token }),
+      clear: () => set({ accessToken: null }),
+    }),
+    {
+      name: "auth",
+      storage: sessionStorageStorage,
+    }
+  )
+);
 
-        setUser: (user: User) => set({ user }),
-
-        updateUser: (updated: Partial<User>) =>
-            set((state) => ({
-            user: {
-                ...state.user,
-                ...updated,
-            },
-            })),
-        }),
-        {
-        name: "user-storage", // localStorage 키 이름
-        partialize: (state) => ({ user: state.user }), // user만 저장
-        }
-    )
-    );
