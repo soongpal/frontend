@@ -1,13 +1,17 @@
 //회원가입 페이지
 import type React from "react";
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 //api
 import { postNickname } from "../../sevices/authService";
 
 
 const SignupPage: React.FC = () =>{
+
+    //회원가입후 메인 페이지로 ㄱㄱ
+    const navigate = useNavigate();
+
     //temp token받아오기
     const [searchParams] = useSearchParams();
     const tempToken = searchParams.get("temp_token");
@@ -29,7 +33,7 @@ const SignupPage: React.FC = () =>{
         try {
             const userData = await postNickname(nickname, tempToken);
             console.log(`회원가입 성공! 환영합니다, ${userData.nickname}`);
-        // 로그인 완료 후 다음 페이지로 리다이렉션
+            navigate('/');
         } catch (error) {
         console.error('회원가입 중 오류가 발생했습니다.');
         }
@@ -57,6 +61,3 @@ const SignupPage: React.FC = () =>{
 }
 
 export default SignupPage;
-
-//중복방지(백엔드 연동 버튼)
-//숫자, 영어, 한글만 가능(특수버튼 제외 )로직 validation함수 추가
