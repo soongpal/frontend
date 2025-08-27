@@ -60,36 +60,35 @@ export const createProduct = async (data: FormData) => {
 
 // 수정
 export const eidtProduct = async (id: number, data: {
-  title: string;
-  content: string;
-  price: number;
-  url: string;
-  location: string;
-  category: string;
-  status: string;
-  newImages?: FileList | File[];
-  deleteImageIds?: number[];
+    title: string;
+    content: string;
+    price: number;
+    url: string;
+    location: string;
+    category: string;
+    status: string;
+    newImages?: FileList | File[];
+    deleteImageIds?: number[];
 }) => {
-  const formData = new FormData();
-  formData.append("board", JSON.stringify({
-    title: data.title,
-    content: data.content,
-    price: data.price,
-    url: data.url,
-    location: data.location,
-    category: data.category,
-    status: data.status
-  }));
+    const formData = new FormData();
 
-  if (data.newImages) {
-    for (const file of Array.from(data.newImages)) {
-      formData.append("newImages", file);
-    }
-  }
+    const boardData = {
+        title: data.title,
+        content: data.content,
+        price: data.price,
+        url: data.url,
+        location: data.location,
+        category: data.category,
+        status: data.status
+        };
+    const boardBlob = new Blob([JSON.stringify(boardData)], { type: 'application/json' });
+    formData.append("board", boardBlob);
 
-  if (data.deleteImageIds) {
-    data.deleteImageIds.forEach((id) => formData.append("deleteImageIds", String(id)));
-  }
+
+    if (data.deleteImageIds && data.deleteImageIds.length > 0) {
+        const deleteIdsBlob = new Blob([JSON.stringify(data.deleteImageIds)], { type: 'application/json' });
+        formData.append("deleteImageIds", deleteIdsBlob);
+        }
 
     const response = await axios.put(`${BASE_URL}/api/board/${id}`, formData, 
         {

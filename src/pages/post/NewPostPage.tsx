@@ -51,15 +51,23 @@ const NewPostPage:React.FC = () =>{
             return;
         }
 
-        //formData 객체를 생성
+        //board생성
+        const board = {
+            title: title,
+            content: content,
+            price: Number(price), 
+            url: url,
+            location: location,
+            category: category,
+        };
+
+        //formData 객체 생성
         const formData = new FormData();
-        formData.append('title', title);
-        formData.append('content', content);
-        formData.append('price', String(price)); // 숫자를 문자열로 변환
-        formData.append('url', url);
-        formData.append('location', location);
-        formData.append('category', category); 
-        
+
+        //board 추가
+        const boardBlob = new Blob([JSON.stringify(board)], { type: 'application/json' });
+        formData.append('board', boardBlob);
+        //이미지 추가
         for (const image of Array.from(images)) {
             formData.append('images', image);
         }
