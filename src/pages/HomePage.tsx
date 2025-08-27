@@ -31,9 +31,6 @@ const Home: React.FC = () =>{
         }
     }, [searchParams, navigate, setAccessToken]);
 
-
-
-
     //product store사용할것들
     const { products, setFilter, fetchProducts } = useProductStore();
     

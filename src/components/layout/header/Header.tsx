@@ -1,14 +1,22 @@
+//library
 import type React from "react";
+import { useLocation } from 'react-router-dom';
+//style
 import { Row, Col } from "react-bootstrap";
 import { PersonCircle, PersonFill, Search } from 'react-bootstrap-icons';
-import "../../../styles/Header.css"
-import { useLocation } from 'react-router-dom';
+import "../../../styles/Header.css";
+//store
+import { useAuthStore } from '../../../stores/UserStore';
+
 
 const Header : React.FC = () =>{
-    
-    const location = useLocation();
 
-    //조건부 렌더링(로그인, 회원가입 페이지에서 두번째 Row사라지게 하는 용도)
+    //로그인 여부 불러오기
+    const accessToken = useAuthStore((state) => state.accessToken);
+    const isLogin = !!accessToken;
+
+    //로그인, 회원가입 페이지에서 두번째 Row없애기
+    const location = useLocation();
     const hideSecondRow = ["/auth/login", "/auth/signup"].includes(location.pathname);
     
     return(
@@ -22,13 +30,18 @@ const Header : React.FC = () =>{
                         </Col>
                     
                         <Col>
-                            <a href="/auth/login" className="d-flex  justify-content-end align-items-center text-decoration-none text-dark">
-                                <PersonFill className="me-2" />
-                                로그인/회원가입
-                            </a>
-                            <a href="/auth/signup" className="d-flex  justify-content-end align-items-center text-decoration-none text-dark">
-                                <PersonCircle className="me-2"/>회원가입 확인용
-                            </a>
+                            {isLogin ? (
+                                //로그인일때->마이페이지
+                                <a href="/user/mypage" className="d-flex  justify-content-end align-items-center text-decoration-none text-dark">
+                                    <PersonCircle className="me-2"/>마이페이지
+                                </a>
+                                ) : (
+                                //로그아웃일때->로그인/회원가입
+                                <a href="/auth/login" className="d-flex  justify-content-end align-items-center text-decoration-none text-dark">
+                                    <PersonFill className="me-2" />
+                                    로그인/회원가입
+                                </a>
+                                )}
                         </Col>
                     </Row>
 
