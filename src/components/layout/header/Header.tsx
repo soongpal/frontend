@@ -5,8 +5,10 @@ import "../../../styles/Header.css"
 import { useLocation } from 'react-router-dom';
 
 const Header : React.FC = () =>{
-    //조건부 렌더링(로그인, 회원가입 페이지에서 두번째 Row사라지게 하는 용도)
+    
     const location = useLocation();
+
+    //조건부 렌더링(로그인, 회원가입 페이지에서 두번째 Row사라지게 하는 용도)
     const hideSecondRow = ["/auth/login", "/auth/signup"].includes(location.pathname);
     
     return(
