@@ -35,7 +35,7 @@ const MyPage: React.FC = () =>{
     }, []); 
 
     //로그아웃 함수
-    const logoutasync = async () => {
+    const handlelogout = async () => {
             try {
                 await logout();
                 navigate('/');
@@ -82,7 +82,7 @@ const MyPage: React.FC = () =>{
                 <ArrowRight size={25} className="arrow-icon"/>
             </div>
 
-            <a href="" onClick={logout} style={{color: 'var(--light-grey-hover-color)'}}>로그아웃</a>
+            <a href="" onClick={handlelogout} style={{color: 'var(--light-grey-hover-color)'}}>로그아웃</a>
         </div>
     )
 }
