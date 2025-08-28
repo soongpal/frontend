@@ -2,7 +2,7 @@
 import { BASE_URL } from "./api";
 import axios from 'axios';
 
- //닉네임+임시토큰 전송
+ //최종 회원가입
 export const postNickname = async (nickname: string, tempToken: string) => {
 
     try {

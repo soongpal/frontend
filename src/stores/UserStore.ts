@@ -1,13 +1,16 @@
 import { create } from "zustand";
 import { persist, type PersistStorage } from "zustand/middleware";
 
+
+//access token관련
+
 interface AuthState {
   accessToken: string | null;
   setAccessToken: (token: string | null) => void;
   clear: () => void;
 }
 
-//session저장소에 저장(창 닫기 전까지 로그인 유지용)
+//1. session저장소에 access token 저장(창 닫기 전까지 로그인 유지용)
 const sessionStorageStorage: PersistStorage<AuthState> = {
   getItem: (name) => {
     const item = sessionStorage.getItem(name);
@@ -22,7 +25,7 @@ const sessionStorageStorage: PersistStorage<AuthState> = {
 };
 
 
-//login store
+//2. access token store
 export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
@@ -36,4 +39,5 @@ export const useAuthStore = create<AuthState>()(
     }
   )
 );
+
 

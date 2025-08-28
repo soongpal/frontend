@@ -2,16 +2,23 @@
 
 import type React from "react";
 import { useNavigate } from "react-router-dom";
-import { useUserStore } from "../../stores/UserStore";
 
 //style
 import { ArrowRight, ChatDots, Gear, Heart, Megaphone, PencilSquare } from "react-bootstrap-icons";
 import '../../styles/Mypage.css'
+import { useEffect } from "react";
+
+//api
+
 
 const MyPage: React.FC = () =>{
+
     const navigate = useNavigate();
+
     //유저 정보 불러오기
-    const { user } = useUserStore();
+    useEffect()
+
+
 
     //로그아웃 함수
     const logout = () =>{
