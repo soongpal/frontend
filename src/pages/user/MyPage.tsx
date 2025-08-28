@@ -2,33 +2,55 @@
 
 import type React from "react";
 import { useNavigate } from "react-router-dom";
+import type { UserInfo } from "../../types/user";
 
 //style
 import { ArrowRight, ChatDots, Gear, Heart, Megaphone, PencilSquare } from "react-bootstrap-icons";
 import '../../styles/Mypage.css'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 //api
-
+import { logout, myInfo } from "../../sevices/userService";
 
 const MyPage: React.FC = () =>{
 
     const navigate = useNavigate();
 
     //유저 정보 불러오기
-    useEffect()
+    const [user, setUser] = useState<UserInfo | null>(null);
+    const isLogin = !!user; 
 
+    useEffect(() => {
+        const fetchUserInfo = async () => {
+            try {
+                const info = await myInfo();
+                setUser(info); 
+            } catch (error) {
+                console.error('유저 정보 불러오기 실패:', error);
+                setUser(null);
+            }
+        };
 
+        fetchUserInfo(); 
+    }, []); 
 
     //로그아웃 함수
-    const logout = () =>{
-        alert("로그아웃되었습니다")
-    }
+    const logoutasync = async () => {
+            try {
+                await logout();
+                navigate('/');
+            } catch (error) {
+                console.error('로그아웃실패:', error);
+            }
+        };
 
+    if (!isLogin) {
+        return <div>로그인 정보가 없습니다.</div>;
+    }
+    
     return(
         <div className="d-flex flex-column align-items-center gap-4 my-5">
-           
-            <h3 className="d-flex">{user.nickname}님 안녕하세요!</h3>
+          <h3 className="d-flex">{user.nickname}님 안녕하세요!</h3>
 
             <div onClick={() => navigate("/user/favorites")} className="flex-container">
                 <Heart size={25} className="me-3"/>

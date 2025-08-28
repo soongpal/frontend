@@ -1,7 +1,9 @@
-export interface User{
-    id: number;
+//내정보 인터페이스
+export interface UserInfo{
+    userId: number;
     nickname: string;
-    password: string;
-    isLogin: boolean;
+    email: string;
+    kakoId: string;
 }
+
 

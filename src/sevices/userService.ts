@@ -1,14 +1,7 @@
 //user관련 api
+import type { UserInfo } from "../types/user";
 import { BASE_URL } from "./api";
 import axios from "axios";
-
-//내정보 인터페이스
-interface MyInfoResponse{
-    userId: number;
-    nickname: string;
-    email: string;
-    kakoId: string;
-}
 
 //로그아웃
 export const logout = async () => {
@@ -24,7 +17,7 @@ export const logout = async () => {
 };
 
 //내 정보 조회
-export const myInfo = async () : Promise<MyInfoResponse> => {
+export const myInfo = async () : Promise<UserInfo> => {
 
     try {
         const res = await axios.get(
