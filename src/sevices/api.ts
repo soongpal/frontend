@@ -4,6 +4,7 @@ import { useAuthStore } from '../stores/UserStore'
 //기본 api서버
 export const BASE_URL = 'https://api.soongpal.shop';
 
+//authorization이 필요한 경우...
 const api = axios.create({
   //base url
     baseURL: "https://api.soongpal.shop",

@@ -1,13 +1,12 @@
 //user관련 api
 import type { UserInfo } from "../types/user";
-import { BASE_URL } from "./api";
-import axios from "axios";
+import api from "./api";
 
 //로그아웃
 export const logout = async () => {
     try {
-        const res = await axios.post(
-            `${BASE_URL}/api/users/logout`,
+        const res = await api.post(
+            `/api/users/logout`,
         );
         return res.data;
   } catch (error) {
@@ -20,8 +19,8 @@ export const logout = async () => {
 export const myInfo = async () => {
 
     try {
-        const res = await axios.get(
-            `${BASE_URL}/api/users/me`,
+        const res = await api.get(
+            `/api/users/me`,
         );
         return res.data as UserInfo;
         
@@ -35,8 +34,8 @@ export const myInfo = async () => {
 export const withdrawal = async () => {
 
     try {
-        await axios.delete(
-            `${BASE_URL}/api/users/me`,
+        await api.delete(
+            `/api/users/me`,
         );
   } catch (error) {
     console.error('회원탈퇴 실패:', error);
@@ -48,8 +47,8 @@ export const withdrawal = async () => {
 export const mySetting = async (nickname: string) => {
 
     try {
-        const res = await axios.patch(
-            `${BASE_URL}/api/users/me`,
+        const res = await api.patch(
+            `/api/users/me`,
             { nickname }
         );
         return res.data;
@@ -63,8 +62,8 @@ export const mySetting = async (nickname: string) => {
 export const myPost = async () => {
 
     try {
-        const res = await axios.get(
-            `${BASE_URL}/api/my-page/posts`,
+        const res = await api.get(
+            `/api/my-page/posts`,
         );
         return res.data;
   } catch (error) {
@@ -77,8 +76,8 @@ export const myPost = async () => {
 export const myFavorites = async () => {
 
     try {
-        const res = await axios.get(
-            `${BASE_URL}/api/my-page/like`,
+        const res = await api.get(
+            `/api/my-page/like`,
         );
         return res.data;
   } catch (error) {

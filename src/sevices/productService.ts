@@ -1,5 +1,5 @@
 //상품관련 api(상품 조회, 상품 등록)
-import { BASE_URL } from "./api";
+import api, { BASE_URL } from "./api";
 import { type Product, type Category, type Status } from "../types/product";
 
 import axios from 'axios';
@@ -44,7 +44,7 @@ export const getProductDetail = async (id: number) => {
 // 생성
 export const createProduct = async (data: FormData) => {
     try{
-        const res = await axios.post(`${BASE_URL}/api/board`, data,  
+        const res = await api.post(`/api/board`, data,  
             {
             headers: {"Content-Type": "multipart/form-data",},
             }
@@ -90,7 +90,7 @@ export const eidtProduct = async (id: number, data: {
         formData.append("deleteImageIds", deleteIdsBlob);
         }
 
-    const response = await axios.put(`${BASE_URL}/api/board/${id}`, formData, 
+    const response = await api.put(`/api/board/${id}`, formData, 
         {
         headers: { "Content-Type": "multipart/form-data" }
         }
@@ -102,7 +102,7 @@ export const eidtProduct = async (id: number, data: {
 // 삭제
 export const deleteProduct = async (id: number) => {
     try{
-        await axios.delete(`${BASE_URL}/api/board/${id}`);
+        await api.delete(`/api/board/${id}`);
     }
     catch(err){
         console.error(err);
@@ -127,7 +127,7 @@ export const productLikeCount = async (id: number) => {
 // 좋아요 생성
 export const likeProduct = async (id: number) => {
     try{
-        await axios.post(`${BASE_URL}/api/board/${id}/like`);
+        await api.post(`/api/board/${id}/like`);
     }
     catch(err){
         console.error(err);
@@ -139,7 +139,7 @@ export const likeProduct = async (id: number) => {
 // 좋아요 삭제
 export const unLikeProduct = async (id: number) => {
     try{
-        await axios.delete(`${BASE_URL}/api/board/${id}/like`);
+        await api.delete(`/api/board/${id}/like`);
     }
     catch(err){
         console.error(err);

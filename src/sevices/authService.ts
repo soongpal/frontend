@@ -1,13 +1,12 @@
 //인증관련 (로그인, 회원가입)
-import { BASE_URL } from "./api";
-import axios from 'axios';
+import api from './api';
 
  //최종 회원가입
 export const postNickname = async (nickname: string, tempToken: string) => {
 
     try {
-        const res = await axios.post(
-            `${BASE_URL}/api/auth/register`,
+        const res = await api.post(
+            `/api/auth/register`,
             {
                 nickname,
             },
