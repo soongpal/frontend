@@ -17,15 +17,16 @@ export const logout = async () => {
 };
 
 //내 정보 조회
-export const myInfo = async () : Promise<UserInfo> => {
+export const myInfo = async () => {
 
     try {
         const res = await axios.get(
             `${BASE_URL}/api/users/me`,
         );
-        return res.data;
+        return res.data as UserInfo;
+        
   } catch (error) {
-    console.error('내 정보 불러오기 실패:', error);
+    console.error('user service - 내 정보 불러오기 실패:', error);
     throw error;
   }
 };

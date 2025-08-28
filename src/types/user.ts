@@ -3,7 +3,7 @@ export interface UserInfo{
     userId: number;
     nickname: string;
     email: string;
-    kakoId: string;
+    kakaoId: string;
 }
 
 
