@@ -2,11 +2,11 @@ import axios, { AxiosError, type AxiosRequestConfig } from "axios";
 import { useAuthStore } from '../stores/UserStore'
 
 //기본 api서버
-export const BASE_URL = 'https://api.soongpal.shop';
+export const BASE_URL = 'http://api.soongpal.shop';
 
 const api = axios.create({
   //base url
-    baseURL: "https://api.soongpal.shop",
+    baseURL: "http://api.soongpal.shop",
     // HttpOnly 쿠키 전송(refresh-token)
     withCredentials: true,
 });
