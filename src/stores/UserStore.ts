@@ -6,6 +6,7 @@ import { persist, type PersistStorage } from "zustand/middleware";
 
 export interface AuthState {
   accessToken: string | null;
+  isLogin: boolean;
   setAccessToken: (token: string | null) => void;
   clear: () => void;
 }
@@ -30,8 +31,9 @@ export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
       accessToken: null,
-      setAccessToken: (token) => set({ accessToken: token }),
-      clear: () => set({ accessToken: null }),
+      isLogin: false,
+      setAccessToken: (token) => set({ accessToken: token, isLogin: !!token, }),
+      clear: () => set({ accessToken: null, isLogin: false, }),
     }),
     {
       name: "auth",

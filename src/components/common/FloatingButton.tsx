@@ -7,8 +7,10 @@ import { PencilFill } from "react-bootstrap-icons";
 const FloatingButton: React.FC = ()=>{
     const navigate = useNavigate();
 
+    
+
     const floatingBtnClick = () =>{
-         navigate('post/newpost');
+      navigate('post/newpost');
     }
 
     return(
