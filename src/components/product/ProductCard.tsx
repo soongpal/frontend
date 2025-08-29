@@ -67,7 +67,10 @@ const ProductCard = ( { product }: ProductCardProps)=>{
           </div>
 
           <Card.Text className="product-card-price">{product.price}원</Card.Text>
-          <Card.Text className="product-card-time">{timeAgo(product)}</Card.Text>
+          <div className="d-flex gap-1">
+                        <Card.Text className="product-card-time">{product.authorNickname} ·</Card.Text>
+            <Card.Text className="product-card-time">{timeAgo(product)}</Card.Text>
+          </div>
         </Card.Body>
       </Card>
     </div>
