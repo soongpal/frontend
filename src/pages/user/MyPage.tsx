@@ -12,6 +12,9 @@ import { useEffect, useState } from "react";
 //api
 import { logout, myInfo } from "../../sevices/userService";
 
+//store
+import { useAuthStore } from "../../stores/UserStore";
+
 const MyPage: React.FC = () =>{
 
     const navigate = useNavigate();
@@ -35,9 +38,15 @@ const MyPage: React.FC = () =>{
     }, []); 
 
     //로그아웃 함수
+    const clearAuth = useAuthStore((state) => state.clear);
+    //1.api 2. store초기화
     const handlelogout = async () => {
             try {
                 await logout();
+                clearAuth();
+
+                console.log('로그아웃 성공');
+                alert('로그아웃되었습니다');
                 navigate('/');
             } catch (error) {
                 console.error('로그아웃실패:', error);
