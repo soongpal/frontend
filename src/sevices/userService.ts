@@ -1,4 +1,5 @@
 //user관련 api
+import type { Product } from "../types/product";
 import type { UserInfo } from "../types/user";
 import api from "./api";
 
@@ -59,13 +60,16 @@ export const mySetting = async (nickname: string) => {
 };
 
 //내가쓴글 조회
-export const myPost = async () => {
+export const myPost = async (page: number) => {
 
     try {
         const res = await api.get(
             `/api/my-page/posts`,
+            {
+                params: {page: page}
+            }
         );
-        return res.data;
+        return res.data.result as Product[];
   } catch (error) {
     console.error('내가 쓴 글 불러오기 실패:', error);
     throw error;
@@ -73,13 +77,16 @@ export const myPost = async () => {
 };
 
 //내가 좋아요한 게시글 조회
-export const myFavorites = async () => {
+export const myFavorites = async (page: number) => {
 
     try {
         const res = await api.get(
             `/api/my-page/like`,
+            {
+                params: {page: page}
+            }
         );
-        return res.data;
+        return res.data.result as Product[];
   } catch (error) {
     console.error('내가 좋아요한 글 불러오기 실패:', error);
     throw error;

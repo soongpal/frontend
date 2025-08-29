@@ -1,17 +1,40 @@
 //좋아요 목록 페이지
+//react
 import type React from "react";
-import Filter from "../../components/common/Filter";
+import { useEffect, useState } from "react";
+//component
 import ProductGrid from "../../components/product/ProductGrid";
-import { useProductStore } from "../../stores/productStore";
 import GoMypage from "../../components/common/GoMypage";
+//type
+import type { Product } from "../../types/product";
+
+//api
+import { myFavorites } from "../../sevices/userService";
 
 const  FavoritesPage: React.FC = () =>{
-   // 처음 불러오기
-    const { products } = useProductStore();
 
-    //내가 좋아요한 상품 목록 불러오기 api추가할것
-    //1. liked ===true 인거 product store에서 자체 필터
-    // 2. 백엔드 로직 추가?
+   // 좋아요 목록 불러오기
+   const [products, setProducts] = useState<Product[] | null >();
+
+   useEffect(()=>{
+        const fetchFavorites = async () => {
+                    try {
+                        const productList : Product[] = await myFavorites();
+                        setProducts(productList); 
+                    } catch (error) {
+                        console.error('좋아요 목록 불러오기 실패:', error);
+                        setProducts(null);
+                    }
+                };
+        
+        fetchFavorites();
+   }, []);
+
+   //좋아요한 상품 없을시
+   if (!products || products.length === 0) {
+        return <div>좋아요한 상품이 없습니다.</div>;
+    }
+    
 
     return(
         <div className="container">
@@ -20,7 +43,6 @@ const  FavoritesPage: React.FC = () =>{
                 <b>관심 목록</b>
             </h3>
 
-            <Filter></Filter>
             <ProductGrid products={products}></ProductGrid>
 
         </div>
