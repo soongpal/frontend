@@ -73,11 +73,7 @@ table th, td{
 
 table th{
     color: gray;
-    width: 35%;
-}
-
-table td{
-    width: 65%;
+    width: 110px;
 }
 
 .product-link{
