@@ -11,7 +11,7 @@ const Footer: React.FC = () =>{
                 EMAIL: soongpal2@gmail.com<br />
                 © 2025 Team Soongpal. All rights reserved.
             </p>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" >
+            <a href="https://www.instagram.com/soongpal2?igsh=MTcyOHczdTQxdzN4aw%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" >
                 <Instagram size={20} color="grey"/>
             </a>
         </div>
