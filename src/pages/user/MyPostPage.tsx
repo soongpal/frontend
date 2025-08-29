@@ -2,20 +2,42 @@
 
 //library
 import type React from "react";
+import { useEffect, useState } from "react";
+import type { Product } from "../../types/product";
 //component
 import Filter from "../../components/common/Filter";
 import ProductList from "../../components/product/ProductList";
 import GoMypage from "../../components/common/GoMypage";
-//store
-import useProductStore from "../../stores/productStore";
+//api
+import { myPost } from "../../sevices/userService";
 
 
 const MyPostPage: React.FC = () =>{
 
-    // 유저 정보 불러오기
-    // const { user } = useUserStore();
-    // 유저가 쓴 글 목록 api요청 로직 추가(백엔드( 추가한다햇음)
-    const {products} = useProductStore(); //임시
+/// 좋아요 목록 불러오기
+    const [products, setProducts] = useState<Product[] | null >();
+    //const [currentPage, setCurrentPage] = useState(0);
+    //나중에 페이지네이션 추가
+    
+    useEffect(()=>{
+        const fetchFavorites = async () => {
+            try {
+                const productList : Product[] = await myPost(0);
+                setProducts(productList); 
+            } catch (error) {
+                console.error('내가 쓴 글 목록 불러오기 실패:', error);
+                setProducts(null);
+            }
+        };
+            
+        fetchFavorites();
+       }, []);
+    
+       //쓴글 없을시
+    if (!products || products.length === 0) {
+        return <div>쓴글이 없습니다.</div>;
+    }
+        
 
     return(
         <div className="container">

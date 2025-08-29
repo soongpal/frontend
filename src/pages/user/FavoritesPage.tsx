@@ -15,11 +15,13 @@ const  FavoritesPage: React.FC = () =>{
 
    // 좋아요 목록 불러오기
    const [products, setProducts] = useState<Product[] | null >();
+//    const [currentPage, setCurrentPage] = useState(0);
+//나중에 페이지네이션 추가
 
    useEffect(()=>{
         const fetchFavorites = async () => {
                     try {
-                        const productList : Product[] = await myFavorites();
+                        const productList : Product[] = await myFavorites(0);
                         setProducts(productList); 
                     } catch (error) {
                         console.error('좋아요 목록 불러오기 실패:', error);
@@ -44,6 +46,7 @@ const  FavoritesPage: React.FC = () =>{
             </h3>
 
             <ProductGrid products={products}></ProductGrid>
+
 
         </div>
     )
