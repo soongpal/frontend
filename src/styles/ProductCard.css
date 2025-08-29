@@ -13,6 +13,8 @@
 .product-card-img-wrapper {
     position: relative;
     overflow: hidden;
+    border-radius: 0.25rem; 
+    border: none;
 }
 
 .product-card-img {
