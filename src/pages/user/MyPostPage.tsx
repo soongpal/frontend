@@ -33,19 +33,17 @@ const MyPostPage: React.FC = () =>{
         fetchFavorites();
        }, []);
     
-       //쓴글 없을시
-    if (!products || products.length === 0) {
-        return <div>쓴글이 없습니다.</div>;
-    }
-        
-
     return(
         <div className="container">
             <h3 className="text-start mt-3 mb-3 align-items-center d-flex">
                 <GoMypage/>
                 <b>내가 쓴 글</b>
                 </h3>
-            <ProductList products={products}></ProductList>
+            {products && products.length > 0 ? (
+                <ProductList products={products}></ProductList>
+            ) : (
+                <div>쓴글이 없습니다.</div>
+            )}
         </div>
     )
 }

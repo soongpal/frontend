@@ -30,13 +30,7 @@ const  FavoritesPage: React.FC = () =>{
                 };
         
         fetchFavorites();
-   }, []);
-
-   //좋아요한 상품 없을시
-   if (!products || products.length === 0) {
-        return <div>좋아요한 상품이 없습니다.</div>;
-    }
-    
+   }, []);    
 
     return(
         <div className="container">
@@ -45,7 +39,11 @@ const  FavoritesPage: React.FC = () =>{
                 <b>관심 목록</b>
             </h3>
 
-            <ProductGrid products={products}></ProductGrid>
+            {products && products.length > 0 ? (
+                <ProductGrid products={products}></ProductGrid>
+            ) : (
+                <div>좋아요한 글이 없습니다.</div>
+            )}
 
 
         </div>
