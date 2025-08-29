@@ -17,6 +17,11 @@ const Header : React.FC = () =>{
     //로그인, 회원가입 페이지에서 두번째 Row없애기
     const location = useLocation();
     const hideSecondRow = ["/auth/login", "/auth/signup"].includes(location.pathname);
+
+    //검색 함수
+    const handleSearch = ()=>{
+
+    }
     
     return(
         <div className="mb-3">
@@ -61,7 +66,7 @@ const Header : React.FC = () =>{
                                     aria-label="Search"
                                     className="search-bar"
                                 />
-                                <button type="button" className="search-button">
+                                <button type="button" className="search-button" onClick={handleSearch}>
                                     <Search/>
                                 </button>
                             </div>
