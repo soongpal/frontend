@@ -12,8 +12,7 @@ import { useAuthStore } from '../../../stores/UserStore';
 const Header : React.FC = () =>{
 
     //로그인 여부 불러오기
-    const accessToken = useAuthStore((state) => state.accessToken);
-    const isLogin = !!accessToken;
+    const isLogin = useAuthStore((state) => state.isLogin);
 
     //로그인, 회원가입 페이지에서 두번째 Row없애기
     const location = useLocation();

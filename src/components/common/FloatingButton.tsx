@@ -1,16 +1,25 @@
 import type React from "react";
+import { useNavigate } from "react-router-dom";
+//style
 import { Button } from "react-bootstrap";
 import '../../styles/FloatingButton.css'
-import { useNavigate } from "react-router-dom";
 import { PencilFill } from "react-bootstrap-icons";
+//store
+import { useAuthStore } from "../../stores/UserStore";
 
 const FloatingButton: React.FC = ()=>{
-    const navigate = useNavigate();
 
-    
+    const navigate = useNavigate();
+    const isLogin = useAuthStore((state) => state.isLogin);
 
     const floatingBtnClick = () =>{
-      navigate('post/newpost');
+      if(isLogin){
+        navigate('post/newpost');
+      }
+      else{
+        alert("로그인 후 가능합니다");
+        navigate('/auth/login');
+      }
     }
 
     return(
