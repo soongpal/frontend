@@ -45,7 +45,6 @@ const MyPostPage: React.FC = () =>{
                 <GoMypage/>
                 <b>내가 쓴 글</b>
                 </h3>
-            <Filter></Filter>
             <ProductList products={products}></ProductList>
         </div>
     )
