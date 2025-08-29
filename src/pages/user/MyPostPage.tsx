@@ -5,7 +5,6 @@ import type React from "react";
 import { useEffect, useState } from "react";
 import type { Product } from "../../types/product";
 //component
-import Filter from "../../components/common/Filter";
 import ProductList from "../../components/product/ProductList";
 import GoMypage from "../../components/common/GoMypage";
 //api
