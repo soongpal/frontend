@@ -16,8 +16,6 @@ import { timeAgo } from "../../utils/time";
 import type { Product } from "../../types/product";
 
 const ProductDetailPage: React.FC = () => {
-    // store함수 불러오기
-    const { likeProduct, unLikeProduct } = useProductStore();
 
     // 상품 id값 받아오기
     const { ProductId } = useParams<{ ProductId: string }>();
@@ -34,17 +32,6 @@ const ProductDetailPage: React.FC = () => {
         }
     }, [productId]);
 
-    // 좋아요 버튼 함수
-    const handleHeartClick = () => {
-        if (!product) return;
-        
-        if (product.liked === true) {
-            unLikeProduct(product.id);
-        } else {
-            likeProduct(product.id);
-        }
-    }
-
     // 로딩 중
     if (!product) {
         return (
@@ -53,6 +40,18 @@ const ProductDetailPage: React.FC = () => {
             </div>
         );
     }
+
+    //좋아요 버튼 함수
+      const { likeProduct, unLikeProduct } = useProductStore();
+      const handleHeartClick = () =>{
+        if(product.liked===true){
+          unLikeProduct(product.id);
+        }
+        else{
+          likeProduct(product.id);
+        }
+    
+      }
 
     // 로딩 성공
     return (
@@ -68,12 +67,6 @@ const ProductDetailPage: React.FC = () => {
                     <button>
                         <Share color="gray" size={13}/>
                     </button>
-                    <div className="d-flex align-items-center">
-                        <button onClick={handleHeartClick}>
-                            {product.liked ? <HeartFill color="red"></HeartFill> : <Heart color="gray"></Heart>}
-                        </button>
-                        <p className="gray-row">{product.likeCount}</p>
-                    </div>
                 </div>
             </div>
 
@@ -90,7 +83,14 @@ const ProductDetailPage: React.FC = () => {
             <div className="d-flex justify-content-between my-3">
                 <h1>{product.price}원</h1>
                 <div className="d-flex">
-                    <button className="round-button justify-content-center" onClick={handleHeartClick}>
+                    <button 
+                        className="round-button justify-content-center" 
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleHeartClick();
+                            }
+                        }
+                    >
                         {product.liked ? <HeartFill color="red"></HeartFill> : <Heart color="gray"></Heart>}
                     </button>
                     <button className="round-button"><ChatDots className="me-2"/>대화하기</button>
