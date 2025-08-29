@@ -88,7 +88,7 @@ const ProductDetailPage: React.FC = () => {
 
             {/* 버튼들 */}
             <div className="d-flex justify-content-between my-3">
-                <h1>{product.price}</h1>
+                <h1>{product.price}원</h1>
                 <div className="d-flex">
                     <button className="round-button justify-content-center" onClick={handleHeartClick}>
                         {product.liked ? <HeartFill color="red"></HeartFill> : <Heart color="gray"></Heart>}
