@@ -62,7 +62,7 @@ const ProductCard = ( { product }: ProductCardProps)=>{
                       e.stopPropagation();
                       handleHeartClick();
                     }}>
-                  {product.liked ? <HeartFill color="red"></HeartFill> : <Heart color="grey"></Heart>}
+                  {product.liked ? <HeartFill color="red"></HeartFill> : <Heart color="var(--light-grey-hover-color)"></Heart>}
               </button>
           </div>
 
