@@ -63,7 +63,7 @@ export const mySetting = async (nickname: string) => {
 export const myPost = async (page: number) => {
 
     try {
-      const res = await api.get(`/api//my-page/posts`, {  params: { page: page } });
+      const res = await api.get(`/api/my-page/posts`, {  params: { page: page } });
       const { boards, currentPage, totalPages } = res.data.result;
   
       return {
@@ -82,7 +82,7 @@ export const myPost = async (page: number) => {
 export const myFavorites = async (page: number) => {
 
     try {
-      const res = await api.get(`/api//my-page/like`, {  params: { page: page } });
+      const res = await api.get(`/api/my-page/like`, {  params: { page: page } });
       const { boards, currentPage, totalPages } = res.data.result;
   
       return {
