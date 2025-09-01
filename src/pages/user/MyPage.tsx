@@ -45,7 +45,7 @@ const MyPage: React.FC = () =>{
                 await logout();
                 clearAuth();
 
-                navigate('/');
+                navigate("/", { replace: true });
                 console.log('로그아웃 성공');
                 alert('로그아웃되었습니다');
             } catch (error) {
