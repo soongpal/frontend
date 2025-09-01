@@ -63,13 +63,15 @@ export const mySetting = async (nickname: string) => {
 export const myPost = async (page: number) => {
 
     try {
-        const res = await api.get(
-            `/api/my-page/posts`,
-            {
-                params: {page: page}
-            }
-        );
-        return res.data.result as Product[];
+      const res = await api.get(`/api//my-page/posts`, {  params: { page: page } });
+      const { boards, currentPage, totalPages } = res.data.result;
+  
+      return {
+        products: boards as Product[],
+        currentPage,
+        totalPages
+      };
+
   } catch (error) {
     console.error('내가 쓴 글 불러오기 실패:', error);
     throw error;
@@ -80,13 +82,14 @@ export const myPost = async (page: number) => {
 export const myFavorites = async (page: number) => {
 
     try {
-        const res = await api.get(
-            `/api/my-page/like`,
-            {
-                params: {page: page}
-            }
-        );
-        return res.data.result as Product[];
+      const res = await api.get(`/api//my-page/like`, {  params: { page: page } });
+      const { boards, currentPage, totalPages } = res.data.result;
+  
+      return {
+        products: boards as Product[],
+        currentPage,
+        totalPages
+      };
   } catch (error) {
     console.error('내가 좋아요한 글 불러오기 실패:', error);
     throw error;
