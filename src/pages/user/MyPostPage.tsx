@@ -21,8 +21,8 @@ const MyPostPage: React.FC = () =>{
     useEffect(()=>{
         const fetchFavorites = async () => {
             try {
-                const productList : Product[] = await myPost(0);
-                setProducts(productList); 
+                const myPosts= await myPost(0);
+                setProducts(myPosts.products); 
             } catch (error) {
                 console.error('내가 쓴 글 목록 불러오기 실패:', error);
                 setProducts(null);

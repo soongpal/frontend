@@ -21,8 +21,8 @@ const [products, setProducts] = useState<Product[] | null >();
    useEffect(()=>{
         const fetchFavorites = async () => {
                     try {
-                        const productList : Product[] = await myFavorites(0);
-                        setProducts(productList); 
+                        const Favorites = await myFavorites(0);
+                        setProducts(Favorites.products); 
                     } catch (error) {
                         console.error('좋아요 목록 불러오기 실패:', error);
                         setProducts(null);
