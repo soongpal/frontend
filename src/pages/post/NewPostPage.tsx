@@ -2,7 +2,6 @@
 
 //library
 import type React from "react";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 //component
 import MultiImageUploader from "../../components/post/MultiImageUploader";
@@ -15,9 +14,6 @@ import '../../styles/NewPost.css'
 
 
 const NewPostPage:React.FC = () =>{
-
-    const navigate = useNavigate(); // 페이지 이동
-
 
     const [title, setTitle] = useState<string>("");
     const [content, setContent] = useState<string>("");
