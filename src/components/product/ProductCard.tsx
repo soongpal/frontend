@@ -6,12 +6,15 @@ import { timeAgo } from "../../utils/time";
 //component
 import SoldoutTag from "../common/SoldoutTag";
 import { type Product } from "../../types/product";
+
+//store
 import useProductStore from "../../stores/productStore";
 
 //css
 import { Heart, HeartFill } from "react-bootstrap-icons";
 import "../../styles/ProductCard.css";
 import { Card } from "react-bootstrap";
+import { useAuthStore } from "../../stores/UserStore";
 
 
 
@@ -22,21 +25,32 @@ type ProductCardProps = {
 
 const ProductCard = ( { product }: ProductCardProps)=>{
 
+  const navigate = useNavigate();
+
+  //로그인 여부 확인
+    const isLogin = useAuthStore((state) => state.isLogin);
+
   //좋아요 버튼 함수
   const { likeProduct, unLikeProduct } = useProductStore();
   const handleHeartClick = () =>{
-    if(product.liked===true){
-      unLikeProduct(product.id);
+
+    if(isLogin){
+      if(product.liked===true){
+        unLikeProduct(product.id);
+      }
+      else{
+        likeProduct(product.id);
+      }
     }
+
     else{
-      likeProduct(product.id);
+      alert("로그인 후 이용 가능합니다");
+      navigate('/auth/login');
     }
 
   }
   
-  //상품 상세페이지 함수
-  const navigate = useNavigate();
-    
+  //상품 상세페이지 함수    
   const gotoDetailpage = () => {
     navigate(`/product/productdetail/${product.id}`);
   };

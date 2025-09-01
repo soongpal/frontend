@@ -17,7 +17,7 @@ const FloatingButton: React.FC = ()=>{
         navigate('post/newpost');
       }
       else{
-        alert("로그인 후 가능합니다");
+        alert("로그인 후 이용 가능합니다");
         navigate('/auth/login');
       }
     }

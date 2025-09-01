@@ -2,7 +2,7 @@
 
 //library
 import type React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 //style
 import { ChevronRight, Heart, HeartFill, Share, ChatDots } from "react-bootstrap-icons";
@@ -15,19 +15,24 @@ import { getProductDetail } from "../../sevices/productService"
 import { timeAgo } from "../../utils/time";
 //type
 import type { Product } from "../../types/product";
+import { useAuthStore } from "../../stores/UserStore";
 
 const ProductDetailPage: React.FC = () => {
 
+    //로그인 여부 확인
+    const navigate = useNavigate();
+    const isLogin = useAuthStore((state) => state.isLogin);
+    
     // 상품 id값 받아오기
     const { ProductId } = useParams<{ ProductId: string }>();
     const productId = Number(ProductId);
 
-    // 상품 id로 상품 불러오기
-    const [product, setProduct] = useState<Product | null>(null);
-
     //상품 좋아요 store함수
     const likeProduct = useProductStore(state => state.likeProduct);
     const unLikeProduct = useProductStore(state => state.unLikeProduct);
+
+    // 상품 id로 상품 불러오기
+    const [product, setProduct] = useState<Product | null>(null);
 
     useEffect(() => {
         if (!isNaN(productId)) {
@@ -50,21 +55,27 @@ const ProductDetailPage: React.FC = () => {
     const handleHeartClick = () =>{
 
         if (!product) return;
+        if(isLogin){
+            if(product.liked===true){
+                unLikeProduct(product.id);
+                }
+            else{
+                likeProduct(product.id);
+                }
 
-        if(product.liked===true){
-          unLikeProduct(product.id);
+            setProduct(prevProduct => {
+                if (!prevProduct) return null;
+                return {
+                    ...prevProduct,
+                    liked: !prevProduct.liked 
+                };
+            });
         }
+
         else{
-          likeProduct(product.id);
-        }
-
-        setProduct(prevProduct => {
-        if (!prevProduct) return null;
-        return {
-            ...prevProduct,
-            liked: !prevProduct.liked // liked 값을 반전시킴
-        };
-    });
+            alert("로그인 후 이용 가능합니다");
+            navigate('/auth/login');
+      }
       };
 
     // 로딩 성공
