@@ -77,11 +77,11 @@ const NewPostPage:React.FC = () =>{
             const newProduct = await createProduct(formData); 
             console.log('상품 등록 성공:', newProduct);
             alert('상품이 성공적으로 등록되었습니다.');
-            navigate("/", { replace: true })
+            window.location.href = "/";
         } catch (err) {
             console.error('상품 등록 실패:', err);
             alert('상품 등록에 실패했습니다.');
-            navigate(`/`);
+            window.location.href = "/";
         }
     };
 
