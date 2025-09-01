@@ -5,9 +5,10 @@ import type React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 //style
-import { useProductStore } from "../../stores/productStore";
 import { ChevronRight, Heart, HeartFill, Share, ChatDots } from "react-bootstrap-icons";
 import "../../styles/ProductDetailPage.css"
+//store
+import  useProductStore from "../../stores/productStore";
 //api
 import { getProductDetail } from "../../sevices/productService"
 //util
@@ -23,6 +24,10 @@ const ProductDetailPage: React.FC = () => {
 
     // 상품 id로 상품 불러오기
     const [product, setProduct] = useState<Product | null>(null);
+
+    //상품 좋아요 store함수
+    const likeProduct = useProductStore(state => state.likeProduct);
+    const unLikeProduct = useProductStore(state => state.unLikeProduct);
 
     useEffect(() => {
         if (!isNaN(productId)) {
@@ -42,16 +47,25 @@ const ProductDetailPage: React.FC = () => {
     }
 
     //좋아요 버튼 함수
-      const { likeProduct, unLikeProduct } = useProductStore();
-      const handleHeartClick = () =>{
+    const handleHeartClick = () =>{
+
+        if (!product) return;
+
         if(product.liked===true){
           unLikeProduct(product.id);
         }
         else{
           likeProduct(product.id);
         }
-    
-      }
+
+        setProduct(prevProduct => {
+        if (!prevProduct) return null;
+        return {
+            ...prevProduct,
+            liked: !prevProduct.liked // liked 값을 반전시킴
+        };
+    });
+      };
 
     // 로딩 성공
     return (
