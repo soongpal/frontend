@@ -2,7 +2,7 @@ import type React from "react";
 
 import "../../styles/Login.css"
 
-import { BASE_URL } from "../../sevices/api";
+import { BASE_URL } from "../../api/api";
 
 //로그인 페이지
 const LoginPage: React.FC = () =>{

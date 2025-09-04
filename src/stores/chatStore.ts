@@ -3,20 +3,12 @@
 import { create } from 'zustand';
 import { Client, type IMessage } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
-
-// 메시지 타입
-export interface ChatMessage {
-  roomId: number;
-  senderId: number;
-  senderName: string;
-  content: string;
-  timestamp?: string; 
-}
+import { type ChatMessage } from '../types/chat';
 
 // 스토어 상태 및 액션 타입 정의
 interface ChatState {
-  client: Client | null;
-  isConnected: boolean;
+  client: Client | null;    //사용자
+  isConnected: boolean; //연결 여부
   messages: Map<number, ChatMessage[]>; // Key: roomId, Value: 메시지 배열
   actions: {
     connect: (token: string) => void;

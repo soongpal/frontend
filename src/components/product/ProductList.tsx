@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 //style
 import { PencilSquare, Trash3 } from "react-bootstrap-icons";
 import "../../styles/ProductList.css"
-import { deleteProduct } from "../../sevices/productService";
+import { deleteProduct } from "../../api/productAPI";
 
 interface ProductGridProps{
     products: Product[];

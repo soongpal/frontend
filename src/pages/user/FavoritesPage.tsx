@@ -9,7 +9,7 @@ import GoMypage from "../../components/common/GoMypage";
 import type { Product } from "../../types/product";
 
 //api
-import { myFavorites } from "../../sevices/userService";
+import { myFavorites } from "../../api/userAPI";
 
 const  FavoritesPage: React.FC = () =>{
 

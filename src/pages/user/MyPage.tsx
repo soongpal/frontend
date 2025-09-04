@@ -10,7 +10,7 @@ import '../../styles/Mypage.css'
 import { useEffect, useState } from "react";
 
 //api
-import { logout, myInfo } from "../../sevices/userService";
+import { logout, myInfo } from "../../api/userAPI";
 
 //store
 import { useAuthStore } from "../../stores/UserStore";

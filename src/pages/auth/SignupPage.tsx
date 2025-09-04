@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 //api
-import { postNickname } from "../../sevices/authService";
+import { postNickname } from "../../api/authAPI";
 
 //닉네임 조건함수
 import { nicknameValidator } from "../../utils/validation/validateSignup";

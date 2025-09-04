@@ -1,7 +1,7 @@
 // stores/productStore.ts
 import { create } from "zustand";
 import { type Product, type Category, type Status } from "../types/product";
-import * as productApi from "../sevices/productService";
+import * as productApi from "../api/productAPI";
 
 interface Filter {
   category?: Category;

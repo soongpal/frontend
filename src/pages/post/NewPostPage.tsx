@@ -7,7 +7,7 @@ import { useState } from "react";
 import MultiImageUploader from "../../components/post/MultiImageUploader";
 import { type Category } from "../../types/product";
 //api
-import { createProduct } from "../../sevices/productService"
+import { createProduct } from "../../api/productAPI"
 //style
 import '../../styles/NewPost.css'
 

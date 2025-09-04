@@ -8,7 +8,7 @@ import type { Product } from "../../types/product";
 import ProductList from "../../components/product/ProductList";
 import GoMypage from "../../components/common/GoMypage";
 //api
-import { myPost } from "../../sevices/userService";
+import { myPost } from "../../api/userAPI";
 
 
 const MyPostPage: React.FC = () =>{

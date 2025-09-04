@@ -10,7 +10,7 @@ import "../../styles/ProductDetailPage.css"
 //store
 import  useProductStore from "../../stores/productStore";
 //api
-import { getProductDetail } from "../../sevices/productService"
+import { getProductDetail } from "../../api/productAPI"
 //util
 import { timeAgo } from "../../utils/time";
 //type

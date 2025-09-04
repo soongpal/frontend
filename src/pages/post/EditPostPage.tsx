@@ -8,7 +8,7 @@ import type { Category, Status } from "../../types/product";
 //component
 import MultiImageUploader from "../../components/post/MultiImageUploader";
 //api
-import { eidtProduct, getProductDetail } from "../../sevices/productService";
+import { eidtProduct, getProductDetail } from "../../api/productAPI";
 
 
 const EditPostPage: React.FC = () => {
