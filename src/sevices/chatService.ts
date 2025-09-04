@@ -34,7 +34,7 @@ export const createChatRoom = async() =>{
 export const leaveChatRoom = async(roomId: number) =>{
     try {
         const res = await api.post(
-            `/api/chat/rooms/{roomId}/leave`,
+            `/api/chat/rooms/${roomId}/leave`,
         );
         return res.data;
   } catch (error) {
@@ -48,7 +48,7 @@ export const leaveChatRoom = async(roomId: number) =>{
 export const joinChatRoom = async(roomId: number) =>{
     try {
         const res = await api.post(
-            `/api/chat/rooms/{roomId}/join`,
+            `/api/chat/rooms/${roomId}/join`,
         );
         return res.data;
   } catch (error) {
@@ -62,7 +62,7 @@ export const joinChatRoom = async(roomId: number) =>{
 export const getChatList = async(roomId: number) =>{
     try {
         const res = await api.get(
-            `/api/chat/rooms/{roomId}`,
+            `/api/chat/rooms/${roomId}`,
         );
         return res.data;
   } catch (error) {
@@ -76,7 +76,7 @@ export const getChatList = async(roomId: number) =>{
 export const deleteChatRoom = async(roomId: number) =>{
     try {
         const res = await api.delete(
-            `/api/chat/rooms/{roomId}`,
+            `/api/chat/rooms/${roomId}`,
         );
         return res.data;
   } catch (error) {
