@@ -1,7 +1,6 @@
 //채팅관련 api
 import api from './api';
 import {type ChatRoom, type ChatMessage} from "../types/chat";
-import { type Status } from '../types/product';
 
 //채팅방 목록 조회
 export const getChatRoomList = async() =>{
