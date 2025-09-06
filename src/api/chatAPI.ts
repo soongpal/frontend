@@ -1,6 +1,7 @@
 //채팅관련 api
 import api from './api';
 import {type ChatRoom, type ChatMessage} from "../types/chat";
+import { type Status } from '../types/product';
 
 //채팅방 목록 조회
 export const getChatRoomList = async() =>{
@@ -8,7 +9,7 @@ export const getChatRoomList = async() =>{
         const res = await api.get(
             `/api/chat/rooms`,
         );
-        return res.data as ChatRoom;
+        return res.data.result as ChatRoom;
   } catch (error) {
     console.error('채팅목록 불러오기 실패:', error);
     throw error;
@@ -16,7 +17,7 @@ export const getChatRoomList = async() =>{
 }
 
 //채팅방 생성
-export const createChatRoom = async() =>{
+export const createChatRoom = async(params:{ name: string, type: }) =>{
     try {
         const res = await api.post(
             `/api/chat/rooms`,
@@ -81,14 +82,13 @@ export const deleteChatRoom = async(roomId: number) =>{
 }
 
 //채팅 메세지 조회
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!파라미터 추가!!!!!!!!!!!!!!!!!!
-export const getChatMessages = async(params:{roomId: number,}) =>{
+export const getChatMessages = async(params:{roomId: number, page: number}) =>{
     try {
         const res = await api.get(
             `/api/chat/messages`,
             {params}
         );
-        return res.data as ChatMessage;
+        return res.data.result as ChatMessage;
   } catch (error) {
     console.error('채팅 메세지 조회:', error);
     throw error;
