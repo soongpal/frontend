@@ -57,7 +57,7 @@ export const joinChatRoom = async(roomId: number) =>{
 }
 
 //채팅방 조회
-export const getChatList = async(roomId: number) =>{
+export const getChatRoom = async(roomId: number) =>{
     try {
         const res = await api.get(
             `/api/chat/rooms/${roomId}`,
