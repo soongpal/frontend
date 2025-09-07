@@ -22,12 +22,10 @@ export interface ChatRoom {
   createdAt?: string;  //생성 시각
 
   updatedAt?: string;  //수정 시각
-
-
   
 }
 
-//메세지(roomId와 senderId전송)
+//메세지(roomId와 senderId, content전송)
 export interface ChatMessage {
 
   roomId: number; //채팅방 Id
@@ -39,6 +37,6 @@ export interface ChatMessage {
   content: string;  //메세지 내용
 
   createdAt?: string;  //전송시각
-  
+
 }
 
