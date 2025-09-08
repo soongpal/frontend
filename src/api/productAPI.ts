@@ -12,7 +12,7 @@ export const getProductList = async (params: {
   page: number;
 }) => {
     try{
-        const res = await axios.get(`${BASE_URL}/api/board`, { params });
+        const res = await api.get(`${BASE_URL}/api/board`, { params });
         const { boards, currentPage, totalPages } = res.data.result;
   
         return {
@@ -32,7 +32,7 @@ export const getProductList = async (params: {
 // 상세 조회
 export const getProductDetail = async (id: number) => {
     try{
-        const res = await axios.get(`${BASE_URL}/api/board/${id}`);
+        const res = await api.get(`${BASE_URL}/api/board/${id}`);
         return res.data.result as Product;
     } 
     catch(err){
@@ -114,7 +114,7 @@ export const deleteProduct = async (id: number) => {
 // 개별 좋아요 개수 조회
 export const productLikeCount = async (id: number) => {
     try{
-        const res = await axios.get(`${BASE_URL}/api/board/${id}/like`);
+        const res = await api.get(`${BASE_URL}/api/board/${id}/like`);
         return res.data as { likeCount: number };
     }
     catch(err){
