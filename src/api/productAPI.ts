@@ -2,8 +2,6 @@
 import api, { BASE_URL } from "./api";
 import { type Product, type Category, type Status } from "../types/product";
 
-import axios from 'axios';
-
 // 목록 조회 (필터링 포함)
 export const getProductList = async (params: {
   category?: Category;
