@@ -10,11 +10,16 @@ import { type Category } from "../../types/product";
 import { createProduct } from "../../api/productAPI"
 //style
 import '../../styles/NewPost.css'
+import Loading from "../../components/common/Loading";
 
 
 
 const NewPostPage:React.FC = () =>{
 
+    //로딩
+    const [isLoading, setIsLoading] = useState(false);
+
+    //전송 목록
     const [title, setTitle] = useState<string>("");
     const [content, setContent] = useState<string>("");
     const [price, setPrice] = useState<number>(0);
@@ -70,28 +75,38 @@ const NewPostPage:React.FC = () =>{
 
         //서버 전송
         try {
+            setIsLoading(true);
             const newProduct = await createProduct(formData); 
             console.log('상품 등록 성공:', newProduct);
             alert('상품이 성공적으로 등록되었습니다.');
             window.location.href = "/";
-        } catch (err) {
+        } 
+        catch (err) {
             console.error('상품 등록 실패:', err);
-            alert('상품 등록에 실패했습니다.');
+            alert('올바르지 않은 이미지 형식입니다.');
             window.location.href = "/";
         }
+        finally {
+            setIsLoading(false);
+        }
     };
+
+if(isLoading){
+    return(<Loading/>);
+}
 
 
 return(
     <div className="container">
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="image-uploader" className="post-label">사진</label>
+                    <label htmlFor="image-uploader" className="post-label">*사진</label>
                     <MultiImageUploader onFilesChange={handleImagesChange} />
+                    <p style={{ color: 'var(--soongpal-color)' }}>*JPG, JEPG, PNG 형식</p>
                 </div>
                 
                 <div>
-                    <label htmlFor="title" className="post-label">제목</label>
+                    <label htmlFor="title" className="post-label">*제목</label>
                     <input
                         id="title"
                         type="text"
@@ -106,7 +121,7 @@ return(
                 </div>
                 
                 <div>
-                    <label htmlFor="content" className="post-label">설명</label>
+                    <label htmlFor="content" className="post-label">*설명</label>
                     <textarea
                         id="content"
                         name="content"
@@ -119,7 +134,7 @@ return(
                 </div>
                 
                 <div>
-                    <label htmlFor="price" className="post-label">가격</label>
+                    <label htmlFor="price" className="post-label">*가격</label>
                     <input
                         id="price"
                         type="number"
@@ -133,7 +148,7 @@ return(
                 </div>
 
                 <div>
-                    <label className="post-label">카테고리</label>
+                    <label className="post-label">*카테고리</label>
                     <div className="category-group">
                         <label className="post-label">
                             <input
@@ -172,7 +187,7 @@ return(
                 </div>
                 
                 <div>
-                    <label htmlFor="location" className="post-label">거래 장소</label>
+                    <label htmlFor="location" className="post-label">*거래 장소</label>
                     <input
                         id="location"
                         type="text"
