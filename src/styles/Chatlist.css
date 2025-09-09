@@ -8,7 +8,6 @@
 
 .chatroom-container:hover{
     background-color: var(--light-grey-color);
-    
 }
 
 .chatroom-name{
@@ -29,6 +28,9 @@
     font-weight: 500;
     font-size: medium;
 
+    display: flex;
+    justify-content: start;
+
 }
 
 .chatroom-update{
@@ -40,4 +42,6 @@
 .first-row{
     display: flex;
     justify-content: space-between;
+
+    margin-bottom: 1rem;
 }
