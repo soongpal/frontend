@@ -8,6 +8,7 @@ const ChatList = ({chatRoom}: ChatListProps) =>{
 
     return(
         <div>
+
             <p>{chatRoom.name}</p>
             <p>{chatRoom.productTitle}</p>
             <p>{chatRoom.lastMessage}</p>

@@ -1,4 +1,4 @@
-import { type Category } from "./product";
+export type ChatType = "PRIVATE" | "GROUP";
 
 //채팅방(name과 type전송)
 export interface ChatRoom {
@@ -9,7 +9,7 @@ export interface ChatRoom {
 
   productTitle: string; //상품 제목
 
-  type: Category; //채팅방 유형
+  type: ChatType; //채팅방 유형
 
   userCount: number; //참여자 수
 
