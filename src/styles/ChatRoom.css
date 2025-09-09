@@ -62,14 +62,14 @@
     max-width:50%;
 }
 
-.message-my{
+.my{
     background: #ffffff;
     color: rgb(0, 0, 0);
     align-self: flex-end;
 
 }
 
-.message-other{
+.other{
     background: var(--soongpal-color);
     color: white;
     align-self: flex-start;

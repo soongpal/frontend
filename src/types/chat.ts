@@ -34,11 +34,21 @@ export interface ChatMessage {
 
   senderId: number; //보낸사람 Id
 
-  senderName?: string; //보낸사람 이름
+  senderName: string; //보낸사람 이름
 
   content: string;  //메세지 내용
 
-  createdAt?: string;  //전송시각
+  createdAt: string;  //전송시각
+
+}
+
+export interface SendChat {
+
+  roomId: number; //채팅방 Id
+
+  senderId: number; //보낸사람 Id
+
+  content: string;  //메세지 내용
 
 }
 
