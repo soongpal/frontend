@@ -2,15 +2,13 @@
 
 import type React from "react";
 import { useNavigate } from "react-router-dom";
-import type { UserInfo } from "../../types/user";
 
 //style
 import { ArrowRight, ChatDots, Gear, Heart, Megaphone, PencilSquare } from "react-bootstrap-icons";
 import '../../styles/Mypage.css'
-import { useEffect, useState } from "react";
 
 //api
-import { logout, myInfo } from "../../api/userAPI";
+import { logout } from "../../api/userAPI";
 
 //store
 import { useAuthStore } from "../../stores/UserStore";
@@ -20,22 +18,8 @@ const MyPage: React.FC = () =>{
     const navigate = useNavigate();
 
     //유저 정보 불러오기
-    const [user, setUser] = useState<UserInfo | null>(null);
+    const { user } = useAuthStore();
     const isLogin = !!user; 
-
-    useEffect(() => {
-        const fetchUserInfo = async () => {
-            try {
-                const info = await myInfo();
-                setUser(info); 
-            } catch (error) {
-                console.error('유저 정보 불러오기 실패:', error);
-                setUser(null);
-            }
-        };
-
-        fetchUserInfo(); 
-    }, []); 
 
     //로그아웃 함수
     const clearAuth = useAuthStore((state) => state.clear);
