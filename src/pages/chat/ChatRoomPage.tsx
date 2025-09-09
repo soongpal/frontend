@@ -2,10 +2,10 @@
 
 import type React from "react";
 
-const ChatRoomPage: React.FC = () =>{
+const ChatPage: React.FC = () =>{
     return(
         <div>채팅방 페이지</div>
     )
 }
 
-export default ChatRoomPage;
+export default ChatPage;
