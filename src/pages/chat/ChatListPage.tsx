@@ -1,6 +1,5 @@
 //채팅 목록 페이지
 import type React from "react";
-import GoMypage from "../../components/common/GoMypage";
 import { useState, useEffect } from "react";
 
 //api
@@ -42,7 +41,11 @@ const ChatListPage: React.FC = () =>{
 
     return(
         <div>
-            <GoMypage/>
+           <h3 className="text-start mt-3 mb-3 align-items-center d-flex">
+                <b>채팅 목록</b>
+            </h3>
+
+            {/* 나중에 필터 추가? */}
             {rooms.map((room) => (
                         <ChatList key={room.id} chatRoom={room} />
             ))}
