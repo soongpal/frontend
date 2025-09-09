@@ -16,6 +16,7 @@ import { timeAgo } from "../../utils/time";
 //type
 import type { Product } from "../../types/product";
 import { useAuthStore } from "../../stores/UserStore";
+import Loading from "../../components/common/Loading";
 
 const ProductDetailPage: React.FC = () => {
 
@@ -46,7 +47,7 @@ const ProductDetailPage: React.FC = () => {
     if (!product) {
         return (
             <div className="container d-flex justify-content-center align-items-center">
-                <p>로딩 중...</p>
+                <Loading></Loading>
             </div>
         );
     }
@@ -77,6 +78,15 @@ const ProductDetailPage: React.FC = () => {
             navigate('/auth/login');
       }
       };
+
+    //대화하기 버튼 함수
+    const handleChatClick = () =>{
+
+        if(isLogin){
+            //
+        }
+
+    }
 
     // 로딩 성공
     return (
@@ -118,7 +128,9 @@ const ProductDetailPage: React.FC = () => {
                     >
                         {product.liked ? <HeartFill color="red"></HeartFill> : <Heart color="gray"></Heart>}
                     </button>
-                    <button className="round-button"><ChatDots className="me-2"/>대화하기</button>
+                    <button className="round-button" onClick={handleChatClick}>
+                        <ChatDots className="me-2"/>대화하기
+                    </button>
                 </div>
             </div>
 

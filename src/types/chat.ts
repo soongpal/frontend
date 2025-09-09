@@ -3,25 +3,27 @@ import { type Category } from "./product";
 //채팅방(name과 type전송)
 export interface ChatRoom {
 
-  id?: number;   //채팅방 아이디
+  id: number;   //채팅방 아이디
 
   name: string;   //채팅방 제목
 
+  productTitle: string; //상품 제목
+
   type: Category; //채팅방 유형
 
-  userCount?: number; //참여자 수
+  userCount: number; //참여자 수
 
-  users?:{
+  users:{
     userID: number;
     userName: string;
     profileImage: null;
   }[];  //참여자 정보 배열
 
-  lastMessage?: string | null;  //마지막 메세지
+  lastMessage: string | null;  //마지막 메세지
 
-  createdAt?: string;  //생성 시각
+  createdAt: string;  //생성 시각
 
-  updatedAt?: string;  //수정 시각
+  updatedAt: string;  //수정 시각
   
 }
 
