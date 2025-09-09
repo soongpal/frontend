@@ -3,6 +3,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    cursor: pointer;
+}
+
+.chatroom-container:hover{
+    background-color: var(--light-grey-color);
+    
 }
 
 .chatroom-name{
