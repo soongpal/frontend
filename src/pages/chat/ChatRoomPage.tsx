@@ -96,7 +96,8 @@ const ChatRoomPage: React.FC = () =>{
     useEffect(() => {
         if (!roomId || !user) return;
 
-        const socket = new SockJS("ws://localhost:비밀/ws/chat");
+        const socket = new SockJS(import.meta.env.VITE_WS_URL);
+
         const stompClient = new Client({
         webSocketFactory: () => socket,
         reconnectDelay: 5000,
@@ -152,7 +153,7 @@ const ChatRoomPage: React.FC = () =>{
     //맨 아래로 스크롤
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-        };
+    };
 
     // 메시지 전송 
     const [input, setInput] = useState("");
