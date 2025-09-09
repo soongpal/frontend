@@ -1,0 +1,37 @@
+.chatroom-container{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.chatroom-name{
+    color: black;
+    font-weight: 500;
+    font-size: medium;
+}
+
+.chatroom-product{
+    color: black;
+    font-weight: 500;
+    font-size: medium;
+
+}
+
+.chatroom-message{
+    color: var(--light-grey-hover-color);
+    font-weight: 500;
+    font-size: medium;
+
+}
+
+.chatroom-update{
+    color: var(--light-grey-hover-color);
+    font-weight: 400;
+    font-size: small;
+}
+
+.first-row{
+    display: flex;
+    justify-content: space-between;
+}

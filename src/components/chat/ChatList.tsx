@@ -1,4 +1,5 @@
-import {type ChatRoom} from "../../types/chat"
+import {type ChatRoom} from "../../types/chat";
+import "../../styles/Chatlist.css";
 
 interface ChatListProps {
   chatRoom: ChatRoom;
@@ -6,14 +7,25 @@ interface ChatListProps {
 
 const ChatList = ({chatRoom}: ChatListProps) =>{
 
+    if(chatRoom.type=="GROUP"){
+        return(
+            <div className="chatroom-container">
+                <div className="first-row">
+                    <p className="chatroom-name">{chatRoom.productTitle}</p>
+                    <p className="chatroom-update">{chatRoom.updatedAt}</p>
+                </div>
+                <p className="chatroom-message">{chatRoom.lastMessage}</p>
+            </div>
+        )
+    }
+
     return(
-        <div>
-
-            <p>{chatRoom.name}</p>
-            <p>{chatRoom.productTitle}</p>
-            <p>{chatRoom.lastMessage}</p>
-            <p>{chatRoom.updatedAt}</p>
-
+        <div className="chatroom-container">
+            <div>
+                <p className="chatroom-name">{chatRoom.name}</p>
+                <p className="chatroom-update">{chatRoom.updatedAt}</p>
+            </div>
+            <p className="chatroom-message">{chatRoom.lastMessage}</p>
         </div>
     )
 }

@@ -2,10 +2,13 @@
 import type React from "react";
 import GoMypage from "../../components/common/GoMypage";
 import { useState, useEffect } from "react";
+
 //api
 import { getChatRoomList } from "../../api/chatAPI";
+
 //type
 import type { ChatRoom } from "../../types/chat";
+
 //component
 import ChatList from "../../components/chat/ChatList";
 
