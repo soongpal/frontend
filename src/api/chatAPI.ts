@@ -17,11 +17,11 @@ export const getChatRoomList = async() =>{
 }
 
 //채팅방 생성
-export const createChatRoom = async(params:{ boardId: Product }) =>{
+export const createChatRoom = async(params:{ boardId: number }) =>{
     try {
         const res = await api.post(
             `/api/chat/rooms`,
-            {params}
+            params
         );
         return res.data as ChatRoom;
   } catch (error) {

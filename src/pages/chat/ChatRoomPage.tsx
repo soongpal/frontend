@@ -117,7 +117,7 @@ const ChatRoomPage: React.FC = () => {
             );
         };
 
-        stompClient.activate();
+        stompClient.activate();     //connect요청 
 
         return () => {
             subscriptionRef.current?.unsubscribe();
@@ -173,7 +173,7 @@ const ChatRoomPage: React.FC = () => {
         try {
             await leaveChatRoom(roomId);
             stompRef.current.deactivate();
-            navigate("/chat-list");
+            navigate("/chatlist");
         } catch (err) {
             console.error("방 나가기 실패:", err);
         }

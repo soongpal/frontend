@@ -17,6 +17,7 @@ import { timeAgo } from "../../utils/time";
 import type { Product } from "../../types/product";
 import { useAuthStore } from "../../stores/UserStore";
 import Loading from "../../components/common/Loading";
+import { createChatRoom, joinChatRoom } from "../../api/chatAPI";
 
 const ProductDetailPage: React.FC = () => {
 
@@ -80,22 +81,51 @@ const ProductDetailPage: React.FC = () => {
       };
 
     //대화하기 버튼 함수
-    const handleChatClick = () =>{
+    const handleChatClick = async () =>{
 
-        if(isLogin){
-            //1. 중고거래인 경우
-            //- 채팅방 참가 요청
-            //없음(404) : 생성 요청, 채팅방 참가 요청-> 채팅방 목록으로 이동-> 채팅방 목록 조회 + 채팅메세지 조회
-            //참가 성공(200) : 채팅방 목록으로 이동 -> 채팅방 목록 조회 + 채팅 메세지 조회
-            //이미 참가(409) : 채팅방조회 정보로 채팅방 입장 + 채팅방 메세지 조회
-            //메세지 전송
-
-            //2. 공동구매인 경우
-            //productId로 참가 요청
-            //이미 참가한 채팅인 경우(응답 409): 채팅방 조회 + 채팅방 메세지 조회
-            //참가 성공(응답 200): -> chatlist페이지로 이동-> chatlist조회-> 채팅방 메세지 조회 
+        //로그인 안된경우
+        if (!isLogin) {
+            alert("로그인 후 이용 가능합니다");
+            navigate('/auth/login');
+            return;
         }
 
+        //로그인 한 경우
+        try {
+        // 1. 참가 시도
+            const joinRes = await joinChatRoom(product.id); 
+            // 참가 성공
+            navigate(`/chatroom/${joinRes.roomId}`);
+        } catch (err: any) {
+            // 404: 채팅방 없음 → 생성 후 참가
+            if (err.response?.status === 404) {
+                const status = err.response?.status;
+
+            if (status === 404) {
+            // 방 없음 → 생성 후 참가
+                try {
+                    const newRoom = await createChatRoom({ boardId: product.id });
+                    await joinChatRoom(newRoom.id);
+                    navigate(`/chatroom/${newRoom.id}`);
+                } catch (createErr) {
+                    console.error("채팅방 생성/참가 실패:", createErr);
+                    alert("채팅방을 생성할 수 없습니다.");
+                }
+            } else if (status === 409) {
+            // 이미 존재 → 그냥 참가
+                try {
+                    const joinRes = await joinChatRoom(product.id);
+                    navigate(`/chatroom/${joinRes.roomId}`);
+                } catch (joinErr) {
+                    console.error("채팅방 참가 실패:", joinErr);
+                    alert("채팅방에 참가할 수 없습니다.");
+                }
+            } else {
+                console.error("채팅방 참가 실패:", err);
+                alert("채팅방에 참가할 수 없습니다.");
+            }
+        }
+    }
     }
 
     // 로딩 성공
