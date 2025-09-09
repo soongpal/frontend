@@ -1,0 +1,71 @@
+.chatroom-container{
+    flex: 1;             
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; 
+}
+
+.chatroom-nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+
+    background: white;
+
+    border-bottom: 1px solid var(--light-grey-hover-color);
+}
+
+.chatroom-title{
+    color: black;
+    font-size: 16px;
+}
+
+.message-container{
+    flex: 1; /* 중간 영역을 전부 채움 */
+    overflow-y: auto; /* 스크롤 가능 */
+    padding: 12px;
+    background: var(--light-grey-color);
+}
+
+.chatroom-input{
+    flex-shrink: 0; /* 줄어들지 않음 */
+    display: flex;
+    padding: 8px;
+    border-top: 1px solid #ddd;
+    background: #fff;
+}
+
+.chatroom-input input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+}
+
+.chatroom-input button {
+    margin-left: 8px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    background: #4f93ff;
+    color: white;
+    cursor: pointer;
+}
+
+.message-my{
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+    align-self: flex-end;
+
+}
+
+.message-other{
+    background: var(--soongpal-color);
+    color: white;
+    align-self: flex-start;
+}
