@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 //type
-import type { ChatRoom } from "../../types/chat";
+import { type ChatMessage, type ChatRoom } from "../../types/chat";
 
 //api
-import { getChatRoom } from "../../api/chatAPI";
+import { getChatMessages, getChatRoom } from "../../api/chatAPI";
 
 //component
 import Loading from "../../components/common/Loading";
@@ -25,6 +25,7 @@ const ChatRoomPage: React.FC = () =>{
 
     const [room, setRoom] = useState<ChatRoom | null>(null);
     const [loading, setLoading] = useState(true);
+    const [messages, setMessages] = useState< ChatMessage[] | null >(null);
 
     //채팅방 정보 불러오기(상단 네비바 용도)
     useEffect(() => {
@@ -43,7 +44,16 @@ const ChatRoomPage: React.FC = () =>{
 
         fetchRoom();
     }, [chatRoomId]);
-    
+
+    //이전 채팅 불러오기
+    useEffect(() => {
+        async function fetchMessages() {
+            const data = await getChatMessages(chatRoomId); // API 호출
+            setMessages(data.messages); // useState에 저장
+        }
+        fetchMessages();
+    }, [chatRoomId]);
+        
     //로딩중
     if(loading)
     {
@@ -61,7 +71,7 @@ const ChatRoomPage: React.FC = () =>{
     }
 
     //chatlist클릭시
-
+    
     return(
 
         <div className="chatroom-container">
@@ -72,7 +82,11 @@ const ChatRoomPage: React.FC = () =>{
 
             {/* 채팅 메세지 화면 */}
             <div className="message-container">
-
+                {messages.map(msg => (
+                    <div key={msg.id} className={msg.senderId === me ? 'message-my' : 'message-other'}>
+                    {msg.content}
+                    </div>
+                ))}
             </div>
 
             {/* 채팅 입력창 */}

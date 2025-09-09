@@ -57,6 +57,11 @@
     cursor: pointer;
 }
 
+.message{
+    border-radius: 12px;
+    max-width:50%;
+}
+
 .message-my{
     background: #ffffff;
     color: rgb(0, 0, 0);
