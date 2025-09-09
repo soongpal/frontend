@@ -11,6 +11,9 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAuthStore } from "../stores/UserStore";
 import { useProductStore } from '../stores/productStore';
 
+//api
+import { myInfo } from "../api/userAPI";
+
 const Home: React.FC = () =>{
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
@@ -30,6 +33,22 @@ const Home: React.FC = () =>{
             navigate(window.location.pathname, { replace: true, state: {} });
         }
     }, [searchParams, navigate, setAccessToken]);
+
+    //유저 정보 설정
+    const { setUser } = useAuthStore();
+    useEffect(() => {
+            const fetchUserInfo = async () => {
+                try {
+                const info = await myInfo();
+                setUser(info); // store에 저장
+                } catch (error) {
+                console.error('유저 정보 불러오기 실패:', error);
+                setUser(null);
+                }
+            };
+    
+      fetchUserInfo();
+    }, []);
 
     //product store사용할것들
     const { products, setFilter, fetchProducts } = useProductStore();
