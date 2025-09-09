@@ -1,7 +1,7 @@
 //채팅관련 api
 import api from './api';
 import {type ChatRoom, type ChatMessage} from "../types/chat";
-import type { Category } from '../types/product';
+import type { Product } from '../types/product';
 
 //채팅방 목록 조회
 export const getChatRoomList = async() =>{
@@ -17,7 +17,7 @@ export const getChatRoomList = async() =>{
 }
 
 //채팅방 생성
-export const createChatRoom = async(params:{ name: string, type: Category}) =>{
+export const createChatRoom = async(params:{ boardId: Product }) =>{
     try {
         const res = await api.post(
             `/api/chat/rooms`,
@@ -31,10 +31,10 @@ export const createChatRoom = async(params:{ name: string, type: Category}) =>{
 }
 
 //채팅방 나가기
-export const leaveChatRoom = async(roomId: number) =>{
+export const leaveChatRoom = async(id: number) =>{
     try {
         const res = await api.delete(
-            `/api/chat/rooms/${roomId}/leave`,
+            `/api/chat/rooms/${id}/leave`,
         );
         return res.data;
   } catch (error) {
@@ -44,10 +44,10 @@ export const leaveChatRoom = async(roomId: number) =>{
 }
 
 //채팅방 참가
-export const joinChatRoom = async(roomId: number) =>{
+export const joinChatRoom = async(id: number) =>{
     try {
         const res = await api.post(
-            `/api/chat/rooms/${roomId}/join`,
+            `/api/chat/rooms/${id}/join`,
         );
         return res.data;
   } catch (error) {
@@ -57,10 +57,10 @@ export const joinChatRoom = async(roomId: number) =>{
 }
 
 //채팅방 조회
-export const getChatRoom = async(roomId: number) =>{
+export const getChatRoom = async(id: number) =>{
     try {
         const res = await api.get(
-            `/api/chat/rooms/${roomId}`,
+            `/api/chat/rooms/${id}`,
         );
         return res.data as ChatRoom;
   } catch (error) {
@@ -70,10 +70,10 @@ export const getChatRoom = async(roomId: number) =>{
 }
 
 //채팅방 삭제
-export const deleteChatRoom = async(roomId: number) =>{
+export const deleteChatRoom = async(id: number) =>{
     try {
         const res = await api.delete(
-            `/api/chat/rooms/${roomId}`,
+            `/api/chat/rooms/${id}`,
         );
         return res.data;
   } catch (error) {
@@ -83,7 +83,7 @@ export const deleteChatRoom = async(roomId: number) =>{
 }
 
 //채팅 메세지 조회
-export const getChatMessages = async(params:{roomId: number, page: number}) =>{
+export const getChatMessages = async(params:{id: number, page: number}) =>{
   try {
     const res = await api.get(
       `/api/chat/messages`,
