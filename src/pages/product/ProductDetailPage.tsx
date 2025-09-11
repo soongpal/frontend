@@ -82,8 +82,6 @@ const ProductDetailPage: React.FC = () => {
 
     //대화하기 버튼 함수
     const handleChatClick = async () =>{
-        console.log("📦 product 객체:", product);
-        console.log("🆔 product.id:", product?.id);
 
         //로그인 안된경우
         if (!isLogin) {
@@ -105,6 +103,9 @@ const ProductDetailPage: React.FC = () => {
             if (status === 400) {
                 // 2. 404: 채팅방 없음 → 생성 후 참가
                 try {
+                    
+                    console.log("🚀 createChatRoom 호출, boardId:", product.id, typeof product.id);
+
                 const newRoom = await createChatRoom(product.id);
                 await joinChatRoom(newRoom.id);
                 navigate(`/chatroom/${newRoom.id}`);

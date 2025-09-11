@@ -18,6 +18,7 @@ export const getChatRoomList = async() =>{
 //채팅방 생성
 export const createChatRoom = async( boardId: number) =>{
     try {
+        console.log("📤 요청 바디:", boardId);
         const res = await api.post(
             `/api/chat/rooms`,
             {boardId}
