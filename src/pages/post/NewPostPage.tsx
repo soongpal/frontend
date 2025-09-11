@@ -16,6 +16,25 @@ import Loading from "../../components/common/Loading";
 
 const NewPostPage:React.FC = () =>{
 
+    function showLog(message: string) {
+    let logEl = document.getElementById('mobile-log');
+    if (!logEl) {
+        logEl = document.createElement('pre');
+        logEl.id = 'mobile-log';
+        logEl.style.position = 'fixed';
+        logEl.style.bottom = '0';
+        logEl.style.left = '0';
+        logEl.style.width = '100%';
+        logEl.style.maxHeight = '200px';
+        logEl.style.overflow = 'auto';
+        logEl.style.backgroundColor = 'rgba(0,0,0,0.7)';
+        logEl.style.color = 'white';
+        logEl.style.zIndex = '9999';
+        document.body.appendChild(logEl);
+    }
+    logEl.textContent += message + '\n';
+}
+
     //로딩
     const [isLoading, setIsLoading] = useState(false);
 
@@ -64,7 +83,7 @@ const NewPostPage:React.FC = () =>{
         //board 추가
         const boardBlob = new Blob([JSON.stringify(board)], { type: 'application/json' });
         formData.append('board', boardBlob);
-        
+
         //이미지 추가(있을때만 추가)
         if (images && images.length > 0) {
             for (const image of Array.from(images)) {
@@ -81,6 +100,7 @@ const NewPostPage:React.FC = () =>{
         } 
         catch (err) {
             console.error('상품 등록 실패:', err);
+            showLog('에러 발생: ' + err);
             alert('상품 등록 실패');
             window.location.href = "/";
         }
