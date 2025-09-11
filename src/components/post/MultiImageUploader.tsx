@@ -28,15 +28,15 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
         const newFiles = Array.from(files);
 
         // 허용 파일 확장자 검사
-        const allowedExtensions = ['jpg', 'jpeg', 'png', 'heic']; //heic형식 추가(사파리용)
+        const allowedExtensions = ['jpg', 'jpeg', 'png', 'heic', 'heif ']; //heic, heif형식 추가(사파리용)
         const validFiles: File[] = [];
 
         for (const file of newFiles) {
             const ext = file.name.split(".").pop()?.toLowerCase();
             if (!ext || !allowedExtensions.includes(ext)) continue;
 
-            if (ext === "heic") {
-                // HEIC 파일을 JPEG로 변환
+            if (ext === "heic" || ext === "heif" || ext === "heix" ) {
+                // 고용량 사진 JPEG로 변환
                 try {
                 const convertedBlob = await heic2any({
                     blob: file,
@@ -44,12 +44,13 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
                     quality: 0.9
                 }) as Blob;
 
-                const convertedFile = new File([convertedBlob], file.name.replace(/\.heic$/i, ".jpg"), {
-                    type: "image/jpeg"
-                });
-                validFiles.push(convertedFile); //heic파일 validate파일에 추가
+                const convertedFile = new File(
+                    [convertedBlob], file.name.replace(/\.heic|heif|heix$/i, ".jpg"), 
+                    {type: "image/jpeg"}
+                );
+                validFiles.push(convertedFile); //변환파일 validate파일에 추가
                 } catch (error) {
-                console.error("HEIC 변환 실패:", error);
+                console.error("사진 확장자 변환 실패:", error);
                 }
             } else {
                 validFiles.push(file);
