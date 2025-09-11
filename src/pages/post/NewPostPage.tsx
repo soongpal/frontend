@@ -43,11 +43,6 @@ const NewPostPage:React.FC = () =>{
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // 페이지 새로고침 방지
 
-        if (!images || images.length === 0) {
-            alert('이미지를 선택해 주세요.');
-            return;
-        }
-
         if (!category) {
             alert('카테고리를 선택해 주세요.');
             return;
@@ -69,11 +64,12 @@ const NewPostPage:React.FC = () =>{
         //board 추가
         const boardBlob = new Blob([JSON.stringify(board)], { type: 'application/json' });
         formData.append('board', boardBlob);
-        //이미지 추가
-        for (const image of Array.from(images)) {
-            formData.append('images', image);
+        //이미지 추가(있을때만 추가)
+        if (images && images.length > 0) {
+            for (const image of Array.from(images)) {
+                formData.append('images', image);
+            }
         }
-
         //서버 전송
         try {
             setIsLoading(true);
@@ -84,7 +80,7 @@ const NewPostPage:React.FC = () =>{
         } 
         catch (err) {
             console.error('상품 등록 실패:', err);
-            alert('올바르지 않은 이미지 형식입니다.');
+            alert('상품 등록 실패');
             window.location.href = "/";
         }
         finally {
@@ -101,7 +97,7 @@ return(
     <div className="container">
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="image-uploader" className="post-label">*사진</label>
+                    <label htmlFor="image-uploader" className="post-label">사진</label>
                     <MultiImageUploader uploadFiles={images}
                                         setUploadFiles={setImages}
                                         onFilesChange={handleImagesChange} 
