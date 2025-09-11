@@ -36,7 +36,7 @@ const SearchPage: React.FC = () =>{
             {products && products.length > 0 ? (
                 <ProductGrid products={products}></ProductGrid>
                 ):(
-                <div className="no-results">
+                <div className="d-flex justify-content-center align-items-center">
                     <h3>{search}에 대한 검색결과가 없습니다.</h3>
                     <ul>
                         <li>단어의 철자가 정확한지 확인해 보세요</li>
