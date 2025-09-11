@@ -90,7 +90,7 @@ const NewPostPage:React.FC = () =>{
             console.error('상품 등록 실패:', err);
             showLog(`에러 발생: ${err.message}`);
             alert('상품 등록 실패');
-            window.location.href = "/";
+            
         }
         finally {
             setIsLoading(false);
