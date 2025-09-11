@@ -45,7 +45,7 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
                 }) as Blob;
 
                 const convertedFile = new File(
-                    [convertedBlob], file.name.replace(/\.heic|heif|heix$/i, ".jpg"), 
+                    [convertedBlob], file.name.replace(/\.heic|heif|heix$/i, ".jpeg"), 
                     {type: "image/jpeg"}
                 );
                 validFiles.push(convertedFile); //변환파일 validate파일에 추가
