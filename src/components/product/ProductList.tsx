@@ -55,7 +55,7 @@ const ProductList : React.FC<ProductGridProps> = ({products}) =>{
             {products.map((product) => (
             <tr key={product.id}>
                 <td>
-                    <img key={product.images[0].id} src={product.images[0].imageUrl}  alt={product.title} className="product-img" />
+                    <img key={product.images?.[0]?.id ?? product.id} src={product.images?.[0]?.imageUrl ?? "/images/empty.png"}  alt={product.title} className="product-img" />
                 </td>
                 <td>{product.title}</td>
                 <td>{product.price}원</td>

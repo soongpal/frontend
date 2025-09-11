@@ -132,7 +132,7 @@ const ProductDetailPage: React.FC = () => {
         <div className="container d-flex flex-column justify-content-center">
             {/* 이미지영역 */}
             <div className="d-flex justify-content-center">
-                <img  key={product.images[0].id} src={product.images[0].imageUrl} alt={product.title} className="thumbnail-img"/>
+                <img  key={product.images?.[0]?.id ?? product.id} src={product.images?.[0]?.imageUrl ?? "/images/empty.png"} alt={product.title} className="thumbnail-img"/>
             </div>
 
             <div className="d-flex justify-content-between align-items-center my-3">
