@@ -4,20 +4,28 @@ import "../../styles/MultiImageUploader.css";
 import heic2any from "heic2any";
 
 interface MultiImageUploaderProps {
-  uploadFiles: File[];
-  setUploadFiles: React.Dispatch<React.SetStateAction<File[]>>;
-  onFilesChange: (files: FileList) => void;
+    uploadFiles: File[];
+    setUploadFiles: React.Dispatch<React.SetStateAction<File[]>>;
+    onFilesChange: (files: FileList) => void;
+    onLog?: (msg: string) => void;
 }
 
 const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({ 
     uploadFiles,
     setUploadFiles,
-    onFilesChange 
+    onFilesChange ,
+    onLog       ////////////////////////////////////////////
 }) => {
     const [previewFiles, setPreviewFiles] = useState<string[]>([]);// 프리뷰용
+    //로그
+    const log = (msg: string) => {
+        if (onLog) onLog(msg);
+        else console.log(msg);
+    };
 
     // 이미지 업로드 함수
     async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+
         const files = e.target.files;
 
         if (!files || files.length === 0) {
@@ -33,8 +41,10 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
 
         for (const file of newFiles) {
             const ext = file.name.split(".").pop()?.toLowerCase();
-            if (!ext || !allowedExtensions.includes(ext)) continue;
-
+            if (!ext || !allowedExtensions.includes(ext)){
+                log(`❌ 업로드 불가 확장자: ${file.name}`);
+                continue;
+            }
             if (file.type === "image/heic" || file.type === "image/heif" || file.type === "image/heix"){
                 // 고용량 사진 JPEG로 변환
                 try {
@@ -49,11 +59,14 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
                     {type: "image/jpeg"}
                 );
                 validFiles.push(convertedFile); //변환파일 validate파일에 추가
+                log(`🔄 HEIC 변환 완료 → ${convertedFile.name}, ${convertedFile.type}, ${(convertedFile.size / 1024).toFixed(2)} KB`);
                 } catch (error) {
                 console.error("사진 확장자 변환 실패:", error);
+                log(`⚠️ HEIC 변환 실패: ${file.name}`);
                 }
             } else {
                 validFiles.push(file);
+                log(`📄 업로드 파일: ${file.name}, ${file.type}, ${(file.size / 1024).toFixed(2)} KB`);
             }
         }
 
@@ -76,7 +89,7 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
         // 미리보기 생성
         const newPreviewFiles = validFiles.map((file) => URL.createObjectURL(file));
         setPreviewFiles((prev) => [...prev, ...newPreviewFiles]);
-    }
+        };
     
     // 이미지 삭제
     const deleteImage = (index: number) => {

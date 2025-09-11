@@ -19,7 +19,7 @@ const NewPostPage:React.FC = () =>{
     const [logs, setLogs] = useState<string[]>([]);
 
     // 로그 추가 함수
-    const showLog = (message: string) => {
+    const addLog  = (message: string) => {
         setLogs(prev => [...prev, message]);
     };
 
@@ -88,7 +88,7 @@ const NewPostPage:React.FC = () =>{
         } 
         catch (err: any) {
             console.error('상품 등록 실패:', err);
-            showLog(`에러 발생: ${err.message}`);
+            addLog (`에러 발생: ${err.message}`);
             alert('상품 등록 실패');
             
         }
@@ -110,6 +110,7 @@ return(
                     <MultiImageUploader uploadFiles={images}
                                         setUploadFiles={setImages}
                                         onFilesChange={handleImagesChange} 
+                                        onLog={addLog}
                     />
                     <p style={{ color: 'var(--soongpal-color)' }}>*JPG, JEPG, PNG 형식</p>
                 </div>
