@@ -134,7 +134,7 @@ const ProductDetailPage: React.FC = () => {
         } else {
         // 그 외
         console.error("채팅방 참가 실패:", serverMessage, err);
-        alert(채팅방 참가 실패);
+        alert("채팅방 참가 실패");
         }
     }
     };
