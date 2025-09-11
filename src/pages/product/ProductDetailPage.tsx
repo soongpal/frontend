@@ -103,7 +103,7 @@ const ProductDetailPage: React.FC = () => {
             if (status === 400) {
                 // 2. 404: 채팅방 없음 → 생성 후 참가
                 try {
-                const newRoom = await createChatRoom({ boardId: product.id });
+                const newRoom = await createChatRoom(product.id);
                 await joinChatRoom(newRoom.id);
                 navigate(`/chatroom/${newRoom.id}`);
                 } catch (createErr: any) {
