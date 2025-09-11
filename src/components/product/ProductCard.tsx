@@ -63,7 +63,7 @@ const ProductCard = ( { product }: ProductCardProps)=>{
           <Card.Img
             variant="top"
             key={product.images?.[0]?.id ?? product.id}
-            src={product.images?.[0]?.imageUrl ?? "/images/placeholder.png"}
+            src={product.images?.[0]?.imageUrl ?? "/images/empty.png"}
             className="product-card-img"
           />
           {product.status==='COMPLETED'&&<SoldoutTag />}
