@@ -124,6 +124,7 @@ const EditPostPage: React.FC = () => {
                                 setUploadFiles={setNewImages}
                                 onFilesChange={handleImagesChange} 
             />
+            <p style={{ color: 'var(--soongpal-color)' }}>*JPG, JEPG, PNG 형식</p>
         </div>
                 
                 <div style={{ marginBottom: '1rem' }}>
