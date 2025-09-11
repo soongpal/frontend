@@ -100,7 +100,7 @@ const ProductDetailPage: React.FC = () => {
             const status = err.response?.status;
             const serverMessage = err.response?.data || "알 수 없는 오류가 발생했습니다.";
 
-            if (status === 404) {
+            if (status === 400) {
                 // 2. 404: 채팅방 없음 → 생성 후 참가
                 try {
                 const newRoom = await createChatRoom({ boardId: product.id });
