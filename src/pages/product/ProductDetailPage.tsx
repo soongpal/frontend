@@ -110,7 +110,7 @@ const ProductDetailPage: React.FC = () => {
         } catch (createErr: any) {
             // 생성 실패 처리
             console.error("채팅방 생성 실패:", createErr.response?.data || createErr);
-            alert(createErr.response?.data || "채팅방을 생성할 수 없습니다.");
+            alert("채팅방을 생성할 수 없습니다.");
             return; // 생성 실패면 참가 시도 안 함
         }
 
@@ -120,7 +120,7 @@ const ProductDetailPage: React.FC = () => {
             navigate(`/chatroom/${joinRes.roomId}`);
         } catch (joinErr: any) {
             console.error("채팅방 참가 실패:", joinErr.response?.data || joinErr);
-            alert(joinErr.response?.data || "채팅방에 참가할 수 없습니다.");
+            alert("채팅방에 참가할 수 없습니다.");
         }
         } else if (status === 409) {
         // 3. 이미 존재 → 그냥 참가
@@ -129,12 +129,12 @@ const ProductDetailPage: React.FC = () => {
             navigate(`/chatroom/${joinRes.roomId}`);
         } catch (joinErr: any) {
             console.error("채팅방 참가 실패:", joinErr.response?.data || joinErr);
-            alert(joinErr.response?.data || "채팅방에 참가할 수 없습니다.");
+            alert("채팅방에 참가할 수 없습니다.");
         }
         } else {
         // 그 외
         console.error("채팅방 참가 실패:", serverMessage, err);
-        alert(serverMessage);
+        alert(채팅방 참가 실패);
         }
     }
     };
