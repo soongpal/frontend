@@ -26,11 +26,12 @@ const NewPostPage:React.FC = () =>{
     const [url, setUrl] = useState<string>("");
     const [location, setLocation] = useState<string>("");
     const [category, setCategory] = useState<Category | null>(null);
-    const [images, setImages] = useState<FileList | null>(null);
+    const [images, setImages] = useState<File[]>([]);
 
     //multy image uploader props전달용
-    const handleImagesChange = (files: FileList | null) => {
-        setImages(files); 
+    const handleImagesChange = (files: FileList) => {
+        const newFiles = Array.from(files);
+        setImages(newFiles);
     };
 
     const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,7 +102,10 @@ return(
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="image-uploader" className="post-label">*사진</label>
-                    <MultiImageUploader onFilesChange={handleImagesChange} />
+                    <MultiImageUploader uploadFiles={images}
+                                        setUploadFiles={setImages}
+                                        onFilesChange={handleImagesChange} 
+                    />
                     <p style={{ color: 'var(--soongpal-color)' }}>*JPG, JEPG, PNG 형식</p>
                 </div>
                 

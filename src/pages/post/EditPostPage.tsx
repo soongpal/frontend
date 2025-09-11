@@ -54,8 +54,9 @@ const EditPostPage: React.FC = () => {
     }, [postId]);
 
     //새로운 이미지 추가시 함수
-    const handleImagesChange = (files: FileList | null) => {
-        setNewImages(files ? Array.from(files) : []);
+    const handleImagesChange = (files: FileList) => {
+        const newFiles = Array.from(files);
+        setNewImages(newFiles);
     };
 
     //카테고리 변경시
@@ -118,8 +119,11 @@ const EditPostPage: React.FC = () => {
 
         {/* 새 이미지 업로드 */}
         <div>
-          <label htmlFor="image-uploader">새로운 이미지 추가</label>
-          <MultiImageUploader onFilesChange={handleImagesChange} />
+            <label htmlFor="image-uploader">새로운 이미지 추가</label>
+            <MultiImageUploader uploadFiles={newImages}
+                                setUploadFiles={setNewImages}
+                                onFilesChange={handleImagesChange} 
+            />
         </div>
                 
                 <div style={{ marginBottom: '1rem' }}>
