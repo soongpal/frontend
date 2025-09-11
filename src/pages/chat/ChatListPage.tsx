@@ -20,8 +20,8 @@ const ChatListPage: React.FC = () =>{
         async function fetchRooms() {
         try {
             const data = await getChatRoomList();
-
             setRooms(data);
+            console.error("채팅방 목록 불러오기 성공", data);
         } catch (err) {
             console.error("채팅방 목록 불러오기 실패", err);
         }
@@ -29,7 +29,7 @@ const ChatListPage: React.FC = () =>{
         fetchRooms();
     }, []);
 
-    if(rooms==null){
+    if(rooms == null){
         return(
             <div>
                 <p>진행중인 채팅이 없습니다. </p>
@@ -45,7 +45,7 @@ const ChatListPage: React.FC = () =>{
 
             {/* 나중에 필터 추가? */}
             {rooms.map((room) => (
-                        <ChatList key={room.id} chatRoom={room} />
+                <ChatList key={room.id} chatRoom={room} />
             ))}
         </div>
     )
