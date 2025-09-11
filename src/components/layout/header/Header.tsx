@@ -30,7 +30,7 @@ const Header : React.FC = () =>{
     const [search, setSearch] = useState(""); // 검색어
     const handleSearch = ()=>{
         setFilter({keyword: 'search', category: undefined, status: undefined});
-        navigate('product/search');
+        navigate(`product/search/${search}`);
     }
     
     return(

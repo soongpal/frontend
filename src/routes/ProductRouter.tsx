@@ -13,7 +13,7 @@ const ProductRouter : React.FC = () => {
             <Route path="grouppurchase" element={<GroupPurchasePage />}/>
             <Route path="usedtrade" element={<UsedTradePage />}/>
             <Route path="productdetail/:ProductId" element={<ProductDetailPage />}/>
-            <Route path="search" element={<SearchPage />}/>
+            <Route path="search/:Keyword" element={<SearchPage />}/>
         </Routes>
     )
 }
