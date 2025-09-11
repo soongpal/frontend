@@ -64,6 +64,7 @@ const NewPostPage:React.FC = () =>{
         //board 추가
         const boardBlob = new Blob([JSON.stringify(board)], { type: 'application/json' });
         formData.append('board', boardBlob);
+        
         //이미지 추가(있을때만 추가)
         if (images && images.length > 0) {
             for (const image of Array.from(images)) {
