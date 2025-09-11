@@ -22,11 +22,12 @@ const SearchPage: React.FC = () =>{
     );
     
    // 검색결과 불러오기
-    const { products, fetchProducts } = useProductStore();
+    const { products, setFilter,  fetchProducts } = useProductStore();
 
     useEffect(() => {
+        setFilter({ keyword: search, category: undefined, status: undefined });
         fetchProducts();
-    }, []);
+    }, [search]);
 
     return(
          <div className="container">

@@ -9,15 +9,9 @@ import "../../../styles/Header.css";
 //store
 import { useAuthStore } from '../../../stores/UserStore';
 
-import useProductStore from "../../../stores/productStore";
-
-
 const Header : React.FC = () =>{
 
     const navigate = useNavigate();
-
-    //목록 필터
-    const { setFilter } = useProductStore();
 
     //로그인 여부 불러오기
     const isLogin = useAuthStore((state) => state.isLogin);
@@ -29,7 +23,6 @@ const Header : React.FC = () =>{
     //검색 함수
     const [search, setSearch] = useState(""); // 검색어
     const handleSearch = ()=>{
-        setFilter({keyword: 'search', category: undefined, status: undefined});
         navigate(`product/search/${search}`);
     }
     
