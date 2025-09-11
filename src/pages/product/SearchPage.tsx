@@ -27,7 +27,7 @@ const SearchPage: React.FC = () =>{
     useEffect(() => {
         setFilter({ keyword: search, category: undefined, status: undefined });
         fetchProducts();
-    }, [search]);
+    }, [search, products]);
 
     return(
          <div className="container">
