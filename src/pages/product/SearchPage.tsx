@@ -11,10 +11,9 @@ import { useProductStore } from "../../stores/productStore";
 
 const SearchPage: React.FC = () =>{
    // 처음 불러오기
-    const { products, setFilter,fetchProducts } = useProductStore();
+    const { products, fetchProducts } = useProductStore();
 
     useEffect(() => {
-        setFilter({category: undefined, status: undefined});
         fetchProducts();
     }, []);
 

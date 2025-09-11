@@ -1,6 +1,7 @@
 //library
 import type React from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useState } from "react";
 //style
 import { Row, Col } from "react-bootstrap";
 import { PersonCircle, PersonFill, Search } from 'react-bootstrap-icons';
@@ -8,8 +9,15 @@ import "../../../styles/Header.css";
 //store
 import { useAuthStore } from '../../../stores/UserStore';
 
+import useProductStore from "../../../stores/productStore";
+
 
 const Header : React.FC = () =>{
+
+    const navigate = useNavigate();
+
+    //목록 필터
+    const { setFilter } = useProductStore();
 
     //로그인 여부 불러오기
     const isLogin = useAuthStore((state) => state.isLogin);
@@ -19,8 +27,10 @@ const Header : React.FC = () =>{
     const hideSecondRow = ["/auth/login", "/auth/signup"].includes(location.pathname);
 
     //검색 함수
+    const [search, setSearch] = useState(""); // 검색어
     const handleSearch = ()=>{
-
+        setFilter({keyword: 'search', category: undefined, status: undefined});
+        navigate('product/search');
     }
     
     return(
@@ -65,6 +75,8 @@ const Header : React.FC = () =>{
                                     placeholder="상품명 입력"
                                     aria-label="Search"
                                     className="search-bar"
+                                    value={search}
+                                    onChange={(e) => setSearch(e.target.value)}
                                 />
                                 <button type="button" className="search-button" onClick={handleSearch}>
                                     <Search/>
