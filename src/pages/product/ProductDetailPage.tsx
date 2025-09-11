@@ -97,35 +97,34 @@ const ProductDetailPage: React.FC = () => {
             // 참가 성공
             navigate(`/chatroom/${joinRes.roomId}`);
         } catch (err: any) {
-            // 2. 404: 채팅방 없음 → 생성 후 참가
-            if (err.response?.status === 404) {
-                const status = err.response?.status;
+            const status = err.response?.status;
+            const serverMessage = err.response?.data || "알 수 없는 오류가 발생했습니다.";
 
             if (status === 404) {
-            // 방 없음 → 생성 후 참가
+                // 2. 404: 채팅방 없음 → 생성 후 참가
                 try {
-                    const newRoom = await createChatRoom({ boardId: product.id });
-                    await joinChatRoom(newRoom.id);
-                    navigate(`/chatroom/${newRoom.id}`);
-                } catch (createErr) {
-                    console.error("채팅방 생성/참가 실패:", createErr);
-                    alert("채팅방을 생성할 수 없습니다.");
+                const newRoom = await createChatRoom({ boardId: product.id });
+                await joinChatRoom(newRoom.id);
+                navigate(`/chatroom/${newRoom.id}`);
+                } catch (createErr: any) {
+                console.error("채팅방 생성/참가 실패:", createErr.response?.data || createErr);
+                alert(createErr.response?.data || "채팅방을 생성할 수 없습니다.");
                 }
             } else if (status === 409) {
-            // 3. 이미 존재 → 그냥 참가
+                // 3. 이미 존재 → 그냥 참가
                 try {
-                    const joinRes = await joinChatRoom(product.id);
-                    navigate(`/chatroom/${joinRes.roomId}`);
-                } catch (joinErr) {
-                    console.error("채팅방 참가 실패:", joinErr);
-                    alert("채팅방에 참가할 수 없습니다.");
+                const joinRes = await joinChatRoom(product.id);
+                navigate(`/chatroom/${joinRes.roomId}`);
+                } catch (joinErr: any) {
+                console.error("채팅방 참가 실패:", joinErr.response?.data || joinErr);
+                alert(joinErr.response?.data || "채팅방에 참가할 수 없습니다.");
                 }
             } else {
-                console.error("채팅방 참가 실패:", err);
-                alert("채팅방에 참가할 수 없습니다.");
+                // 그 외
+                console.error("채팅방 참가 실패:", serverMessage, err);
+                alert(serverMessage);
             }
-        }
-    }
+            }
     }
 
     // 로딩 성공
