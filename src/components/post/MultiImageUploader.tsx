@@ -35,7 +35,7 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
             const ext = file.name.split(".").pop()?.toLowerCase();
             if (!ext || !allowedExtensions.includes(ext)) continue;
 
-            if (ext === "heic" || ext === "heif" || ext === "heix" ) {
+            if (file.type === "image/heic" || file.type === "image/heif" || file.type === "image/heix"){
                 // 고용량 사진 JPEG로 변환
                 try {
                 const convertedBlob = await heic2any({
@@ -45,7 +45,7 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
                 }) as Blob;
 
                 const convertedFile = new File(
-                    [convertedBlob], file.name.replace(/\.heic|heif|heix$/i, ".jpeg"), 
+                    [convertedBlob], file.name.replace(/\.[^/.]+$/, ".jpeg"), 
                     {type: "image/jpeg"}
                 );
                 validFiles.push(convertedFile); //변환파일 validate파일에 추가
