@@ -16,24 +16,12 @@ import Loading from "../../components/common/Loading";
 
 const NewPostPage:React.FC = () =>{
 
-    function showLog(message: string) {
-    let logEl = document.getElementById('mobile-log');
-    if (!logEl) {
-        logEl = document.createElement('pre');
-        logEl.id = 'mobile-log';
-        logEl.style.position = 'fixed';
-        logEl.style.bottom = '0';
-        logEl.style.left = '0';
-        logEl.style.width = '100%';
-        logEl.style.maxHeight = '200px';
-        logEl.style.overflow = 'auto';
-        logEl.style.backgroundColor = 'rgba(0,0,0,0.7)';
-        logEl.style.color = 'white';
-        logEl.style.zIndex = '9999';
-        document.body.appendChild(logEl);
-    }
-    logEl.textContent += message + '\n';
-}
+    const [logs, setLogs] = useState<string[]>([]);
+
+    // 로그 추가 함수
+    const showLog = (message: string) => {
+        setLogs(prev => [...prev, message]);
+    };
 
     //로딩
     const [isLoading, setIsLoading] = useState(false);
@@ -98,9 +86,9 @@ const NewPostPage:React.FC = () =>{
             alert('상품이 성공적으로 등록되었습니다.');
             window.location.href = "/";
         } 
-        catch (err) {
+        catch (err: any) {
             console.error('상품 등록 실패:', err);
-            showLog('에러 발생: ' + err);
+            showLog(`에러 발생: ${err.message}`);
             alert('상품 등록 실패');
             window.location.href = "/";
         }
@@ -227,6 +215,26 @@ return(
                     </button>
                 </div>
             </form>
+
+                  <div
+        style={{
+          position: 'fixed',
+          bottom: 0,
+          left: 0,
+          width: '100%',
+          maxHeight: '200px',
+          overflowY: 'auto',
+          backgroundColor: 'rgba(0,0,0,0.7)',
+          color: 'white',
+          fontSize: '12px',
+          padding: '5px',
+          zIndex: 9999,
+        }}
+      >
+        {logs.map((log, idx) => (
+          <div key={idx}>{log}</div>
+        ))}
+      </div>
         </div>
     );
 };
