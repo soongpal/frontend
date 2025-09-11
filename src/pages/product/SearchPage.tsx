@@ -27,7 +27,7 @@ const SearchPage: React.FC = () =>{
     useEffect(() => {
         setFilter({ keyword: search, category: undefined, status: undefined });
         fetchProducts();
-    }, [search, products]);
+    }, [search]);
 
     return(
          <div className="container">
@@ -37,7 +37,7 @@ const SearchPage: React.FC = () =>{
             {products && products.length > 0 ? (
                 <ProductGrid products={products}></ProductGrid>
                 ):(
-                <div className="d-flex flex-column justify-content-center align-items-center">
+                <div className="d-flex flex-column justify-content-center align-items-center my-5">
                     <h3>{search}에 대한 검색결과가 없습니다.</h3>
                     <ul>
                         <li>단어의 철자가 정확한지 확인해 보세요</li>

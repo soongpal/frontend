@@ -15,7 +15,7 @@ export interface Product{
 
     createdAt: string;
 
-    images: { id: number; imageUrl: string }[];
+    images?: { id: number; imageUrl: string }[];
 
     likeCount: number;
     liked: boolean;
