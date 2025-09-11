@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import { Images, XCircleFill } from 'react-bootstrap-icons';
-import "../../styles/MultiImageUploader.css"
+import "../../styles/MultiImageUploader.css";
+import heic2any from "heic2any";
 
 interface MultiImageUploaderProps {
-    onFilesChange: (files: FileList | null) => void;
+  uploadFiles: File[];
+  setUploadFiles: React.Dispatch<React.SetStateAction<File[]>>;
+  onFilesChange: (files: FileList) => void;
 }
 
-const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({ onFilesChange }) => {
-    
+const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({ 
+    uploadFiles,
+    setUploadFiles,
+    onFilesChange 
+}) => {
     const [previewFiles, setPreviewFiles] = useState<string[]>([]);// 프리뷰용
-    const [uploadFiles, setUploadFiles] = useState<File[]>([]); // db업로드용 
 
     // 이미지 업로드 함수
-    function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
         const files = e.target.files;
 
         if (!files || files.length === 0) {
@@ -23,33 +28,53 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({ onFilesChange }
         const newFiles = Array.from(files);
 
         // 허용 파일 확장자 검사
-        const allowedExtensions = ['jpg', 'jpeg', 'png'];
-        const validNewFiles = newFiles.filter(file => {
-            const ext = file.name.split('.').pop()?.toLowerCase();
-            return ext && allowedExtensions.includes(ext);
-        });
+        const allowedExtensions = ['jpg', 'jpeg', 'png', 'heic']; //heic형식 추가(사파리용)
+        const validFiles: File[] = [];
+
+        for (const file of newFiles) {
+            const ext = file.name.split(".").pop()?.toLowerCase();
+            if (!ext || !allowedExtensions.includes(ext)) continue;
+
+            if (ext === "heic") {
+                // HEIC 파일을 JPEG로 변환
+                try {
+                const convertedBlob = await heic2any({
+                    blob: file,
+                    toType: "image/jpeg",
+                    quality: 0.9
+                }) as Blob;
+
+                const convertedFile = new File([convertedBlob], file.name.replace(/\.heic$/i, ".jpg"), {
+                    type: "image/jpeg"
+                });
+                validFiles.push(convertedFile); //heic파일 validate파일에 추가
+                } catch (error) {
+                console.error("HEIC 변환 실패:", error);
+                }
+            } else {
+                validFiles.push(file);
+            }
+        }
 
         //다른 확장자 파일 업로드시
-        if (validNewFiles.length === 0) {
+        if (validFiles.length === 0) {
             alert('jpg, jpeg, png 형식의 이미지 파일만 업로드할 수 있습니다.');
             e.target.value = ''; 
             return;
         }
 
         // 기존 파일 목록에 유효 파일 추가
-        const updatedFiles = [...uploadFiles, ...validNewFiles];
+        const updatedFiles = [...uploadFiles, ...validFiles];
         setUploadFiles(updatedFiles);
 
-        // 부모 컴포넌트로 업데이트된 파일 목록 전달
-
-        // DataTransfer 객체를 사용하여 FileList 생성
+        // FileList로 post page에 전달
         const dataTransfer = new DataTransfer();
-        updatedFiles.forEach(file => dataTransfer.items.add(file));
+        updatedFiles.forEach((file) => dataTransfer.items.add(file));
         onFilesChange(dataTransfer.files);
 
-        // 미리보기 생성 및 상태 업데이트
-        const newPreviewFiles = validNewFiles.map(file => URL.createObjectURL(file));
-        setPreviewFiles(prev => [...prev, ...newPreviewFiles]);
+        // 미리보기 생성
+        const newPreviewFiles = validFiles.map((file) => URL.createObjectURL(file));
+        setPreviewFiles((prev) => [...prev, ...newPreviewFiles]);
     }
     
     // 이미지 삭제
@@ -62,9 +87,9 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({ onFilesChange }
         const updatedFiles = uploadFiles.filter((_, i) => i !== index);
         setUploadFiles(updatedFiles);
 
-        // newPostPage로 파일 목록 전달
+        // PostPage로 파일 목록 전달
         const dataTransfer = new DataTransfer();
-        updatedFiles.forEach(file => dataTransfer.items.add(file));
+        updatedFiles.forEach((file) => dataTransfer.items.add(file));
         onFilesChange(dataTransfer.files);
     };
 
