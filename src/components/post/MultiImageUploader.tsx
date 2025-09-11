@@ -28,7 +28,7 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
         const newFiles = Array.from(files);
 
         // 허용 파일 확장자 검사
-        const allowedExtensions = ['jpg', 'jpeg', 'png', 'heic', 'heif ']; //heic, heif형식 추가(사파리용)
+        const allowedExtensions = ['jpg', 'jpeg', 'png', 'heic', 'heif']; //heic, heif형식 추가(사파리용)
         const validFiles: File[] = [];
 
         for (const file of newFiles) {
@@ -102,7 +102,7 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
                 <input
                     type="file"
                     multiple
-                    accept=".jpg,.jpeg,.png"
+                    accept=".jpg,.jpeg,.png,.heic,.heif"
                     onChange={handleFileChange}
                     className='input'
                 />
