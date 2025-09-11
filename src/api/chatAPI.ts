@@ -43,7 +43,7 @@ export const leaveChatRoom = async(boardId : number) =>{
 }
 
 //채팅방 참가
-export const joinChatRoom = async( boardId : number) =>{
+export const joinChatRoom = async(boardId : number) =>{
     try {
         const res = await api.post(
             `/api/chat/rooms/${boardId}/join`,
@@ -57,15 +57,23 @@ export const joinChatRoom = async( boardId : number) =>{
 
 //채팅방 조회
 export const getChatRoom = async(roomId : number) =>{
-    try {
-        const res = await api.get(
-            `/api/chat/rooms/${roomId}`,
-        );
-        return res.data as ChatRoom;
-  } catch (error) {
-    console.error('채팅방 조회 실패-api:', error);
+  try {
+    const res = await api.get(
+      `/api/chat/rooms/${roomId}`,
+    );
+    return res.data as ChatRoom;
+  } 
+  catch (error: any) {
+    if (error.response) {
+      console.error("채팅방 참가 실패-api:", error.response.data); // 서버가 내려준 에러 메시지
+      console.error("status:", error.response.status);             // HTTP 상태 코드 (400)
+      console.error("headers:", error.response.headers);           // 응답 헤더
+    }
+    else {
+      console.error("요청 자체가 안 간 경우:", error.message);
+    }
     throw error;
-  }
+    }
 }
 
 //채팅방 삭제
