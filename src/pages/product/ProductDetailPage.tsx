@@ -82,6 +82,8 @@ const ProductDetailPage: React.FC = () => {
 
     //대화하기 버튼 함수
     const handleChatClick = async () =>{
+        console.log("📦 product 객체:", product);
+        console.log("🆔 product.id:", product?.id);
 
         //로그인 안된경우
         if (!isLogin) {
