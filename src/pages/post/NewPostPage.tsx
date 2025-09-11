@@ -16,10 +16,10 @@ import Loading from "../../components/common/Loading";
 
 const NewPostPage:React.FC = () =>{
 
-    const [logs, setLogs] = useState<string[]>([]);
+    const [logs, setLogs] = useState<string[]>([]);/////////////////
 
     // 로그 추가 함수
-    const addLog  = (message: string) => {
+    const addLog  = (message: string) => {//////////////////////
         setLogs(prev => [...prev, message]);
     };
 
@@ -110,7 +110,7 @@ return(
                     <MultiImageUploader uploadFiles={images}
                                         setUploadFiles={setImages}
                                         onFilesChange={handleImagesChange} 
-                                        onLog={addLog}
+                                        onLog={addLog}//////////////
                     />
                     <p style={{ color: 'var(--soongpal-color)' }}>*JPG, JEPG, PNG 형식</p>
                 </div>

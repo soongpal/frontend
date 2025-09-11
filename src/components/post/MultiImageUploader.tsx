@@ -7,7 +7,7 @@ interface MultiImageUploaderProps {
     uploadFiles: File[];
     setUploadFiles: React.Dispatch<React.SetStateAction<File[]>>;
     onFilesChange: (files: FileList) => void;
-    onLog?: (msg: string) => void;
+    onLog?: (msg: string) => void;      ///////////////////
 }
 
 const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({ 
@@ -42,7 +42,6 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
         for (const file of newFiles) {
             const ext = file.name.split(".").pop()?.toLowerCase();
             if (!ext || !allowedExtensions.includes(ext)){
-                log(`❌ 업로드 불가 확장자: ${file.name}`);
                 continue;
             }
             if (file.type === "image/heic" || file.type === "image/heif" || file.type === "image/heix"){
@@ -59,14 +58,13 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
                     {type: "image/jpeg"}
                 );
                 validFiles.push(convertedFile); //변환파일 validate파일에 추가
-                log(`🔄 HEIC 변환 완료 → ${convertedFile.name}, ${convertedFile.type}, ${(convertedFile.size / 1024).toFixed(2)} KB`);
                 } catch (error) {
                 console.error("사진 확장자 변환 실패:", error);
-                log(`⚠️ HEIC 변환 실패: ${file.name}`);
+
                 }
             } else {
                 validFiles.push(file);
-                log(`📄 업로드 파일: ${file.name}, ${file.type}, ${(file.size / 1024).toFixed(2)} KB`);
+                log(`📄 업로드 파일: ${file.name}, ${file.type}, ${(file.size / 1024).toFixed(2)} KB`);//////////////////
             }
         }
 
