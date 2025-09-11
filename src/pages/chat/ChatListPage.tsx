@@ -11,8 +11,6 @@ import type { ChatRoom } from "../../types/chat";
 //component
 import ChatList from "../../components/chat/ChatList";
 
-//name, productTitle, type, userCount, users, lastMessage, updatedAt
-
 const ChatListPage: React.FC = () =>{
 
     //내 채팅 목록 불러오기

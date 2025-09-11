@@ -97,7 +97,7 @@ const ProductDetailPage: React.FC = () => {
             // 참가 성공
             navigate(`/chatroom/${joinRes.roomId}`);
         } catch (err: any) {
-            // 404: 채팅방 없음 → 생성 후 참가
+            // 2. 404: 채팅방 없음 → 생성 후 참가
             if (err.response?.status === 404) {
                 const status = err.response?.status;
 
@@ -112,7 +112,7 @@ const ProductDetailPage: React.FC = () => {
                     alert("채팅방을 생성할 수 없습니다.");
                 }
             } else if (status === 409) {
-            // 이미 존재 → 그냥 참가
+            // 3. 이미 존재 → 그냥 참가
                 try {
                     const joinRes = await joinChatRoom(product.id);
                     navigate(`/chatroom/${joinRes.roomId}`);

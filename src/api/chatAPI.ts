@@ -30,10 +30,10 @@ export const createChatRoom = async( params:{ boardId: number } ) =>{
 }
 
 //채팅방 나가기
-export const leaveChatRoom = async(roomId : number) =>{
+export const leaveChatRoom = async(boardId : number) =>{
     try {
         const res = await api.delete(
-            `/api/chat/rooms/${roomId}/leave`,
+            `/api/chat/rooms/${boardId}/leave`,
         );
         return res.data;
   } catch (error) {
