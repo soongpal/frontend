@@ -109,6 +109,7 @@ const ProductDetailPage: React.FC = () => {
         if(product.category ==="GROUP"){
             try{
                 const check = await getChatRoom(product.id);
+                console.log(product);
                 console.log(check);
                 const res = await joinChatRoom(product.id);
                 navigate(`/chat/chatroom/${product.id}`);
