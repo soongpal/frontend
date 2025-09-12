@@ -43,9 +43,6 @@ export const getProductDetail = async (id: number) => {
 export const createProduct = async (data: FormData) => {
     try{
         const res = await api.post(`/api/board`, data,  
-            {
-            headers: {"Content-Type": "multipart/form-data",},
-            }
         );
         return res.data.result as Product;
     } 
