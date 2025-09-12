@@ -22,7 +22,7 @@ export const createChatRoom = async( boardId: number) =>{
             `/api/chat/rooms`,
             {boardId : boardId}
         );
-        return res.data as ChatRoom;
+        return res.data.result as ChatRoom;
   } catch (error) {
     console.error('채팅방 생성 실패-api:', error);
     throw error;

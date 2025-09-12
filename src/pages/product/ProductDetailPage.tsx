@@ -18,6 +18,7 @@ import type { Product } from "../../types/product";
 import { useAuthStore } from "../../stores/UserStore";
 import Loading from "../../components/common/Loading";
 import { createChatRoom, joinChatRoom } from "../../api/chatAPI";
+import type { ChatRoom } from "../../types/chat";
 
 const ProductDetailPage: React.FC = () => {
 
@@ -83,60 +84,48 @@ const ProductDetailPage: React.FC = () => {
     // 대화하기 버튼 함수
     const handleChatClick = async () => {
     // 로그인 안된 경우
-    if (!isLogin) {
-        alert("로그인 후 이용 가능합니다");
-        navigate("/auth/login");
-        return;
-    }
+        if (!isLogin) {
+            alert("로그인 후 이용 가능합니다");
+            navigate("/auth/login");
+            return;
+        }
 
     // 로그인 한 경우
-    try {
-        // 1. 참가 시도
-        const joinRes = await joinChatRoom(product.id);
-        // 참가 성공
-        navigate(`/chatroom/${joinRes.roomId}`);
-    } catch (err: any) {
-        const status = err.response?.status;
-        const serverMessage =
-        err.response?.data || "알 수 없는 오류가 발생했습니다.";
+    // 1. 중고거래 -> 일대일채팅 -> 생성할 때 알아서 조인
+        if(product.category ==="USED"){
+            try{
+                const newRoom:ChatRoom = await createChatRoom(product.id);
+                navigate(`/chat/chatroom/${newRoom.id}`);
+            }
+            catch(error){
+                console.error("채팅방 생성 실패");
+            }
+        
+        };
 
-        if (status === 400) {
-        // 2. 채팅방 없음 → 생성 후 참가
-        let newRoom;
-        try {
-            console.log("🚀 createChatRoom 호출, boardId:", product.id, typeof product.id);     //디버그 코드 나중에 지울거에염~
-            newRoom = await createChatRoom(product.id); // 생성 시도
-            console.log("✅ 채팅방 생성 성공:", newRoom);
-        } catch (createErr: any) {
-            // 생성 실패 처리
-            console.error("채팅방 생성 실패:", createErr.response?.data || createErr);
-            alert("채팅방을 생성할 수 없습니다.");
-            return; // 생성 실패면 참가 시도 안 함
+
+    // 2. 공동구매 -> 다중접속채팅 -> 채팅방은 글 생성될 때 생성 -> 조인해줘야 함!
+        
+        if(product.category ==="GROUP"){
+
+            try{
+                const res = await joinChatRoom(product.id);
+                navigate(`/chat/chatroom/${product.id}`);
+                console.log(res);
+            }
+            catch(error: any){
+                //이미 참여한 채팅방인경우
+                if (error.response.status===409){
+                    navigate(`/chat/chatroom/${product.id}`);
+                }
+                else {
+                    console.log("채팅방 참여 실패:", error.message);
+                }
+
+            }
         }
 
-        // 참가 시도는 생성이 성공한 경우만 실행
-        try {
-            const joinRes = await joinChatRoom(newRoom.id);
-            navigate(`/chatroom/${joinRes.roomId}`);
-        } catch (joinErr: any) {
-            console.error("채팅방 참가 실패:", joinErr.response?.data || joinErr);
-            alert("채팅방에 참가할 수 없습니다.");
-        }
-        } else if (status === 409) {
-        // 3. 이미 존재 → 그냥 참가
-        try {
-            const joinRes = await joinChatRoom(product.id);
-            navigate(`/chatroom/${joinRes.roomId}`);
-        } catch (joinErr: any) {
-            console.error("채팅방 참가 실패:", joinErr.response?.data || joinErr);
-            alert("채팅방에 참가할 수 없습니다.");
-        }
-        } else {
-        // 그 외
-        console.error("채팅방 참가 실패:", serverMessage, err);
-        alert("채팅방 참가 실패");
-        }
-    }
+    return;
     };
 
 
