@@ -64,7 +64,7 @@ const ChatRoomPage: React.FC = () => {
         if (!hasMore && pageToFetch > 0) return; // 더 이상 메시지가 없으면 로드 중지
 
         try {
-            const res = await getChatMessages({ id: roomId, page: pageToFetch });
+            const res = await getChatMessages({ roomId: roomId, page: pageToFetch });
             const newMessages = res.messages.reverse(); // 시간 순서대로 정렬 (과거 -> 현재)
 
             if (pageToFetch === 0) {

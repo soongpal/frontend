@@ -61,13 +61,10 @@ export const getChatRoom = async(roomId : number) =>{
     const res = await api.get(
       `/api/chat/rooms/${roomId}`,
     );
-    return res.data as ChatRoom;
+    return res.data.result as ChatRoom;
   } 
   catch (error: any) {
     if (error.response) {
-      console.error("채팅방 참가 실패-api:", error.response.data); // 서버가 내려준 에러 메시지
-      console.error("status:", error.response.status);             // HTTP 상태 코드 (400)
-      console.error("headers:", error.response.headers);           // 응답 헤더
     }
     else {
       console.error("요청 자체가 안 간 경우:", error.message);
