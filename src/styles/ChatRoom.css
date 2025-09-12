@@ -7,7 +7,6 @@
 
 .chatroom-nav{
     display: flex;
-    flex-direction: column;
     justify-content: start;
 
     position: sticky;
@@ -29,6 +28,7 @@
     overflow-y: auto; /* 스크롤 가능 */
     padding: 12px;
     background: var(--light-grey-color);
+    min-height: 500px;
 }
 
 .chatroom-input{
@@ -52,7 +52,7 @@
     padding: 8px 16px;
     border: none;
     border-radius: 20px;
-    background: #4f93ff;
+    background: var(--soongpal-color);
     color: white;
     cursor: pointer;
 }
