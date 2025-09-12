@@ -101,7 +101,7 @@ const ChatRoomPage: React.FC = () => {
         
         stompRef.current = new Client({
             webSocketFactory: () =>  new SockJS(import.meta.env.VITE_WS_URL), 
-            reconnectDelay: 5000,
+            
             debug: (str) => console.log(new Date(), str) 
         });
 
