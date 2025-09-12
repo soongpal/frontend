@@ -7,21 +7,15 @@ interface MultiImageUploaderProps {
     uploadFiles: File[];
     setUploadFiles: React.Dispatch<React.SetStateAction<File[]>>;
     onFilesChange: (files: FileList) => void;
-    onLog?: (msg: string) => void;      ///////////////////
 }
 
 const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({ 
     uploadFiles,
     setUploadFiles,
     onFilesChange ,
-    onLog       ////////////////////////////////////////////
 }) => {
     const [previewFiles, setPreviewFiles] = useState<string[]>([]);// 프리뷰용
-    //로그
-    const log = (msg: string) => {
-        if (onLog) onLog(msg);
-        else console.log(msg);
-    };
+
 
     // 이미지 업로드 함수
     async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -64,7 +58,6 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
                 }
             } else {
                 validFiles.push(file);
-                log(`📄 업로드 파일: ${file.name}, ${file.type}, ${(file.size / 1024).toFixed(2)} KB`);//////////////////
             }
         }
 

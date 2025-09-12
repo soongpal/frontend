@@ -16,12 +16,6 @@ import Loading from "../../components/common/Loading";
 
 const NewPostPage:React.FC = () =>{
 
-    const [logs, setLogs] = useState<string[]>([]);/////////////////
-
-    // 로그 추가 함수
-    const addLog  = (message: string) => {//////////////////////
-        setLogs(prev => [...prev, message]);
-    };
 
     //로딩
     const [isLoading, setIsLoading] = useState(false);
@@ -88,7 +82,6 @@ const NewPostPage:React.FC = () =>{
         } 
         catch (err: any) {
             console.error('상품 등록 실패:', err);
-            addLog (`에러 발생: ${err.message}`);
             alert('상품 등록 실패');
             
         }
@@ -110,7 +103,7 @@ return(
                     <MultiImageUploader uploadFiles={images}
                                         setUploadFiles={setImages}
                                         onFilesChange={handleImagesChange} 
-                                        onLog={addLog}//////////////
+                                        
                     />
                     <p style={{ color: 'var(--soongpal-color)' }}>*JPG, JEPG, PNG 형식</p>
                 </div>
@@ -216,26 +209,6 @@ return(
                     </button>
                 </div>
             </form>
-
-                  <div
-        style={{
-          position: 'fixed',
-          bottom: 0,
-          left: 0,
-          width: '100%',
-          maxHeight: '200px',
-          overflowY: 'auto',
-          backgroundColor: 'rgba(0,0,0,0.7)',
-          color: 'white',
-          fontSize: '12px',
-          padding: '5px',
-          zIndex: 9999,
-        }}
-      >
-        {logs.map((log, idx) => (
-          <div key={idx}>{log}</div>
-        ))}
-      </div>
         </div>
     );
 };
