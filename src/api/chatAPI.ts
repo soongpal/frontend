@@ -90,7 +90,7 @@ export const deleteChatRoom = async(roomId : number) =>{
 }
 
 //채팅 메세지 조회
-export const getChatMessages = async(params:{id: number, page: number}) =>{
+export const getChatMessages = async(params:{roomId: number, page: number}) =>{
   try {
     const res = await api.get(
       `/api/chat/messages`,
