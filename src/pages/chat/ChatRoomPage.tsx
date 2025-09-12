@@ -185,7 +185,7 @@ const ChatRoomPage: React.FC = () => {
     return (
         <div className="chatroom-container">
             <div className="chatroom-nav">
-                <p className="chatroom-title">{room.productTitle}</p>
+                <p className="chatroom-title">{room.name}</p>
                 <button onClick={handleLeaveRoom}>나가기</button>
             </div>
 
