@@ -17,7 +17,7 @@ import { timeAgo } from "../../utils/time";
 import type { Product } from "../../types/product";
 import { useAuthStore } from "../../stores/UserStore";
 import Loading from "../../components/common/Loading";
-import { createChatRoom, joinChatRoom } from "../../api/chatAPI";
+import { createChatRoom, getChatRoom, joinChatRoom } from "../../api/chatAPI";
 import type { ChatRoom } from "../../types/chat";
 
 const ProductDetailPage: React.FC = () => {
@@ -107,8 +107,9 @@ const ProductDetailPage: React.FC = () => {
     // 2. 공동구매 -> 다중접속채팅 -> 채팅방은 글 생성될 때 생성 -> 조인해줘야 함!
         
         if(product.category ==="GROUP"){
-
             try{
+                const check = await getChatRoom(product.id);
+                console.log(check);
                 const res = await joinChatRoom(product.id);
                 navigate(`/chat/chatroom/${product.id}`);
                 console.log(res);
