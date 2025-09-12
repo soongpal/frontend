@@ -7,7 +7,7 @@
 
 .chatroom-nav{
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
 
     position: sticky;
     top: 0;
@@ -52,7 +52,7 @@
     padding: 8px 16px;
     border: none;
     border-radius: 20px;
-    background: var(--soongpal-color);
+    background: var(--soong-color);
     color: white;
     cursor: pointer;
 }
@@ -70,7 +70,7 @@
 }
 
 .other{
-    background: var(--soongpal-color);
+    background: var(--soong-color);
     color: white;
     align-self: flex-start;
 }
