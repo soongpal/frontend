@@ -108,17 +108,15 @@ const ProductDetailPage: React.FC = () => {
         
         if(product.category ==="GROUP"){
             try{
-                const check = await getChatRoom(product.id);
-                console.log(product);
-                console.log(check);
                 const res = await joinChatRoom(product.id);
-                navigate(`/chat/chatroom/${product.id}`);
+                navigate(`/chat/chatroom/${res.id}`);
                 console.log(res);
             }
             catch(error: any){
                 //이미 참여한 채팅방인경우
                 if (error.response.status===409){
-                    navigate(`/chat/chatroom/${product.id}`);
+                    console.log("참여한 채팅방입니다")
+                    navigate(`/chat/chatlist`);
                 }
                 else {
                     console.log("채팅방 참여 실패:", error.message);

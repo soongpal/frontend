@@ -2,6 +2,7 @@
 import api from './api';
 import {type ChatRoom, type ChatMessage} from "../types/chat";
 
+
 //채팅방 목록 조회
 export const getChatRoomList = async() =>{
     try {
@@ -48,7 +49,7 @@ export const joinChatRoom = async(boardId : number) =>{
         const res = await api.post(
             `/api/chat/rooms/${boardId}/join`,
         );
-        return res.data;
+        return res.data.result as ChatRoom;
   } catch (error) {
     console.error('채팅방 참가 실패-api:', error);
     throw error;
