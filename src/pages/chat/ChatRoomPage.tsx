@@ -97,50 +97,75 @@ const ChatRoomPage: React.FC = () => {
     }, [roomId]);
 
     // STOMP 연결 + 구독 한곳에서 처리
-    useEffect(() => {
-        if (!roomId || !user) {
-            console.warn("[STOMP] roomId 또는 user 없음 → 연결 안 함");
-            return;
-        }
+useEffect(() => {
+    if (!roomId || !user) {
+        console.warn("[STOMP] roomId 또는 user 없음 → 연결 안 함");
+        return;
+    }
 
-        console.log("[STOMP] Client 생성 시작");
+    console.log("[STOMP] Client 생성 시작");
 
-        const stompClient = new Client({
-            webSocketFactory: () => {
-                console.log("[STOMP] SockJS 생성:", import.meta.env.VITE_WS_URL);
-                return new SockJS(import.meta.env.VITE_WS_URL);
-            },
-            debug: (str) => console.log("[STOMP debug]", new Date().toISOString(), str),
-        });
-        stompRef.current = stompClient;
+    const stompClient = new Client({
+        webSocketFactory: () => {
+            console.log("[STOMP] SockJS 생성:", import.meta.env.VITE_WS_URL);
+            return new SockJS(import.meta.env.VITE_WS_URL);
+        },
+        debug: (str) => console.log("[STOMP debug]", new Date().toISOString(), str),
+    });
+    stompRef.current = stompClient;
 
-        // 1) 연결 완료 후 구독까지 처리
-        stompClient.onConnect = () => {
-            console.log("[STOMP] ✅ 연결 성공 → room:", roomId);
+    // 1) 연결 완료 후 구독까지 처리
+    stompClient.onConnect = () => {
+        console.log("[STOMP] ✅ 연결 성공 → room:", roomId);
 
+        try {
             subscriptionRef.current = stompClient.subscribe(
                 `/topic/${roomId}`,
                 (msg) => {
                     console.log("[STOMP] 📩 메시지 수신:", msg.body);
-                    const message = JSON.parse(msg.body) as ChatMessage;
-                    setMessages((prev) => [...(prev ?? []), message]);
+                    try {
+                        const message = JSON.parse(msg.body) as ChatMessage;
+                        setMessages((prev) => [...(prev ?? []), message]);
+                    } catch (parseErr) {
+                        console.error("[STOMP] ❌ 메시지 파싱 실패:", parseErr, msg.body);
+                    }
                 }
             );
-
             console.log("[STOMP] ✅ 구독 성공 → /topic/" + roomId);
-        };
+        } catch (subErr) {
+            console.error("[STOMP] ❌ 구독 실패:", subErr);
+        }
+    };
 
-        // 2) 연결 시도
-        console.log("[STOMP] activate() 호출 → 연결 시작");
-        stompClient.activate();
+    // 2) 에러 핸들러 추가
+    stompClient.onStompError = (frame) => {
+        console.error("[STOMP] ❌ 브로커 에러:", frame.headers["message"], frame.body);
+    };
 
-        // cleanup
-        return () => {
-            console.log("[STOMP] cleanup → 구독 해제 및 연결 종료");
+    stompClient.onWebSocketError = (event) => {
+        console.error("[STOMP] ❌ WebSocket 에러:", event);
+    };
+
+    stompClient.onDisconnect = (frame) => {
+        console.warn("[STOMP] ⚠️ 연결 끊김:", frame);
+    };
+
+    // 3) 연결 시도
+    console.log("[STOMP] activate() 호출 → 연결 시작");
+    stompClient.activate();
+
+    // cleanup
+    return () => {
+        console.log("[STOMP] cleanup → 구독 해제 및 연결 종료");
+        try {
             subscriptionRef.current?.unsubscribe();
             stompClient.deactivate();
-        };
-    }, [roomId, user]);
+        } catch (cleanupErr) {
+            console.error("[STOMP] ❌ cleanup 중 에러:", cleanupErr);
+        }
+    };
+}, [roomId, user]);
+
 
 
     // 위로 스크롤 시 과거 메시지 로드
