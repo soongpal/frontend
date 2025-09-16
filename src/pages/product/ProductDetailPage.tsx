@@ -17,7 +17,7 @@ import { timeAgo } from "../../utils/time";
 import type { Product } from "../../types/product";
 import { useAuthStore } from "../../stores/UserStore";
 import Loading from "../../components/common/Loading";
-import { createChatRoom, getChatRoom, joinChatRoom } from "../../api/chatAPI";
+import { createChatRoom, joinChatRoom } from "../../api/chatAPI";
 import type { ChatRoom } from "../../types/chat";
 
 const ProductDetailPage: React.FC = () => {
