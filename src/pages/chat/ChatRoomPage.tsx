@@ -96,50 +96,52 @@ const ChatRoomPage: React.FC = () => {
         if(roomId) fetchMessages(0);
     }, [roomId]);
 
-    // STOMP 연결 분리
+    // STOMP 연결 + 구독 한곳에서 처리
     useEffect(() => {
-        if (!roomId || !user) return;
+        if (!roomId || !user) {
+            console.warn("[STOMP] roomId 또는 user 없음 → 연결 안 함");
+            return;
+        }
 
-        // STOMP 클라이언트 생성
+        console.log("[STOMP] Client 생성 시작");
+
         const stompClient = new Client({
-            webSocketFactory: () => new SockJS(import.meta.env.VITE_WS_URL),
-            debug: (str) => console.log(new Date(), str)
+            webSocketFactory: () => {
+                console.log("[STOMP] SockJS 생성:", import.meta.env.VITE_WS_URL);
+                return new SockJS(import.meta.env.VITE_WS_URL);
+            },
+            debug: (str) => console.log("[STOMP debug]", new Date().toISOString(), str),
         });
         stompRef.current = stompClient;
 
-        // 연결 성공 시 로그 출력 (구독은 아직 안 함)
+        // 1) 연결 완료 후 구독까지 처리
         stompClient.onConnect = () => {
-            console.log("STOMP connected to room", roomId);
+            console.log("[STOMP] ✅ 연결 성공 → room:", roomId);
+
+            subscriptionRef.current = stompClient.subscribe(
+                `/topic/${roomId}`,
+                (msg) => {
+                    console.log("[STOMP] 📩 메시지 수신:", msg.body);
+                    const message = JSON.parse(msg.body) as ChatMessage;
+                    setMessages((prev) => [...(prev ?? []), message]);
+                }
+            );
+
+            console.log("[STOMP] ✅ 구독 성공 → /topic/" + roomId);
         };
 
-        // 연결 시도
+        // 2) 연결 시도
+        console.log("[STOMP] activate() 호출 → 연결 시작");
         stompClient.activate();
 
+        // cleanup
         return () => {
+            console.log("[STOMP] cleanup → 구독 해제 및 연결 종료");
             subscriptionRef.current?.unsubscribe();
             stompClient.deactivate();
         };
     }, [roomId, user]);
 
-    // STOMP 구독 분리
-    useEffect(() => {
-        if (!roomId || !stompRef.current?.active) return;
-
-        // 구독
-        subscriptionRef.current = stompRef.current.subscribe(
-            `/topic/${roomId}`,
-            (msg) => {
-                const message = JSON.parse(msg.body) as ChatMessage;
-                setMessages((prev) => [...(prev ?? []), message]);
-            }
-        );
-
-        console.log("Subscribed to room", roomId);
-
-        return () => {
-            subscriptionRef.current?.unsubscribe();
-        };
-    }, [roomId, stompRef.current?.active]);
 
     // 위로 스크롤 시 과거 메시지 로드
     const handleScroll = () => {
