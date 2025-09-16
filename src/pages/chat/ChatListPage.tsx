@@ -14,7 +14,7 @@ import ChatList from "../../components/chat/ChatList";
 const ChatListPage: React.FC = () =>{
 
     //내 채팅 목록 불러오기
-    const [rooms, setRooms] = useState<ChatRoom[] | null >(null);
+    const [rooms, setRooms] = useState< ChatRoom[] | null >(null);
 
     useEffect(() => {
         async function fetchRooms() {
