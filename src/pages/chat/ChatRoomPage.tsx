@@ -2,12 +2,12 @@
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import { useInView } from "react-intersection-observer";
 // type
-import { type ChatMessage, type ChatRoom, type SendChat } from "../../types/chat";
+import { type ChatRoom, type RMessage } from "../../types/chat";
 
 // api
-import { getChatMessages, getChatRoom, leaveChatRoom } from "../../api/chatAPI";
+import { getChatMessages, getChatRoom, leaveChatRoom, deleteChatRoom } from "../../api/chatAPI";
 
 // component
 import Loading from "../../components/common/Loading";
@@ -20,37 +20,53 @@ import { useAuthStore } from "../../stores/UserStore";
 
 // STOMP
 import SockJS from "sockjs-client";
-import { Client } from "@stomp/stompjs";
+import { Client, type IMessage  } from "@stomp/stompjs";
 
 const ChatRoomPage: React.FC = () => {
     
-    // chatRoomId 받아오기
     const { ChatId } = useParams<{ ChatId: string }>();
-    const roomId = Number(ChatId);
+
+    const roomId = Number(ChatId);  //rommId받아오기
+
     const navigate = useNavigate();
-    const { user } = useAuthStore();
 
-    // 채팅방 필드
-    const [room, setRoom] = useState<ChatRoom | null>(null);
-    const [loading, setLoading] = useState(true);
-    // 메시지 필드
-    const [messages, setMessages] = useState<ChatMessage[] | null>(null);
-    const [page, setPage] = useState(0);
-    const [hasMore, setHasMore] = useState(true);
-    // 무한 스크롤 및 STOMP 참조
-    const containerRef = useRef<HTMLDivElement>(null);
-    const messagesEndRef = useRef<HTMLDivElement>(null);
-    const stompRef = useRef<Client | null>(null);
-    const subscriptionRef = useRef<any>(null);
-    const [input, setInput] = useState("");
+    const { user, accessToken } = useAuthStore();    //user정보 가져오기
 
-    // 채팅방 정보 불러오기(상단 네비바 용도)
+    const stompClient = useRef<Client | null>(null);    //클라이언트 정보 저장
+
+    const [room, setRoom] = useState<ChatRoom | null>(null);    //네비바 채팅방명
+
+    const [isGroup, setIsGroup] = useState<boolean>();
+
+    const [loading, setLoading] = useState(true);   //일단 로딩중으로 시작
+
+    const [messages, setMessages] = useState<RMessage[]>([]);   //페이지에서 보여줄 메세지
+
+    const [page, setPage] = useState(0);    //페이지
+
+    const [ref, inView] = useInView({ //자동 스크롤 구현
+        threshold: 0, 
+        triggerOnce: false, 
+    });  
+
+    const [isFetching, setIsFetching] = useState(false); // 로딩 중복 방지 상태
+    
+    const [hasMore, setHasMore] = useState(true);   //맨 아래 페이지인지..
+
+    const [input, setInput] = useState(""); //입력창
+
+    // 채팅방 정보 불러오기(상단 네비바 용도)**********************************
     useEffect(() => {
         if (!roomId) return;
+
         async function fetchRoom() {
             try {
                 const data = await getChatRoom(roomId);
                 setRoom(data);
+                if(data && data.type=="GROUP")
+                    {
+                        setIsGroup(true);
+                    }
             } catch (err) {
                 console.error("채팅방 조회 실패", err);
             } finally {
@@ -60,189 +76,192 @@ const ChatRoomPage: React.FC = () => {
         fetchRoom();
     }, [roomId]);
 
-    //메시지 불러오기
-    const fetchMessages = async (pageToFetch: number) => {
-        if (!hasMore && pageToFetch > 0) return; // 더 이상 메시지가 없으면 로드 중지
+    //이전 메세지 불러오기 ****************************************************
+    const fetchMessage = async ( pageToFetch: number ) => {
+
+        if(!hasMore||!room||isFetching)
+            return;
+
+        setIsFetching(true);
 
         try {
-            const res = await getChatMessages({ roomId: roomId, page: pageToFetch });
-            const newMessages = res.messages.reverse(); // 시간 순서대로 정렬 (과거 -> 현재)
+        const res = await getChatMessages({ roomId: roomId, page: pageToFetch });
+
+        const newMessages = res.content;
+
+        if (newMessages.length > 0) {
 
             if (pageToFetch === 0) {
-                setMessages(newMessages);
+
+                setMessages(newMessages.reverse());
             } else {
-                // 이전 스크롤 위치 유지를 위해 추가
-                const scrollContainer = containerRef.current;
-                const oldScrollHeight = scrollContainer?.scrollHeight || 0;
 
-                setMessages(prev => [...newMessages, ...(prev ?? [])]);
-                
-                // 데이터 로드 후 스크롤 위치 조정
-                if(scrollContainer) {
-                    requestAnimationFrame(() => {
-                        scrollContainer.scrollTop = scrollContainer.scrollHeight - oldScrollHeight;
-                    })
-                }
+                setMessages(prev => [...newMessages.reverse(), ...prev]);
             }
-            setHasMore(!res.first);
-            setPage(pageToFetch);
-        } catch (err) {
-            console.error("메시지 불러오기 실패:", err);
         }
-    };
+        setPage(pageToFetch);
+        
+        if (res.last) {
+            setHasMore(false);
+        }
 
-    // 초기 채팅 불러오기
+    } catch (error) {
+        console.error(`${pageToFetch}페이지 메시지 로딩 실패:`, error);
+    } finally {
+        setIsFetching(false);
+    }
+};
+
+
+    // STOMP 연결**************************************************************
     useEffect(() => {
-        if(roomId) fetchMessages(0);
-    }, [roomId]);
+        if (!accessToken || !room) return;
+        console.log("[STOMP] useEffect 실행됨. 연결 시도 준비.");//console
 
-    // STOMP 연결 + 구독 한곳에서 처리
-useEffect(() => {
-    if (!roomId || !user) {
-        console.warn("[STOMP] roomId 또는 user 없음 → 연결 안 함");
-        return;
+        const client = new Client({
+            // 1. SockJS를 통해 웹소켓 연결
+            webSocketFactory: () => {
+                console.log("[STOMP] SockJS 연결 생성:", import.meta.env.VITE_WS_URL);//console
+                return new SockJS(import.meta.env.VITE_WS_URL);
+            },
+            connectHeaders: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+            debug: (str) => {
+                console.log("[STOMP Debug]", str);//console
+            },
+            onConnect: () => {
+                console.log("[STOMP] 서버 연결 성공");//console
+
+                // 4. 채팅방 토픽 구독
+                console.log(`[STOMP] 채팅방 토픽 구독 시도: /topic/${roomId}`);//console
+
+                client.subscribe(`/topic/${roomId}`, (message: IMessage) => {   //roomId로 채팅방 구독
+                    console.log("[STOMP] 새 메시지 수신:", message.body);
+
+                    const receivedMessage: RMessage = JSON.parse(message.body);
+
+                    setMessages((prevMessages) => [...prevMessages, receivedMessage]);  //메세지 오면 맨 뒤에 추가..
+                });
+
+            console.log("[API] 초기 메시지 조회를 시작합니다.");
+            fetchMessage(0);
+
+            },
+            onStompError: (frame) => {
+                console.error("[STOMP] 연결 에러 발생:", frame);//console
+            },
+            onWebSocketClose: () => {
+                console.warn("[STOMP] 웹소켓이 닫혔습니다.");//console
+            },
+        });
+
+        // 3. Stomp 클라이언트 활성화 (연결 시작)
+        console.log("[STOMP] 클라이언트 activate() 호출 → 연결 시작");//console
+        stompClient.current = client;
+        client.activate();
+
+        // 컴포넌트가 언마운트될 때 연결 해제
+        return () => {
+            if (stompClient.current?.active) {
+            console.log("[STOMP] 컴포넌트 언마운트 → 연결 해제 시도");//console
+            stompClient.current.deactivate();
+            console.log("[STOMP] 연결 해제 완료");//console
+            }
+        };
+    }, [room, accessToken]); 
+
+
+    //채팅방 나가기handleLeaveRoom**********************************************
+    const handleLeaveRoom = async()=>{
+        if(room){
+            try{
+                await leaveChatRoom(room.id);
+                navigate('/chat/chatlist');
+            }
+            catch(error:any){
+                console.log("채팅방 나가기 오류:", error.message);
+            }
+        }
+
     }
 
-    console.log("[STOMP] Client 생성 시작");
-
-    const stompClient = new Client({
-        webSocketFactory: () => {
-            console.log("[STOMP] SockJS 생성:", import.meta.env.VITE_WS_URL);
-            return new SockJS(import.meta.env.VITE_WS_URL);
-        },
-        debug: (str) => console.log("[STOMP debug]", new Date().toISOString(), str),
-    });
-    stompRef.current = stompClient;
-
-    // 1) 연결 완료 후 구독까지 처리
-    stompClient.onConnect = () => {
-        console.log("[STOMP] ✅ 연결 성공 → room:", roomId);
-
-        try {
-            subscriptionRef.current = stompClient.subscribe(
-                `/topic/${roomId}`,
-                (msg) => {
-                    console.log("[STOMP] 📩 메시지 수신:", msg.body);
-                    try {
-                        const message = JSON.parse(msg.body) as ChatMessage;
-                        setMessages((prev) => [...(prev ?? []), message]);
-                    } catch (parseErr) {
-                        console.error("[STOMP] ❌ 메시지 파싱 실패:", parseErr, msg.body);
-                    }
-                }
-            );
-            console.log("[STOMP] ✅ 구독 성공 → /topic/" + roomId);
-        } catch (subErr) {
-            console.error("[STOMP] ❌ 구독 실패:", subErr);
+    const handleDeleteRoom= async()=>{
+        if(room){
+            try{
+                await deleteChatRoom(room.id);
+                navigate('/chat/chatlist');
+            }
+            catch(error:any){
+                console.log("채팅방 삭제 오류:", error.message);
+            }
         }
-    };
 
-    // 2) 에러 핸들러 추가
-    stompClient.onStompError = (frame) => {
-        console.error("[STOMP] ❌ 브로커 에러:", frame.headers["message"], frame.body);
-    };
+    }
 
-    stompClient.onWebSocketError = (event) => {
-        console.error("[STOMP] ❌ WebSocket 에러:", event);
-    };
-
-    stompClient.onDisconnect = (frame) => {
-        console.warn("[STOMP] ⚠️ 연결 끊김:", frame);
-    };
-
-    // 3) 연결 시도
-    console.log("[STOMP] activate() 호출 → 연결 시작");
-    stompClient.activate();
-
-    // cleanup
-    return () => {
-        console.log("[STOMP] cleanup → 구독 해제 및 연결 종료");
-        try {
-            subscriptionRef.current?.unsubscribe();
-            stompClient.deactivate();
-        } catch (cleanupErr) {
-            console.error("[STOMP] ❌ cleanup 중 에러:", cleanupErr);
-        }
-    };
-}, [roomId, user]);
-
-
-
-    // 위로 스크롤 시 과거 메시지 로드
-    const handleScroll = () => {
-        if (containerRef.current?.scrollTop === 0 && hasMore) {
-            fetchMessages(page + 1);
-        }
-    };
-
-    useEffect(() => {
-        const el = containerRef.current;
-        if (!el) return;
-        el.addEventListener("scroll", handleScroll);
-        return () => el.removeEventListener("scroll", handleScroll);
-    }, [hasMore, page]);
-
-    //  messages 배열이 변경될 때마다 맨 아래로 스크롤
-    useEffect(() => {
-        // 첫 페이지 로드 시 또는 새 메시지 수신 시에만 맨 아래로 스크롤
-        // 과거 메시지 로드 시(page > 0)에는 스크롤 유지
-        if (page === 0) {
-            messagesEndRef.current?.scrollIntoView();
-        }
-    }, [messages]);
-
-
-    // 메시지 전송
+    //메세지 전송 sendMessage***************************************************
     const sendMessage = () => {
-        if (!input.trim() || !stompRef.current?.active || !user) return;
+        if (!input.trim()) {
+            return;
+        }
+        if (!stompClient.current?.active || !user || !room) {
+            console.error("메시지를 보낼 준비가 되지 않았습니다.");
+            return;
+        }
 
-        const message: SendChat = {
-            roomId,
+        const messagePayload = {
+            roomId: room.id,
             senderId: user.userId,
             content: input,
         };
 
-        stompRef.current.publish({
-            destination: `/send/${roomId}`,
-            body: JSON.stringify(message),
-        });
 
-        setInput("");
+        stompClient.current.publish({
+            destination: `/send/${room.id}`, 
+            body: JSON.stringify(messagePayload),
+            headers: { 'content-type': 'application/json' },
+    });
+
+    setInput('');
     };
 
-    // 방 나가기
-    const handleLeaveRoom = async () => {
-        if (!stompRef.current) return;
-        try {
-            await leaveChatRoom(roomId);
-            stompRef.current.deactivate();
-            navigate("/chatlist");
-        } catch (err) {
-            console.error("방 나가기 실패:", err);
-            navigate("/chatlist");
+    //스크롤*****************************************************************
+    useEffect(() => {
+        if (inView && hasMore && !isFetching) {
+            console.log("이전 메세지를 불러옵니다");
+            fetchMessage(page + 1); // ✅ 현재 페이지(page)의 다음 페이지를 호출
         }
-    };
+    }, [inView, hasMore, isFetching, page]);
 
-    if (loading) return <Loading />;
-    if (isNaN(roomId) || !room) return <div></div>;
+    
+///////////////////////////랜더링///////////////////////////
+
+    if (loading) return <Loading />;    //로딩하면
+
+    if (isNaN(roomId) || !room) return <div></div>; 
 
     return (
         <div className="chatroom-container">
             <div className="chatroom-nav">
                 <p className="chatroom-title">{room.name}</p>
-                <button onClick={handleLeaveRoom}>나가기</button>
+                {isGroup ? 
+                    <button onClick={handleLeaveRoom}>나가기</button>:
+                    <button onClick={handleDeleteRoom}>삭제하기</button>
+                }
             </div>
 
-            <div ref={containerRef} className="message-container">
-                {hasMore && <div className="load-more">이전 메시지 불러오기...</div>}
-                {messages && messages.map((msg, index) => (                    <div
+            <div ref={ref} className="message-container">
+                {hasMore && <div>이전 메시지 불러오기...</div>}
+                {messages && messages.map((msg, index) => (                    
+                    <div
                         key={`${msg.senderId}-${msg.createdAt}-${index}`}
                         className={msg.senderId === user?.userId ? 'message my' : 'message other'}
                     >
+                        <span className="message-time">{msg.createdAt}</span>
                         <span className="message-content">{msg.content}</span>
                     </div>
                 ))}
-                <div ref={messagesEndRef} />
+                <div />
             </div>
 
             <div className="chatroom-input">

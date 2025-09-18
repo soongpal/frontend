@@ -29,6 +29,9 @@
     padding: 12px;
     background: var(--light-grey-color);
     min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .chatroom-input{
@@ -60,6 +63,11 @@
 .message{
     border-radius: 12px;
     max-width:50%;
+}
+
+.message-time{
+    font-size: 5px;
+    color: var(--light-grey-color);
 }
 
 .my{

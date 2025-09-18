@@ -94,17 +94,7 @@ export const getChatMessages = async(params:{roomId: number, page: number}) =>{
       `/api/chat/messages`,
         {params}
     );
-
-    const { content, currentPage, totalPages, first, last } = res.data.result;
-
-    return {
-      messages: content as ChatMessage[],
-      currentPage,
-      totalPages,
-      first,
-      last
-    }
-
+    return res.data.result as ChatMessage;
   } catch (error) {
     console.error('채팅 메세지 조회 실패-api:', error);
     throw error;

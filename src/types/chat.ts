@@ -27,9 +27,8 @@ export interface ChatRoom {
   
 }
 
-//메세지(roomId와 senderId, content전송)
-export interface ChatMessage {
-
+export interface RMessage {  //stomp받은 메세지 형식
+  
   roomId: number; //채팅방 Id
 
   senderId: number; //보낸사람 Id
@@ -39,16 +38,13 @@ export interface ChatMessage {
   content: string;  //메세지 내용
 
   createdAt: string;  //전송시각
-
 }
 
-export interface SendChat {
 
-  roomId: number; //채팅방 Id
-
-  senderId: number; //보낸사람 Id
-
-  content: string;  //메세지 내용
-
+export interface ChatMessage {
+  content: RMessage[];  // 메시지 리스트
+  currentPage: number;     // 현재 페이지
+  totalPages: number;      // 전체 페이지 수
+  first: boolean;          // 첫 페이지 여부
+  last: boolean;          
 }
-
