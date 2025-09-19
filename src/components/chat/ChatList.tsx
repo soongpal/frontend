@@ -21,7 +21,9 @@ const ChatList = ({chatRoom}: ChatListProps) =>{
                 <p className="chatroom-name">{chatRoom.productTitle}</p>
                 <p className="chatroom-update">{chatRoom.updatedAt}</p>
             </div>
-            <p className="chatroom-message">{chatRoom.lastMessage}</p>
+             {chatRoom.lastMessage && (
+                <p className="chatroom-message">{chatRoom.lastMessage}</p>
+                )}
         </div>
     )
 }
