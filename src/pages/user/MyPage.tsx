@@ -4,7 +4,7 @@ import type React from "react";
 import { useNavigate } from "react-router-dom";
 
 //style
-import { ArrowRight, ChatDots, Gear, Heart, Megaphone, PencilSquare } from "react-bootstrap-icons";
+import { ArrowRight, ChatDots, Gear, Heart, PencilSquare } from "react-bootstrap-icons";
 import '../../styles/Mypage.css'
 
 //api
