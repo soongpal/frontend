@@ -1,27 +1,27 @@
 //몇분전 표기 함수
-import { type Product } from "../types/product";
 
-export function timeAgo(product:Product): string{
+export function timeAgo(dateString: string): string{
 
+  const createdAt = new Date(dateString.endsWith('Z') ? dateString : dateString + 'Z');
   const now = new Date();
-  const createdAt = new Date(product.createdAt + 'Z');
 
   const diffMilliseconds = now.getTime() - createdAt.getTime();
   const minutesPassed = Math.floor(diffMilliseconds / (1000 * 60));
-
-  let timeAgo: string;
+  const hoursPassed = Math.floor(minutesPassed / 60);
+  const daysPassed = Math.floor(hoursPassed / 24);
 
   if (minutesPassed < 1) {
-    timeAgo = '방금 전';
-  } else if (minutesPassed < 60) {
-    timeAgo = `${minutesPassed}분 전`;
-  } else if (minutesPassed < 60 * 24) { 
-    const hours = Math.floor(minutesPassed / 60);
-    timeAgo = `${hours}시간 전`;
-  } else {
-    timeAgo = createdAt.toLocaleDateString('ko-KR');
-  } 
-
-  return timeAgo;
-
+    return '방금 전';
   }
+  if (minutesPassed < 60) {
+    return `${minutesPassed}분 전`;
+  }
+  if (hoursPassed < 24) {
+    return `${hoursPassed}시간 전`;
+  }
+  if (daysPassed < 7) {
+    return `${daysPassed}일 전`;
+  }
+  
+  return createdAt.toLocaleDateString('ko-KR');
+}
