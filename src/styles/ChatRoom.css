@@ -71,11 +71,15 @@
     padding: 10px 14px;
     border-radius: 18px;
     line-height: 1.4;
+
+    max-width: 100%;      
+    word-wrap: break-word; 
+    white-space: pre-wrap; 
 }
 
 .message-time {
     font-size: 12px;       
-    color: var(--light-grey-hover-color);
+    color: var(--light-grey-color);
     white-space: nowrap; 
 }
 

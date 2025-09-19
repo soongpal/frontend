@@ -7,7 +7,7 @@ import {type ChatRoom, type ChatMessage} from "../types/chat";
 export const getChatRoomList = async() =>{
     try {
         const res = await api.get(
-            `/api/chat/rooms`,
+            `/api/chat/rooms`
         );
         return res.data.result as ChatRoom[];
   } catch (error) {
