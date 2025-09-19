@@ -210,8 +210,6 @@ const ChatRoomPage: React.FC = () => {
         }
 
         const messagePayload = {
-            roomId: room.id,
-            senderId: user.userId,
             content: input,
         };
 
@@ -219,7 +217,7 @@ const ChatRoomPage: React.FC = () => {
         stompClient.current.publish({
             destination: `/send/${room.id}`, 
             body: JSON.stringify(messagePayload),
-            headers: { 'content-type': 'application/json' },
+            headers: { Authorization: `Bearer ${accessToken}`},
     });
 
     setInput('');
