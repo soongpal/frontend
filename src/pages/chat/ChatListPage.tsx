@@ -21,7 +21,6 @@ const ChatListPage: React.FC = () =>{
         try {
             const data = await getChatRoomList();
             setRooms(data);
-            console.error("채팅방 목록 불러오기 성공", data);
         } catch (err) {
             console.error("채팅방 목록 불러오기 실패", err);
         }
