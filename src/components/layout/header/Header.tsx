@@ -70,6 +70,7 @@ const Header : React.FC = () =>{
                                     className="search-bar"
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
+                                    onKeyDown={e => e.key === "Enter" && handleSearch()}
                                 />
                                 <button type="button" className="search-button" onClick={handleSearch}>
                                     <Search/>
