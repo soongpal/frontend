@@ -13,12 +13,12 @@ const ChatList = ({chatRoom}: ChatListProps) =>{
 
     //채팅방 목록에서 클릭시 채팅방 띄우기 
     const handleChatRoomClick = (chatId: number)=>{
-        navigate(`chatroom/:${chatId}`);
+        navigate(`/chat/chatroom/:${chatId}`);
     }
 
     return(
         <div className="chatroom-container" onClick={()=>{handleChatRoomClick(chatRoom.id)}}>
-            <div className="d-flex justify-content-between align-items-center">
+            <div className="d-flex justify-content-between align-items-center mb-2">
                 <p className="chatroom-name">{chatRoom.productTitle}</p>
                 <p className="chatroom-update">{timeAgo(chatRoom.updatedAt)}</p>
             </div>
