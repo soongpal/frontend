@@ -21,6 +21,8 @@ import { useAuthStore } from "../../stores/UserStore";
 // STOMP
 import SockJS from "sockjs-client";
 import { Client, type IMessage  } from "@stomp/stompjs";
+//util
+import { timeAgo } from "../../utils/time";
 
 const ChatRoomPage: React.FC = () => {
     
@@ -255,7 +257,7 @@ const ChatRoomPage: React.FC = () => {
                         key={`${msg.senderId}-${msg.createdAt}-${index}`}
                         className={msg.senderId === user?.userId ? 'message my' : 'message other'}
                     >
-                        <span className="message-time">{msg.createdAt}</span>
+                        <span className="message-time">{timeAgo(msg.createdAt)}</span>
                         <span className="message-content">{msg.content}</span>
                     </div>
                 ))}
