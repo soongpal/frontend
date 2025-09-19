@@ -118,28 +118,21 @@ const ChatRoomPage: React.FC = () => {
     // STOMP 연결**************************************************************
     useEffect(() => {
         if (!accessToken || !room) return;
-        console.log("[STOMP] useEffect 실행됨. 연결 시도 준비.");//console
-
+  
         const client = new Client({
             // 1. SockJS를 통해 웹소켓 연결
             webSocketFactory: () => {
-                console.log("[STOMP] SockJS 연결 생성:", import.meta.env.VITE_WS_URL);//console
                 return new SockJS(import.meta.env.VITE_WS_URL);
             },
             connectHeaders: {
                 Authorization: `Bearer ${accessToken}`,
             },
-            debug: (str) => {
-                console.log("[STOMP Debug]", str);//console
-            },
             onConnect: () => {
                 console.log("[STOMP] 서버 연결 성공");//console
 
                 // 4. 채팅방 토픽 구독
-                console.log(`[STOMP] 채팅방 토픽 구독 시도: /topic/${roomId}`);//console
-
                 client.subscribe(`/topic/${roomId}`, (message: IMessage) => {   //roomId로 채팅방 구독
-                    console.log("[STOMP] 새 메시지 수신:", message.body);
+                    console.log("[STOMP] 새 메시지 수신:", message.body);//console
 
                     const receivedMessage: RMessage = JSON.parse(message.body);
 
@@ -159,16 +152,13 @@ const ChatRoomPage: React.FC = () => {
         });
 
         // 3. Stomp 클라이언트 활성화 (연결 시작)
-        console.log("[STOMP] 클라이언트 activate() 호출 → 연결 시작");//console
         stompClient.current = client;
         client.activate();
 
         // 컴포넌트가 언마운트될 때 연결 해제
         return () => {
             if (stompClient.current?.active) {
-            console.log("[STOMP] 컴포넌트 언마운트 → 연결 해제 시도");//console
             stompClient.current.deactivate();
-            console.log("[STOMP] 연결 해제 완료");//console
             }
         };
     }, [room, accessToken]); 
