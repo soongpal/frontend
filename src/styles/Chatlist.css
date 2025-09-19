@@ -25,7 +25,7 @@
 }
 
 .chatroom-message{
-    color: var(--light-grey-hover-color);
+    color: black;
     font-weight: 500;
     font-size: medium;
 
