@@ -13,7 +13,7 @@ const ChatList = ({chatRoom}: ChatListProps) =>{
 
     //채팅방 목록에서 클릭시 채팅방 띄우기 
     const handleChatRoomClick = (chatId: number)=>{
-        navigate(`/chat/chatroom/:${chatId}`);
+        navigate(`/chat/chatroom/${chatId}`);
     }
 
     return(
