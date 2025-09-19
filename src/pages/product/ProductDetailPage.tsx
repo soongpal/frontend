@@ -150,7 +150,7 @@ const ProductDetailPage: React.FC = () => {
             <h1 className="mt-3 mb-0">{product.title}</h1>
 
             {/* 날짜 */}
-            <p className="gray-row mb-3">{timeAgo(product)}</p>
+            <p className="gray-row mb-3">{timeAgo(product.createdAt)}</p>
 
             {/* 설명란 */}
             <p className="my-3">{product.content}</p>
