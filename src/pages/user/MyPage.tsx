@@ -62,12 +62,6 @@ const MyPage: React.FC = () =>{
                 <h5 className="h5-style">내가 쓴 글</h5>
                 <ArrowRight size={25} className="arrow-icon"/>
             </div>
-
-            <div onClick={() => navigate("/user/notice")} className="flex-container">
-                <Megaphone size={25} className="me-3 "/>
-                <h5 className="h5-style">공지사항</h5>
-                <ArrowRight size={25} className="arrow-icon"/>
-            </div>
         
             <div onClick={() => navigate("/user/setting")} className="flex-container">
                 <Gear size={25} className="me-3"/>
