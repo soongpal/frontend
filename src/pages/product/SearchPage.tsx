@@ -39,7 +39,7 @@ const SearchPage: React.FC = () =>{
       };
 
       performSearch();
-    }, [search, setFilter, fetchProducts])
+    }, [search, setFilter])
 
     return(
       <div className="container">
