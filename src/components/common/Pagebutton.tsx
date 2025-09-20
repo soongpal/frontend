@@ -32,7 +32,7 @@ const PageButton: React.FC<PaginationProps> = ({ maxButtons = 5 }) => {
 
           <li className={`page-item ${page === 0 ? "disabled" : ""}`}>
             <button
-              className="page-link"
+               className="page-link border-0"
               onClick={() => setPage(page - 1)}
               disabled={page === 0}
             >
@@ -44,7 +44,7 @@ const PageButton: React.FC<PaginationProps> = ({ maxButtons = 5 }) => {
           {pages.map((p) => (
 
             <li key={p} className={`page-item ${p === page ? "active" : ""}`}>
-              <button className="page-link" onClick={() => setPage(p)}>
+              <button className="page-link rounded " onClick={() => setPage(p)}>
                 {p + 1}
               </button>
             </li>
@@ -54,7 +54,7 @@ const PageButton: React.FC<PaginationProps> = ({ maxButtons = 5 }) => {
 
           <li className={`page-item ${page === totalPages - 1 ? "disabled" : ""}`}>
             <button
-              className="page-link"
+               className="page-link border-0"
               onClick={() => setPage(page + 1)}
               disabled={page === totalPages - 1}
             >
