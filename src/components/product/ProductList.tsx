@@ -1,60 +1,67 @@
 //library
-import type React from "react";
-import { type Product } from "../../types/product";
+import React, { useState } from "react"; // ✨ useState import 추가
+import { type Product, type Status } from "../../types/product"; // ✨ Status 타입 import 추가
 import { useNavigate } from "react-router-dom";
 
 //style
 import { PencilSquare, Trash3 } from "react-bootstrap-icons";
 import "../../styles/ProductList.css"
-import { deleteProduct } from "../../api/productAPI";
+//api
+import { deleteProduct } from "../../api/productAPI"; 
+import { patchStatus } from "../../api/userAPI";
+
 
 interface ProductGridProps{
     products: Product[];
 };
 
 const ProductList : React.FC<ProductGridProps> = ({products}) =>{
-
-    //상품 수정 함수
     const navigate = useNavigate(); 
+    
+    // ✨ 어떤 상품의 드롭다운이 열렸는지 ID로 관리하기 위한 state
+    const [openDropdownId, setOpenDropdownId] = useState<number | null>(null);
+
     const gotoEditpage = (id: number) => {
         navigate(`/post/edit/${id}`);
     };
 
-    //상품 삭제함수
-    const handleDelete= async (id: number) => {
-        const result = confirm("정말 삭제하시겠습니까?");
-        if (result) {
-             try {
-                const deletedProduct = await deleteProduct(id)
-                console.log('상품 삭제 성공: ', deletedProduct)
-                window.location.reload();
+    const handleDelete = async (id: number) => {
+        if (confirm("정말 삭제하시겠습니까?")) {
+            try {
+                await deleteProduct(id)
+                alert('상품이 삭제되었습니다.');
+                window.location.reload(); // 삭제 후 페이지 새로고침
             } catch (err) {
                 console.error('상품 삭제 실패:', err);
+                alert('상품 삭제에 실패했습니다.');
             }
         } 
-        else {
-            alert("취소되었습니다.");
-        }
     }
 
     //상품 상태 변경 함수
-    const handleStatusChange = async()=>{
-        
+    const handleStatusChange = async(id: number, status: Status) => {
+        try {
+           await patchStatus({ id, status }); 
+            setOpenDropdownId(null); 
+            window.location.reload();
+        } catch(err) {
+            console.error('상태 변경 실패:', err);
+            alert('상태 변경에 실패했습니다.');
+        }
     }
 
     return(
     <table className="table align-items-center justify-content-center">
         <thead>
             <tr>
-            <th>사진</th>
-            <th>제목</th>
-            <th>가격</th>
-            <th>관심수</th>
-            <th>상태</th>
-            <th>기능</th>
+                <th>사진</th>
+                <th>제목</th>
+                <th>가격</th>
+                <th>관심수</th>
+                <th>상태</th>
+                <th>기능</th>
             </tr>
         </thead>
-
         <tbody>
             {products.map((product) => (
             <tr key={product.id}>
@@ -64,14 +71,44 @@ const ProductList : React.FC<ProductGridProps> = ({products}) =>{
                 <td>{product.title}</td>
                 <td>{product.price}원</td>
                 <td>{product.likeCount}</td>
-                <td onClick={handleStatusChange}>{product.status === "IN_PROGRESS" ? "거래중" : "거래완료"}</td>
+                
                 <td>
-                <button className="btn me-2" onClick={() => gotoEditpage(product.id)}>
-                    <PencilSquare />
-                </button>
-                <button className="btn" onClick={ () => handleDelete(product.id)}>
-                    <Trash3 />
-                </button>
+                    <div className="dropdown">
+                        <button 
+                            className="btn btn-light dropdown-toggle" 
+                            type="button" 
+                            onClick={() => setOpenDropdownId(openDropdownId === product.id ? null : product.id)}
+                        >
+                            {product.status === "IN_PROGRESS" ? "거래중" : "거래완료"}
+                        </button>
+                        
+                       
+                        {openDropdownId === product.id && (
+                            <div className="dropdown-menu show" style={{ position: 'absolute', zIndex: 10 }}>
+                                <button 
+                                    className="dropdown-item" 
+                                    onClick={() => handleStatusChange(product.id, 'IN_PROGRESS')}
+                                >
+                                    거래중
+                                </button>
+                                <button 
+                                    className="dropdown-item" 
+                                    onClick={() => handleStatusChange(product.id, 'COMPLETED')}
+                                >
+                                    거래완료
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                </td>
+
+                <td>
+                    <button className="btn me-2" onClick={() => gotoEditpage(product.id)}>
+                        <PencilSquare />
+                    </button>
+                    <button className="btn" onClick={ () => handleDelete(product.id)}>
+                        <Trash3 />
+                    </button>
                 </td>
             </tr>
             ))}
