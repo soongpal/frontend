@@ -74,8 +74,8 @@ return (
       <tbody>
         {/* ID 행 */}
         <tr>
-          <th style={{ width: '120px', verticalAlign: 'middle' }}>카카오ID</th>
-          <td>{user?.kakaoId}</td>
+          <th style={{ width: '120px', verticalAlign: 'middle' }}>이메일</th>
+          <td>{user?.email}</td>
           <td style={{ width: '80px' }}></td>
         </tr>
 
