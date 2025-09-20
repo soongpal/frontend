@@ -106,7 +106,7 @@ return (
     </table>
 
     {/* 회원 탈퇴*/}
-    <p onClick={withdraw} className="text-muted mt-4" style={{ cursor: "pointer" }}>
+    <p onClick={withdraw} className="text-muted mt-4 text-decoration-underline" style={{ cursor: "pointer" }}>
       회원 탈퇴
     </p>
   </div>
