@@ -169,7 +169,7 @@ const ChatRoomPage: React.FC = () => {
         if(room){
             try{
                 await leaveChatRoom(room.id);
-                navigate('/chat/chatlist');
+                navigate('/chat');
             }
             catch(error:any){
                 console.log("채팅방 나가기 오류:", error.message);
@@ -182,7 +182,7 @@ const ChatRoomPage: React.FC = () => {
         if(room){
             try{
                 await deleteChatRoom(room.id);
-                navigate('/chat/chatlist');
+                navigate('/chat');
             }
             catch(error:any){
                 console.log("채팅방 삭제 오류:", error.message);
