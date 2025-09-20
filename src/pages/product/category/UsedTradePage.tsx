@@ -16,7 +16,6 @@ const UsedTradePage: React.FC = () =>{
 
     useEffect(() => {
         setFilter({category: 'USED', status: undefined});
-        fetchProducts();
     }, []);    
 
     return(

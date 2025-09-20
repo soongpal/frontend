@@ -14,7 +14,6 @@ const GroupPurchasePage: React.FC = () =>{
 
     useEffect(() => {
         setFilter({category: 'GROUP', status: undefined});
-        fetchProducts();
     }, []);
 
     return(

@@ -57,7 +57,6 @@ const Home: React.FC = () =>{
     //필터 리셋해서 상품 불러오기
     useEffect(() => {
         setFilter({category: undefined, status: undefined, keyword: undefined});
-        fetchProducts();
     }, []);
 
 
