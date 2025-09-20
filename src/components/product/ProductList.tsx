@@ -27,10 +27,9 @@ const ProductList : React.FC<ProductGridProps> = ({products}) =>{
              try {
                 const deletedProduct = await deleteProduct(id)
                 console.log('상품 삭제 성공: ', deletedProduct)
-                alert("상품 삭제를 성공하였습니다.");
+                window.location.reload();
             } catch (err) {
                 console.error('상품 삭제 실패:', err);
-                alert("상품 삭제를 실패하였습니다.");
             }
         } 
         else {

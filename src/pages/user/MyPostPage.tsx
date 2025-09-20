@@ -13,10 +13,8 @@ import { myPost } from "../../api/userAPI";
 
 const MyPostPage: React.FC = () =>{
 
-/// 좋아요 목록 불러오기
+//내가쓴글 불러오기
     const [products, setProducts] = useState<Product[] | null >();
-    //const [currentPage, setCurrentPage] = useState(0);
-    //나중에 페이지네이션 추가
     
     useEffect(()=>{
         const fetchFavorites = async () => {
