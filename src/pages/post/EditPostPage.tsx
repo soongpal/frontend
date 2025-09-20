@@ -87,16 +87,16 @@ const EditPostPage: React.FC = () => {
 
 
         try {
-        const updated = await eidtProduct(postId, {
-            title, content, price, url, location, category: category!, status,
-            newImages, deleteImageIds: deleteImages
-        });
-        alert("수정 완료");
-        //수정완료 후 상세페이지로 이동
-        navigate(`/productdetail/${updated.id}`);
+            const updated = await eidtProduct(postId, {
+                title, content, price, url, location, category: category!, status,
+                newImages, deleteImageIds: deleteImages
+            });
+            alert("수정 완료");
+-
+            navigate(`/user/mypost`);
         } catch(err) {
-        console.error(err);
-        alert("수정 실패");
+            console.error(err);
+            alert("수정 실패");
         }
     };
 

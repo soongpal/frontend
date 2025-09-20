@@ -53,8 +53,8 @@ export const createProduct = async (data: FormData) => {
   
 };
 
-// 수정
-export const eidtProduct = async (id: number, data: {
+// 상품 수정
+export type EditProductData = {
     title: string;
     content: string;
     price: number;
@@ -64,34 +64,51 @@ export const eidtProduct = async (id: number, data: {
     status: string;
     newImages?: FileList | File[];
     deleteImageIds?: number[];
-}) => {
-    const formData = new FormData();
+};
 
-    const boardData = {
-        title: data.title,
-        content: data.content,
-        price: data.price,
-        url: data.url,
-        location: data.location,
-        category: data.category,
-        status: data.status
+// 수정
+export const eidtProduct = async (id: number, data: EditProductData) => {
+    try {
+        const formData = new FormData();
+
+        // JSON으로 보낼 데이터 객체
+        const boardData = {
+            title: data.title,
+            content: data.content,
+            price: data.price,
+            url: data.url,
+            location: data.location,
+            category: data.category,
+            status: data.status
         };
-    const boardBlob = new Blob([JSON.stringify(boardData)], { type: 'application/json' });
-    formData.append("board", boardBlob);
+        
+        // 객체를 FormData에 추가
+        const boardBlob = new Blob([JSON.stringify(boardData)], { type: 'application/json' });
+        formData.append("board", boardBlob);
 
-
-    if (data.deleteImageIds && data.deleteImageIds.length > 0) {
-        const deleteIdsBlob = new Blob([JSON.stringify(data.deleteImageIds)], { type: 'application/json' });
-        formData.append("deleteImageIds", deleteIdsBlob);
+        // 삭제할 이미지 ID가 있다면 추가
+        if (data.deleteImageIds && data.deleteImageIds.length > 0) {
+            const deleteIdsBlob = new Blob([JSON.stringify(data.deleteImageIds)], { type: 'application/json' });
+            formData.append("deleteImageIds", deleteIdsBlob);
+        }
+        
+        // 새로 추가할 이미지가 있다면 추가
+        if (data.newImages) {
+            Array.from(data.newImages).forEach(file => {
+                formData.append('newImages', file);
+            });
         }
 
-    const response = await api.put(`/api/board/${id}`, formData, 
-        {
-        headers: { "Content-Type": "multipart/form-data" }
-        }
-    );
+        const res = await api.put(`/api/board/${id}`, formData, {
+            headers: { "Content-Type": "multipart/form-data" }
+        });
 
-  return response.data;
+        return res.data.result;
+    } catch (error) {
+
+        console.error('상품 수정 실패:', error);
+        throw error;
+    }
 };
 
 // 삭제
