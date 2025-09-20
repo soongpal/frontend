@@ -50,7 +50,7 @@ export const mySetting = async (nickname: string) => {
     try {
         const res = await api.patch(
             `/api/users/me`,
-            { nickname }
+            nickname 
         );
         return res.data.result as UserInfo;
   } catch (error) {
