@@ -70,7 +70,7 @@ return (
 
     <h4 className="mt-4 mb-3">회원정보</h4>
 
-    <table className="table table-bordered" style={{ maxWidth: '600px' }}>
+    <table className="table" style={{ maxWidth: '600px' }}>
       <tbody>
         {/* ID 행 */}
         <tr>
@@ -97,7 +97,7 @@ return (
           </td>
           {/* 변경/저장 버튼 */}
           <td className="text-center">
-            <button onClick={changeNickname} className="btn btn-secondary btn-sm">
+            <button onClick={changeNickname} className="btn btn-primary btn-sm">
               {isEditing ? "저장" : "변경"}
             </button>
           </td>
