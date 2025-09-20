@@ -137,13 +137,8 @@ const ProductDetailPage: React.FC = () => {
                 <img  key={product.images?.[0]?.id ?? product.id} src={product.images?.[0]?.imageUrl ?? "/images/empty.png"} alt={product.title} className="thumbnail-img"/>
             </div>
 
-            <div className="d-flex justify-content-between align-items-center my-3">
+            <div className="d-flex justify-content-start align-items-center my-3">
                 <p className="gray-row">{product.category === 'GROUP' ? '공동구매' : '중고거래'}<ChevronRight size={13} className="ms-2"/></p>
-                <div className="d-flex align-items-center">
-                    <button>
-                        <Share color="gray" size={13}/>
-                    </button>
-                </div>
             </div>
 
             {/* 제목 */}
