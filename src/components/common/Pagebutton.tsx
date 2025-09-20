@@ -1,8 +1,7 @@
 //상품 페이지네이션을 위한 버튼
 import React from "react";
-import useProductStore from "../../stores/productStore"
-
-import { ChevronLeft,ChevronRight  } from "react-bootstrap-icons";
+import useProductStore from "../../stores/productStore";
+import { ChevronLeft, ChevronRight } from "react-bootstrap-icons";
 
 interface PaginationProps {
   maxButtons?: number;
@@ -25,37 +24,45 @@ const PageButton: React.FC<PaginationProps> = ({ maxButtons = 5 }) => {
   }
 
   return (
-    <div className="flex items-center gap-2 mt-4">
-      {/* 이전 버튼 */}
-      <button
-        disabled={page === 0}
-        onClick={() => setPage(page - 1)}
-        className="px-3 py-1 border rounded disabled:opacity-50"
-      >
-       <ChevronLeft/>
-      </button>
+    <div className="d-flex justify-content-center mt-4">
 
-      {/* 페이지 번호 버튼 */}
-      {pages.map((p) => (
-        <button
-          key={p}
-          onClick={() => setPage(p)}
-          className={`px-3 py-1 border rounded ${
-            p === page ? "bg-blue-500 text-white" : ""
-          }`}
-        >
-          {p + 1} 
-        </button>
-      ))}
+      <nav aria-label="Page navigation">
+        <ul className="pagination">
+          {/* 이전 버튼 */}
 
-      {/* 다음 버튼 */}
-      <button
-        disabled={page === totalPages - 1}
-        onClick={() => setPage(page + 1)}
-        className="px-3 py-1 border rounded disabled:opacity-50"
-      >
-        <ChevronRight/>
-      </button>
+          <li className={`page-item ${page === 0 ? "disabled" : ""}`}>
+            <button
+              className="page-link"
+              onClick={() => setPage(page - 1)}
+              disabled={page === 0}
+            >
+              <ChevronLeft />
+            </button>
+          </li>
+
+          {/* 페이지 번호 버튼 */}
+          {pages.map((p) => (
+
+            <li key={p} className={`page-item ${p === page ? "active" : ""}`}>
+              <button className="page-link" onClick={() => setPage(p)}>
+                {p + 1}
+              </button>
+            </li>
+          ))}
+
+          {/* 다음 버튼 */}
+
+          <li className={`page-item ${page === totalPages - 1 ? "disabled" : ""}`}>
+            <button
+              className="page-link"
+              onClick={() => setPage(page + 1)}
+              disabled={page === totalPages - 1}
+            >
+              <ChevronRight />
+            </button>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 };
