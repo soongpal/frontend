@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import ProductGrid from "../../components/product/ProductGrid";
 import Filter from "../../components/common/Filter";
 import FloatingButton from "../../components/common/FloatingButton";
+import PageButton from "../../components/common/Pagebutton";
 //store
 import { useProductStore } from "../../stores/productStore";
 import { useParams } from "react-router-dom";
@@ -26,24 +27,24 @@ const SearchPage: React.FC = () =>{
     const { products, setFilter,  fetchProducts } = useProductStore();
 
     useEffect(() => {
-        if (!search) {
-        return;
-        }
+      if (!search) {
+      return;
+      }
 
-        const performSearch = async () => {
-            setIsLoading(true);
-            setFilter({ keyword: search, category: undefined, status: undefined });
-            await fetchProducts(); // fetchProducts가 완료될 때까지 기다림
-            setIsLoading(false); 
-        };
+      const performSearch = async () => {
+        setIsLoading(true);
+        setFilter({ keyword: search, category: undefined, status: undefined });
+        await fetchProducts(); // fetchProducts가 완료될 때까지 기다림
+        setIsLoading(false); 
+      };
 
-        performSearch();
+      performSearch();
     }, [search, setFilter, fetchProducts])
 
     return(
-        <div className="container">
-            <h3 className="text-start mt-4 mb-4"><b>검색결과</b></h3>
-            <Filter></Filter>
+      <div className="container">
+        <h3 className="text-start mt-4 mb-4"><b>검색결과</b></h3>
+        <Filter></Filter>
 
         {isLoading ? (
         <div className="d-flex justify-content-center align-items-center my-5">
@@ -65,8 +66,9 @@ const SearchPage: React.FC = () =>{
                 </div>
                 )
             }
-            <FloatingButton></FloatingButton>
-        </div>
+        <PageButton/>
+        <FloatingButton></FloatingButton>
+      </div>
     )
 }
 

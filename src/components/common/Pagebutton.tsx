@@ -8,7 +8,7 @@ interface PaginationProps {
   maxButtons?: number;
 }
 
-const Pagination: React.FC<PaginationProps> = ({ maxButtons = 5 }) => {
+const PageButton: React.FC<PaginationProps> = ({ maxButtons = 5 }) => {
   const { page, totalPages, setPage } = useProductStore((state) => ({
     page: state.page,
     totalPages: state.totalPages,
@@ -62,4 +62,4 @@ const Pagination: React.FC<PaginationProps> = ({ maxButtons = 5 }) => {
   );
 };
 
-export default Pagination;
+export default PageButton;

@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import Filter from "../../../components/common/Filter";
 import FloatingButton from "../../../components/common/FloatingButton";
 import { useProductStore } from "../../../stores/productStore";
+import PageButton from "../../../components/common/Pagebutton";
 
 const GroupPurchasePage: React.FC = () =>{
    // 처음 불러오기
@@ -22,6 +23,7 @@ const GroupPurchasePage: React.FC = () =>{
             <Filter></Filter>
             <ProductGrid products={products}></ProductGrid>
             <FloatingButton></FloatingButton>
+            <PageButton/>
         </div>
     )
 }

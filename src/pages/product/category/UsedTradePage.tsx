@@ -6,6 +6,7 @@ import Filter from "../../../components/common/Filter";
 import FloatingButton from "../../../components/common/FloatingButton";
 import { useProductStore } from '../../../stores/productStore';
 import { useEffect } from "react";
+import PageButton from "../../../components/common/Pagebutton";
 
 
 
@@ -24,6 +25,7 @@ const UsedTradePage: React.FC = () =>{
             <Filter></Filter>
             <ProductGrid products={products}></ProductGrid>
             <FloatingButton></FloatingButton>
+            <PageButton/>
         </div>
     )
 }

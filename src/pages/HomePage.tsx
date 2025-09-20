@@ -13,6 +13,7 @@ import { useProductStore } from '../stores/productStore';
 
 //api
 import { myInfo } from "../api/userAPI";
+import PageButton from "../components/common/Pagebutton";
 
 const Home: React.FC = () =>{
     const [searchParams] = useSearchParams();
@@ -66,6 +67,7 @@ const Home: React.FC = () =>{
             <ProductGrid products={products}></ProductGrid>
             <FloatingButton></FloatingButton>
             <Banner></Banner>
+            <PageButton/>
         </div>
     );
 }
