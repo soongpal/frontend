@@ -9,11 +9,9 @@ interface PaginationProps {
 }
 
 const PageButton: React.FC<PaginationProps> = ({ maxButtons = 5 }) => {
-  const { page, totalPages, setPage } = useProductStore((state) => ({
-    page: state.page,
-    totalPages: state.totalPages,
-    setPage: state.setPage,
-  }));
+  const page = useProductStore((state) => state.page);
+  const totalPages = useProductStore((state) => state.totalPages);
+  const setPage = useProductStore((state) => state.setPage);
 
   if (totalPages <= 1) return null; // 페이지가 1개면 페이지 버튼 없음
 
