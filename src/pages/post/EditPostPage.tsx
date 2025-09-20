@@ -9,6 +9,8 @@ import type { Category, Status } from "../../types/product";
 import MultiImageUploader from "../../components/post/MultiImageUploader";
 //api
 import { eidtProduct, getProductDetail } from "../../api/productAPI";
+//style
+import "../../styles/NewPost.css"
 
 
 const EditPostPage: React.FC = () => {
@@ -87,7 +89,7 @@ const EditPostPage: React.FC = () => {
 
 
         try {
-            const updated = await eidtProduct(postId, {
+            await eidtProduct(postId, {
                 title, content, price, url, location, category: category!, status,
                 newImages, deleteImageIds: deleteImages
             });
@@ -101,160 +103,174 @@ const EditPostPage: React.FC = () => {
     };
 
     return (
-         <div className="container">
-            <form onSubmit={handleSubmit}>
+    <div className="container">
+        <form onSubmit={handleSubmit}>
+            {/* 기존 이미지 */}
+            <div className="form-group">
+                <label className="post-label">기존 이미지</label>
                 <div>
-                    <label>기존 이미지</label>
-                    <div>
-                        {existingImages.map((img) => (
-                        <div key={img.id}>
-                            <img src={img.imageUrl} alt="기존 이미지" width={100} />
-                            <button type="button" onClick={() => handleDeleteExistingImage(img.id)}>
-                            X
-                            </button>
+                    {existingImages.map((img) => (
+                        <div key={img.id} className="d-inline-block position-relative m-1">
+                            <img src={img.imageUrl} alt="기존 이미지" width={100} height={100} style={{ objectFit: 'cover' }} />
+                            {/* 삭제 버튼에 Bootstrap 클래스 적용 */}
+                            <button
+                                type="button"
+                                className="btn-close bg-white position-absolute top-0 end-0 m-1"
+                                aria-label="Close"
+                                onClick={() => handleDeleteExistingImage(img.id)}
+                            ></button>
                         </div>
-                        ))}
-                    </div>
+                    ))}
                 </div>
+            </div>
 
-        {/* 새 이미지 업로드 */}
-        <div>
-            <label htmlFor="image-uploader">새로운 이미지 추가</label>
-            <MultiImageUploader uploadFiles={newImages}
-                                setUploadFiles={setNewImages}
-                                onFilesChange={handleImagesChange} 
-            />
-            <p style={{ color: 'var(--soongpal-color)' }}>*JPG, JEPG, PNG 형식</p>
-        </div>
-                
-                <div style={{ marginBottom: '1rem' }}>
-                    <label htmlFor="title">제목</label>
-                    <input
-                        id="title"
-                        type="text"
-                        name="title"
-                        placeholder="글 제목을 입력해주세요"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        required
-                        style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
-                    />
-                </div>
-                
-                <div style={{ marginBottom: '1rem' }}>
-                    <label htmlFor="content">설명</label>
-                    <textarea
-                        id="content"
-                        name="content"
-                        placeholder="상태, 용량, 크기 등 자세히 적어주세요"
-                        value={content}
-                        onChange={(e) => setContent(e.target.value)}
-                        required
-                        style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
-                    />
-                </div>
-                
-                <div style={{ marginBottom: '1rem' }}>
-                    <label htmlFor="price">가격</label>
-                    <input
-                        id="price"
-                        type="number"
-                        name="price"
-                        placeholder="가격을 적어주세요"
-                        value={price}
-                        onChange={(e) => setPrice(Number(e.target.value))}
-                        required
-                        style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
-                    />
-                </div>
+            {/* 새 이미지 업로드 */}
+            <div className="form-group">
+                <label htmlFor="image-uploader" className="post-label">새로운 이미지 추가</label>
+                <MultiImageUploader 
+                    uploadFiles={newImages}
+                    setUploadFiles={setNewImages}
+                    onFilesChange={handleImagesChange}
+                />
+                <p style={{ color: 'var(--soongpal-color)' }}>*JPG, JEPG, PNG 형식</p>
+            </div>
+            
+            {/* 제목 */}
+            <div className="form-group">
+                <label htmlFor="title" className="post-label">*제목</label>
+                <input
+                    id="title"
+                    type="text"
+                    name="title"
+                    placeholder="글 제목을 입력해주세요"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    required
+                    className="input-continer"
+                />
+            </div>
+            
+            {/* 설명 */}
+            <div className="form-group">
+                <label htmlFor="content" className="post-label">*설명</label>
+                <textarea
+                    id="content"
+                    name="content"
+                    placeholder="상태, 용량, 크기 등 자세히 적어주세요"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    required
+                    className="input-content"
+                />
+            </div>
+            
+            {/* 가격 */}
+            <div className="form-group">
+                <label htmlFor="price" className="post-label">*가격</label>
+                <input
+                    id="price"
+                    type="number"
+                    name="price"
+                    placeholder="가격을 적어주세요"
+                    value={price}
+                    onChange={(e) => setPrice(Number(e.target.value))}
+                    required
+                    className="input-continer"
+                />
+            </div>
 
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>상태</label>
-                    <div style={{ display: 'flex', gap: '1rem' }}>
-                        <label>
-                            <input
-                                type="radio"
-                                name="status"
-                                value="IN_PROGRESS"
-                                checked={status === "IN_PROGRESS"}
-                                onChange={handleStatusChange}
-                            />{' '}
-                            거래중
-                        </label>
-                        <label>
-                            <input
-                                type="radio"
-                                name="status"
-                                value="COMPLETED"
-                                checked={status === "COMPLETED"}
-                                onChange={handleStatusChange}
-                            />{' '}
-                            거래완료
-                        </label>
-                    </div>
+            {/* 상태 */}
+            <div className="form-group">
+                <label className="post-label">*상태</label>
+                <div className="category-group">
+                    <label className="post-label">
+                        <input
+                            type="radio"
+                            name="status"
+                            value="IN_PROGRESS"
+                            checked={status === "IN_PROGRESS"}
+                            onChange={handleStatusChange}
+                        />{' '}
+                        거래중
+                    </label>
+                    <label className="post-label">
+                        <input
+                            type="radio"
+                            name="status"
+                            value="COMPLETED"
+                            checked={status === "COMPLETED"}
+                            onChange={handleStatusChange}
+                        />{' '}
+                        거래완료
+                    </label>
                 </div>
+            </div>
 
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>카테고리</label>
-                    <div style={{ display: 'flex', gap: '1rem' }}>
-                        <label>
-                            <input
-                                type="radio"
-                                name="category"
-                                value="GROUP"
-                                checked={category === "GROUP"}
-                                onChange={handleCategoryChange}
-                            />{' '}
-                            공동구매
-                        </label>
-                        <label>
-                            <input
-                                type="radio"
-                                name="category"
-                                value="USED"
-                                checked={category === "USED"}
-                                onChange={handleCategoryChange}
-                            />{' '}
-                            중고거래
-                        </label>
-                    </div>
+            {/* 카테고리 */}
+            <div className="form-group">
+                <label className="post-label">*카테고리</label>
+                <div className="category-group">
+                    <label className="post-label">
+                        <input
+                            type="radio"
+                            name="category"
+                            value="GROUP"
+                            checked={category === "GROUP"}
+                            onChange={handleCategoryChange}
+                        />{' '}
+                        공동구매
+                    </label>
+                    <label className="post-label">
+                        <input
+                            type="radio"
+                            name="category"
+                            value="USED"
+                            checked={category === "USED"}
+                            onChange={handleCategoryChange}
+                        />{' '}
+                        중고거래
+                    </label>
                 </div>
+            </div>
 
-                <div style={{ marginBottom: '1rem' }}>
-                    <label htmlFor="url">URL</label>
-                    <input
-                        id="url"
-                        type="text"
-                        name="url"
-                        placeholder="관련 링크가 있다면 첨부해주세요"
-                        value={url}
-                        onChange={(e) => setUrl(e.target.value)}
-                        style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
-                    />
-                </div>
-                
-                <div style={{ marginBottom: '1rem' }}>
-                    <label htmlFor="location">거래 장소</label>
-                    <input
-                        id="location"
-                        type="text"
-                        name="location"
-                        placeholder="희망 거래 장소를 입력해주세요"
-                        value={location}
-                        onChange={(e) => setLocation(e.target.value)}
-                        required
-                        style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
-                    />
-                </div>
+            {/* URL */}
+            <div className="form-group">
+                <label htmlFor="url" className="post-label">URL</label>
+                <input
+                    id="url"
+                    type="text"
+                    name="url"
+                    placeholder="관련 링크가 있다면 첨부해주세요"
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)}
+                    className="input-continer"
+                />
+            </div>
+            
+            {/* 거래 장소 */}
+            <div className="form-group">
+                <label htmlFor="location" className="post-label">*거래 장소</label>
+                <input
+                    id="location"
+                    type="text"
+                    name="location"
+                    placeholder="희망 거래 장소를 입력해주세요"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                    required
+                    className="input-continer"
+                />
+            </div>
 
-                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <button type="submit" style={{ padding: '10px 20px', backgroundColor: '#343a40', color: '#fff', border: 'none', cursor: 'pointer' }}>
-                        수정완료
-                    </button>
-                </div>
-            </form>
-        </div>
-    );
+            {/* 수정 완료 버튼 */}
+            <div className="button-container">
+                <button type="submit" className="submit-button">
+                    수정완료
+                </button>
+            </div>
+        </form>
+    </div>
+);
 };
 
 export default EditPostPage;
