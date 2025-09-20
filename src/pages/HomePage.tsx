@@ -52,7 +52,7 @@ const Home: React.FC = () =>{
     }, []);
 
     //product store사용할것들
-    const { products, setFilter, fetchProducts } = useProductStore();
+    const { products, setFilter } = useProductStore();
     
     //필터 리셋해서 상품 불러오기
     useEffect(() => {

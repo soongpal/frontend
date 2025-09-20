@@ -12,7 +12,7 @@ import PageButton from "../../../components/common/Pagebutton";
 
 const UsedTradePage: React.FC = () =>{
   // 처음 불러오기
-    const { products, setFilter, fetchProducts } = useProductStore();
+    const { products, setFilter } = useProductStore();
 
     useEffect(() => {
         setFilter({category: 'USED', status: undefined});
