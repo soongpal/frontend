@@ -52,7 +52,7 @@ export const mySetting = async (nickname: string) => {
             `/api/users/me`,
             {nickname}
         );
-        return res.data.result as UserInfo;
+        return res.data as UserInfo;
   } catch (error) {
     console.error('닉네임 변경 실패:', error);
     throw error;

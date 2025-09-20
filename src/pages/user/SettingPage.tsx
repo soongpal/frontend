@@ -48,8 +48,8 @@ const SetiingPage: React.FC = () =>{
             const res = await mySetting(nicknameInput);
             if (user) {
                 const updatedUser: UserInfo = {
-                        ...user, 
-                        nickname: res.nickname,
+                    ...user, 
+                    nickname: res.nickname,
                 };
 
             setUser(updatedUser);
