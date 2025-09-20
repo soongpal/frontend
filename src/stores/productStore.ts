@@ -37,35 +37,15 @@ export const useProductStore = create<ProductState>((set, get) => ({
   error: null,
 
   // 필터 변경
-  setFilter: (newFilter) => {
-    const { fetchProducts, filter } = get();
+ setFilter: async (newFilter) => {
+    const { filter } = get();
     const updatedFilter = { ...filter, ...newFilter };
     const resetPage = 0;
 
-    // 상태 업데이트
-    set({ filter: updatedFilter, page: resetPage });
-
-    // 최신 상태 기반 fetch
-    fetchProducts(updatedFilter, resetPage);
-  },
-
-  // 페이지 변경
-  setPage: (newPage) => {
-    const { fetchProducts, filter } = get();
-    set({ page: newPage });
-    fetchProducts(filter, newPage);
-  },
-
-  // 상품 목록 fetch
-  fetchProducts: async (filterParam?: Filter, pageParam?: number) => {
-    set({ loading: true, error: null });
+    set({ loading: true, error: null, filter: updatedFilter, page: resetPage });
 
     try {
-      const { filter, page } = get();
-      const finalFilter = filterParam || filter;
-      const finalPage = pageParam ?? page;
-
-      const data = await productApi.getProductList({ ...finalFilter, page: finalPage });
+      const data = await productApi.getProductList({ ...updatedFilter, page: resetPage });
 
       set({
         products: data.products,
@@ -75,7 +55,46 @@ export const useProductStore = create<ProductState>((set, get) => ({
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : "상품을 불러오는 중 오류가 발생했습니다.";
       set({ error: errorMessage, loading: false });
-      console.error("상품 목록 불러오기 에러:", err);
+      console.error("setfilter에러:", err);
+    }
+  },
+
+  //페이지 변경
+  setPage: async (newPage) => {
+    const { filter } = get();
+    
+    set({ loading: true, error: null, page: newPage });
+
+    try {
+      const data = await productApi.getProductList({ ...filter, page: newPage });
+
+      set({
+        products: data.products,
+        totalPages: data.totalPages,
+        loading: false
+      });
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : "상품을 불러오는 중 오류가 발생했습니다.";
+      set({ error: errorMessage, loading: false });
+      console.error("setpage에러:", err);
+    }
+  },
+
+  //fetchproducts
+  fetchProducts: async () => {
+    set({ loading: true, error: null });
+    try {
+      const { filter, page } = get();
+      const data = await productApi.getProductList({ ...filter, page });
+      set({
+        products: data.products,
+        totalPages: data.totalPages,
+        loading: false,
+      });
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : "상품을 불러오는 중 오류가 발생했습니다.";
+      set({ error: errorMessage, loading: false });
+      console.error("product fetch에러:", err);
     }
   },
 
