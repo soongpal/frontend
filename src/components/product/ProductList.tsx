@@ -37,6 +37,11 @@ const ProductList : React.FC<ProductGridProps> = ({products}) =>{
         }
     }
 
+    //상품 상태 변경 함수
+    const handleStatusChange = async()=>{
+        
+    }
+
     return(
     <table className="table align-items-center justify-content-center">
         <thead>
@@ -59,7 +64,7 @@ const ProductList : React.FC<ProductGridProps> = ({products}) =>{
                 <td>{product.title}</td>
                 <td>{product.price}원</td>
                 <td>{product.likeCount}</td>
-                <td>{product.status === "IN_PROGRESS" ? "거래중" : "거래완료"}</td>
+                <td onClick={handleStatusChange}>{product.status === "IN_PROGRESS" ? "거래중" : "거래완료"}</td>
                 <td>
                 <button className="btn me-2" onClick={() => gotoEditpage(product.id)}>
                     <PencilSquare />

@@ -1,5 +1,5 @@
 //user관련 api
-import type { Product } from "../types/product";
+import type { Product, Status } from "../types/product";
 import type { UserInfo } from "../types/user";
 import api from "./api";
 
@@ -63,7 +63,10 @@ export const mySetting = async (nickname: string) => {
 export const myPost = async (page: number) => {
 
     try {
-      const res = await api.get(`/api/my-page/posts`, {  params: { page: page } });
+      const res = await api.get(
+        `/api/my-page/posts`, 
+        {  params: { page: page } }
+      );
       const { boards, currentPage, totalPages } = res.data.result;
   
       return {
@@ -82,7 +85,10 @@ export const myPost = async (page: number) => {
 export const myFavorites = async (page: number) => {
 
     try {
-      const res = await api.get(`/api/my-page/like`, {  params: { page: page } });
+      const res = await api.get(
+        `/api/my-page/like`, 
+        {  params: { page: page } }
+      );
       const { boards, currentPage, totalPages } = res.data.result;
   
       return {
@@ -95,3 +101,26 @@ export const myFavorites = async (page: number) => {
     throw error;
   }
 };
+
+//쓴글 상태 변경
+export const patchStatus = async (params: {
+    id: number;
+    status: Status;
+  }
+) => {
+const { id, status } = params;
+
+  try {
+    const res = await api.patch(
+      `/api/board/${id}/status`,
+      { status } 
+    );
+
+    return res;
+
+  } catch (error) {
+    console.error('상품 상태 변경실패:', error);
+    throw error;
+  }
+};
+
