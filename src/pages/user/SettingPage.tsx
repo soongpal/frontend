@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { mySetting, withdrawal } from "../../api/userAPI";
 import type { UserInfo } from "../../types/user";
+import { nicknameValidator } from "../../utils/validation/validateSignup";
 
 const SetiingPage: React.FC = () =>{
 
@@ -22,42 +23,50 @@ const SetiingPage: React.FC = () =>{
 
     //회원탈퇴 함수
     const withdraw = async() =>{
-        if (!window.confirm("정말로 회원탈퇴 하시겠습니까?")) return;
+      if (!window.confirm("정말로 회원탈퇴 하시겠습니까?")) return;
 
-        try {
-            await withdrawal();
-            alert("회원탈퇴가 완료되었습니다.");
-            clear();
-            navigate("/");
-        } catch (error) {
-            console.error("회원탈퇴 실패:", error);
-            alert("다시 시도해주세요.");
-        }
+      try {
+        await withdrawal();
+        alert("회원탈퇴가 완료되었습니다.");
+        clear();
+        navigate("/");
+      } catch (error) {
+        console.error("회원탈퇴 실패:", error);
+        alert("다시 시도해주세요.");
+      }
     }
 
     //닉네임 변경 함수mySetting
     const changeNickname = async() =>{
         
-        if (!isEditing) {
+      if (!isEditing) {
 
-            setIsEditing(true);
+        setIsEditing(true);
         return;
+      }
+
+      const isValid = nicknameValidator.validate(nicknameInput);
+
+    
+      if (!isValid) {
+        const errorMessage = nicknameValidator.getErrorMessage(nicknameInput);
+        throw new Error(errorMessage);
+      }
+
+      try {
+        const res = await mySetting(nicknameInput);
+        if (user) {
+          const updatedUser: UserInfo = {
+            ...user, 
+            nickname: res.nickname,
+          };
+
+        setUser(updatedUser);
+        alert("닉네임이 변경되었습니다.");
+        setIsEditing(false); 
         }
-
-        try {
-            const res = await mySetting(nicknameInput);
-            if (user) {
-                const updatedUser: UserInfo = {
-                    ...user, 
-                    nickname: res.nickname,
-                };
-
-            setUser(updatedUser);
-            alert("닉네임이 변경되었습니다.");
-            setIsEditing(false); 
-            }
         } catch (error) {
-            console.error("닉네임 변경 실패:", error);
+          console.error("닉네임 변경 실패:", error);
         }
     }
 
@@ -85,12 +94,15 @@ return (
 
           <td>
             {isEditing ? (
-              <input
-                type="text"
-                className="form-control"
-                value={nicknameInput}
-                onChange={(e) => setNicknameInput(e.target.value)}
-              />
+              <div className="d-flex justify-content-start align-items-center">
+                <input
+                  type="text"
+                  className="form-control"
+                  value={nicknameInput}
+                  onChange={(e) => setNicknameInput(e.target.value)}
+                />
+                <p>*8글자 이내, 공백과 특수문자는 사용 금지</p>
+              </div>
             ) : (
               user?.nickname
             )}

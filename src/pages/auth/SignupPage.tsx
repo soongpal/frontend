@@ -80,7 +80,7 @@ const SignupPage: React.FC = () =>{
                 className="nickname-input"
                 required/>
 
-                <p>*8글자 이내, 공백과 특수문자는 사용 금지</p>
+                <p>*8글자 이내, 공백과 특수문자는 사용 불가</p>
 
                 {error && <p style={{ color: 'red' }}>{error}</p>}
 
