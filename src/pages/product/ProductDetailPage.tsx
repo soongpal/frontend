@@ -128,6 +128,15 @@ const ProductDetailPage: React.FC = () => {
     return;
     };
 
+    //카테고리 클릭시
+    const handleCategoryClick = ()=>{
+        if(product.category==="GROUP"){
+            navigate('/product/grouppurchase');
+        }
+        else
+            navigate('/product/usedtrade');
+    }
+
 
     // 로딩 성공
     return (
@@ -138,7 +147,7 @@ const ProductDetailPage: React.FC = () => {
             </div>
 
             <div className="d-flex justify-content-start align-items-center my-3">
-                <p className="gray-row">{product.category === 'GROUP' ? '공동구매' : '중고거래'}<ChevronRight size={13} className="ms-2"/></p>
+                <p className="gray-row" onClick={handleCategoryClick}>{product.category === 'GROUP' ? '공동구매' : '중고거래'}<ChevronRight size={13} className="ms-2"/></p>
             </div>
 
             {/* 제목 */}

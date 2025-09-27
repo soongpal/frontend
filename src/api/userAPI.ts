@@ -33,11 +33,10 @@ export const myInfo = async () => {
 
 //회원 탈퇴
 export const withdrawal = async () => {
-
     try {
-        await api.delete(
-            `/api/users/me`,
-        );
+      await api.delete(
+        `/api/users/me`,
+      );
   } catch (error) {
     console.error('회원탈퇴 실패:', error);
     throw error;
@@ -48,11 +47,11 @@ export const withdrawal = async () => {
 export const mySetting = async (nickname: string) => {
 
     try {
-        const res = await api.patch(
-            `/api/users/me`,
-            {nickname}
-        );
-        return res.data as UserInfo;
+      const res = await api.patch(
+        `/api/users/me`,
+        {nickname}
+      );
+      return res.data as UserInfo;
   } catch (error) {
     console.error('닉네임 변경 실패:', error);
     throw error;
