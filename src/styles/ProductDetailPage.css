@@ -26,6 +26,7 @@ p{
     display: flex;
     align-items: center;
     color: gray;
+    cursor: pointer;
 }
 
 /* 대화하기, 좋아요 공통 버튼 */
