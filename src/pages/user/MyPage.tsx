@@ -42,7 +42,7 @@ const MyPage: React.FC = () =>{
     }
     
     return(
-        <div className="d-flex flex-column align-items-center gap-4 my-5">
+        <div className="container d-flex flex-column align-items-center gap-4 my-5">
           <h3 className="d-flex">{user.nickname}님 안녕하세요!</h3>
 
             <div onClick={() => navigate("/user/favorites")} className="flex-container">
