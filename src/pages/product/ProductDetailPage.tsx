@@ -25,6 +25,9 @@ const ProductDetailPage: React.FC = () => {
     //로그인 여부 확인
     const navigate = useNavigate();
     const isLogin = useAuthStore((state) => state.isLogin);
+    const { user } = useAuthStore();
+    const [isIyPost, setIsMyPost] = useState<boolean>(false);
+
     
     // 상품 id값 받아오기
     const { ProductId } = useParams<{ ProductId: string }>();
@@ -38,12 +41,27 @@ const ProductDetailPage: React.FC = () => {
     const [product, setProduct] = useState<Product | null>(null);
 
     useEffect(() => {
+        const fetchProduct = async () => {
+        setIsMyPost(false);
+        
         if (!isNaN(productId)) {
-            getProductDetail(productId)
-                .then(setProduct)
-                .catch(err => console.error("상품 불러오기 실패:", err));
+            try {
+                const productData = await getProductDetail(productId);
+                setProduct(productData);
+
+               //내글인지 확인
+                if (user?.nickname === productData.authorNickname) {
+                    setIsMyPost(true);
+                }
+            } catch (err) {
+                console.error("상품 불러오기 실패:", err);
+            }
         }
+    };
+
+    fetchProduct();
     }, [productId]);
+
 
     // 로딩 중
     if (!product) {
@@ -52,6 +70,11 @@ const ProductDetailPage: React.FC = () => {
                 <Loading></Loading>
             </div>
         );
+    }
+    
+    //내글인지 확인
+    const handleMyPost=()=>{
+        navigate("/user/mypost");
     }
 
     //좋아요 버튼 함수
@@ -137,7 +160,6 @@ const ProductDetailPage: React.FC = () => {
             navigate('/product/usedtrade');
     }
 
-
     // 로딩 성공
     return (
         <div className="container d-flex flex-column justify-content-center">
@@ -173,9 +195,15 @@ const ProductDetailPage: React.FC = () => {
                     >
                         {product.liked ? <HeartFill color="red"></HeartFill> : <Heart color="gray"></Heart>}
                     </button>
+                    {isIyPost?
                     <button className="round-button" onClick={handleChatClick}>
                         <ChatDots className="me-2"/>대화하기
+                    </button>:
+                    <button className="round-button" onClick={handleMyPost}>
+                        <ChatDots className="me-2"/>관리하기
                     </button>
+                    }
+                    
                 </div>
             </div>
 
