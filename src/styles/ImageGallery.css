@@ -1,15 +1,18 @@
 .gallery-container {
-    width: 500px;
+    width: 100%;
     margin: auto;
 }
+
+/* 메인 이미지 */
 .main-image-container {
     margin-bottom: 10px;
     position: relative; 
 }
 
+
 .main-image {
     width: 100%;
-    height: 500px;
+    aspect-ratio: 1 / 1;
     object-fit: cover;    /* 이미지 크기 넘치면 자르기 */
     border-radius: 8px;
     display: block; 
@@ -43,7 +46,7 @@
     right: 10px; 
 }
 
-
+/* 썸네일 */
 .thumbnail-container {
     display: flex;
     justify-content: start;
@@ -51,8 +54,9 @@
 }
 
 .thumbnail-image {
-    width: 90px;
-    height: 90px;
+    flex: 1; 
+    min-width: 0; 
+    aspect-ratio: 1 / 1;
     object-fit: cover;
     cursor: pointer;
     border-radius: 4px;

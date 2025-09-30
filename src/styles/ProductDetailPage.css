@@ -1,13 +1,3 @@
-/* 대표 이미지 */
-.thumbnail-img{
-    width: 50%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 12px ;
-    justify-content: center;
-    align-items: center;
-}
-
 button{
     padding: 0;
     margin-right: 4px !important;

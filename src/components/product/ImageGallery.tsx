@@ -47,7 +47,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) =>{
 
     return(
         <div className="gallery-container">
-{/* 메인 이미지 영역 */}
+            {/* 메인 이미지 영역 */}
             <div className="main-image-container">
                 <button onClick={handlePrevClick} className="arrow-btn prev-arrow">
                     &lt;
@@ -57,7 +57,8 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) =>{
                     &gt;
                 </button>
             </div>
-{/* 썸네일 영역 */}
+            
+            {/* 썸네일 영역 */}
             <div className="thumbnail-container">
                 {images.map((image, index) => (
                     <img
