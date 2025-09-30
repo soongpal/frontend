@@ -57,18 +57,28 @@ const ChatRoomPage: React.FC = () => {
 
     const [input, setInput] = useState(""); //입력창
 
+    //채팅방 초기화 함수
+    const resetChatState = () => {
+        setMessages([]);
+        setPage(0);
+        setHasMore(true);
+        setRoom(null); 
+        setLoading(true);
+    };
+
     // 채팅방 정보 불러오기(상단 네비바 용도)**********************************
     useEffect(() => {
         if (!roomId) return;
-
+        resetChatState();
         async function fetchRoom() {
             try {
                 const data = await getChatRoom(roomId);
                 setRoom(data);
-                if(data && data.type=="GROUP")
-                    {
-                        setIsGroup(true);
-                    }
+                if(data && data.type=="GROUP") {
+                    setIsGroup(true);
+                } else {
+                    setIsGroup(false); // 그룹이 아닐 경우
+                }
             } catch (err) {
                 console.error("채팅방 조회 실패", err);
             } finally {
