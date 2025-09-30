@@ -140,7 +140,7 @@ const ProductDetailPage: React.FC = () => {
                 //이미 참여한 채팅방인경우
                 if (error.response.status===409){
                     console.log("참여한 채팅방입니다")
-                    navigate(`/chat`);
+                    navigate('"/chat');
                 }
                 else {
                     console.log("채팅방 참여 실패:", error.message);

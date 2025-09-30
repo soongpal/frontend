@@ -54,7 +54,7 @@ const MyPage: React.FC = () =>{
                 <ArrowRight size={25} className="arrow-icon"/>
             </div>
 
-            <div onClick={() => navigate("/chat/chatlist")} className="flex-container">
+            <div onClick={() => navigate("/chat")} className="flex-container">
                 <ChatDots size={25} className="me-3"/>
                 <h5 className="h5-style">채팅 목록</h5>
                 <ArrowRight size={25} className="arrow-icon"/>

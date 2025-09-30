@@ -26,14 +26,11 @@ const ChatPageLayout: React.FC = () => {
 
     return (
         <div className="chat-layout-container">
-            {/* 왼쪽: 채팅 목록 사이드바 */}
             <div className="chat-sidebar">
                 <h3 className="sidebar-title">채팅 목록</h3>
                 <div className="chat-room-list">
                     {rooms ? (
                         rooms.map((room) => (
-                            // ✨ NavLink를 사용해 클릭 시 해당 채팅방으로 이동
-                            // 활성화된 링크는 'active' 클래스가 자동으로 추가되어 스타일링 가능
                             <NavLink 
                                 key={room.id} 
                                 to={`/chat/${room.id}`} 
@@ -41,7 +38,7 @@ const ChatPageLayout: React.FC = () => {
                             >
                                 <div className="chat-room-info">
                                     <span className="room-name">{room.name}</span>
-                                    {/* 마지막 메시지나 다른 정보를 여기에 표시할 수 있습니다. */}
+                                 
                                 </div>
                             </NavLink>
                         ))
@@ -52,9 +49,9 @@ const ChatPageLayout: React.FC = () => {
                 </div>
             </div>
 
-            {/* 오른쪽: 선택된 채팅방이 렌더링될 공간 */}
+
             <div className="chat-main">
-                {/* ✨ Outlet: 중첩된 라우트의 컴포넌트가 여기에 렌더링됩니다. */}
+              
                 <Outlet />
             </div>
         </div>
