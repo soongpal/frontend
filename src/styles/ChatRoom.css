@@ -70,6 +70,8 @@
     align-items: flex-end;
     gap: 8px;            
     max-width: 60%;        
+    position: relative;  
+    margin-top: 20px; 
    
 }
 
@@ -118,4 +120,23 @@
 .other .message-content {
     background: var(--soong-color);
     color: white;
+}
+
+/* 전송자 */
+.message-sender {
+    position: absolute;   
+    bottom: 100%;      
+    margin-bottom: 4px;  
+
+    font-size: 10px;
+    color: black;
+    white-space: nowrap;  
+}
+
+.other .message-sender {
+    left: 0;
+}
+
+.my .message-sender {
+    right: 0;
 }

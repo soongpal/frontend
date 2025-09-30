@@ -248,6 +248,7 @@ const ChatRoomPage: React.FC = () => {
                         key={`${msg.senderId}-${msg.createdAt}-${index}`}
                         className={msg.senderId === user?.userId ? 'message my' : 'message other'}
                     >
+                        <span className="message-sender">{msg.senderName}</span>
                         <span className="message-time">{timeAgo(msg.createdAt)}</span>
                         <span className="message-content">{msg.content}</span>
                     </div>
