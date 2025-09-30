@@ -133,14 +133,14 @@ const ProductDetailPage: React.FC = () => {
         if(product.category ==="GROUP"){
             try{
                 const res = await joinChatRoom(product.id);
-                navigate(`/chat/chatroom/${res.id}`);
+                navigate(`/chat/${res.id}`);
                 console.log(res);
             }
             catch(error: any){
                 //이미 참여한 채팅방인경우
                 if (error.response.status===409){
                     console.log("참여한 채팅방입니다")
-                    navigate(`/chat/`);
+                    navigate(`/chat`);
                 }
                 else {
                     console.log("채팅방 참여 실패:", error.message);
