@@ -181,10 +181,7 @@ const ProductDetailPage: React.FC = () => {
                 <p className="gray-row mb-3">{timeAgo(product.createdAt)}</p>
             </div>
 
-            {/* 설명란 */}
-            <p className="my-3">{product.content}</p>
-
-            {/* 버튼들 */}
+            {/* 가격 & 버튼들 */}
             <div className="d-flex justify-content-between my-3">
                 <h1>{product.price}원</h1>
                 <div className="d-flex">
@@ -209,6 +206,9 @@ const ProductDetailPage: React.FC = () => {
                     
                 </div>
             </div>
+
+            {/* 설명란 */}
+            <p className="my-3">{product.content}</p>
 
             {/* 부가 설명 */}
             <div className="table-container">
