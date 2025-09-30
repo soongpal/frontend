@@ -176,7 +176,10 @@ const ProductDetailPage: React.FC = () => {
             <h1 className="mt-3 mb-0">{product.title}</h1>
 
             {/* 날짜 */}
-            <p className="gray-row mb-3">{timeAgo(product.createdAt)}</p>
+            <div className="gray-row mb-3">
+                <p className="gray-row mb-3">{timeAgo(product.createdAt)} · </p>
+                <p className="gray-row mb-3">{product.authorNickname}</p>
+            </div>
 
             {/* 설명란 */}
             <p className="my-3">{product.content}</p>
@@ -218,10 +221,6 @@ const ProductDetailPage: React.FC = () => {
                         <tr>
                             <th>희망 거래 장소</th>
                             <td>{product.location}</td>
-                        </tr>
-                        <tr>
-                            <th>판매자</th>
-                            <td>{product.authorNickname}</td>
                         </tr>
                     </tbody>
                 </table>
