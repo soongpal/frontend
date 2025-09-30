@@ -198,7 +198,7 @@ const ProductDetailPage: React.FC = () => {
                 {isMyPost ?
                     
                     <button className="round-button" onClick={handleMyPost}>
-                        <ChatDots className="me-2"/>관리하기
+                        <Sliders className="me-2"/>관리하기
                     </button> :
                     
                     <button className="round-button" onClick={handleChatClick}>
