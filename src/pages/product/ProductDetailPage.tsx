@@ -5,7 +5,7 @@ import type React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 //style
-import { ChevronRight, Heart, HeartFill, ChatDots } from "react-bootstrap-icons";
+import { ChevronRight, Heart, HeartFill, ChatDots, Sliders } from "react-bootstrap-icons";
 import "../../styles/ProductDetailPage.css"
 //store
 import  useProductStore from "../../stores/productStore";
@@ -27,7 +27,7 @@ const ProductDetailPage: React.FC = () => {
     const navigate = useNavigate();
     const isLogin = useAuthStore((state) => state.isLogin);
     const { user } = useAuthStore();
-    const [isIyPost, setIsMyPost] = useState<boolean>(false);
+    const [isMyPost, setIsMyPost] = useState<boolean>(false);
 
     
     // 상품 id값 받아오기
@@ -140,7 +140,7 @@ const ProductDetailPage: React.FC = () => {
                 //이미 참여한 채팅방인경우
                 if (error.response.status===409){
                     console.log("참여한 채팅방입니다")
-                    navigate(`/chat`);
+                    navigate(`/chat/`);
                 }
                 else {
                     console.log("채팅방 참여 실패:", error.message);
@@ -195,12 +195,14 @@ const ProductDetailPage: React.FC = () => {
                     >
                         {product.liked ? <HeartFill color="red"></HeartFill> : <Heart color="gray"></Heart>}
                     </button>
-                    {isIyPost?
-                    <button className="round-button" onClick={handleChatClick}>
-                        <ChatDots className="me-2"/>대화하기
-                    </button>:
+                {isMyPost ?
+                    
                     <button className="round-button" onClick={handleMyPost}>
                         <ChatDots className="me-2"/>관리하기
+                    </button> :
+                    
+                    <button className="round-button" onClick={handleChatClick}>
+                        <ChatDots className="me-2"/>대화하기
                     </button>
                     }
                     
