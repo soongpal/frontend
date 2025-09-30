@@ -4,20 +4,20 @@
     flex-direction: column; /* 자식 요소들을 세로로 쌓음 */
     gap: 8px; /* 위아래 행 사이의 간격 */
     padding: 16px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var( --light-grey-color);
     text-decoration: none;
     color: inherit;
 }
 
 .chat-room-item:hover {
-    background-color: #f9f9f9;
+    background-color: var( --light-grey-color);
 }
 
 /* 상단/하단 행 스타일 */
 .chat-item-row {
     display: flex;
-    justify-content: space-between; /* 양쪽 끝으로 요소를 배치 */
-    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: space-between; 
+    align-items: center; 
     width: 100%;
 }
 
@@ -29,12 +29,12 @@
 
 .participant-info {
     font-size: 14px;
-    color: #555;
+   color: var(--light-grey-hover-color);
 }
 
 .last-message {
     font-size: 14px;
-    color: #777;
+    color: var(--light-grey-hover-color);
     /* 메시지가 길 경우 잘리도록 설정 */
     white-space: nowrap;
     overflow: hidden;
@@ -44,6 +44,6 @@
 
 .last-time {
     font-size: 12px;
-    color: #999;
-    white-space: nowrap; /* 시간은 줄바꿈되지 않도록 */
+    color: var(--light-grey-hover-color);
+    white-space: nowrap;
 }
