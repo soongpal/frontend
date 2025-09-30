@@ -139,7 +139,7 @@ const ChatRoomPage: React.FC = () => {
                     setMessages((prevMessages) => [...prevMessages, receivedMessage]);  //메세지 오면 맨 뒤에 추가..
                 });
 
-            console.log("[API] 초기 메시지 조회를 시작합니다.");
+            console.log("[API] 초기 메시지 조회를 시작합니다.", room.id);
             fetchMessage(0);
 
             },
