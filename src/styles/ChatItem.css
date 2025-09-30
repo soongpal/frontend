@@ -1,8 +1,8 @@
-/* 개별 채팅방 아이템 (전체 컨테이너) */
+/* 전체 컨테이너 */
 .chat-room-item {
     display: flex;
-    flex-direction: column; /* 자식 요소들을 세로로 쌓음 */
-    gap: 8px; /* 위아래 행 사이의 간격 */
+    flex-direction: column;
+    gap: 8px; 
     padding: 16px;
     border-bottom: 1px solid var( --light-grey-color);
     text-decoration: none;
@@ -13,7 +13,7 @@
     background-color: var( --light-grey-color);
 }
 
-/* 상단/하단 행 스타일 */
+/* 행 스타일 */
 .chat-item-row {
     display: flex;
     justify-content: space-between; 
@@ -21,27 +21,27 @@
     width: 100%;
 }
 
-/* 텍스트 스타일 */
+/* 제목 스타일 */
 .product-title {
     font-weight: bold;
     font-size: 16px;
 }
 
+/*정보란*/
 .participant-info {
     font-size: 14px;
    color: var(--light-grey-hover-color);
 }
-
+/*마지막 메세지*/
 .last-message {
     font-size: 14px;
     color: var(--light-grey-hover-color);
-    /* 메시지가 길 경우 잘리도록 설정 */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 70%; /* 시간과 겹치지 않도록 최대 너비 설정 */
+    max-width: 70%;
 }
-
+/*마지막 메세지 시간*/
 .last-time {
     font-size: 12px;
     color: var(--light-grey-hover-color);
