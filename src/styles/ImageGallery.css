@@ -1,6 +1,7 @@
 .gallery-container {
     width: 100%;
     margin: auto;
+    max-width: 500px;
 }
 
 /* 메인 이미지 */
