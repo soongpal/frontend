@@ -3,6 +3,8 @@ import type React from "react";
 import { NavLink } from "react-router-dom";
 import { type ChatRoom } from "../../types/chat";
 import { timeAgo } from "../../utils/time";
+// style
+import "../../styles/ChatLayout.css";
 
 interface ChatRoomItemProps {
     room: ChatRoom;

@@ -4,8 +4,7 @@ import React, { useState, useEffect } from "react";
 import { getChatRoomList } from "../../api/chatAPI";
 // type
 import type { ChatRoom } from "../../types/chat";
-// style
-import "../../styles/ChatLayout.css";
+//component
 import ChatRoomItem from "../../components/chat/ChatItem";
 import Loading from "../../components/common/Loading";
 
