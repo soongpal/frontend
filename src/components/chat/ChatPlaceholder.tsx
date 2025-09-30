@@ -1,5 +1,7 @@
 import React from 'react';
 
+//채팅방 선택 안할시 보여지는 채팅방 자리에 넣을거
+
 const ChatPlaceholder: React.FC = () => {
     return (
         <div style={{ 
