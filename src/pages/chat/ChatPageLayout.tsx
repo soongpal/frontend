@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, Outlet } from "react-router-dom"; // ✨ NavLink와 Outlet import
+import { Outlet } from "react-router-dom"; 
 
 // api
 import { getChatRoomList } from "../../api/chatAPI";
@@ -7,9 +7,11 @@ import { getChatRoomList } from "../../api/chatAPI";
 import type { ChatRoom } from "../../types/chat";
 // style
 import "../../styles/ChatLayout.css";
+//component
+import ChatRoomItem from "../../components/chat/ChatItem";
 
 const ChatPageLayout: React.FC = () => {
-    // 기존 ChatListPage의 채팅 목록 로직을 가져옴
+    // 채팅 목록 로직은 그대로 유지
     const [rooms, setRooms] = useState<ChatRoom[] | null>(null);
 
     useEffect(() => {
@@ -31,28 +33,16 @@ const ChatPageLayout: React.FC = () => {
                 <div className="chat-room-list">
                     {rooms ? (
                         rooms.map((room) => (
-                            <NavLink 
-                                key={room.id} 
-                                to={`/chat/${room.id}`} 
-                                className="chat-room-item"
-                            >
-                                <div className="chat-room-info">
-                                    <span className="room-name">{room.name}</span>
-                                    <span className="room-name">{room.lastMessage}</span>
-                                    <span className="room-name">{room.productTitle}</span>
-                                </div>
-                            </NavLink>
+                            <ChatRoomItem key={room.id} room={room} />
                         ))
                     ) : (
                         <p>채팅 목록을 불러오는 중...</p>
                     )}
-                     {rooms && rooms.length === 0 && <p>진행중인 채팅이 없습니다.</p>}
+                    {rooms && rooms.length === 0 && <p>진행중인 채팅이 없습니다.</p>}
                 </div>
             </div>
 
-
             <div className="chat-main">
-              
                 <Outlet />
             </div>
         </div>
