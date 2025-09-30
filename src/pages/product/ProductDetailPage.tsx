@@ -19,6 +19,7 @@ import { useAuthStore } from "../../stores/UserStore";
 import Loading from "../../components/common/Loading";
 import { createChatRoom, joinChatRoom } from "../../api/chatAPI";
 import type { ChatRoom } from "../../types/chat";
+import ImageGallery from "../../components/product/ImageGallery";
 
 const ProductDetailPage: React.FC = () => {
 
@@ -164,10 +165,9 @@ const ProductDetailPage: React.FC = () => {
     return (
         <div className="container d-flex flex-column justify-content-center">
             {/* 이미지영역 */}
-            <div className="d-flex justify-content-center">
-                <img  key={product.images?.[0]?.id ?? product.id} src={product.images?.[0]?.imageUrl ?? "/images/empty.png"} alt={product.title} className="thumbnail-img"/>
-            </div>
-
+            <ImageGallery images={product.images || []}></ImageGallery>
+            
+            {/* 카테고리 영역 */}
             <div className="d-flex justify-content-start align-items-center my-3">
                 <p className="gray-row" onClick={handleCategoryClick}>{product.category === 'GROUP' ? '공동구매' : '중고거래'}<ChevronRight size={13} className="ms-2"/></p>
             </div>
