@@ -23,6 +23,7 @@ import SockJS from "sockjs-client";
 import { Client, type IMessage  } from "@stomp/stompjs";
 //util
 import { timeAgo } from "../../utils/time";
+import { ThreeDots } from "react-bootstrap-icons";
 
 const ChatRoomPage: React.FC = () => {
     
@@ -244,8 +245,10 @@ const ChatRoomPage: React.FC = () => {
 
     return (
         <div className="chatroom-container">
+
             <div className="chatroom-nav">
                 <p className="chatroom-title">{room.name}</p>
+                <button><ThreeDots/></button>
                 {isGroup ? 
                     <button onClick={handleLeaveRoom}>나가기</button>:
                     <button onClick={handleDeleteRoom}>삭제하기</button>
