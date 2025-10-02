@@ -1,7 +1,7 @@
 // library
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 // type
 import { type ChatRoom, type RMessage } from "../../types/chat";
@@ -25,7 +25,13 @@ import { Client, type IMessage  } from "@stomp/stompjs";
 import { timeAgo } from "../../utils/time";
 import { ThreeDots } from "react-bootstrap-icons";
 
+interface ChatContextType { //채팅방 나가기 하면 목록 불러오기용 함수 프롭스 정의
+    refreshChatList: () => void;
+}
+
 const ChatRoomPage: React.FC = () => {
+
+    const { refreshChatList } = useOutletContext<ChatContextType>();
     
     const { ChatId } = useParams<{ ChatId: string }>();
 
@@ -180,6 +186,7 @@ const ChatRoomPage: React.FC = () => {
         if(room){
             try{
                 await leaveChatRoom(room.id);
+                refreshChatList();
                 navigate('/chat');
                 
             }
@@ -195,6 +202,7 @@ const ChatRoomPage: React.FC = () => {
         if(room){
             try{
                 await deleteChatRoom(room.id);
+                refreshChatList();
                 navigate('/chat');
             }
             catch(error:any){

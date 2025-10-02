@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Outlet } from "react-router-dom"; 
 
 // api
@@ -14,17 +14,20 @@ const ChatPageLayout: React.FC = () => {
     // 채팅 목록
     const [rooms, setRooms] = useState<ChatRoom[] | null>(null);
 
-    useEffect(() => {
-        async function fetchRooms() {
-            try {
-                const data = await getChatRoomList();
-                setRooms(data);
-            } catch (err) {
-                console.error("채팅방 목록 불러오기 실패", err);
-            }
+    //채팅 목록 불러오기 함수
+    const fetchRooms = useCallback(async () => {
+        try {
+            const data = await getChatRoomList();
+            setRooms(data);
+        } catch (err) {
+            console.error("채팅방 목록 불러오기 실패", err);
         }
-        fetchRooms();
     }, []);
+
+    //채팅방 목록 불러오기
+    useEffect(() => {
+        fetchRooms();
+    }, [fetchRooms]);
 
     return (
         <div className="chat-layout-container">
@@ -43,7 +46,7 @@ const ChatPageLayout: React.FC = () => {
             </div>
 
             <div className="chat-main">
-                <Outlet />
+                <Outlet context={{ refreshChatList: fetchRooms }}/>
             </div>
         </div>
     );
