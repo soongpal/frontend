@@ -81,7 +81,7 @@ const Header : React.FC = () =>{
                 )}
             </div>
 
-            <div style={{height:"154px"}}></div>
+            <div style={{height:"178px"}}></div>
 
         </div>
     );

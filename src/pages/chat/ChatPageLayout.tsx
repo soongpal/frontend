@@ -11,7 +11,7 @@ import "../../styles/ChatLayout.css";
 import ChatRoomItem from "../../components/chat/ChatItem";
 
 const ChatPageLayout: React.FC = () => {
-    // 채팅 목록 로직은 그대로 유지
+    // 채팅 목록
     const [rooms, setRooms] = useState<ChatRoom[] | null>(null);
 
     useEffect(() => {
