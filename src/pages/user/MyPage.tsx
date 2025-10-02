@@ -38,7 +38,10 @@ const MyPage: React.FC = () =>{
         };
 
     if (!isLogin) {
-        return <div>로그인 정보가 없습니다.</div>;
+        navigate('/auth/login');
+        return(
+            <div>로그인 정보가 없습니다</div>
+        )
     }
     
     return(
