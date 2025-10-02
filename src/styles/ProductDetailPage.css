@@ -47,6 +47,11 @@ p{
     border-color: #dbdbdb;
 }
 
+/*설명란*/
+.content {
+    white-space: pre-wrap; /* 또는 pre-line */
+}
+
 
 
 /* 표 속성 */

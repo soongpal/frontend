@@ -210,7 +210,7 @@ const ProductDetailPage: React.FC = () => {
             </div>
 
             {/* 설명란 */}
-            <p className="my-3">{product.content}</p>
+            <p className="my-3 content">{product.content}</p>
 
             {/* 부가 설명 */}
             <div className="table-container">
