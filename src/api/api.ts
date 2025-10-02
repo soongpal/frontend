@@ -38,6 +38,7 @@ api.interceptors.response.use(
           { withCredentials: true }
         );
 
+        //store상태 없데이트
         const newAccessToken = res.data.accessToken;
         useAuthStore.getState().setAccessToken(newAccessToken);
 

@@ -18,8 +18,7 @@ const MyPage: React.FC = () =>{
     const navigate = useNavigate();
 
     //유저 정보 불러오기
-    const { user } = useAuthStore();
-    const isLogin = !!user; 
+    const { user, isLogin } = useAuthStore();
 
     //로그아웃 함수
     const clearAuth = useAuthStore((state) => state.clear);
@@ -28,7 +27,6 @@ const MyPage: React.FC = () =>{
             try {
                 await logout();
                 clearAuth();
-
                 window.location.href = "/";
                 console.log('로그아웃 성공');
                 alert('로그아웃되었습니다');
