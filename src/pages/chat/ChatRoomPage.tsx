@@ -180,7 +180,7 @@ const ChatRoomPage: React.FC = () => {
             try{
                 await leaveChatRoom(room.id);
                 navigate('/chat');
-                window.location.reload(); // 삭제 후 페이지 새로고침
+                
             }
             catch(error:any){
                 console.log("채팅방 나가기 오류:", error.message);
@@ -189,6 +189,7 @@ const ChatRoomPage: React.FC = () => {
 
     }
 
+    //채팅방 삭제하기
     const handleDeleteRoom= async()=>{
         if(room){
             try{
