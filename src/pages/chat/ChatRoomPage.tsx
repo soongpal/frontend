@@ -3,6 +3,7 @@ import type React from "react";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
+
 // type
 import { type ChatRoom, type RMessage } from "../../types/chat";
 
@@ -283,7 +284,6 @@ const ChatRoomPage: React.FC = () => {
                     </button>
                     {isDropdownOpen && (
                         <div className="dropdown-menu">
-                            <div>🔹드롭다운 보임 테스트🔹</div>
                             {/* 채팅 참여자 목록 */}
                             {room?.users?.map((user) => (
                                 <div key={user.userId} className="dropdown-item user-item">
