@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getMessaging, getToken } from "firebase/messaging";
+import { getMessaging, getToken, onMessage  } from "firebase/messaging";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCD4YmWFIr9IhqALrd5WFRGKULqeWnXh5s",
@@ -26,7 +26,7 @@ export const requestPermissionAndGetToken = async () => {
     return null;
   }
 
-  // 2. VAPID 키를 넣고 FCM 등록 토큰을 가져오기
+  //VAPID 키로 FCM 등록 토큰을 가져오기
   const token = await getToken(messaging, {
     vapidKey: "BDKsidTxH5caa9GNuyTVMz-XXQdBwVUiZLRlr3lMFbL0dc0Zg-QQPWT6alMirF-UdVA15Tg6jK3DnZtZXr8CMzE",
   });
@@ -34,4 +34,15 @@ export const requestPermissionAndGetToken = async () => {
   return token;
 };
 
+//웹사이트 사용중일때 알림
+onMessage(messaging, (payload) => {
+  console.log("메시지 수신: ", payload); 
+
+  const notificationTitle = payload.notification?.title;
+  const notificationBody = payload.notification?.body;
+  
+  if (notificationTitle && notificationBody) {
+    alert(`[새 메세지]\n${notificationTitle}\n\n${notificationBody}`);
+  }
+});
 

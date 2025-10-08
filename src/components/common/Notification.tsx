@@ -8,7 +8,6 @@ const NotificationButton: React.FC = () => {
 
   const handleNotificationClick = async () => {
     const token = await requestPermissionAndGetToken();
-
     if (token) {
       console.log("발급 토큰:", token);
       try {
