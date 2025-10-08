@@ -151,7 +151,7 @@
 
 /* 드롭다운 메뉴 */
 .dropdown-menu {
-    position: absolute; 
+    position: absolute !important; 
     top: 100%; 
     right: 0; 
     background-color: white;
