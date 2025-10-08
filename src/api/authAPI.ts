@@ -22,3 +22,14 @@ export const postNickname = async (nickname: string, tempToken: string) => {
     throw error;
   }
 };
+
+//fcm토큰 전송
+export const sendFcmToken= async (token: string) => {
+  try {
+    const response = await api.post('/api/admin/notifications/test', { token });
+    return response.data;
+  } catch (error) {
+    console.error('fcm토큰 전송 실패', error);
+    throw error;
+  }
+};
