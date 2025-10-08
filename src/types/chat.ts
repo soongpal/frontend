@@ -14,7 +14,7 @@ export interface ChatRoom {
   userCount: number; //참여자 수
 
   users:{
-    userID: number;
+    userId: number;
     userName: string;
     profileImage: null;
   }[];  //참여자 정보 배열
