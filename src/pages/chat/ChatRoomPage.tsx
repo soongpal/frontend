@@ -235,21 +235,21 @@ const ChatRoomPage: React.FC = () => {
           </button>
 
           {isDropdownOpen && (
-            <div className="dropdown-menu">
+            <div className="chat-dropdown-menu">
               {/* 채팅 참여자 목록 */}
               {room?.users?.map((user) => (
-                <div key={user.userId} className="dropdown-item user-item">
+                <div key={user.userId} className="chat-dropdown-item">
                   {user.userName}
                 </div>
               ))}
 
               {/* 채팅 나가기 / 삭제하기 */}
               {isGroup ? (
-                <button className="dropdown-item" onClick={handleLeaveRoom}>
+                <button className="chat-dropdown-item" onClick={handleLeaveRoom}>
                   나가기
                 </button>
               ) : (
-                <button className="dropdown-item" onClick={handleDeleteRoom}>
+                <button className="chat-dropdown-item" onClick={handleDeleteRoom}>
                   삭제하기
                 </button>
               )}
