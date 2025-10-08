@@ -40,13 +40,13 @@ const Header : React.FC = () =>{
                         <Col>
                             {isLogin ? (
                                 //로그인일때->마이페이지, 알림
-                                <div>
+                                <div className="d-flex justify-content-center align-items-center">
                                     <NotificationButton/>
                                     
                                     <a href="/user/mypage" className="d-flex  justify-content-end align-items-center text-decoration-none text-dark">
                                         <PersonCircle className="me-2"/>마이페이지
                                     </a>
-                                    
+
                                 </div>
                                 
                                 ) : (
