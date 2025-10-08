@@ -3,6 +3,7 @@ import type React from "react";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
+import { createPortal } from "react-dom";
 
 // type
 import { type ChatRoom, type RMessage } from "../../types/chat";
@@ -277,28 +278,46 @@ const ChatRoomPage: React.FC = () => {
             <div className="chatroom-nav">
                 <p className="chatroom-title">{room.name}</p>
                 <div className="dropdown-container" ref={dropdownRef}>
-                    <button onClick={() => {
-                                setIsDropdownOpen(!isDropdownOpen);
-                            }}>
+                    <button onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
                         <ThreeDots />
                     </button>
-                    {isDropdownOpen && (
-                        <div className="dropdown-menu">
+
+                    {isDropdownOpen &&
+                        createPortal(
+                        <div
+                            className="dropdown-menu"
+                            style={{
+                            position: "absolute",
+                            top: dropdownRef.current
+                                ? dropdownRef.current.getBoundingClientRect().bottom + 5
+                                : 0, 
+                            left: dropdownRef.current
+                                ? dropdownRef.current.getBoundingClientRect().left
+                                : 0,
+                            }}
+                        >
                             {/* 채팅 참여자 목록 */}
                             {room?.users?.map((user) => (
-                                <div key={user.userId} className="dropdown-item user-item">
-                                    {user.userName}
-                                </div>
+                            <div key={user.userId} className="dropdown-item user-item">
+                                {user.userName}
+                            </div>
                             ))}
 
-                            {/* 채팅 나가기 버튼 */}
-                            {isGroup ? 
-                                <button className="dropdown-item" onClick={handleLeaveRoom}>나가기</button> :
-                                <button className="dropdown-item" onClick={handleDeleteRoom}>삭제하기</button>
-                            }
-                        </div>
-                    )}
-                </div>
+                            {/* 채팅 나가기 / 삭제하기 */}
+                            {isGroup ? (
+                            <button className="dropdown-item" onClick={handleLeaveRoom}>
+                                나가기
+                            </button>
+                            ) : (
+                            <button className="dropdown-item" onClick={handleDeleteRoom}>
+                                삭제하기
+                            </button>
+                            )}
+                        </div>,
+                        document.body
+                        )}
+                    </div>
+
             </div>
 
             <div ref={ref} className="message-container">
