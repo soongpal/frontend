@@ -276,7 +276,10 @@ const ChatRoomPage: React.FC = () => {
             <div className="chatroom-nav">
                 <p className="chatroom-title">{room.name}</p>
                 <div className="dropdown-container" ref={dropdownRef}>
-                    <button onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                    <button onClick={() => {
+                                console.log("드롭다운 클릭됨");
+                                setIsDropdownOpen(!isDropdownOpen);
+                            }}>
                         <ThreeDots />
                     </button>
                     {isDropdownOpen && (
