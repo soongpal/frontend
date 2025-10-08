@@ -287,13 +287,18 @@ const ChatRoomPage: React.FC = () => {
                         <div
                             className="dropdown-menu"
                             style={{
-                            position: "absolute",
+                            position: "fixed",
                             top: dropdownRef.current
                                 ? dropdownRef.current.getBoundingClientRect().bottom + 5
                                 : 0, 
                             left: dropdownRef.current
                                 ? dropdownRef.current.getBoundingClientRect().left
                                 : 0,
+                                zIndex: 9999, 
+                                background: "white",
+                                boxShadow: "0 2px 10px rgba(0,0,0,0.15)",
+                                borderRadius: "8px",
+                                padding: "8px",
                             }}
                         >
                             {/* 채팅 참여자 목록 */}
