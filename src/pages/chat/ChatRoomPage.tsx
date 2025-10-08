@@ -240,9 +240,28 @@ const ChatRoomPage: React.FC = () => {
     useEffect(() => {
         if (inView && hasMore && !isFetching) {
             console.log("이전 메세지를 불러옵니다");
-            fetchMessage(page + 1); // ✅ 현재 페이지(page)의 다음 페이지를 호출
+            fetchMessage(page + 1); //다음 페이지를 호출
         }
     }, [inView, hasMore, isFetching, page]);
+
+    //채팅 참여자***************************************************************
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    //외부클릭시 드롭다운 닫힘
+    useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+            setIsDropdownOpen(false); 
+        }
+    }
+    
+    document.addEventListener("mousedown", handleClickOutside);
+    
+    return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+    };
+}, [dropdownRef]);
 
     
 ///////////////////////////랜더링///////////////////////////
@@ -256,11 +275,27 @@ const ChatRoomPage: React.FC = () => {
 
             <div className="chatroom-nav">
                 <p className="chatroom-title">{room.name}</p>
-                <button><ThreeDots/></button>
-                {isGroup ? 
-                    <button onClick={handleLeaveRoom}>나가기</button>:
-                    <button onClick={handleDeleteRoom}>삭제하기</button>
-                }
+                <div className="dropdown-container" ref={dropdownRef}>
+                    <button onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                        <ThreeDots />
+                    </button>
+                    {isDropdownOpen && (
+                        <div className="dropdown-menu">
+                            {/* 채팅 참여자 목록 */}
+                            {room?.users?.map((user) => (
+                                <div key={user.userID} className="dropdown-item user-item">
+                                    {user.userName}
+                                </div>
+                            ))}
+
+                            {/* 채팅 나가기 버튼 */}
+                            {isGroup ? 
+                                <button className="dropdown-item" onClick={handleLeaveRoom}>나가기</button> :
+                                <button className="dropdown-item" onClick={handleDeleteRoom}>삭제하기</button>
+                            }
+                        </div>
+                    )}
+                </div>
             </div>
 
             <div ref={ref} className="message-container">
