@@ -8,6 +8,7 @@ import { PersonCircle, PersonFill, Search } from 'react-bootstrap-icons';
 import "../../../styles/Header.css";
 //store
 import { useAuthStore } from '../../../stores/UserStore';
+import NotificationButton from "../../common/Notification";
 
 const Header : React.FC = () =>{
 
@@ -38,10 +39,16 @@ const Header : React.FC = () =>{
                     
                         <Col>
                             {isLogin ? (
-                                //로그인일때->마이페이지
-                                <a href="/user/mypage" className="d-flex  justify-content-end align-items-center text-decoration-none text-dark">
-                                    <PersonCircle className="me-2"/>마이페이지
-                                </a>
+                                //로그인일때->마이페이지, 알림
+                                <div>
+                                    <NotificationButton/>
+                                    
+                                    <a href="/user/mypage" className="d-flex  justify-content-end align-items-center text-decoration-none text-dark">
+                                        <PersonCircle className="me-2"/>마이페이지
+                                    </a>
+                                    
+                                </div>
+                                
                                 ) : (
                                 //로그아웃일때->로그인/회원가입
                                 <a href="/auth/login" className="d-flex  justify-content-end align-items-center text-decoration-none text-dark">
