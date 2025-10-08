@@ -277,13 +277,13 @@ const ChatRoomPage: React.FC = () => {
                 <p className="chatroom-title">{room.name}</p>
                 <div className="dropdown-container" ref={dropdownRef}>
                     <button onClick={() => {
-                                console.log("드롭다운 클릭됨");
                                 setIsDropdownOpen(!isDropdownOpen);
                             }}>
                         <ThreeDots />
                     </button>
                     {isDropdownOpen && (
                         <div className="dropdown-menu">
+                            <div>🔹드롭다운 보임 테스트🔹</div>
                             {/* 채팅 참여자 목록 */}
                             {room?.users?.map((user) => (
                                 <div key={user.userId} className="dropdown-item user-item">
