@@ -2,7 +2,6 @@
     flex: 1;             
     display: flex;
     flex-direction: column;
-    overflow-y: auto; 
     height: 100%;
 }
 
@@ -55,13 +54,14 @@
 /* 메세지 */
 
 .message-container{
-    display: flex;
+   display: flex;
     flex-direction: column;
     gap: 15px;
-    overflow-y: auto;
     padding: 12px;
     background: white;
-    height: 500px;  
+
+    flex: 1; 
+    overflow-y: auto; 
     
 }
 
