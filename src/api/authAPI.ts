@@ -26,7 +26,7 @@ export const postNickname = async (nickname: string, tempToken: string) => {
 //fcm토큰 전송
 export const sendFcmToken= async (token: string) => {
   try {
-    const response = await api.post('/api/admin/notifications/test', { token });
+    const response = await api.post('/api/users/fcm-token', { token });
     return response.data;
   } catch (error) {
     console.error('fcm토큰 전송 실패', error);
