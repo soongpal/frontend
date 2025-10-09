@@ -25,17 +25,16 @@ const SignupPage: React.FC = () =>{
     //닉네임 유효성 검사 에러 메세지
     const [error, setError] = useState('');
 
-    //닉네임 유효성 검사 함수
+    // 닉네임 유효성 검사 함수
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newNickname = e.target.value;
-       
-
-        // 유효성 검사 및 에러 메시지 설정
+        
+        setNickname(newNickname); 
+        
         if (!nicknameValidator.validate(newNickname)) {
-        setError(nicknameValidator.getErrorMessage(newNickname));
+            setError(nicknameValidator.getErrorMessage(newNickname));
         } else {
-        setError('');
-        setNickname(newNickname);
+            setError('');
         }
     };
 
@@ -85,9 +84,10 @@ const SignupPage: React.FC = () =>{
                 {error && <p style={{ color: 'red' }}>{error}</p>}
 
                 <button
-                type="submit"
-                className="submit-button">
-                제출
+                    type="submit"
+                    className="submit-button"
+                    disabled={!!error || nickname.trim() === ''}>
+                    제출
                 </button>
 
             </form>
