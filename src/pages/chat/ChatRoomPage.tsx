@@ -49,6 +49,7 @@ const ChatRoomPage: React.FC = () => {
   const [isFetching, setIsFetching] = useState(false); // 로딩 중복 방지 상태
   const [hasMore, setHasMore] = useState(true); // 맨 아래 페이지인지
   const [input, setInput] = useState(""); // 입력창
+  const [isComposing, setIsComposing] = useState(false); 
 
   // 채팅방 초기화 함수
   const resetChatState = () => {
@@ -280,7 +281,13 @@ const ChatRoomPage: React.FC = () => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="메시지를 입력하세요"
-          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+          onCompositionStart={() => setIsComposing(true)}
+          onCompositionEnd={() => setIsComposing(false)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !isComposing) {
+              sendMessage();
+            }
+          }}
         />
         <button onClick={sendMessage}>전송</button>
       </div>
