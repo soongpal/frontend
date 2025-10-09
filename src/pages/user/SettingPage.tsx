@@ -20,6 +20,9 @@ const SetiingPage: React.FC = () =>{
     // 닉네임 변경 상태
     const [isEditing, setIsEditing] = useState(false);
     const [nicknameInput, setNicknameInput] = useState(user?.nickname || "")
+    
+    // [추가] 닉네임 유효성 검사 에러 메시지 상태
+    const [error, setError] = useState('');
 
     //회원탈퇴 함수
     const withdraw = async() =>{
@@ -36,38 +39,46 @@ const SetiingPage: React.FC = () =>{
       }
     }
 
-    //닉네임 변경 함수mySetting
+    const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newNickname = e.target.value;
+      setNicknameInput(newNickname); 
+
+      if (!nicknameValidator.validate(newNickname)) {
+          setError(nicknameValidator.getErrorMessage(newNickname));
+      } else {
+          setError('');
+      }
+    };
+
+
+    //닉네임 변경 함수
     const changeNickname = async() =>{
-        
-      if (!isEditing) {
-
-        setIsEditing(true);
-        return;
-      }
-
-      const isValid = nicknameValidator.validate(nicknameInput);
-
-    
-      if (!isValid) {
-        const errorMessage = nicknameValidator.getErrorMessage(nicknameInput);
-        throw new Error(errorMessage);
-      }
-
-      try {
-        const res = await mySetting(nicknameInput);
-        if (user) {
-          const updatedUser: UserInfo = {
-            ...user, 
-            nickname: res.nickname,
-          };
-
-        setUser(updatedUser);
-        alert("닉네임이 변경되었습니다.");
-        setIsEditing(false); 
+        if (!isEditing) {
+          setIsEditing(true);
+          return;
         }
-        } catch (error) {
-          console.error("닉네임 변경 실패:", error);
+
+        if (!nicknameValidator.validate(nicknameInput)) {
+            alert(error || "닉네임이 유효하지 않습니다.");
+            return;
         }
+
+        try {
+          const res = await mySetting(nicknameInput);
+          if (user) {
+            const updatedUser: UserInfo = {
+              ...user, 
+              nickname: res.nickname,
+            };
+
+          setUser(updatedUser);
+          alert("닉네임이 변경되었습니다.");
+          setIsEditing(false); 
+          }
+          } catch (error) {
+            console.error("닉네임 변경 실패:", error);
+            alert("닉네임 변경에 실패했습니다. 다시 시도해주세요.");
+          }
     }
 
 return (
@@ -94,14 +105,16 @@ return (
 
           <td>
             {isEditing ? (
-              <div className="d-flex justify-content-start align-items-center">
+              <div>
                 <input
                   type="text"
                   className="form-control"
                   value={nicknameInput}
-                  onChange={(e) => setNicknameInput(e.target.value)}
+                  onChange={handleNicknameChange}
                 />
-                <p>*8글자 이내, 공백과 특수문자는 사용 금지</p>
+                <p className="mt-1" style={{ color: error ? 'red' : '#6c757d', fontSize: '0.8rem' }}>
+                    {error || "*8글자 이내, 공백과 특수문자는 사용 금지"}
+                </p>
               </div>
             ) : (
               user?.nickname
@@ -109,7 +122,11 @@ return (
           </td>
           {/* 변경/저장 버튼 */}
           <td className="text-center">
-            <button onClick={changeNickname} className="btn btn-primary btn-sm">
+            <button 
+              onClick={changeNickname} 
+              className="btn btn-primary btn-sm"
+              disabled={isEditing && (!!error || nicknameInput.trim() === '' || nicknameInput === user?.nickname)}
+            >
               {isEditing ? "저장" : "변경"}
             </button>
           </td>
