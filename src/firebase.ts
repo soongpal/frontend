@@ -21,8 +21,10 @@ const messaging = getMessaging(app);
 export const requestPermissionAndGetToken = async () => {
   // 알림 권한 요청
   const permission = await Notification.requestPermission();
-  if (permission === "denied") {
-    console.log("알림 설정을 해제하였습니다. ");
+  if (permission === 'granted') {
+    console.log('알림 권한이 허용되었습니다.');
+  } else if (permission === "denied") {
+    console.log("알림 권한이 거부되었습니다. ");
     return null;
   }
 
