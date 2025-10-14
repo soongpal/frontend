@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getMessaging, getToken, onMessage  } from "firebase/messaging";
+import eventService from "./eventService";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCD4YmWFIr9IhqALrd5WFRGKULqeWnXh5s",
@@ -44,7 +45,7 @@ onMessage(messaging, (payload) => {
   const notificationBody = payload.notification?.body;
   
   if (notificationTitle && notificationBody) {
-    alert(`[새 메세지]\n${notificationTitle}\n\n${notificationBody}`);
+    eventService.dispatch({ title: notificationTitle, body: notificationBody });
   }
 });
 
