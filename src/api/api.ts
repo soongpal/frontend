@@ -50,6 +50,7 @@ api.interceptors.response.use(
 
         return api(originalRequest);
       } catch (err) {
+        console.error("Access Token 갱신 실패:", err);
         useAuthStore.getState().clear();
         window.location.href = "/login"; // 로그인 페이지로 리다이렉트
       }

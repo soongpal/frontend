@@ -12,31 +12,36 @@ import { logout } from "../../api/userAPI";
 
 //store
 import { useAuthStore } from "../../stores/UserStore";
+import { useEffect } from "react";
 
 const MyPage: React.FC = () =>{
 
     const navigate = useNavigate();
 
     //유저 정보 불러오기
-    const { user, isLogin } = useAuthStore();
+    const { user } = useAuthStore();
 
     //로그아웃 함수
     const clearAuth = useAuthStore((state) => state.clear);
     //1.api 2. store초기화
     const handlelogout = async () => {
-            try {
-                await logout();
-                clearAuth();
-                window.location.href = "/";
-                console.log('로그아웃 성공');
-                alert('로그아웃되었습니다');
-            } catch (error) {
-                console.error('로그아웃실패:', error);
-            }
-        };
+        try {
+            await logout();
+            clearAuth();
+            window.location.href = "/";
+            console.log('로그아웃 성공');
+            alert('로그아웃되었습니다');
+        } catch (error) {
+             console.error('로그아웃실패:', error);
+        }
+    };
 
-    if (!isLogin || !user) {
+    useEffect(()=>{
+        if(!user)
         navigate('/auth/login');
+    }, [user])
+    
+    if (!user) {
         return(
             <div>로그인 정보가 없습니다</div>
         )
