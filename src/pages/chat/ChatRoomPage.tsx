@@ -1,6 +1,6 @@
 // library
 import type React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 
@@ -49,7 +49,9 @@ const ChatRoomPage: React.FC = () => {
   const [isFetching, setIsFetching] = useState(false); // 로딩 중복 방지 상태
   const [hasMore, setHasMore] = useState(true); // 맨 아래 페이지인지
   const [input, setInput] = useState(""); // 입력창
-  const [isComposing, setIsComposing] = useState(false); 
+  const [isComposing, setIsComposing] = useState(false);    //드롭다운
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null); //컨테이너  Ref
+  const shouldScrollToBottom = useRef(true);  //스크롤 이동 여부
 
   // 채팅방 초기화 함수
   const resetChatState = () => {
@@ -59,6 +61,34 @@ const ChatRoomPage: React.FC = () => {
     setRoom(null);
     setLoading(true);
   };
+
+  //스크롤 맨 아래 이동 함수
+  useLayoutEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    if (scrollContainer) {
+        if (shouldScrollToBottom.current) {
+            scrollContainer.scrollTop = scrollContainer.scrollHeight;
+        }
+    }
+  }, [messages]);
+
+  //스크롤 위치 추적
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) return;
+
+    const handleScroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } = scrollContainer;
+      if (scrollHeight - scrollTop - clientHeight < 10) {
+        shouldScrollToBottom.current = true;
+      } else {
+        shouldScrollToBottom.current = false;
+      }
+    };
+
+    scrollContainer.addEventListener('scroll', handleScroll);
+    return () => scrollContainer.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // 채팅방 정보 불러오기 (상단 네비바 용도)
   useEffect(() => {
@@ -96,8 +126,10 @@ const ChatRoomPage: React.FC = () => {
       if (newMessages.length > 0) {
         if (pageToFetch === 0) {
           setMessages(newMessages.reverse());
+          shouldScrollToBottom.current = true;
         } else {
           setMessages((prev) => [...newMessages.reverse(), ...prev]);
+          shouldScrollToBottom.current = false;
         }
       }
 
@@ -120,23 +152,28 @@ const ChatRoomPage: React.FC = () => {
       webSocketFactory: () => new SockJS(import.meta.env.VITE_WS_URL),
       connectHeaders: { Authorization: `Bearer ${accessToken}` },
       onConnect: () => {
-        console.log("[STOMP] 서버 연결 성공");
 
         // 채팅방 토픽 구독
         client.subscribe(`/topic/${roomId}`, (message: IMessage) => {
-          console.log("[STOMP] 새 메시지 수신:", message.body);
           const receivedMessage: RMessage = JSON.parse(message.body);
+
+          const scrollContainer = scrollContainerRef.current;
+          if(scrollContainer) {
+            const { scrollTop, scrollHeight, clientHeight } = scrollContainer;
+            if (scrollHeight - scrollTop - clientHeight < 10) {
+                shouldScrollToBottom.current = true;
+            } else {
+                shouldScrollToBottom.current = false;
+            }
+          }
+          
           setMessages((prevMessages) => [...prevMessages, receivedMessage]);
         });
 
-        console.log("[API] 초기 메시지 조회를 시작합니다.", room.id);
         fetchMessage(0);
       },
       onStompError: (frame) => {
         console.error("[STOMP] 연결 에러 발생:", frame);
-      },
-      onWebSocketClose: () => {
-        console.warn("[STOMP] 웹소켓이 닫혔습니다.");
       },
     });
 
@@ -259,8 +296,10 @@ const ChatRoomPage: React.FC = () => {
         </div>
       </div>
 
-      <div ref={ref} className="message-container">
+      <div ref={scrollContainerRef} className="message-container">
+        <div ref={ref}>
         {hasMore && <div>이전 메시지 불러오기...</div>}
+        </div>
         {messages &&
           messages.map((msg, index) => (
             <div
@@ -272,7 +311,6 @@ const ChatRoomPage: React.FC = () => {
               <span className="message-content">{msg.content}</span>
             </div>
           ))}
-        <div />
       </div>
 
       <div className="chatroom-input">
