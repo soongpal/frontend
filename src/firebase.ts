@@ -39,8 +39,7 @@ export const requestPermissionAndGetToken = async () => {
 
 //웹사이트 사용중일때 알림
 onMessage(messaging, (payload) => {
-  console.log("메시지 수신: ", payload); 
-
+  
   const notificationTitle = payload.notification?.title;
   const notificationBody = payload.notification?.body;
   

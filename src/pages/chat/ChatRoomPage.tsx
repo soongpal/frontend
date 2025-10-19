@@ -235,7 +235,6 @@ const ChatRoomPage: React.FC = () => {
   // 스크롤
   useEffect(() => {
     if (inView && hasMore && !isFetching) {
-      console.log("이전 메세지를 불러옵니다");
       fetchMessage(page + 1);
     }
   }, [inView, hasMore, isFetching, page]);

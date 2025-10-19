@@ -75,8 +75,7 @@ const NewPostPage:React.FC = () =>{
         //서버 전송
         try {
             setIsLoading(true);
-            const newProduct = await createProduct(formData); 
-            console.log('상품 등록 성공:', newProduct);
+            await createProduct(formData); 
             alert('상품이 성공적으로 등록되었습니다.');
             window.location.href = "/";
         } 
@@ -102,8 +101,7 @@ return(
                     <label htmlFor="image-uploader" className="post-label">사진</label>
                     <MultiImageUploader uploadFiles={images}
                                         setUploadFiles={setImages}
-                                        onFilesChange={handleImagesChange} 
-                                        
+                                        onFilesChange={handleImagesChange}       
                     />
                 </div>
                 

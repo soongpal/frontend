@@ -53,7 +53,6 @@ const SignupPage: React.FC = () =>{
         //유효하지 않은 닉네임일때
         if (!nicknameValidator.validate(nickname)) {
             setError(nicknameValidator.getErrorMessage(nickname));
-            console.log('유효하지 않은 닉네임');
             return;
         }
 

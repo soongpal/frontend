@@ -134,7 +134,6 @@ const ProductDetailPage: React.FC = () => {
             try{
                 const res = await joinChatRoom(product.id);
                 navigate(`/chat/${res.id}`);
-                console.log(res);
             }
             catch(error: any){
                 //이미 참여한 채팅방인경우
