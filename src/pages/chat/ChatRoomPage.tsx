@@ -265,9 +265,9 @@ const ChatRoomPage: React.FC = () => {
   return (
     <div className="chatroom-container">
       <div className="chatroom-nav">
-        <div>
+        <div className="d-flex justify-content-center align-items-center">
           <button onClick={() => navigate("/chat")} className="back-button">
-            <ChevronLeft/>
+            <ChevronLeft size={15}/>
           </button>
           <p className="chatroom-title">{room.name}</p>
         </div>
