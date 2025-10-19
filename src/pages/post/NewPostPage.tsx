@@ -23,7 +23,7 @@ const NewPostPage:React.FC = () =>{
     //전송 목록
     const [title, setTitle] = useState<string>("");
     const [content, setContent] = useState<string>("");
-    const [price, setPrice] = useState<number>(0);
+    const [price, setPrice] = useState<string>("");
     const [url, setUrl] = useState<string>("");
     const [location, setLocation] = useState<string>("");
     const [category, setCategory] = useState<Category | null>(null);
@@ -141,7 +141,7 @@ return(
                         name="price"
                         placeholder="가격을 적어주세요"
                         value={price}
-                        onChange={(e) => setPrice(Number(e.target.value))}
+                        onChange={(e) => setPrice(e.target.value)}
                         required
                         className="input-continer"
                     />
