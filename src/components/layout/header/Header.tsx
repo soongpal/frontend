@@ -41,12 +41,12 @@ const Header : React.FC = () =>{
                             {isLogin ? (
                                 //로그인일때->마이페이지, 알림 
                                 <div className="d-flex justify-content-end align-items-center">
-                                    <ChatSquareDots className="me-2 text-decoration-none text-dark" href="/chat">
-                                        마이톡
-                                    </ChatSquareDots>
-
-                                    <a href="/user/mypage">
-                                        <PersonCircle className="me-2 text-decoration-none text-dark"/>마이페이지
+                                    <a href="/chat" className="d-flex  justify-content-end align-items-center text-decoration-none text-dark">
+                                        <ChatSquareDots className="me-2"/>마이톡
+                                    </a>
+                                    
+                                    <a href="/user/mypage" className="d-flex  justify-content-end align-items-center text-decoration-none text-dark">
+                                        <PersonCircle className="me-2"/>마이페이지
                                     </a>
 
                                 </div>
