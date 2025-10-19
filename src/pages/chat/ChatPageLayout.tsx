@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Outlet } from "react-router-dom"; 
+import { Outlet, useParams } from "react-router-dom"; 
 
 // api
 import { getChatRoomList } from "../../api/chatAPI";
@@ -13,6 +13,10 @@ import ChatRoomItem from "../../components/chat/ChatItem";
 const ChatPageLayout: React.FC = () => {
     // 채팅 목록
     const [rooms, setRooms] = useState<ChatRoom[] | null>(null);
+
+    const { ChatId } = useParams<{ ChatId: string }>();
+    const isChatRoomActive = !!ChatId;
+
 
     //채팅 목록 불러오기 함수
     const fetchRooms = useCallback(async () => {
@@ -30,7 +34,7 @@ const ChatPageLayout: React.FC = () => {
     }, [fetchRooms]);
 
     return (
-        <div className="chat-layout-container">
+        <div className={`chat-layout-container ${isChatRoomActive ? "mobile-show-main" : ""}`}>
             <div className="chat-sidebar">
                 <h3 className="sidebar-title">채팅 목록</h3>
                 <div className="chat-room-list">
