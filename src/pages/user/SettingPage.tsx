@@ -9,6 +9,7 @@ import { useState } from "react";
 import { mySetting, withdrawal } from "../../api/userAPI";
 import type { UserInfo } from "../../types/user";
 import { nicknameValidator } from "../../utils/validation/validateSignup";
+import NotificationButton from "../../components/common/Notification";
 
 const SetiingPage: React.FC = () =>{
 
@@ -96,7 +97,6 @@ return (
         <tr>
           <th style={{ width: '120px', verticalAlign: 'middle' }}>이메일</th>
           <td>{user?.email}</td>
-          <td style={{ width: '80px' }}></td>
         </tr>
 
         {/* 닉네임 */}
@@ -131,6 +131,13 @@ return (
             </button>
           </td>
         </tr>
+
+        {/* 알림 허용 */}
+        <tr>
+          <th style={{ width: '120px', verticalAlign: 'middle' }}>알림</th>
+          <td><NotificationButton/></td>
+        </tr>
+
       </tbody>
     </table>
 
