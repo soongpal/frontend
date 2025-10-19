@@ -50,3 +50,21 @@
     display: flex;
     flex-direction: column;
 }
+
+/* 모바일 채팅화면 */
+@media (max-width: 768px) {
+    .chat-layout-container .chat-sidebar {
+        width: 100%;
+    }
+    .chat-layout-container .chat-main {
+        display: none;
+    }
+
+    .chat-layout-container.mobile-show-main .chat-sidebar {
+        display: none; 
+    }
+    .chat-layout-container.mobile-show-main .chat-main {
+        display: block; 
+        width: 100%;
+    }
+}

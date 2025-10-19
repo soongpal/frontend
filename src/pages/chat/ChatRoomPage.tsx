@@ -25,7 +25,7 @@ import { Client, type IMessage } from "@stomp/stompjs";
 
 // util
 import { timeAgo } from "../../utils/time";
-import { ThreeDots } from "react-bootstrap-icons";
+import { ChevronLeft, ThreeDots } from "react-bootstrap-icons";
 
 interface ChatContextType {
   // 채팅방 나가기 하면 목록 불러오기용 함수 프롭스 정의
@@ -265,7 +265,12 @@ const ChatRoomPage: React.FC = () => {
   return (
     <div className="chatroom-container">
       <div className="chatroom-nav">
-        <p className="chatroom-title">{room.name}</p>
+        <div>
+          <button onClick={() => navigate("/chat")} className="back-button">
+            <ChevronLeft/>
+          </button>
+          <p className="chatroom-title">{room.name}</p>
+        </div>
 
         <div className="dropdown-container" ref={dropdownRef}>
           <button onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
