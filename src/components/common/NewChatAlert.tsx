@@ -1,7 +1,7 @@
 //앱 접속중일때 알림 오면 띄울창 - 토스트 형식으로
 
 import { useEffect } from 'react';
-import './Toast.css';
+import '../../styles/NewChatAler.css';
 
 interface NewChatAlertProps{
     title: string;
