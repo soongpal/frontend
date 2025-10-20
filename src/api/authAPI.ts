@@ -61,7 +61,6 @@ export const deleteFcmToken= async (token: string) => {
      });
 
     return response.data;
-
   } catch (error) {
     console.error('fcm토큰 삭제 실패', error);
     throw error;

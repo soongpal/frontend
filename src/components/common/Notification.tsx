@@ -1,7 +1,7 @@
 //알림 권한 허용인지
 import React, { useEffect, useState } from 'react';
 import { requestPermissionAndGetToken } from '../../firebase';
-import { sendFcmToken } from '../../api/authAPI';
+import { sendFcmToken, diableFcmToken } from '../../api/authAPI';
 import "../../styles/Notification.css"
 
 
@@ -19,20 +19,28 @@ const NotificationButton: React.FC = () => {
   }, []);
 
  const handleNotificationChange = async () => {
-    if (permission === 'granted') {
-      return;
-    }
+
+    if (permission === 'denied') return;//브라우저 알림 차단된 경우
 
     try {
-      if (permission === 'default') {
-        const token = await requestPermissionAndGetToken();
-        if (token) {
+      const token = await requestPermissionAndGetToken(); //알림 요청
+
+      if (token) {
+        if (permission === 'granted') { //알림 허용인 경우-알림 끄기
+          await diableFcmToken(token);
+          setPermission('default');
+
+        } else if (permission === 'default') {  //알림 설정 처음 - 알림 켜기
           await sendFcmToken(token);
+          setPermission(Notification.permission);
         }
+
+      } else {  //알림 차단인경우
+        setPermission(Notification.permission);
       }
+
     } catch (error) {
-      console.error('알림 설정 중 오류 발생:', error);
-    } finally {
+      console.error('알림 처리 중 오류:', error);
       setPermission(Notification.permission);
     }
   };
