@@ -31,7 +31,7 @@ const ChatRoomItem: React.FC<ChatRoomItemProps> = ({ room }) => {
                 {/* 마지막 메시지*/}
                 <span className="last-message">{room.lastMessage || "거래를 시작해보세요!"}</span>
                 {/* 마지막 메시지 시간*/}
-                <span className="last-time">{timeAgo(room.updatedAt)}</span>
+                <span className="last-time">{timeAgo(room.lastMessageTime)}</span>
             </div>
         </NavLink>
     );

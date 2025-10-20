@@ -21,9 +21,7 @@ export interface ChatRoom {
 
   lastMessage: string | null;  //마지막 메세지
 
-  createdAt: string;  //생성 시각
-
-  updatedAt: string;  //수정 시각
+  lastMessageTime: string; 
   
 }
 
