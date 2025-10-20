@@ -26,7 +26,7 @@ export const postNickname = async (nickname: string, tempToken: string) => {
 //fcm토큰 전송
 export const sendFcmToken= async (token: string) => {
   try {
-    const response = await api.patch('/api/users/fcm-token', null, { 
+    const response = await api.patch('/api/fcm/enable', null, { 
       params: {
         fcmToken: token
       }
