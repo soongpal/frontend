@@ -37,3 +37,34 @@ export const sendFcmToken= async (token: string) => {
     throw error;
   }
 };
+
+export const diableFcmToken= async (token: string) => {
+  try {
+    const response = await api.patch('/api/fcm/disable', null, { 
+      params: {
+        fcmToken: token
+      }
+     });
+    return response.data;
+  } catch (error) {
+    console.error('fcm토큰 전송 실패', error);
+    throw error;
+  }
+};
+
+export const deleteFcmToken= async (token: string) => {
+  try {
+    const response = await api.delete('/api/fcm/disable', { 
+      params: {
+        fcmToken: token
+      }
+     });
+
+    return response.data;
+
+  } catch (error) {
+    console.error('fcm토큰 삭제 실패', error);
+    throw error;
+  }
+};
+
