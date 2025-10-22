@@ -134,8 +134,8 @@ const SignupPage: React.FC = () =>{
     return(
         <div className="container">
             <h3>회원가입</h3>
-            <form onSubmit={handleSubmit} className="d-flex gap-4 flex-col">
-                <div className="d-flex flex-col">
+            <form onSubmit={handleSubmit} className="d-flex flex-column gap-4">
+                <div className="d-flex flex-column">
                     <input
                         type="text"
                         value={nickname}
