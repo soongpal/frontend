@@ -23,10 +23,10 @@ const NotificationButton: React.FC = () => {
     if (permission === 'denied') return;//브라우저 알림 차단된 경우
 
     try {
-      const token = await requestPermissionAndGetToken(); //알림 요청
+      const token = await requestPermissionAndGetToken(); //알림 요청&토큰 받기
 
       if (token) {
-        if (permission === 'granted') { //알림 허용인 경우-알림 끄기
+        if (permission === 'granted') { //이미 알림 허용인 경우-알림 끄기
           await diableFcmToken(token);
           setPermission('default');
 

@@ -172,7 +172,32 @@ const ProductDetailPage: React.FC = () => {
             </div>
 
             {/* 제목 */}
-            <h1 className="mt-3 mb-0">{product.title}</h1>
+             <div className="d-flex justify-content-between">
+                <h1 className="mt-3 mb-0">{product.title}</h1>
+                <div className="d-flex">
+                        <button 
+                            className="round-button justify-content-center" 
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleHeartClick();
+                                }
+                            }
+                        >
+                            {product.liked ? <HeartFill color="red"></HeartFill> : <Heart color="gray"></Heart>}
+                        </button>
+                    {isMyPost ?
+                        
+                        <button className="round-button" onClick={handleMyPost}>
+                            <Sliders className="me-2"/>관리하기
+                        </button> :
+                        
+                        <button className="round-button" onClick={handleChatClick}>
+                            <ChatDots className="me-2"/>대화하기
+                        </button>
+                        }
+                        
+                    </div>
+            </div>
 
             {/* 날짜 */}
             <div className="gray-row mb-3">
@@ -180,33 +205,8 @@ const ProductDetailPage: React.FC = () => {
                 <p className="gray-row mb-3">{timeAgo(product.createdAt)}</p>
             </div>
 
-            {/* 가격 & 버튼들 */}
-            <div className="d-flex justify-content-between my-3">
-                <h1>{product.price}원</h1>
-                <div className="d-flex">
-                    <button 
-                        className="round-button justify-content-center" 
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            handleHeartClick();
-                            }
-                        }
-                    >
-                        {product.liked ? <HeartFill color="red"></HeartFill> : <Heart color="gray"></Heart>}
-                    </button>
-                {isMyPost ?
-                    
-                    <button className="round-button" onClick={handleMyPost}>
-                        <Sliders className="me-2"/>관리하기
-                    </button> :
-                    
-                    <button className="round-button" onClick={handleChatClick}>
-                        <ChatDots className="me-2"/>대화하기
-                    </button>
-                    }
-                    
-                </div>
-            </div>
+            {/* 가격 */}
+            <h1 className=" my-3">{product.price}원</h1>
 
             {/* 설명란 */}
             <p className="my-3 content">{product.content}</p>

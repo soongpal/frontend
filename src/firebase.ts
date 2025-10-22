@@ -37,6 +37,7 @@ export const requestPermissionAndGetToken = async () => {
   return token;
 };
 
+
 //웹사이트 사용중일때 알림
 onMessage(messaging, (payload) => {
   

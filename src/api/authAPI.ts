@@ -23,7 +23,7 @@ export const postNickname = async (nickname: string, tempToken: string) => {
   }
 };
 
-//fcm토큰 전송
+//서버 알림 설정 - 토큰 전송
 export const sendFcmToken= async (token: string) => {
   try {
     const response = await api.patch('/api/fcm/enable', null, { 
@@ -38,6 +38,7 @@ export const sendFcmToken= async (token: string) => {
   }
 };
 
+//서버 알림 해제(토큰 삭제)
 export const diableFcmToken= async (token: string) => {
   try {
     const response = await api.patch('/api/fcm/disable', null, { 
@@ -52,6 +53,7 @@ export const diableFcmToken= async (token: string) => {
   }
 };
 
+//서버 토큰 삭제
 export const deleteFcmToken= async (token: string) => {
   try {
     const response = await api.delete('/api/fcm/disable', { 
