@@ -69,16 +69,18 @@ const SignupPage: React.FC = () =>{
     return(
         <div className="container">
             <h3>회원가입</h3>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-                <input
-                type="text"
-                value={nickname}
-                onChange={handleChange}
-                placeholder="닉네임을 입력하세요"
-                className="nickname-input"
-                required/>
+            <form onSubmit={handleSubmit} className="d-flex gap-2">
+                <div className="d-flex flex-col">
+                    <input
+                        type="text"
+                        value={nickname}
+                        onChange={handleChange}
+                        placeholder="닉네임을 입력하세요"
+                        className="nickname-input"
+                        required/>
 
-                <p>*8글자 이내, 공백과 특수문자는 사용 불가</p>
+                    <p>*8글자 이내, 공백과 특수문자는 사용 불가</p>
+                </div>
 
                 {error && <p style={{ color: 'red' }}>{error}</p>}
 
