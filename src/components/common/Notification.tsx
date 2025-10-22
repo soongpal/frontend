@@ -1,7 +1,7 @@
 // 알림 권한 허용인지
 import React, { useEffect, useState } from "react";
 import { requestNotificationPermission, getFcmToken } from "../../firebase";
-import { sendFcmToken, diableFcmToken } from "../../api/authAPI";
+import { sendFcmToken, diableFcmToken, isAlarmOn } from "../../api/authAPI";
 import "../../styles/Notification.css";
 
 const NotificationButton: React.FC = () => {
@@ -11,6 +11,7 @@ const NotificationButton: React.FC = () => {
 
 //알림지원확인
   useEffect(() => {
+    
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
     if (!("Notification" in window) && !isSafari) {

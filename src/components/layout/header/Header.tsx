@@ -42,7 +42,7 @@ const Header : React.FC = () =>{
                                 //로그인일때->마이페이지, 알림 
                                 <div className="d-flex justify-content-end align-items-center gap-4">
                                     <a href="/chat" className="d-flex  justify-content-end align-items-center text-decoration-none text-dark">
-                                        <ChatSquareDots className="me-2"/>마이톡
+                                        <ChatSquareDots className="me-2"/>숭팔톡
                                     </a>
                                     
                                     <a href="/user/mypage" className="d-flex  justify-content-end align-items-center text-decoration-none text-dark">
