@@ -171,8 +171,8 @@ const ProductDetailPage: React.FC = () => {
                 <p className="gray-row" onClick={handleCategoryClick}>{product.category === 'GROUP' ? '공동구매' : '중고거래'}<ChevronRight size={13} className="ms-2"/></p>
             </div>
 
-            {/* 제목 */}
-             <div className="d-flex justify-content-between">
+            {/* 제목이랑 버튼들*/}
+             <div className="d-flex justify-content-between align-items-center">
                 <h1 className="mt-3 mb-0">{product.title}</h1>
                 <div className="d-flex">
                         <button 
