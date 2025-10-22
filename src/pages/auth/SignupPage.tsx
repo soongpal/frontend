@@ -11,6 +11,9 @@ import { nicknameValidator } from "../../utils/validation/validateSignup";
 import { getFcmToken, requestNotificationPermission } from "../../firebase";
 import { useAuthStore } from "../../stores/UserStore";
 
+//style
+import "../../styles/Signup.css"
+
 
 const SignupPage: React.FC = () =>{
 
@@ -131,46 +134,60 @@ const SignupPage: React.FC = () =>{
         }
     };
 
-    return(
-        <div className="container">
-            <h3>회원가입</h3>
-            <form onSubmit={handleSubmit} className="d-flex flex-column gap-4">
-                <div className="d-flex flex-column">
-                    <input
-                        type="text"
-                        value={nickname}
-                        onChange={handleChange}
-                        placeholder="닉네임을 입력하세요"
-                        className="nickname-input"
-                        required/>
+    return (
+    <div className="signup-container container mt-5">
+        <div className="card p-4 shadow-sm">
+        <h3 className="mb-4 text-center">회원가입</h3>
+        <form onSubmit={handleSubmit} noValidate>
+            {/* 닉네임 입력 그룹 */}
+            <div className="mb-3">
+            <label htmlFor="nickname" className="form-label">
+                닉네임
+            </label>
+            <input
+                type="text"
+                id="nickname"
+                value={nickname}
+                onChange={handleChange}
+                placeholder="사용할 닉네임을 입력하세요"
+                className={`form-control ${error ? "is-invalid" : ""}`}
+                required
+            />
+            <div className="form-text mt-2">
+                * 8글자 이내, 공백과 특수문자는 사용할 수 없습니다.
+            </div>
+            {/* 유효성 검사 에러 메시지 */}
+            {error && <div className="invalid-feedback">{error}</div>}
+            </div>
 
-                    <p>*8글자 이내, 공백과 특수문자는 사용 불가</p>
-                </div>
+            {/* 알림 설정 체크박스 */}
+            <div className="form-check mb-4">
+            <input
+                type="checkbox"
+                id="allow-notifications"
+                className="form-check-input"
+                checked={check}
+                onChange={handleCheckboxChange}
+            />
+            <label className="form-check-label" htmlFor="allow-notifications">
+                숭팔톡 알림 받기
+            </label>
+            </div>
 
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-
-                <div className="d-flex align-items-center gap-2">
-                    <input
-                        type="checkbox"
-                        id="allow-notifications"
-                        checked={check}
-                        onChange={handleCheckboxChange}
-                    />
-                    <label  style={{ margin: 0 }}>
-                        알림을 허용하시겠습니까?
-                    </label>
-                </div>
-
-                <button
-                    type="submit"
-                    className="submit-button"
-                    disabled={!!error || nickname.trim() === ''}>
-                    제출
-                </button>
-
-            </form>
+            {/* 제출 버튼 */}
+            <div className="d-grid">
+            <button
+                type="submit"
+                className="btn btn-primary btn-lg"
+                disabled={!!error || nickname.trim() === ""}
+            >
+                가입하기
+            </button>
+            </div>
+        </form>
         </div>
-    )
+    </div>
+    );
 }
 
 export default SignupPage;
