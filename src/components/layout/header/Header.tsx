@@ -91,8 +91,7 @@ const Header : React.FC = () =>{
                 )}
             </div>
 
-            <div style={{height:"178px"}}></div>
-
+            <div style={{ height: hideSecondRow ? "100px" : "178px" }}></div>
         </div>
     );
 }
