@@ -24,11 +24,6 @@ const NotificationButton: React.FC = () => {
       return;
     }
 
-    // Safari
-    if (isSafari) {
-      console.log("Safari 환경 감지됨 — PWA 또는 최신 iOS/macOS에서만 알림 가능");
-    }
-
     //알림 권한
     const currentPermission = Notification.permission;
     setPermission(currentPermission);
@@ -87,7 +82,6 @@ const handleNotificationChange = async () => {
       // 서버 토큰 상태 확인
       const alarm = await isAlarmOn(token);
       setToggle(alarm);
-      console.log(" 알림 활성화 성공");
       return;
     }
 
@@ -102,7 +96,6 @@ const handleNotificationChange = async () => {
       // 서버에서 FCM 등록 해제
       await diableFcmToken(token);
       setToggle(false);
-      console.log("알림 비활성화 성공");
     }
 
   } catch (error) {

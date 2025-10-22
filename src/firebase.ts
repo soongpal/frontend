@@ -24,13 +24,10 @@ export const requestNotificationPermission = async (): Promise<boolean> => {
   const permission = await Notification.requestPermission();
 
   if (permission === "granted") {
-    console.log("알림 권한이 허용되었습니다.");
     return true;
   } else if (permission === "denied") {
-    console.log("알림 권한이 거부되었습니다.");
     return false;
   } else {
-    console.log("알림 권한이 기본 상태입니다(허용도 거부도 아님).");
     return false;
   }
 };
