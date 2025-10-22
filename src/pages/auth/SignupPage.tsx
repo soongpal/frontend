@@ -127,10 +127,9 @@ const SignupPage: React.FC = () =>{
                     console.error("FCM 토큰 전송 중 오류 발생:", fcmError);
                 }
             }
-
             navigate('/', { replace: true });
         } catch (error) {
-        console.error('회원가입 중 오류가 발생했습니다.');
+        console.error('회원가입 중 오류가 발생했습니다.', error);
         }
     };
 
@@ -176,13 +175,14 @@ const SignupPage: React.FC = () =>{
 
             {/* 제출 버튼 */}
             <div className="d-grid">
-            <button
-                type="submit"
-                className="btn btn-primary btn-lg"
-                disabled={!!error || nickname.trim() === ""}
-            >
-                가입하기
-            </button>
+                <button
+                    type="submit"
+                    className="btn btn-primary btn-lg"
+                    disabled={!!error || nickname.trim() === ""}
+                    onClick={handleSubmit}
+                >
+                    가입하기
+                </button>
             </div>
         </form>
         </div>
