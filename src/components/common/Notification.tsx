@@ -6,14 +6,17 @@ import "../../styles/Notification.css";
 
 const NotificationButton: React.FC = () => {
   const [permission, setPermission] = useState<NotificationPermission>("default");
+  const [toggle, setToggle] = useState(false);
   const [isSupported, setIsSupported] = useState(true);
   const [isProcessing, setIsProcessing] = useState(false);
 
 //알림지원확인
-  useEffect(() => {
-    
+  useEffect( () => {
+
+    const initNotification = async () => {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
+    // 브라우저 지원 여부
     if (!("Notification" in window) && !isSafari) {
       console.log("이 브라우저는 알림을 지원하지 않습니다.");
       setIsSupported(false);
@@ -21,53 +24,95 @@ const NotificationButton: React.FC = () => {
       return;
     }
 
-    setPermission(Notification.permission);
+    // Safari
+    if (isSafari) {
+      console.log("Safari 환경 감지됨 — PWA 또는 최신 iOS/macOS에서만 알림 가능");
+    }
+
+    //알림 권한
+    const currentPermission = Notification.permission;
+    setPermission(currentPermission);
+
+    if (currentPermission !== "granted") return; // 권한이 없으면 종료
+
+    // FCM 토큰 발급
+    try {
+      const token = await getFcmToken();
+      if (!token) return;
+
+      // 알람 상태 확인
+      const alarm = await isAlarmOn(token);
+      setToggle(alarm === "true");
+    } catch (err) {
+      console.error("알림 초기화 실패:", err);
+    }
+  };
+
+  initNotification();
   }, []);
 
-  // 알림 설정 토글 함수
-  const handleNotificationChange = async () => {
-    if (!isSupported || isProcessing) return;
-    setIsProcessing(true);
+const handleNotificationChange = async () => {
+  if (!isSupported || isProcessing) return;
+  setIsProcessing(true);
 
-    try {
-      //브라우저 알림이 차단
-      if (permission === "denied") {
+  try {
+    const currentPermission = Notification.permission;
+    setPermission(currentPermission);
+
+    // 토글이 꺼져있는 경우 (알림을 켜는 경우)
+    if (!toggle) {
+      //브라우저 알림이 꺼져 있는 경우
+      if (currentPermission === "denied") {
         alert("브라우저에서 알림이 차단되어 있습니다. 설정에서 허용해주세요.");
         return;
       }
 
-      // 알림 설정을 안 한 경우
-      if (permission === "default") {
+      // 브라우저 알림 설정이 안 된 경우 -> 요청
+      if (currentPermission === "default") {
         const granted = await requestNotificationPermission();
         setPermission(granted ? "granted" : "denied");
-        if (!granted) return;
+        if (!granted) return; // 허용 안 하면 종료
       }
 
-      // 권한이 허용된 경우
-      if (Notification.permission === "granted") {
-        const token = await getFcmToken();
-        if (!token) {
-          console.log("FCM 토큰 가져오기 실패");
-          return;
-        }
-
-        if (permission === "granted") {
-          await diableFcmToken(token);
-          setPermission("default");
-        } else {
-          await sendFcmToken(token);
-          setPermission("granted");
-        }
-      } else {
-        setPermission(Notification.permission);
+      // 토큰 발급
+      const token = await getFcmToken();
+      if (!token) {
+        console.error("FCM 토큰 발급 실패");
+        return;
       }
-    } catch (error) {
-      console.error("알림 처리 중 오류:", error);
-      setPermission(Notification.permission);
-    } finally {
-      setIsProcessing(false);
+
+      //서버에 토큰 전송
+      await sendFcmToken(token);
+
+      // 서버 토큰 상태 확인
+      const alarm = await isAlarmOn(token);
+      setToggle(alarm === "true");
+
+      console.log(" 알림 활성화 성공");
+      return;
     }
-  };
+
+    // 토글이 켜진 경우 (알림 끄는 경우)
+    if (toggle) {
+      const token = await getFcmToken();
+      if (!token) {
+        console.error("FCM 토큰 발급 실패");
+        return;
+      }
+
+      // 서버에서 FCM 등록 해제
+      await diableFcmToken(token);
+      setToggle(false);
+
+      console.log("알림 비활성화 성공");
+    }
+
+  } catch (error) {
+    console.error("알림 설정 중 오류 발생:", error);
+  } finally {
+    setIsProcessing(false);
+  }
+};
 
   return (
     <div className="notification-toggle-wrapper">
@@ -75,8 +120,8 @@ const NotificationButton: React.FC = () => {
         <input
           type="checkbox"
           id="notification-switch"
-          checked={permission === "granted"}
-          disabled={!isSupported || permission === "denied" || isProcessing}
+          checked={toggle === true}
+          disabled={!isSupported || permission === "denied" || isProcessing || toggle === false}
           onChange={handleNotificationChange}
         />
         <span className="slider"></span>
