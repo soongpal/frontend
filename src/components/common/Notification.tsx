@@ -87,7 +87,6 @@ const handleNotificationChange = async () => {
       // 서버 토큰 상태 확인
       const alarm = await isAlarmOn(token);
       setToggle(alarm === "true");
-
       console.log(" 알림 활성화 성공");
       return;
     }
