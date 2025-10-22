@@ -11,7 +11,9 @@ const NotificationButton: React.FC = () => {
 
 //알림지원확인
   useEffect(() => {
-    if (!("Notification" in window)) {
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+    if (!("Notification" in window) && !isSafari) {
       console.log("이 브라우저는 알림을 지원하지 않습니다.");
       setIsSupported(false);
       setPermission("denied");
@@ -27,7 +29,7 @@ const NotificationButton: React.FC = () => {
     setIsProcessing(true);
 
     try {
-      // 1브라우저 알림이 차단
+      //브라우저 알림이 차단
       if (permission === "denied") {
         alert("브라우저에서 알림이 차단되어 있습니다. 설정에서 허용해주세요.");
         return;

@@ -19,6 +19,7 @@ const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
 const messaging = getMessaging(app);
 
+//알림 키기
 export const requestNotificationPermission = async (): Promise<boolean> => {
   const permission = await Notification.requestPermission();
 
@@ -34,6 +35,7 @@ export const requestNotificationPermission = async (): Promise<boolean> => {
   }
 };
 
+//알림 토큰 받기
 export const getFcmToken = async (): Promise<string | null> => {
   try {
     const token = await getToken(messaging, {
@@ -53,6 +55,7 @@ export const getFcmToken = async (): Promise<string | null> => {
     return null;
   }
 };
+
 //웹사이트 사용중일때 알림
 onMessage(messaging, (payload) => {
   
