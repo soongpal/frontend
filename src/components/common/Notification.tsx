@@ -1,63 +1,88 @@
-//알림 권한 허용인지
-import React, { useEffect, useState } from 'react';
-import { requestPermissionAndGetToken } from '../../firebase';
-import { sendFcmToken, diableFcmToken } from '../../api/authAPI';
-import "../../styles/Notification.css"
-
+// 알림 권한 허용인지
+import React, { useEffect, useState } from "react";
+import { requestNotificationPermission, getFcmToken } from "../../firebase";
+import { sendFcmToken, diableFcmToken } from "../../api/authAPI";
+import "../../styles/Notification.css";
 
 const NotificationButton: React.FC = () => {
+  const [permission, setPermission] = useState<NotificationPermission>("default");
+  const [isSupported, setIsSupported] = useState(true);
+  const [isProcessing, setIsProcessing] = useState(false);
 
-  const [permission, setPermission] = useState<NotificationPermission>('default');
-  //알림 미지원 기기
+//알림지원확인
   useEffect(() => {
-    if (!('Notification' in window)) {
-      console.warn('이 브라우저는 알림을 지원하지 않습니다.');
-      setPermission('denied'); 
+    if (!("Notification" in window)) {
+      console.log("이 브라우저는 알림을 지원하지 않습니다.");
+      setIsSupported(false);
+      setPermission("denied");
       return;
     }
+
     setPermission(Notification.permission);
   }, []);
 
- const handleNotificationChange = async () => {
-
-    if (permission === 'denied') return;//브라우저 알림 차단된 경우
+  // 알림 설정 토글 함수
+  const handleNotificationChange = async () => {
+    if (!isSupported || isProcessing) return;
+    setIsProcessing(true);
 
     try {
-      const token = await requestPermissionAndGetToken(); //알림 요청&토큰 받기
-
-      if (token) {
-        if (permission === 'granted') { //이미 알림 허용인 경우-알림 끄기
-          await diableFcmToken(token);
-          setPermission('default');
-
-        } else if (permission === 'default') {  //알림 설정 처음 - 알림 켜기
-          await sendFcmToken(token);
-          setPermission(Notification.permission);
-        }
-
-      } else {  //알림 차단인경우
-        setPermission(Notification.permission);
+      // 1브라우저 알림이 차단
+      if (permission === "denied") {
+        alert("브라우저에서 알림이 차단되어 있습니다. 설정에서 허용해주세요.");
+        return;
       }
 
+      // 알림 설정을 안 한 경우
+      if (permission === "default") {
+        const granted = await requestNotificationPermission();
+        setPermission(granted ? "granted" : "denied");
+        if (!granted) return;
+      }
+
+      // 권한이 허용된 경우
+      if (Notification.permission === "granted") {
+        const token = await getFcmToken();
+        if (!token) {
+          console.log("FCM 토큰 가져오기 실패");
+          return;
+        }
+
+        if (permission === "granted") {
+          await diableFcmToken(token);
+          setPermission("default");
+        } else {
+          await sendFcmToken(token);
+          setPermission("granted");
+        }
+      } else {
+        setPermission(Notification.permission);
+      }
     } catch (error) {
-      console.error('알림 처리 중 오류:', error);
+      console.error("알림 처리 중 오류:", error);
       setPermission(Notification.permission);
+    } finally {
+      setIsProcessing(false);
     }
   };
 
   return (
     <div className="notification-toggle-wrapper">
-        <label htmlFor="notification-switch" className="toggle-switch">
-          <input
-            type="checkbox"
-            id="notification-switch"
-            checked={permission === 'granted'}
-            disabled={permission === 'denied'}
-            onChange={handleNotificationChange}
-          />
-          <span className="slider"></span>
-        </label>
-      </div>
+      <label htmlFor="notification-switch" className="toggle-switch">
+        <input
+          type="checkbox"
+          id="notification-switch"
+          checked={permission === "granted"}
+          disabled={!isSupported || permission === "denied" || isProcessing}
+          onChange={handleNotificationChange}
+        />
+        <span className="slider"></span>
+      </label>
+
+      {!isSupported && (
+        <p className="notification-warning">이 브라우저는 알림을 지원하지 않습니다.</p>
+      )}
+    </div>
   );
 };
 
