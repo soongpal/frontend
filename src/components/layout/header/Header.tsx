@@ -19,7 +19,7 @@ const Header : React.FC = () =>{
 
     //로그인, 회원가입 페이지에서 두번째 Row없애기
     const location = useLocation();
-    const hideSecondRow = ["/auth/login", "/auth/signup"].includes(location.pathname);
+    const hideSecondRow = ["/auth/login", "/auth/signup", "/chat"].includes(location.pathname);
 
     //검색 함수
     const [search, setSearch] = useState(""); // 검색어
