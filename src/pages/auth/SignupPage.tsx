@@ -153,7 +153,7 @@ const SignupPage: React.FC = () =>{
                     <input
                         type="checkbox"
                         id="allow-notifications"
-                        checked={hadleNotification}
+                        checked={check}
                         onChange={handleCheckboxChange}
                     />
                     <label  style={{ margin: 0 }}>
