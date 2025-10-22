@@ -59,22 +59,22 @@ const handleNotificationChange = async () => {
     const currentPermission = Notification.permission;
     setPermission(currentPermission);
 
-    // 토글이 꺼져있는 경우 (알림을 켜는 경우)
+    // 1. 토글이 꺼져있는 경우 (알림을 켜는 경우)
     if (!toggle) {
-      //브라우저 알림이 꺼져 있는 경우
+      //1)브라우저 알림이 꺼져 있는 경우
       if (currentPermission === "denied") {
         alert("브라우저에서 알림이 차단되어 있습니다. 설정에서 허용해주세요.");
         return;
       }
 
-      // 브라우저 알림 설정이 안 된 경우 -> 요청
+      // 2) 브라우저 알림 설정이 안 된 경우 -> 요청
       if (currentPermission === "default") {
         const granted = await requestNotificationPermission();
         setPermission(granted ? "granted" : "denied");
         if (!granted) return; // 허용 안 하면 종료
       }
 
-      // 토큰 발급
+      // 3) 토큰 발급
       const token = await getFcmToken();
       if (!token) {
         console.error("FCM 토큰 발급 실패");
@@ -86,12 +86,14 @@ const handleNotificationChange = async () => {
 
       // 서버 토큰 상태 확인
       const alarm = await isAlarmOn(token);
+      console.log("서버에서 받은 알림 상태:", alarm);
+console.log("타입:", typeof alarm);
       setToggle(alarm === "true");
       console.log(" 알림 활성화 성공");
       return;
     }
 
-    // 토글이 켜진 경우 (알림 끄는 경우)
+    // 2. 토글이 켜진 경우 (알림 끄는 경우)
     if (toggle) {
       const token = await getFcmToken();
       if (!token) {
@@ -102,7 +104,6 @@ const handleNotificationChange = async () => {
       // 서버에서 FCM 등록 해제
       await diableFcmToken(token);
       setToggle(false);
-
       console.log("알림 비활성화 성공");
     }
 
