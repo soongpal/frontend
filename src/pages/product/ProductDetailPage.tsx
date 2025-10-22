@@ -173,7 +173,7 @@ const ProductDetailPage: React.FC = () => {
 
             {/* 제목이랑 버튼들*/}
              <div className="d-flex justify-content-between align-items-center">
-                <h1 className="mt-3 mb-0">{product.title}</h1>
+                <h1 className="align-items-center">{product.title}</h1>
                 <div className="d-flex">
                         <button 
                             className="round-button justify-content-center" 
