@@ -42,7 +42,7 @@ const NotificationButton: React.FC = () => {
 
       // 알람 상태 확인
       const alarm = await isAlarmOn(token);
-      setToggle(alarm === "true");
+      setToggle(alarm);
     } catch (err) {
       console.error("알림 초기화 실패:", err);
     }
@@ -86,9 +86,7 @@ const handleNotificationChange = async () => {
 
       // 서버 토큰 상태 확인
       const alarm = await isAlarmOn(token);
-      console.log("서버에서 받은 알림 상태:", alarm);
-console.log("타입:", typeof alarm);
-      setToggle(alarm === "true");
+      setToggle(alarm);
       console.log(" 알림 활성화 성공");
       return;
     }
