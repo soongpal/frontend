@@ -128,7 +128,7 @@ const SignupPage: React.FC = () =>{
                 }
             }
 
-            navigate('/');
+            navigate('/', { replace: true });
         } catch (error) {
         console.error('회원가입 중 오류가 발생했습니다.');
         }

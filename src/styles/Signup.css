@@ -30,7 +30,7 @@
 /* 안내 문구 스타일 */
 .form-text {
   font-size: 0.85rem;
-  color: #6c757d;
+  color: var(--light-grey-hover-color);
 }
 
 /* 체크박스 스타일 */
