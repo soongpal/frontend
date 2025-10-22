@@ -56,7 +56,7 @@ export const diableFcmToken= async (token: string) => {
 //서버 토큰 여부
 export const isAlarmOn = async (token: string) => {
   try {
-    const response = await api.delete('/api/fcm', { 
+    const response = await api.get('/api/fcm', { 
       params: {
         fcmToken: token
       }
