@@ -4,10 +4,12 @@ import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 //api
-import { postNickname } from "../../api/authAPI";
+import { postNickname, sendFcmToken } from "../../api/authAPI";
 
 //닉네임 조건함수
 import { nicknameValidator } from "../../utils/validation/validateSignup";
+import { getFcmToken, requestNotificationPermission } from "../../firebase";
+import { useAuthStore } from "../../stores/UserStore";
 
 
 const SignupPage: React.FC = () =>{
@@ -15,12 +17,21 @@ const SignupPage: React.FC = () =>{
     //회원가입후 메인 페이지로 ㄱㄱ
     const navigate = useNavigate();
 
+    //accessToken설정
+    const setAccessToken = useAuthStore((state) => state.setAccessToken);
+
     //temp token받아오기
     const [searchParams] = useSearchParams();
     const tempToken = searchParams.get("temp_token");
 
+    //fcm토큰 저장
+    const [fcmToken, setFcmToken] = useState<string>("");
+
     //닉네임 영역
     const [nickname, setNickname] = useState("");
+
+    // 알림 허용 체크박스 상태
+    const [check, setcheck] = useState(false);
 
     //닉네임 유효성 검사 에러 메세지
     const [error, setError] = useState('');
@@ -35,6 +46,46 @@ const SignupPage: React.FC = () =>{
             setError(nicknameValidator.getErrorMessage(newNickname));
         } else {
             setError('');
+        }
+    };
+
+    //체크하면 브라우저 알림 설정, fcm토큰 발급
+    const hadleNotification = async (): Promise<boolean> => {
+        try {
+            // 1 브라우저 알림 권한 요청
+            const granted = await requestNotificationPermission();
+            if (!granted) {
+                console.warn("브라우저 알림 허용 거부됨");
+                return false;
+            }
+
+            // 2 FCM 토큰 발급
+            const token = await getFcmToken();
+            if (!token) {
+                console.error("FCM 토큰 발급 실패");
+                return false;
+            }
+            setFcmToken(token);
+            return true;
+        } catch (error) {
+            console.error("알림 활성화 중 오류 발생:", error);
+            return false;
+        }
+    };
+
+    const handleCheckboxChange = async (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        const isChecked = e.target.checked;
+        setcheck(isChecked);
+
+        if (isChecked) {
+            const success = await hadleNotification();
+            if (!success) {
+                console.warn(
+                    "알림 설정 실패, 체크박스는 선택& 토큰은 전송되지 않음."
+                );
+            }
         }
     };
 
@@ -60,6 +111,20 @@ const SignupPage: React.FC = () =>{
         try {
             const userData = await postNickname(nickname, tempToken);
             console.log(`회원가입 성공! ${userData.nickname}님 환영합니다`);
+
+            //accesstoken설정
+            setAccessToken(userData.data.accessToken);
+
+            // token서버 전송
+            if (check && fcmToken) {
+                try {
+                    await sendFcmToken(fcmToken);
+                    console.log("FCM 토큰 전송 성공");
+                } catch (fcmError) {
+                    console.error("FCM 토큰 전송 중 오류 발생:", fcmError);
+                }
+            }
+
             navigate('/');
         } catch (error) {
         console.error('회원가입 중 오류가 발생했습니다.');
@@ -69,7 +134,7 @@ const SignupPage: React.FC = () =>{
     return(
         <div className="container">
             <h3>회원가입</h3>
-            <form onSubmit={handleSubmit} className="d-flex gap-2">
+            <form onSubmit={handleSubmit} className="d-flex gap-4 flex-col">
                 <div className="d-flex flex-col">
                     <input
                         type="text"
@@ -83,6 +148,18 @@ const SignupPage: React.FC = () =>{
                 </div>
 
                 {error && <p style={{ color: 'red' }}>{error}</p>}
+
+                <div className="d-flex align-items-center gap-2">
+                    <input
+                        type="checkbox"
+                        id="allow-notifications"
+                        checked={hadleNotification}
+                        onChange={handleCheckboxChange}
+                    />
+                    <label  style={{ margin: 0 }}>
+                        알림을 허용하시겠습니까?
+                    </label>
+                </div>
 
                 <button
                     type="submit"

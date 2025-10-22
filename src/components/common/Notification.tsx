@@ -121,7 +121,7 @@ const handleNotificationChange = async () => {
           type="checkbox"
           id="notification-switch"
           checked={toggle === true}
-          disabled={!isSupported || permission === "denied" || isProcessing || toggle === false}
+          disabled={!isSupported || permission === "denied" || isProcessing }
           onChange={handleNotificationChange}
         />
         <span className="slider"></span>
