@@ -112,7 +112,7 @@ return (
                   value={nicknameInput}
                   onChange={handleNicknameChange}
                 />
-                <p className="mt-1" style={{ color: error ? 'red' : '#6c757d', fontSize: '0.8rem' }}>
+                <p className="mt-1" style={{ color: error ? 'red' : 'var(--light-grey-hover-color)', fontSize: '0.8rem' }}>
                     {error || "*8글자 이내, 공백과 특수문자는 사용 금지"}
                 </p>
               </div>
@@ -136,7 +136,9 @@ return (
         <tr>
           <th style={{ width: '120px', verticalAlign: 'middle' }}>알림</th>
           <td><NotificationButton/></td>
-          <td style={{ color:'var(--soong-color', fontSize:'small' }}>* 브라우저 알림을 먼저 활성화 해주세요 </td>
+          <p className="mt-1" style={{ color: 'var(--light-grey-hover-color)', fontSize: '0.8rem' }}>
+            * 브라우저 알림을 먼저 활성화 해주세요 
+          </p>
         </tr>
 
       </tbody>
