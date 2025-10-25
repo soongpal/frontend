@@ -136,6 +136,7 @@ return (
         <tr>
           <th style={{ width: '120px', verticalAlign: 'middle' }}>알림</th>
           <td><NotificationButton/></td>
+          <td style={{ color:'var(--soong-color', fontSize:'small' }}>* 브라우저 알림을 먼저 활성화 해주세요 </td>
         </tr>
 
       </tbody>
