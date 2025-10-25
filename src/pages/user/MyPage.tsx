@@ -25,15 +25,18 @@ const MyPage: React.FC = () =>{
     const clearAuth = useAuthStore((state) => state.clear);
     //1.api 2. store초기화
     const handlelogout = async () => {
-        try {
-            await logout();
-            clearAuth();
-            window.location.href = "/";
-            alert('로그아웃되었습니다');
-        } catch (error) {
-             console.error('로그아웃실패:', error);
-        }
-    };
+  try {
+    alert("1: 로그아웃 시작");
+    await logout();
+    alert("2: 서버 로그아웃 완료");
+    clearAuth();
+    alert("3: 로컬스토리지 클리어 완료");
+    alert("4: redirect 직전");
+    window.location.href = "/";
+  } catch (error) {
+    alert("에러 발생: " + error);
+  }
+};
 
     useEffect(()=>{
         if(!user)
