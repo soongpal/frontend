@@ -113,10 +113,9 @@ const SignupPage: React.FC = () =>{
         //서버로 토큰+닉네임 전송 
         try {
             const userData = await postNickname(nickname, tempToken);
-            console.log(`회원가입 성공! ${userData.nickname}님 환영합니다`);
 
             //accesstoken설정
-            setAccessToken(userData.data.accessToken);
+            setAccessToken(userData.accessToken);
 
             // token서버 전송
             if (check && fcmToken) {
@@ -127,6 +126,7 @@ const SignupPage: React.FC = () =>{
                     console.error("FCM 토큰 전송 중 오류 발생:", fcmError);
                 }
             }
+
             navigate('/', { replace: true });
         } catch (error) {
         console.error('회원가입 중 오류가 발생했습니다.', error);
