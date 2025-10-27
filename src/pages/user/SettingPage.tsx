@@ -121,7 +121,6 @@ return (
             )}
           </td>
           {/* 변경/저장 버튼 */}
-          <td className="text-center">
             <button 
               onClick={changeNickname} 
               className="btn btn-primary btn-sm"
@@ -129,17 +128,16 @@ return (
             >
               {isEditing ? "저장" : "변경"}
             </button>
-          </td>
         </tr>
 
         {/* 알림 허용 */}
         <tr>
           <th style={{ width: '120px', verticalAlign: 'middle' }}>알림</th>
           <td><NotificationButton/></td>
-          <p className="mt-1" style={{ color: 'var(--light-grey-hover-color)', fontSize: '0.8rem' }}>
-            * 브라우저 알림을 먼저 활성화 해주세요 
-          </p>
         </tr>
+        <p className="mt-1" style={{ color: 'var(--light-grey-hover-color)', fontSize: '0.8rem' }}>
+          * 브라우저 알림을 먼저 활성화 해주세요(일부 기기 알림 미지원)
+        </p>
 
       </tbody>
     </table>

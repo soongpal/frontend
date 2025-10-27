@@ -1,0 +1,154 @@
+[33m1553c29[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m style: 설정 선 추가
+[33me02b6a5[m style: 채팅 시간 표시 수정
+[33mcce4c4a[m style: 배너 변경
+[33md259c67[m style: 상단 로고 변경
+[33m7ae899f[m style: 알림 활성화 문구 스타일
+[33mc315d1a[m refactor: 디버그 코드 삭제
+[33m8879618[m feat: 디버깅 추가
+[33m7d83cdc[m style: 알림문구 추가
+[33m1c1be94[m fix: 회원가입 후 엑세스 토큰 받아오는 경로 수정
+[33m1422e4e[m fix: 회원가입시 accesstoken받아오기 수정
+[33mdaea3df[m fix: 회원가입 후 홈으로 돌아가는 로직
+[33me9eaab6[m style: 회원가입 페이지 스타일
+[33mf02ac3c[m style: 회원가입창 수정
+[33m469e5f7[m refactor: console제거
+[33m9a164fe[m fix: 알림 허용 응답값 수정
+[33ma0e831b[m feat: 디버그 추가
+[33m155434e[m style: 채팅창 크기 수정
+[33me9ad660[m style: 채팅창 크기 수정
+[33m01d2ec4[m style: header크기 수정
+[33m2be2285[m chat하위 페이지도 header사라짐 추가
+[33m3ceb4ae[m fix: fcm토큰 여부 함수 경로 수정
+[33meea46ac[m feat: 회원가입에 알림 설정 추가
+[33mc4840e5[m fix: 토글 키기 오류
+[33m9ed43dc[m feat: 채팅방에서 헤더 두번째 row삭제
+[33mf48c20b[m refactor: 알림허용 비허용 수정
+[33m7103562[m style: 숭팔톡으로 변경
+[33m96ce072[m style: 회원가입창 수정
+[33me6834d1[m feat: 사파리 알림 설정 추가
+[33me645382[m feat: 알림 요청과 토큰 요청 함수 분리
+[33m5cb7606[m style: 제목 열 맞추기
+[33mef3a766[m style: 제목이랑 버튼 줄맞추기
+[33md142190[m style:상세페이지 버튼 이동
+[33mbb1ccd1[m feat: 알림창에서 알림 끄기 추가
+[33me76e9b5[m feat: fcm토큰 삭제, 알림끄기 함수 추가
+[33mdc7c222[m feat: fcm토큰 전송 변경
+[33m9a143b1[m feat: chat room api 응답값 수정
+[33m366fab4[m style: gap추가
+[33mc9f7367[m style: gap추가
+[33mcb1e844[m style: 헤더 스타일 수정
+[33m6b72061[m style: 헤더 수정
+[33md75b5da[m sylte: 메인에 채팅 추가
+[33md99e435[m style: mypage위치
+[33m6f9b4ea[m fix: 가격에서 0이 안지워지는 오류 해결
+[33m7264413[m build: console log제거
+[33m752261e[m style: 알림창 토클 형식으로 설정 창으로
+[33m926f8a2[m style: chatroom
+[33m4395eb5[m build: css파일 경로 수정
+[33m9ef7e35[m style: 모바일 채팅방 이전 버튼 추가
+[33m4c41a73[m style: 모바일 채팅목록 스타일
+[33m20c0e2f[m console: refresh토큰 콘솔 메세지
+[33m238a0f6[m feat: 자동 스크롤 구현
+[33mfd2fc19[m style: 인앱 알림 커스텀화
+[33m499dcd2[m feat: 구글 애널리틱스 태그 추가
+[33m6cad8ec[m style: os알림 커스텀화
+[33m9aef75a[m feat: fcm토큰 발급 콘솔
+[33m74952e2[m fix: 되돌림
+[33ma63bfc3[m fix: fcm 파라미터 수정
+[33m7b73540[m fix: post에서 patch로 수정
+[33mb7b7595[m fix: 마지막 글자가 전송되는 오류?? 해결 됫을까요
+[33mf6ca17c[m fix: 회원정보 수정칸 닉네임 오류 해결
+[33m41dd75c[m fix: 회원가입시 닉네임 첫글자 안지워지는 문제
+[33m2a68fb2[m fix: fcm토큰 전송 경로 수정
+[33m3b8f208[m style
+[33m84b9c9a[m style
+[33m29255b9[m 초기화
+[33ma902854[m 포지션 변경
+[33meef9029[m 테스트
+[33m856dccd[m 테스트
+[33m2940148[m 디버그 코드
+[33m4f68c14[m 드롭다운 에러메세지
+[33m802e2fb[m style: sindex수정
+[33m76ce538[m fix: 드롭다운 안보임
+[33mb33f509[m style:스타일
+[33m75fad08[m style:채팅방 스타일
+[33m7ea432f[m fix: chatId오타 수정
+[33m106de9c[m feat: 채팅방 참여자 띄우기
+[33m47f9fb2[m feat: 웹 실행중 알림
+[33mea09259[m style: 알림
+[33m74e351c[m feat: 테스트용 알림 받기 설정
+[33m50b30f4[m feat: fcm token전송 함수
+[33me815a74[m feat: 테스트용 콘솔 알림 처리로 firebase
+[33md6301de[m feat: firebase 초기화
+[33m3948da2[m build: 미사용 컴포넌트 제거
+[33meb9c0db[m fix: 로그인 여부 확인 함수 수정
+[33m18f3826[m fix: 로그인 여부 확인 함수 수정
+[33mf207ba1[m fix: 로그인 정보 없을시 다시 로그인 창으로 이동
+[33m374cf78[m fix: 채팅방 나가기 후 채팅방 목록 새로 불러오기
+[33m7dcb342[m fix: 헤더 크기 수정
+[33m324fe3b[m feat: 구글 태그 추가
+[33m0afdf18[m feat: sitemap업로드
+[33m9bd440f[m feat: 내상품 페이지에서 상품 클릭시 상세페이지로 이동
+[33mcfc233b[m fix: 개행 오류 해결
+[33m70fd6c5[m feat: 헤더 title숭팔이로 변경
+[33m78c6d4b[m refactor: 주석 수정
+[33m69c94ec[m feat: 채팅 목록 스타일 적용
+[33m4bd3868[m style: 채팅목록 스타일 변경- 옆에 채팅이 무조건 뜨도록
+[33m2f4f662[m refactor: 채팅 목록 아이템 스타일 파일명 변경
+[33mc1afee3[m style: 색상 코드 수정
+[33me3cc1d6[m style: 채팅 목록 스타일 수정
+[33m32a12d0[m style: 채팅방 목록 수정
+[33m9f1f240[m fix: 마이페이지에서 채팅방 목록 이동 경로 수정, 필요없는 채팅 리스트 삭제
+[33ma58ae0b[m style: 썸네일 이미지 크기 변경
+[33m24b0011[m fix: 공동구매 채팅방 경로 수정
+[33mb9db5a1[m style: 내글 관리하기 아이콘 변경
+[33m242c5d7[m fix: 내글에서 관리하기 버튼보이게 하기
+[33m7356ad5[m style: 전송자 폰트 크기 키움
+[33ma97f1ea[m fix: 채팅방 정보 수정
+[33m00c7cc5[m style: 이미지 크기 수정
+[33m719eedc[m feat: 채팅방 디버그
+[33m66c3f83[m style: 상품 상세페이지 이미지 크기 수정: 100%크기로
+[33mc59552a[m feat: 메세지에 보낸 사람 이름 추가
+[33m907d657[m style: 마이페이지 닉네임 색 변경
+[33m67502ff[m style: 설명란 내림
+[33mb77d29f[m style: 판매자명 위로 올림
+[33mfcb01c6[m style: 상품 상세이지 수정
+[33m0bc6e10[m style: soongpal컬러 수정
+[33m9fcb3a6[m style: 썸네일간 갭 추가
+[33m64da404[m style: 썸네일 이미지 크기, 위치 수정
+[33m60adf09[m style: 이미지 크기 변경
+[33m8195ac0[m feat: 이미지 썸네일 기능 추가
+[33m4c37e9f[m feat: redirectst수정
+[33mca15f52[m fix: 리다이렉트 설정 취소
+[33m525058f[m feat: netlify로 접속시 원도메인으로 리다이렉트하게 설정
+[33m1bf36d6[m feat: 내글이면 대화하기 대신 내글 관리하기로 넘어가게 수정
+[33m4742de0[m style: 커서 스타일 변경
+[33m90db1d6[m feat: 마이페이지 모바일 크기 수정
+[33m9a5c333[m feat: 상품 상페에서 카테고리 클릭시 이동
+[33m2dbf7dc[m feat: 삭제 후 새로 불러오기
+[33ma514e5a[m fix: 라우터 경로 수정
+[33m34973f5[m fix:채팅  navigate경로 수정
+[33mefb45a8[m feat: 라우터 변경
+[33m42c5ae4[m feat: 채팅 통합 페이지 제작
+[33m092061d[m style:수정페이지 스타일 새게시글 페이지와 통일
+[33md9c66fd[m refactor: 수정 함수 간결하게 수정
+[33m991f7d8[m feat: 마이페이지에 상태 변경하도록 수정
+[33m555cda5[m feat: 상품 상태 변경 함수 추가
+[33m783b9f3[m feat: 내가 쓴글 삭제로직
+[33mf353090[m feat: 닉네임 수정에 닉네임 조건 추가
+[33m1c8df36[m style: 회원탈퇴 스타일 수정
+[33m749bfb0[m feat:응답값 콘솔 추가
+[33m1beb04d[m fix: api응답 요청 수정
+[33m96544e5[m build: 미사용 import제거
+[33m01ace6c[m style: 공유버튼 제거
+[33m5b21c73[m style: 페이지 버튼 스타일 변경
+[33mdb783c3[m style: 페이지 버튼 스타일 변경
+[33m3d37eed[m refactor: page button에서 스토어 분리
+[33m80f6e53[m refactor: searchpage에서 따로 fetch안하도록 수정
+[33m09ea1cd[m refactor: product store변경
+[33m005b9ed[m build: 미사용 import제거
+[33mc5a4d89[m fix: fetch호출 없앰
+[33mf789b97[m fix: fetch를 의존성 배열에서 제거
+[33mda50890[m feat: 상품 페이지 페이지 버튼 추가
+[33m170b8ab[m faet: 페이지 버튼
+[33md7f3526[m fix: 닉네임 �
