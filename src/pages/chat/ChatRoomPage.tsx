@@ -283,7 +283,7 @@ const ChatRoomPage: React.FC = () => {
 
               {/* 채팅 참여자 목록 */}
               {room?.users?.map((user) => (
-                <div key={user.userId} className="chat-dropdown-item">
+                <div key={user.userId} className="chat-dropdown-item" style={{color: 'var(--light-grey-hover-color'}}>
                   {user.userName}
                 </div>
               ))}
