@@ -25,3 +25,16 @@ export function timeAgo(dateString: string): string{
   
   return createdAt.toLocaleDateString('ko-KR');
 }
+
+
+export function chatTime(dateString: string): string{
+
+  const createdAt = new Date(dateString.endsWith('Z') ? dateString : dateString + 'Z');
+
+  return createdAt.toLocaleTimeString('ko-KR', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false, // 24시간제
+  });
+  
+}

@@ -24,7 +24,7 @@ import SockJS from "sockjs-client";
 import { Client, type IMessage } from "@stomp/stompjs";
 
 // util
-import { timeAgo } from "../../utils/time";
+import { chatTime } from "../../utils/time";
 import { ChevronLeft, ThreeDots } from "react-bootstrap-icons";
 
 interface ChatContextType {
@@ -311,12 +311,13 @@ const ChatRoomPage: React.FC = () => {
               className={msg.senderId === user?.userId ? "message my" : "message other"}
             >
               <span className="message-sender">{msg.senderName}</span>
-              <span className="message-time">{timeAgo(msg.createdAt)}</span>
+              <span className="message-time">{chatTime(msg.createdAt)}</span>
               <span className="message-content">{msg.content}</span>
             </div>
           ))}
       </div>
 
+      {/* 채팅 입력창 */}
       <div className="chatroom-input">
         <input
           type="text"
