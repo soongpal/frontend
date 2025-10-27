@@ -91,7 +91,7 @@ return (
 
     <h4 className="mt-4 mb-3">회원정보</h4>
 
-    <table className="table" style={{ maxWidth: '600px' }}>
+    <table className="table" style={{ maxWidth: '400px' }}>
       <tbody>
         {/* ID 행 */}
         <tr>
@@ -158,7 +158,7 @@ return (
 
     {/* 알림 안내분구 */}
     <p className="mt-1" style={{ color: 'var(--light-grey-hover-color)', fontSize: '0.8rem' }}>
-      * 브라우저 알림을 먼저 활성화 해주세요(일부 기기 알림 미지원)
+      * 브라우저 알림을 먼저 활성화 해주세요 (일부 기기는 알림 미지원)
     </p>
 
     {/* 회원 탈퇴*/}
