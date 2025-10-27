@@ -16,12 +16,12 @@
 
     background: white;
 
-    border-bottom: 1px solid var(--light-grey-hover-color);
+    border-bottom: 1px solid var(--light-grey-color);
 }
 
 .chatroom-title{
     color: black;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 /* 입력창 */
