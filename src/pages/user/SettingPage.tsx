@@ -101,33 +101,51 @@ return (
 
         {/* 닉네임 */}
         <tr>
-          <th style={{ verticalAlign: 'middle' }}>닉네임</th>
+          <th style={{ verticalAlign: "middle" }}>닉네임</th>
 
-          <td>
+          {/* 닉네임 / 입력폼 */}
+          <td style={{ verticalAlign: "middle" }}>
             {isEditing ? (
-              <div>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={nicknameInput}
-                  onChange={handleNicknameChange}
-                />
-                <p className="mt-1" style={{ color: error ? 'red' : 'var(--light-grey-hover-color)', fontSize: '0.8rem' }}>
-                    {error || "*8글자 이내, 공백과 특수문자는 사용 금지"}
-                </p>
-              </div>
+              <input
+                type="text"
+                className="form-control form-control-sm d-inline-block me-2"
+                style={{ width: "200px", verticalAlign: "middle" }}
+                value={nicknameInput}
+                onChange={handleNicknameChange}
+              />
             ) : (
-              user?.nickname
+              <span style={{ display: "inline-block", verticalAlign: "middle", minWidth: "200px" }}>
+                {user?.nickname}
+              </span>
             )}
-          </td>
-          {/* 변경/저장 버튼 */}
-            <button 
-              onClick={changeNickname} 
-              className="btn btn-primary btn-sm"
-              disabled={isEditing && (!!error || nicknameInput.trim() === '' || nicknameInput === user?.nickname)}
+
+            {/* 버튼 */}
+            <button
+              onClick={changeNickname}
+              className="btn btn-primary btn-sm align-middle"
+              disabled={
+                isEditing &&
+                (!!error ||
+                  nicknameInput.trim() === "" ||
+                  nicknameInput === user?.nickname)
+              }
             >
               {isEditing ? "저장" : "변경"}
             </button>
+
+            {/* 에러/힌트 메시지 */}
+            {isEditing && (
+              <p
+                className="mt-1"
+                style={{
+                  color: error ? "red" : "var(--light-grey-hover-color)",
+                  fontSize: "0.8rem",
+                }}
+              >
+                {error || "*8글자 이내, 공백과 특수문자는 사용 금지"}
+              </p>
+            )}
+          </td>
         </tr>
 
         {/* 알림 허용 */}
@@ -135,12 +153,13 @@ return (
           <th style={{ width: '120px', verticalAlign: 'middle' }}>알림</th>
           <td><NotificationButton/></td>
         </tr>
-        <p className="mt-1" style={{ color: 'var(--light-grey-hover-color)', fontSize: '0.8rem' }}>
-          * 브라우저 알림을 먼저 활성화 해주세요(일부 기기 알림 미지원)
-        </p>
-
       </tbody>
     </table>
+
+    {/* 알림 안내분구 */}
+    <p className="mt-1" style={{ color: 'var(--light-grey-hover-color)', fontSize: '0.8rem' }}>
+      * 브라우저 알림을 먼저 활성화 해주세요(일부 기기 알림 미지원)
+    </p>
 
     {/* 회원 탈퇴*/}
     <p onClick={withdraw} className="text-muted mt-4 text-decoration-underline" style={{ cursor: "pointer" }}>
