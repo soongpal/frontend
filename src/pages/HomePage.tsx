@@ -4,6 +4,7 @@
 import Banner from "../components/banner/Banner";
 import ProductGrid from "../components/product/ProductGrid";
 import FloatingButton from "../components/common/FloatingButton";
+import { KakaoAd } from "../components/banner/KakaoAdFIt";
 //library
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -67,6 +68,7 @@ const Home: React.FC = () =>{
             <FloatingButton></FloatingButton>
             <Banner></Banner>
             <PageButton/>
+            <KakaoAd/>
         </div>
     );
 }
