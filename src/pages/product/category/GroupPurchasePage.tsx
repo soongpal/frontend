@@ -7,6 +7,7 @@ import Filter from "../../../components/common/Filter";
 import FloatingButton from "../../../components/common/FloatingButton";
 import { useProductStore } from "../../../stores/productStore";
 import PageButton from "../../../components/common/Pagebutton";
+import KakaoAdFit from "../../../components/banner/KakaoAdFit";
 
 const GroupPurchasePage: React.FC = () =>{
    // 처음 불러오기
@@ -23,6 +24,9 @@ const GroupPurchasePage: React.FC = () =>{
             <ProductGrid products={products}></ProductGrid>
             <FloatingButton></FloatingButton>
             <PageButton/>
+            <div className="d-flex justify-content-center">
+                <KakaoAdFit/>
+            </div>
         </div>
     )
 }
