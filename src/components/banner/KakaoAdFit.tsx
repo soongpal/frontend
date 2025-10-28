@@ -46,4 +46,4 @@ function KakaoAdFit() {
   );
 }
 
-export const KakaoAd = React.memo(KakaoAdFit);
+export default React.memo(KakaoAdFit);
